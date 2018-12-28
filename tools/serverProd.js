@@ -1,6 +1,7 @@
 /* eslint-disable import/default */
 /* eslint-disable no-console */
 import express from 'express';
+import path from 'path';
 import compression from 'compression';
 import * as chalk from './chalkConfig';
 import * as constants from './constants';

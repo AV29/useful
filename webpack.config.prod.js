@@ -4,6 +4,9 @@ import { PRODUCTION } from './tools/constants';
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const GLOBALS = {
+  'process.env.NODE_ENV': JSON.stringify('production')
+};
 
 module.exports = {
   devtool: 'source-map',
@@ -23,6 +26,7 @@ module.exports = {
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new webpack.DefinePlugin(GLOBALS),
     new ExtractTextPlugin({ filename: 'styles.css', disable: false, allChunks: true }),
     new webpack.LoaderOptionsPlugin({
       minimize: true,

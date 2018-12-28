@@ -1,37 +1,42 @@
 import React, { Component } from 'react';
+import Header from './header/Header';
+import Sidebar from './sidebar/Sidebar';
+import { mainTheme } from '../utilities/themes';
+import routes from '../routing/routes';
 import styled, { ThemeProvider } from 'styled-components';
 
-const mainTheme = {
-  color: 'orange'
-};
-
-const secondaryTheme = {
-  color: 'tomato'
-};
-
-export const Title = styled.h1`
-  font-size: 20px;
-  text-align: center;
-  color: ${({ theme: { color } }) => color};
+const StyledAppWrapper = styled.div`
+  background-color: transparent;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 `;
 
-export const AppWrapper = styled.div`
-  background-color: transparent;
+const StyledInnerWrapper = styled.div`
+  display: flex;
+  flex: 1;
+  width: 100%;
+`;
+
+const StyledRoutesWrapper = styled.div`
+  flex: 1;
   padding: 10px;
 `;
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <ThemeProvider theme={mainTheme}>
-        <AppWrapper>
-          <Title>Hello World!!!</Title>
-          <Title theme={secondaryTheme}>Hello World!!!</Title>
-        </AppWrapper>
+        <StyledAppWrapper>
+          <Header/>
+          <StyledInnerWrapper>
+            <Sidebar/>
+            <StyledRoutesWrapper>
+              {routes}
+            </StyledRoutesWrapper>
+          </StyledInnerWrapper>
+        </StyledAppWrapper>
       </ThemeProvider>
     );
   }

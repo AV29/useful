@@ -4,7 +4,7 @@ import webpack from 'webpack';
 import config from '../webpack.config.dev.js';
 import WebpackDevServer from 'webpack-dev-server';
 import { DEV_PORT, LOCALHOST_PATH, DEV_APP_ENTRY_POINT } from './constants';
-import * as chalk from "./chalkConfig";
+import * as chalk from './chalkConfig';
 
 const compiler = webpack(config);
 

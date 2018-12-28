@@ -36,8 +36,8 @@
       }
     ],
     "indent": [
-      1,
-      "tab",
+      2,
+      2,
       {
         "SwitchCase": 1
       }
@@ -94,7 +94,7 @@
     "react/jsx-curly-spacing": 1,
     "react/jsx-indent-props": [
       1,
-      "tab"
+      2
     ],
     "react/jsx-key": 1,
     "react/jsx-max-props-per-line": [
