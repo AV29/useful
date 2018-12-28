@@ -6,10 +6,16 @@ export default {
     name: 'Useful Apps',
     path: '/'
   },
-  moneyCalculator: {
+  calc: {
     id: guid(),
     name: 'Money Calculator',
-    path: 'money-calculator',
+    path: '/calculator',
     icon: 'money'
+  },
+  about: {
+    id: guid(),
+    name: 'About',
+    path: '/about',
+    icon: 'about'
   }
 };

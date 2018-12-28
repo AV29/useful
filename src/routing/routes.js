@@ -5,19 +5,23 @@ import routesConfig from './routesConfig';
 import MoneyCalculator from '../components/pages/money-calculator/MoneyCalculator';
 import NotFoundPage from '../components/pages/not-found/NotFoundPage';
 
-const { root, moneyCalculator } = routesConfig;
+const { root, calc } = routesConfig;
 
 export default (
   <Switch>
     <Route
       exact
-      path={moneyCalculator.path}
+      path={root.path}
+      render={() => <Redirect to={calc.path}/>}
+    />
+    <Route
+      exact
+      path={calc.path}
       component={MoneyCalculator}
     />
     <Route
       path="*"
       component={NotFoundPage}
     />
-    <Redirect from={root.path} to={moneyCalculator.path}/>
   </Switch>
 );

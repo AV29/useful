@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
-import { mainTheme } from '../../utilities/themes';
-import styled from 'styled-components';
-
-const StyledHeader = styled.div`
-  font-size: 20px;
-  color: ${({ theme: { color } }) => color};
-`;
+import { StyledHeader } from './styles';
 
 class Header extends Component {
   render() {
     return (
-      <StyledHeader theme={mainTheme}>
+      <StyledHeader>
         HEADER
       </StyledHeader>
     );
