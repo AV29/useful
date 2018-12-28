@@ -1,6 +1,7 @@
 import React from 'react';
 import routesConfig from '../../routing/routesConfig';
-import { StyledSideBar, NavItem } from './styles';
+import Icon from '../icon/Icon';
+import { StyledSideBar, NavItem, StyledName } from './styles';
 
 const navigationItems = Object.values(routesConfig).filter(route => route.id !== routesConfig.root.id);
 
@@ -8,12 +9,13 @@ function Sidebar(props) {
   return (
     <StyledSideBar>
       {
-        navigationItems.map(({ id, path, name }) => (
+        navigationItems.map(({ id, path, name, icon }) => (
           <NavItem
             key={id}
             to={path}
           >
-            {name}
+            <StyledName>{name}</StyledName>
+            <Icon icon={icon}/>
           </NavItem>
         ))
       }

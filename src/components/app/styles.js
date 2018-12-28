@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-//import { shadowColor } from '../../styles/variables';
 
 export const StyledAppWrapper = styled.div`
   display: flex;

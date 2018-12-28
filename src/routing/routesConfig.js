@@ -10,7 +10,7 @@ export default {
     id: guid(),
     name: 'Money Calculator',
     path: '/calculator',
-    icon: 'money'
+    icon: 'budget'
   },
   about: {
     id: guid(),

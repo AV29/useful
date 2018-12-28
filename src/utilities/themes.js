@@ -1,5 +1,7 @@
+import { primaryColor } from '../styles/variables';
+
 export const mainTheme = {
-  color: 'orange'
+  color: primaryColor
 };
 
 export const secondaryTheme = {
