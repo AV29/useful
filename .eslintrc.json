@@ -1,0 +1,141 @@
+{
+  "extends": "react-app",
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "arrow-parens": [
+      1,
+      "as-needed",
+      {
+        "requireForBlockBody": true
+      }
+    ],
+    "camelcase": [
+      1,
+      {
+        "properties": "never"
+      }
+    ],
+    "comma-dangle": [
+      1,
+      "only-multiline"
+    ],
+    "comma-spacing": 2,
+    "eol-last": 0,
+    "id-length": [
+      2,
+      {
+        "exceptions": [
+          "i",
+          "x",
+          "y",
+          "_",
+          "e"
+        ]
+      }
+    ],
+    "indent": [
+      1,
+      "tab",
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "jsx-quotes": 2,
+    "multiline-ternary": [
+      2,
+      "always-multiline"
+    ],
+    "newline-per-chained-call": 2,
+    "nonblock-statement-body-position": 2,
+    "no-alert": 1,
+    "no-case-declarations": 1,
+    "no-class-assign": 0,
+    "no-confusing-arrow": 1,
+    "no-console": 1,
+    "no-constant-condition": 1,
+    "no-debugger": 1,
+    "no-duplicate-imports": 1,
+    "no-multiple-empty-lines": 1,
+    "no-nested-ternary": 1,
+    "no-plusplus": 1,
+    "no-trailing-spaces": 1,
+    "no-unneeded-ternary": 1,
+    "no-var": 1,
+    "object-curly-spacing": [
+      1,
+      "always"
+    ],
+    "object-shorthand": 1,
+    "prefer-const": 1,
+    "prefer-rest-params": 1,
+    "prefer-template": 1,
+    "quotes": [
+      2,
+      "single"
+    ],
+    "react/display-name": [
+      1,
+      {
+        "ignoreTranspilerName": false
+      }
+    ],
+    "react/forbid-prop-types": [
+      1,
+      {
+        "forbid": [
+          "any"
+        ]
+      }
+    ],
+    "react/jsx-boolean-value": 1,
+    "react/jsx-closing-bracket-location": 1,
+    "react/jsx-curly-spacing": 1,
+    "react/jsx-indent-props": [
+      1,
+      "tab"
+    ],
+    "react/jsx-key": 1,
+    "react/jsx-max-props-per-line": [
+      1,
+      {
+        "maximum": 2
+      }
+    ],
+    "react/jsx-no-bind": 0,
+    "react/jsx-no-literals": 0,
+    "react/jsx-sort-prop-types": 0,
+    "react/jsx-sort-props": 0,
+    "react/jsx-wrap-multilines": 0,
+    "react/no-danger": 1,
+    "react/no-string-refs": 1,
+    "react/prefer-stateless-function": 0,
+    "react/no-did-mount-set-state": 0,
+    "react/no-did-update-set-state": 1,
+    "react/no-multi-comp": 1,
+    "react/no-set-state": 0,
+    "react/no-unknown-property": 1,
+    "react/prefer-es6-class": 1,
+    "react/prop-types": 1,
+    "react/self-closing-comp": 1,
+    "react/sort-comp": 1,
+    "semi": [
+      2,
+      "always"
+    ],
+    "switch-colon-spacing": [
+      2,
+      {
+        "after": true,
+        "before": false
+      }
+    ],
+    "space-before-blocks": 1,
+    "space-infix-ops": 1,
+    "template-curly-spacing": [
+      1,
+      "never"
+    ]
+  }
+}
