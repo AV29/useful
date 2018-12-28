@@ -1,7 +1,7 @@
 import styled from 'styled-components';
+//import { shadowColor } from '../../styles/variables';
 
 export const StyledAppWrapper = styled.div`
-  background-color: transparent;
   display: flex;
   background-color: white;
   flex-direction: column;
@@ -16,5 +16,5 @@ export const StyledInnerWrapper = styled.div`
 
 export const StyledRoutesWrapper = styled.div`
   flex: 1;
-  padding: 10px;
+  padding: 10px;  
 `;
