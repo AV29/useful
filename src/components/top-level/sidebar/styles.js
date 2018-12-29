@@ -38,19 +38,3 @@ export const NavItem = styled(NavLink)`
     box-shadow: 6px 6px 5px inset ${vars.shadowColor};
   }
 `;
-
-export const StyledCollapseToggler = styled.span`
-  transform: ${({ collapsed }) => collapsed ? 'rotate(180deg)' : 'none'};
-  transition: transform .1s ${vars.transitionStyle};
-  opacity: 0.7;
-  cursor: pointer;
-  align-self: center;
-  padding: 10px;
-  &:hover {
-    opacity: 1;
-  }
-  svg {
-    width: 20px;
-    height: 20px;
-  }
-`;

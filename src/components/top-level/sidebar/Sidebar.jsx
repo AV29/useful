@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import routesConfig from '../../../routing/routesConfig';
 import Icon from '../../reusable/icon/Icon';
-import { StyledSideBar, NavItem, StyledName, StyledCollapseToggler } from './styles';
+import Toggler from '../../reusable/toggler/Toggler';
+import { StyledSideBar, NavItem, StyledName } from './styles';
 
 const navigationItems = Object.values(routesConfig).filter(route => route.id !== routesConfig.root.id);
 
@@ -24,7 +25,7 @@ class Sidebar extends Component {
   render() {
     const { collapsed } = this.state;
     return (
-      <StyledSideBar collapsed={collapsed}>
+      <StyledSideBar>
         <div>
           {
             navigationItems.map(({ id, path, name, icon }) => (
@@ -32,18 +33,16 @@ class Sidebar extends Component {
                 key={id}
                 to={path}
               >
-                {collapsed && <StyledName>{name}</StyledName>}
+                {!collapsed && <StyledName>{name}</StyledName>}
                 <Icon icon={icon}/>
               </NavItem>
             ))
           }
         </div>
-        <StyledCollapseToggler collapsed={collapsed}>
-          <Icon
-            onClick={this.handleToggleSidebarView}
-            icon="arrowRight"
-          />
-        </StyledCollapseToggler>
+        <Toggler
+          collapsed={collapsed}
+          onClick={this.handleToggleSidebarView}
+        />
       </StyledSideBar>
     );
   }
