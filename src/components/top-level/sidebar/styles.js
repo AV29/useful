@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import * as vars from '../../../styles/variables';
+import { pickedBorderColor } from '../../../styles/variables';
 
 export const StyledSideBar = styled.div`
   flex-direction: column;
   display: flex;
   justify-content: space-between;
-  box-shadow: 0 5px 10px ${vars.shadowColor};
+  box-shadow: 0 5px 10px ${pickedBorderColor};
   svg {
     width: 30px;
     height: 30px;
@@ -23,7 +23,7 @@ export const NavItem = styled(NavLink)`
   padding: 15px;
   color: ${({ theme: { color } }) => color};
   text-align: center;
-  border-bottom: 1px solid lightgrey;
+  border-bottom: 1px solid ${pickedBorderColor};
   display: block;
   &.active {
     opacity: 1;
@@ -35,6 +35,6 @@ export const NavItem = styled(NavLink)`
     opacity: 0.7;
   }
   &:active {
-    box-shadow: 6px 6px 5px inset ${vars.shadowColor};
+    box-shadow: 6px 6px 5px inset ${pickedBorderColor};
   }
 `;

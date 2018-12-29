@@ -1,9 +1,8 @@
 import styled from 'styled-components';
-import * as vars from '../../../styles/variables';
 
 export const StyledAppWrapper = styled.div`
   display: flex;
-  background-color: ${vars.primaryBGColor};
+  background-color: ${({ theme: { bgColor } }) => bgColor};
   flex-direction: column;
   height: 100vh;
 `;
