@@ -1,8 +1,9 @@
 import styled from 'styled-components';
+import * as vars from '../../../styles/variables';
 
 export const StyledAppWrapper = styled.div`
   display: flex;
-  background-color: white;
+  background-color: ${vars.primaryBGColor};
   flex-direction: column;
   height: 100vh;
 `;
@@ -15,5 +16,6 @@ export const StyledInnerWrapper = styled.div`
 
 export const StyledRoutesWrapper = styled.div`
   flex: 1;
-  padding: 10px;  
+  padding: 30px;  
+  overflow: auto;
 `;

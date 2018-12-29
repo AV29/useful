@@ -52,7 +52,7 @@
     "no-alert": 1,
     "no-case-declarations": 1,
     "no-class-assign": 0,
-    "no-confusing-arrow": 1,
+    "no-confusing-arrow": 0,
     "no-console": 1,
     "no-constant-condition": 1,
     "no-debugger": 1,
