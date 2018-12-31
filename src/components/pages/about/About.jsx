@@ -1,8 +1,9 @@
 import React from 'react';
+import { StyledPageWrapper } from '../../../styles/styles';
 
 function About(props) {
   return (
-    <h1>About</h1>
+    <StyledPageWrapper>About</StyledPageWrapper>
   );
 }
 

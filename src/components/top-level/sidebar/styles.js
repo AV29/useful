@@ -1,16 +1,14 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { pickedBorderColor } from '../../../styles/variables';
 
 export const StyledSideBar = styled.div`
   flex-direction: column;
   display: flex;
   justify-content: space-between;
-  box-shadow: 0 5px 10px ${pickedBorderColor};
+  box-shadow: 0 5px 10px ${({ theme: { shadowColor } }) => shadowColor};
   svg {
     width: 30px;
     height: 30px;
-    fill: ${({ theme: { color } }) => color}
   }
 `;
 
@@ -21,9 +19,7 @@ export const StyledName = styled.h2`
 export const NavItem = styled(NavLink)`
   text-decoration: none;
   padding: 15px;
-  color: ${({ theme: { color } }) => color};
   text-align: center;
-  border-bottom: 1px solid ${pickedBorderColor};
   display: block;
   &.active {
     opacity: 1;
@@ -35,6 +31,10 @@ export const NavItem = styled(NavLink)`
     opacity: 0.7;
   }
   &:active {
-    box-shadow: 6px 6px 5px inset ${pickedBorderColor};
+    box-shadow: 6px 6px 5px inset ${({ theme: { shadowColor } }) => shadowColor};
   }
+`;
+
+export const StyledNavItemWrapper = styled.div`
+    border-bottom: 1px solid ${({ theme: { borderColor } }) => borderColor};
 `;

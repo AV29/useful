@@ -1,8 +1,9 @@
 import React from 'react';
+import { StyledPageWrapper } from '../../../styles/styles';
 
 function NotFoundPage(props) {
   return (
-    <h1>NOT FOUND</h1>
+    <StyledPageWrapper>NOT FOUND</StyledPageWrapper>
   );
 }
 

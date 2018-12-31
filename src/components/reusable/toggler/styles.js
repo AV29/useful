@@ -12,20 +12,21 @@ export const StyledToggler = styled.div`
   width: ${({ size }) => size}px;
   position: relative;
   &:before, &:after {
-    transition: all 150ms ${vars.transitionStyle};
-    width: ${lineThickness}px;
+    transition: width 150ms ${vars.transitionStyle};
+    width: ${({ size, collapsed }) => (size * Math.sqrt(2) - lineThickness) / (collapsed ? 2 : 1)}px;
     position: absolute;
-    top: ${({ collapsed }) => collapsed ? `${lineThickness}px` : 0};
-    left: ${({ size }) => (size - lineThickness) / 2}px;
-    height: ${({ collapsed }) => collapsed ? '65%' : '100%'};
+    left: ${({ size, collapsed }) => collapsed ? size / 4 : 0}px;
+    height: ${lineThickness}px;
     content: '';
-    transform-origin: ${({ collapsed }) => collapsed ? 'right center' : 'center'};
+    transform-origin: left;
     background-color: ${({ theme: { color } }) => color};
   }
   &:before {
-    transform: ${({ collapsed }) => collapsed ? 'translateY(-35%) rotate(-45deg)' : 'rotate(-45deg)'};
+    top: 0;
+    transform: rotate(45deg);
   }
   &:after {
-    transform: ${({ collapsed }) => collapsed ? 'translateY(35%) rotate(45deg)' : 'rotate(45deg)'};
+    bottom: 0;
+    transform: rotate(-45deg);
   }
 `;

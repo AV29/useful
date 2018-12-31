@@ -7,7 +7,7 @@ const togglerSliderHeight = '24px';
 const togglerSize = togglerSliderHeight;
 
 export const StyledCheckBox = styled.div`
-  display: block;
+  display: flex;
   position: relative;
   input[type="checkbox"] {
     position: absolute;

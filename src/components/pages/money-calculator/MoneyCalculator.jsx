@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import { StyledPageWrapper } from '../../../styles/styles';
 
 class MoneyCalculator extends Component {
 
   render() {
     return (
-      <div>
+      <StyledPageWrapper>
         Money Calculator
-      </div>
+      </StyledPageWrapper>
     );
   }
 }

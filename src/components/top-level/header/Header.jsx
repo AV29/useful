@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ToggleBox from '../../reusable/togglebox/ToggleBox';
+import ThemePicker from '../../reusable/theme-picker/ThemePicker';
 import { StyledHeader, StyledTitleHolder } from './styles';
 
 class Header extends Component {
@@ -8,12 +8,11 @@ class Header extends Component {
     return (
       <StyledHeader>
         <StyledTitleHolder>
-          HEADER
+          Useful Apps
         </StyledTitleHolder>
-        <ToggleBox
+        <ThemePicker
+          themes={this.props.themes}
           onChange={this.props.onThemeChange}
-          name="changeTheme"
-          value={this.props.isDarkTheme}
         />
       </StyledHeader>
     );
@@ -22,7 +21,13 @@ class Header extends Component {
 
 Header.propTypes = {
   onThemeChange: PropTypes.func,
-  isDarkTheme: PropTypes.bool
+  themes: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    color: PropTypes.string,
+    bgColor: PropTypes.string,
+    shadowColor: PropTypes.string,
+    borderColor: PropTypes.string
+  }))
 };
 
 export default Header;
