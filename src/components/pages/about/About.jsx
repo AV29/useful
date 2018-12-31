@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyledPageWrapper } from '../../../styles/styles';
+import { HorizontalContainer } from '../../../styles/styles';
 
 function About(props) {
   return (
-    <StyledPageWrapper>About</StyledPageWrapper>
+    <HorizontalContainer>About</HorizontalContainer>
   );
 }
 
