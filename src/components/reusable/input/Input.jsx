@@ -1,15 +1,15 @@
 import React from 'react';
-import { StyledInput } from './styles';
+import { StyledInput, StyledInputWrapper } from './styles';
 
 function Input({ id, label, ...props }) {
   return (
-    <StyledInput>
+    <StyledInputWrapper>
       {label && <label htmlFor={id}>{label}</label>}
-      <input
+      <StyledInput
         id={id}
         {...props}
       />
-    </StyledInput>
+    </StyledInputWrapper>
   );
 }
 

@@ -1,14 +1,17 @@
 import styled from 'styled-components';
 
-export const StyledInput = styled.div`
+export const StyledInputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: 10px;
   label {
     margin-bottom: 5px;
   }
-  input {
-    border-radius: 4px;
-    padding: 5px;
-  }
+`;
+
+export const StyledInput = styled.input`
+  border-radius: 4px;
+  padding: 5px;
+  background-color: ${({ readOnly, theme: { borderColor } }) => readOnly ? borderColor : 'transparent'};
+  cursor: ${({ readOnly }) => readOnly ? 'not-allowed' : 'text'};
 `;

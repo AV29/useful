@@ -9,14 +9,20 @@ class MoneyCalculator extends Component {
     super(props);
 
     this.state = {
-      restAmount: ''
+      restAmount: '',
+      restAmountPerDay: ''
     };
 
     this.handleChangeRestAmount = this.handleChangeRestAmount.bind(this);
+    this.handleCalculateRestAmountPerDay = this.handleCalculateRestAmountPerDay.bind(this);
   }
 
   handleChangeRestAmount({ target: { value } }) {
     this.setState({ restAmount: value });
+  }
+
+  handleCalculateRestAmountPerDay() {
+    this.setState({ restAmountPerDay: this.state.restAmount });
   }
 
   render() {
@@ -30,7 +36,14 @@ class MoneyCalculator extends Component {
             value={this.state.restAmount}
             onChange={this.handleChangeRestAmount}
           />
-          <Button onClick={() => console.log(this.state.restAmount)}>Calculate</Button>
+          <Input
+            id="restAmountPerDay"
+            label="Rest Amount Per Day"
+            value={this.state.restAmountPerDay}
+            style={{ textAlign: 'center' }}
+            readOnly
+          />
+          <Button onClick={this.handleCalculateRestAmountPerDay}>Calculate</Button>
         </ColumnContainer>
       </HorizontalContainer>
     );
