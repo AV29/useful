@@ -12,6 +12,12 @@ export default {
     path: '/calculator',
     icon: 'budget'
   },
+  hooks: {
+    id: guid(),
+    name: 'Hooks Example',
+    path: '/hooks',
+    icon: 'hook'
+  },
   about: {
     id: guid(),
     name: 'About',

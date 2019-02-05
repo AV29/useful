@@ -3,7 +3,7 @@ import { HorizontalContainer } from '../../../styles/styles';
 
 function About(props) {
   return (
-    <HorizontalContainer>About</HorizontalContainer>
+    <HorizontalContainer><h1>{props.name}</h1></HorizontalContainer>
   );
 }
 

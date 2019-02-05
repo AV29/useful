@@ -29,6 +29,7 @@ class MoneyCalculator extends Component {
     return (
       <HorizontalContainer>
         <ColumnContainer>
+          <h1>{this.props.name}</h1>
           <Input
             id="restAmount"
             label="Rest Amount"
