@@ -18,6 +18,12 @@ export default {
     path: '/hooks',
     icon: 'hook'
   },
+  renderProps: {
+    id: guid(),
+    name: 'Render Props Example',
+    path: '/render-props',
+    icon: 'renderProp'
+  },
   about: {
     id: guid(),
     name: 'About',

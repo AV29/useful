@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { HorizontalContainer, ColumnContainer } from '../../../styles/styles';
 import Input from '../../reusable/input/Input';
 import Button from '../../reusable/button/Button';
@@ -50,5 +51,9 @@ class MoneyCalculator extends Component {
     );
   }
 }
+
+MoneyCalculator.propTypes = {
+  name: PropTypes.string
+};
 
 export default MoneyCalculator;

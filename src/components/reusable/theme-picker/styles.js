@@ -11,8 +11,7 @@ export const StyledThemePicker = styled.div`
 export const StyledThemeMarker = styled.div`
   width: ${themeMarkerSize}px;
   height: ${themeMarkerSize}px;
-  box-sizing: content-box;
-  box-shadow: 0 0 5px ${({ theme: { borderColor } }) => borderColor};
+  box-shadow: -5px 0 10px ${({ id, theme }) => id === theme.id ? theme.borderColor : 'transparent'};
   border-radius: 2px;
   background-color: ${({ color }) => color};
   margin: 5px;

@@ -7,8 +7,9 @@ import MoneyCalculator from '../components/pages/money-calculator/MoneyCalculato
 import Hooks from '../components/pages/hooks/Hooks';
 import About from '../components/pages/about/About';
 import NotFoundPage from '../components/pages/not-found/NotFoundPage';
+import RenderProps from '../components/pages/render-props/RenderProps';
 
-const { root, calc, about, hooks } = routesConfig;
+const { root, calc, about, hooks, renderProps } = routesConfig;
 
 export default (
   <Switch>
@@ -28,6 +29,12 @@ export default (
       path={hooks.path}
       name={hooks.name}
       component={Hooks}
+    />
+    <ExtendedRoute
+      exact
+      path={renderProps.path}
+      name={renderProps.name}
+      component={RenderProps}
     />
     <ExtendedRoute
       exact

@@ -10,6 +10,8 @@ function Hooks(props) {
   );
 }
 
-Hooks.propTypes = {};
+Hooks.propTypes = {
+  name: PropTypes.string
+};
 
 export default Hooks;

@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ThemePicker from '../../reusable/theme-picker/ThemePicker';
-import { StyledHeader, StyledTitleHolder } from './styles';
+import { StyledHeader } from './styles';
 
 class Header extends Component {
   render() {
     return (
       <StyledHeader>
-        <StyledTitleHolder>
-          Useful Apps
-        </StyledTitleHolder>
+        <h1>
+          Approach examples
+        </h1>
         <ThemePicker
           themes={this.props.themes}
           onChange={this.props.onThemeChange}
