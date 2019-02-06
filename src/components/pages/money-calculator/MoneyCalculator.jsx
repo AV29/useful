@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { HorizontalContainer, ColumnContainer } from '../../../styles/styles';
+import { FlexRow, FlexColumn } from '../../../styles/styles';
 import Input from '../../reusable/input/Input';
 import Button from '../../reusable/button/Button';
 
@@ -28,8 +28,8 @@ class MoneyCalculator extends Component {
 
   render() {
     return (
-      <HorizontalContainer>
-        <ColumnContainer>
+      <FlexRow>
+        <FlexColumn>
           <h1>{this.props.name}</h1>
           <Input
             id="restAmount"
@@ -46,8 +46,8 @@ class MoneyCalculator extends Component {
             readOnly
           />
           <Button onClick={this.handleCalculateRestAmountPerDay}>Calculate</Button>
-        </ColumnContainer>
-      </HorizontalContainer>
+        </FlexColumn>
+      </FlexRow>
     );
   }
 }

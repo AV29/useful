@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { HorizontalContainer, ColumnContainer } from '../../../styles/styles';
+import { FlexRow, FlexColumn } from '../../../styles/styles';
 import RenderPropContainer from './RenderPropContainer';
 
 class RenderProps extends Component {
@@ -22,15 +22,15 @@ class RenderProps extends Component {
 
   render() {
     return (
-      <HorizontalContainer>
-        <ColumnContainer>
+      <FlexRow>
+        <FlexColumn>
           <h1>{this.props.name}</h1>
           <RenderPropContainer
             sharedData={this.state.sharedData}
             onNotifyParent={this.handleChangeRenderPropContainerData}
           />
-        </ColumnContainer>
-      </HorizontalContainer>
+        </FlexColumn>
+      </FlexRow>
     );
   }
 }

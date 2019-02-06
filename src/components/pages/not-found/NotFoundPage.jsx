@@ -1,9 +1,9 @@
 import React from 'react';
-import { HorizontalContainer } from '../../../styles/styles';
+import { FlexRow } from '../../../styles/styles';
 
 function NotFoundPage(props) {
   return (
-    <HorizontalContainer>NOT FOUND</HorizontalContainer>
+    <FlexRow>NOT FOUND</FlexRow>
   );
 }
 

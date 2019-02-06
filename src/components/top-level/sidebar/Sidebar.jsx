@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import routesConfig from '../../../routing/routesConfig';
 import Icon from '../../reusable/icon/Icon';
 import Toggler from '../../reusable/toggler/Toggler';
+import { FlexRow } from '../../../styles/styles';
 import { StyledSideBar, NavItem, StyledName, StyledNavItemWrapper } from './styles';
 
 const navigationItems = Object.values(routesConfig).filter(route => route.id !== routesConfig.root.id);
@@ -38,10 +39,12 @@ class Sidebar extends Component {
             ))
           }
         </div>
-        <Toggler
-          collapsed={collapsed}
-          onClick={this.handleToggleSidebarView}
-        />
+        <FlexRow style={{ minHeight: 40 }}>
+          <Toggler
+            collapsed={collapsed}
+            onClick={this.handleToggleSidebarView}
+          />
+        </FlexRow>
       </StyledSideBar>
     );
   }

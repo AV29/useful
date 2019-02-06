@@ -5,6 +5,7 @@ export const StyledSideBar = styled.div`
   flex-direction: column;
   display: flex;
   justify-content: space-between;
+  overflow: auto;
   box-shadow: 0 5px 10px ${({ theme: { shadowColor } }) => shadowColor};
   svg {
     width: 30px;
