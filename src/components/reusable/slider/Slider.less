@@ -1,0 +1,74 @@
+@slider-height: 5px;
+@thumb-height: 20px;
+
+.sliderControl {
+  padding: 20px;
+  font-size: 1.4rem;
+  user-select: none;
+
+  .label {
+    margin-bottom: 15px;
+    font-weight: 400;
+  }
+
+  .slider {
+    width: 100%;
+    height: @slider-height;
+    background: #d3d3d3;
+    transition: opacity .2s;
+    position: relative;
+
+    .thumb {
+      cursor: default;
+      padding: 0;
+      width: 7px;
+      height: @thumb-height;
+      border-radius: 4px;
+      background: #444444;
+      position: absolute;
+      top: @slider-height / 2;
+      border: 1px solid white;
+      transform: translateY(-50%);
+
+      .tooltip {
+        visibility: hidden;
+        position: absolute;
+        top: -150%;
+        background: #000000;
+        color: #ffffff;
+        padding: 5px;
+        font-size: 1.2rem;
+        white-space: nowrap;
+      }
+
+      &:hover {
+        opacity: .5;
+      }
+
+      &:active {
+        opacity: 1;
+
+        .tooltip {
+          visibility: visible;
+        }
+      }
+    }
+
+    .fillLower {
+      background-color: #288dc8;
+      position: absolute;
+      left: 0;
+      height: 100%;
+    }
+  }
+
+  .stepLabels {
+    width: 100%;
+    position: relative;
+    margin-top: 10px;
+
+    .stepLabel {
+      position: absolute;
+    }
+  }
+}

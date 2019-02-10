@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { FlexRow, FlexColumn } from '../../../styles/styles';
 import Input from '../../reusable/input/Input';
 import Button from '../../reusable/button/Button';
+import Slider from '../../reusable/slider/Slider';
 
 class MoneyCalculator extends Component {
 
@@ -11,10 +12,12 @@ class MoneyCalculator extends Component {
 
     this.state = {
       restAmount: '',
-      restAmountPerDay: ''
+      restAmountPerDay: '',
+      sliderValue: 2
     };
 
     this.handleChangeRestAmount = this.handleChangeRestAmount.bind(this);
+    this.handleChangeSliderValue = this.handleChangeSliderValue.bind(this);
     this.handleCalculateRestAmountPerDay = this.handleCalculateRestAmountPerDay.bind(this);
   }
 
@@ -24,6 +27,11 @@ class MoneyCalculator extends Component {
 
   handleCalculateRestAmountPerDay() {
     this.setState({ restAmountPerDay: this.state.restAmount });
+  }
+
+  handleChangeSliderValue(sliderValue) {
+    console.log(sliderValue);
+    this.setState({ sliderValue });
   }
 
   render() {
@@ -46,6 +54,19 @@ class MoneyCalculator extends Component {
             readOnly
           />
           <Button onClick={this.handleCalculateRestAmountPerDay}>Calculate</Button>
+          <Slider
+            style={{ width: 600 }}
+            label="Slider Example"
+            value={this.state.sliderValue}
+            onChange={this.handleChangeSliderValue}
+            steps={[
+              { value: 1, label: 'Fast', tooltip: 'Fastest, Test Feasibility' },
+              { value: 2, tooltip: 'Fast, Basic Search' },
+              { value: 3, label: 'Balanced', tooltip: 'Default' },
+              { value: 4, tooltip: 'Slower, Expanded Search' },
+              { value: 5, label: 'Detailed', tooltip: 'Slowest, Advanced Search' }
+            ]}
+          />
         </FlexColumn>
       </FlexRow>
     );
