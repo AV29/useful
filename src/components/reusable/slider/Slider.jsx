@@ -4,9 +4,12 @@ import './Slider.less';
 
 class Slider extends Component {
 
-  static getDerivedStateFromProps(props, { indexedSteps }) {
-    const value = indexedSteps.findIndex(({ value }) => value === Slider.getProperValue(props));
-    return { value: value > 0 ? value : 0 };
+  /** Handling actual index-value and thus not being depend on whether passed values are incremental or not */
+  static getDerivedStateFromProps(props) {
+    const index = props.steps.findIndex(({ value }) => value === Slider.getProperValue(props));
+    return {
+      value: index > 0 ? index : 0
+    };
   }
 
   static getProperValue({ value, simpleValue }) {
@@ -25,13 +28,11 @@ class Slider extends Component {
     this.handleCaptureDrag = this.handleCaptureDrag.bind(this);
     this.handleReleaseDrag = this.handleReleaseDrag.bind(this);
 
-    this.state = {
-      indexedSteps: props.steps.map((step, index) => ({ ...step, index })),
-      value: 0
-    };
-
     this.isThumbBeingDragged = false;
 
+    this.state = {
+      value: 0
+    };
   }
 
   getThumbDragDirection(mouseX) {
@@ -97,7 +98,7 @@ class Slider extends Component {
   }
 
   getLeftOffset(index) {
-    return 100 * index / (this.state.indexedSteps.length - 1);
+    return 100 * index / (this.props.steps.length - 1);
   }
 
   getTranslateOffset(index) {
@@ -109,7 +110,7 @@ class Slider extends Component {
   }
 
   getTooltipContent() {
-    const tooltipContent = this.state.indexedSteps[this.state.value].tooltip;
+    const tooltipContent = this.props.steps[this.state.value].tooltip;
     return tooltipContent
       ? <div style={{ padding: 5 }}>{tooltipContent}</div>
       : null;
@@ -146,7 +147,7 @@ class Slider extends Component {
         </div>
         <div className="stepLabels">
           {
-            this.state.indexedSteps.map(({ label, index }) => label && (
+            this.props.steps.map(({ label }, index) => label && (
               <span
                 key={index}
                 className="stepLabel label"
