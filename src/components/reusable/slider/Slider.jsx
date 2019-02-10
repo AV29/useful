@@ -4,9 +4,9 @@ import './Slider.less';
 
 class Slider extends Component {
 
-  static getDerivedStateFromProps(props, { values }) {
-    const currentValue = values.findIndex(({ value }) => value === Slider.getProperValue(props));
-    return { currentValue: currentValue > 0 ? currentValue : 0 };
+  static getDerivedStateFromProps(props, { indexedSteps }) {
+    const value = indexedSteps.findIndex(({ value }) => value === Slider.getProperValue(props));
+    return { value: value > 0 ? value : 0 };
   }
 
   static getProperValue({ value, simpleValue }) {
@@ -26,8 +26,8 @@ class Slider extends Component {
     this.handleReleaseDrag = this.handleReleaseDrag.bind(this);
 
     this.state = {
-      values: props.steps.map((step, index) => ({ ...step, index })),
-      currentValue: 0
+      indexedSteps: props.steps.map((step, index) => ({ ...step, index })),
+      value: 0
     };
 
     this.isThumbBeingDragged = false;
@@ -77,12 +77,12 @@ class Slider extends Component {
   }
 
   stepDown() {
-    const nextValue = this.props.steps[this.state.currentValue - 1];
+    const nextValue = this.props.steps[this.state.value - 1];
     this.props.onChange(this.props.simpleValue ? nextValue.value : nextValue);
   }
 
   stepUp() {
-    const nextValue = this.props.steps[this.state.currentValue + 1];
+    const nextValue = this.props.steps[this.state.value + 1];
     this.props.onChange(this.props.simpleValue ? nextValue.value : nextValue);
   }
 
@@ -97,7 +97,7 @@ class Slider extends Component {
   }
 
   getLeftOffset(index) {
-    return 100 * index / (this.props.steps.length - 1);
+    return 100 * index / (this.state.indexedSteps.length - 1);
   }
 
   getTranslateOffset(index) {
@@ -105,20 +105,20 @@ class Slider extends Component {
   }
 
   setTooltipPosition() {
-    this.tooltip.style.transform = this.getTranslateOffset(this.state.currentValue);
+    this.tooltip.style.transform = this.getTranslateOffset(this.state.value);
   }
 
   getTooltipContent() {
-    const currentStepObj = this.props.steps.find(({ value, tooltip }) => value === this.props.value && tooltip);
-    return currentStepObj
-      ? <div style={{ padding: 5 }}>{currentStepObj.tooltip}</div>
+    const tooltipContent = this.state.indexedSteps[this.state.value].tooltip;
+    return tooltipContent
+      ? <div style={{ padding: 5 }}>{tooltipContent}</div>
       : null;
   }
 
   render() {
-    const { label, style, steps } = this.props;
+    const { label, style } = this.props;
 
-    const leftOffset = `${this.getLeftOffset(this.state.currentValue)}%`;
+    const leftOffset = `${this.getLeftOffset(this.state.value)}%`;
     return (
       <div className="sliderControl" style={style}>
         {label && <div className="label">{label}</div>}
@@ -146,7 +146,7 @@ class Slider extends Component {
         </div>
         <div className="stepLabels">
           {
-            steps.map(({ label }, index) => label && (
+            this.state.indexedSteps.map(({ label, index }) => label && (
               <span
                 key={index}
                 className="stepLabel label"
