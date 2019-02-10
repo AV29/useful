@@ -2,25 +2,45 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './Slider.less';
 
-class SliderControl extends Component {
+class Slider extends Component {
+
+  static getDerivedStateFromProps(props, { values }) {
+    const currentValue = values.findIndex(({ value }) => value === Slider.getProperValue(props));
+    return { currentValue: currentValue > 0 ? currentValue : 0 };
+  }
+
+  static getProperValue({ value, simpleValue }) {
+    if (simpleValue) {
+      return value;
+    } else {
+      return typeof value === 'object' ? value.value : value;
+    }
+  }
+
   constructor(props) {
     super(props);
 
+    this.handleDragThumb = this.handleDragThumb.bind(this);
     this.handleClickSlider = this.handleClickSlider.bind(this);
     this.handleCaptureDrag = this.handleCaptureDrag.bind(this);
     this.handleReleaseDrag = this.handleReleaseDrag.bind(this);
-    this.handleDragThumb = this.handleDragThumb.bind(this);
+
+    this.state = {
+      values: props.steps.map((step, index) => ({ ...step, index })),
+      currentValue: 0
+    };
 
     this.isThumbBeingDragged = false;
+
   }
 
   getThumbDragDirection(mouseX) {
     const { left: thumbLeft, right: thumbRight } = this.thumb.getBoundingClientRect();
     const { left: sliderLeft, right: sliderRight } = this.slider.getBoundingClientRect();
-    const offsetForChangeValueWhileDragging = (sliderRight - sliderLeft) / ((this.props.steps.length - 1) * 2);
+    const sectionWidth = (sliderRight - sliderLeft) / (this.props.steps.length - 1);
     return {
-      isMovingRight: mouseX > thumbRight + offsetForChangeValueWhileDragging && mouseX <= sliderRight,
-      isMovingLeft: mouseX < thumbLeft - offsetForChangeValueWhileDragging && mouseX >= sliderLeft
+      isMovingRight: mouseX > thumbRight + (sectionWidth / 2) && mouseX <= sliderRight,
+      isMovingLeft: mouseX < thumbLeft - (sectionWidth / 2) && mouseX >= sliderLeft
     };
   }
 
@@ -45,26 +65,25 @@ class SliderControl extends Component {
 
   handleCaptureDrag() {
     this.setTooltipPosition();
-    this.toggleMouseEventsDuringDrag(this.slider);
+    this.toggleMouseEventsOnDrag(this.slider);
     document.addEventListener('mousemove', this.handleDragThumb);
     document.addEventListener('mouseup', this.handleReleaseDrag);
   }
 
   handleReleaseDrag() {
-    this.toggleMouseEventsDuringDrag(this.slider);
+    this.toggleMouseEventsOnDrag(this.slider);
     document.removeEventListener('mousemove', this.handleDragThumb);
     document.removeEventListener('mouseup', this.handleReleaseDrag);
   }
 
-  /**ToDo: Works with assumption that values given in steps are incremental and starts with 1
-   * ToDo: Need to adjust steps with id fields. */
-
   stepDown() {
-    this.props.onChange(this.props.value - 1);
+    const nextValue = this.props.steps[this.state.currentValue - 1];
+    this.props.onChange(this.props.simpleValue ? nextValue.value : nextValue);
   }
 
   stepUp() {
-    this.props.onChange(this.props.value + 1);
+    const nextValue = this.props.steps[this.state.currentValue + 1];
+    this.props.onChange(this.props.simpleValue ? nextValue.value : nextValue);
   }
 
   /**
@@ -72,7 +91,7 @@ class SliderControl extends Component {
    * Even with stopPropagation being called.
    * Event only stops propagation if release phase was while over the same element.
    * */
-  toggleMouseEventsDuringDrag(element) {
+  toggleMouseEventsOnDrag(element) {
     this.isThumbBeingDragged = !this.isThumbBeingDragged;
     element.style.pointerEvents = this.isThumbBeingDragged ? 'none' : 'all';
   }
@@ -86,17 +105,20 @@ class SliderControl extends Component {
   }
 
   setTooltipPosition() {
-    this.tooltip.style.transform = this.getTranslateOffset(this.props.value - 1);
+    this.tooltip.style.transform = this.getTranslateOffset(this.state.currentValue);
   }
 
   getTooltipContent() {
     const currentStepObj = this.props.steps.find(({ value, tooltip }) => value === this.props.value && tooltip);
-    return currentStepObj ? currentStepObj.tooltip : null;
+    return currentStepObj
+      ? <div style={{ padding: 5 }}>{currentStepObj.tooltip}</div>
+      : null;
   }
 
   render() {
-    const { label, style, steps, value } = this.props;
-    const leftOffset = `${this.getLeftOffset(value - 1)}%`;
+    const { label, style, steps } = this.props;
+
+    const leftOffset = `${this.getLeftOffset(this.state.currentValue)}%`;
     return (
       <div className="sliderControl" style={style}>
         {label && <div className="label">{label}</div>}
@@ -143,21 +165,23 @@ class SliderControl extends Component {
   }
 }
 
-SliderControl.propTypes = {
+Slider.propTypes = {
   steps: PropTypes.arrayOf(PropTypes.shape({
     value: PropTypes.number.isRequired,
     label: PropTypes.string,
     tooltip: PropTypes.string
   })).isRequired,
-  value: PropTypes.number,
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.object]),
+  simpleValue: PropTypes.bool,
   onChange: PropTypes.func,
   label: PropTypes.string,
   style: PropTypes.object
 };
 
-SliderControl.defaultProps = {
+Slider.defaultProps = {
+  simpleValue: true,
   onChange: () => {
   }
 };
 
-export default SliderControl;
+export default Slider;
