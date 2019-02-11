@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { FlexRow, FlexColumn } from '../../../styles/styles';
+import useDynamicInterval from './useDynamicInterval';
 import Button from '../../reusable/button/Button';
 import Input from '../../reusable/input/Input';
 import PropTypes from 'prop-types';
@@ -29,25 +30,6 @@ function Hooks(props) {
       </FlexColumn>
     </FlexRow>
   );
-}
-
-function useDynamicInterval(callback, delay) {
-  const savedCallback = useRef();
-
-  useEffect(() => {
-    savedCallback.current = callback;
-  }, [callback]);
-
-  useEffect(() => {
-    function tick() {
-      savedCallback.current();
-    }
-
-    if (delay !== null) {
-      const id = setInterval(tick, delay);
-      return () => clearInterval(id);
-    }
-  }, [delay]);
 }
 
 Hooks.propTypes = {
