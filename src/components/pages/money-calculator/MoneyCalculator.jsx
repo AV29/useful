@@ -10,6 +10,8 @@ class MoneyCalculator extends Component {
   constructor(props) {
     super(props);
 
+    this.steps = (new Array(10)).fill(0).map((el, i) => ({ value: i, label: `${i}`, tooltip: `Anton ${i}` }));
+
     this.state = {
       restAmount: '',
       restAmountPerDay: '',
@@ -59,13 +61,7 @@ class MoneyCalculator extends Component {
             label="Slider Example"
             value={this.state.sliderValue}
             onChange={this.handleChangeSliderValue}
-            steps={[
-              { value: 1, label: 'Fast', tooltip: 'Fastest, Test Feasibility' },
-              { value: 2, tooltip: 'Fast, Basic Search' },
-              { value: 3, label: 'Balanced', tooltip: 'Default' },
-              { value: 4, tooltip: 'Slower, Expanded Search' },
-              { value: 5, label: 'Detailed', tooltip: 'Slowest, Advanced Search' }
-            ]}
+            steps={this.steps}
           />
         </FlexColumn>
       </FlexRow>

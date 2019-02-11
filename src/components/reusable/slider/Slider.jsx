@@ -4,22 +4,6 @@ import './Slider.less';
 
 class Slider extends Component {
 
-  /** Handling actual index-value and thus not being depend on whether passed values are incremental or not */
-  static getDerivedStateFromProps(props) {
-    const index = props.steps.findIndex(({ value }) => value === Slider.getProperValue(props));
-    return {
-      value: index > 0 ? index : 0
-    };
-  }
-
-  static getProperValue({ value, simpleValue }) {
-    if (simpleValue) {
-      return value;
-    } else {
-      return typeof value === 'object' ? value.value : value;
-    }
-  }
-
   constructor(props) {
     super(props);
 
@@ -30,9 +14,14 @@ class Slider extends Component {
 
     this.isThumbBeingDragged = false;
 
+    /** Handling actual index value and thus not being depend on whether passed values are incremental or not */
     this.state = {
-      value: 0
+      index: props.steps.findIndex(({ value }) => value === props.value)
     };
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.state.index !== nextState.index;
   }
 
   getThumbDragDirection(mouseX) {
@@ -61,11 +50,9 @@ class Slider extends Component {
     } else if (isMovingLeft) {
       this.stepDown();
     }
-    this.setTooltipPosition();
   }
 
   handleCaptureDrag() {
-    this.setTooltipPosition();
     this.toggleMouseEventsOnDrag(this.slider);
     document.addEventListener('mousemove', this.handleDragThumb);
     document.addEventListener('mouseup', this.handleReleaseDrag);
@@ -78,13 +65,17 @@ class Slider extends Component {
   }
 
   stepDown() {
-    const nextValue = this.props.steps[this.state.value - 1];
-    this.props.onChange(this.props.simpleValue ? nextValue.value : nextValue);
+    this.step(this.state.index - 1);
   }
 
   stepUp() {
-    const nextValue = this.props.steps[this.state.value + 1];
-    this.props.onChange(this.props.simpleValue ? nextValue.value : nextValue);
+    this.step(this.state.index + 1);
+  }
+
+  step(index) {
+    const { steps, onChange, simpleValue } = this.props;
+    const nextValue = simpleValue ? steps[index].value : steps[index];
+    this.setState({ index }, () => onChange(nextValue));
   }
 
   /**
@@ -101,25 +92,12 @@ class Slider extends Component {
     return 100 * index / (this.props.steps.length - 1);
   }
 
-  getTranslateOffset(index) {
-    return `translateX(${-1 * this.getLeftOffset(index)}%)`;
-  }
-
-  setTooltipPosition() {
-    this.tooltip.style.transform = this.getTranslateOffset(this.state.value);
-  }
-
-  getTooltipContent() {
-    const tooltipContent = this.props.steps[this.state.value].tooltip;
-    return tooltipContent
-      ? <div style={{ padding: 5 }}>{tooltipContent}</div>
-      : null;
-  }
-
   render() {
-    const { label, style } = this.props;
+    const { index } = this.state;
+    const { label, style, steps } = this.props;
+    const { tooltip } = steps[index];
+    const leftOffset = this.getLeftOffset(index);
 
-    const leftOffset = `${this.getLeftOffset(this.state.value)}%`;
     return (
       <div className="sliderControl" style={style}>
         {label && <div className="label">{label}</div>}
@@ -128,37 +106,39 @@ class Slider extends Component {
           onClick={this.handleClickSlider}
           className="slider"
         >
-          <div className="fillLower" style={{ width: leftOffset }}/>
+          <div className="fillLower" style={{ width: `${leftOffset}%` }}/>
           <button
             ref={th => this.thumb = th}
             className="thumb"
-            style={{ left: leftOffset }}
-            onClick={event => event.preventDefault()}
+            style={{ left: `${leftOffset}%` }}
             onMouseDown={this.handleCaptureDrag}
             onDragStart={() => false}
           >
             <div
-              ref={tt => this.tooltip = tt}
               className="tooltip"
+              style={{ transform: `transform(${-1 * leftOffset})` }}
             >
-              {this.getTooltipContent()}
+              {tooltip && <div style={{ padding: 5 }}>{tooltip}</div>}
             </div>
           </button>
         </div>
         <div className="stepLabels">
           {
-            this.props.steps.map(({ label }, index) => label && (
-              <span
-                key={index}
-                className="stepLabel label"
-                style={{
-                  left: `${this.getLeftOffset(index)}%`,
-                  transform: this.getTranslateOffset(index)
-                }}
-              >
-                {label}
-              </span>
-            ))
+            steps.map(({ label }, index) => {
+              const offset = this.getLeftOffset(index);
+              return label && (
+                <span
+                  key={index}
+                  className="stepLabel label"
+                  style={{
+                    left: `${offset}%`,
+                    transform: `transform(${-1 * offset})`
+                  }}
+                >
+                  {label}
+                </span>
+              );
+            })
           }
         </div>
       </div>
