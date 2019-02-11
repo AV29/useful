@@ -1,8 +1,25 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import './Slider.less';
 
-class Slider extends Component {
+class Slider extends PureComponent {
+
+  static getDerivedStateFromProps(props, state) {
+    const index = props.steps.findIndex(({ value }) => value === Slider.getProperValue(props));
+    return state.index !== index ?
+      {
+        index: index > 0 ? index : 0
+      } :
+      null;
+  }
+
+  static getProperValue({ value, simpleValue }) {
+    if (simpleValue) {
+      return value;
+    } else {
+      return typeof value === 'object' ? value.value : value;
+    }
+  }
 
   constructor(props) {
     super(props);
@@ -16,12 +33,8 @@ class Slider extends Component {
 
     /** Handling actual index value and thus not being depend on whether passed values are incremental or not */
     this.state = {
-      index: props.steps.findIndex(({ value }) => value === props.value)
+      index: 0
     };
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.state.index !== nextState.index;
   }
 
   getThumbDragDirection(mouseX) {
@@ -75,7 +88,7 @@ class Slider extends Component {
   step(index) {
     const { steps, onChange, simpleValue } = this.props;
     const nextValue = simpleValue ? steps[index].value : steps[index];
-    this.setState({ index }, () => onChange(nextValue));
+    onChange(nextValue);
   }
 
   /**
@@ -93,6 +106,7 @@ class Slider extends Component {
   }
 
   render() {
+    console.log('Render');
     const { index } = this.state;
     const { label, style, steps } = this.props;
     const { tooltip } = steps[index];
