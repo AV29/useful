@@ -5,20 +5,20 @@ import './Slider.less';
 class Slider extends PureComponent {
 
   static getDerivedStateFromProps(props, state) {
-    const index = props.steps.findIndex(({ value }) => value === Slider.getProperValue(props));
-    return state.index !== index ?
-      {
-        index: index > 0 ? index : 0
-      } :
-      null;
+    const index = Slider.getIndex(props);
+    return state.index !== index ? { index } : null;
   }
 
-  static getProperValue({ value, simpleValue }) {
-    if (simpleValue) {
-      return value;
-    } else {
-      return typeof value === 'object' ? value.value : value;
-    }
+  static getIndex({ steps, simpleValue, value: passedValue }) {
+    /** Comparing ways:
+     * 1) If mode is simple value,
+     * 2) If !simpleValue,
+     * 3) If !simpleValue but initialValue passed as primitive
+     * */
+    const index = steps.findIndex(({ value }) =>
+      value === (!simpleValue ? (passedValue.value || passedValue) : passedValue)
+    );
+    return index > 0 ? index : 0;
   }
 
   constructor(props) {
@@ -31,10 +31,8 @@ class Slider extends PureComponent {
 
     this.isThumbBeingDragged = false;
 
-    /** Handling actual index value and thus not being depend on whether passed values are incremental or not */
-    this.state = {
-      index: 0
-    };
+    this.state = { index: 0 };
+
   }
 
   getThumbDragDirection(mouseX) {
@@ -106,7 +104,6 @@ class Slider extends PureComponent {
   }
 
   render() {
-    console.log('Render');
     const { index } = this.state;
     const { label, style, steps } = this.props;
     const { tooltip } = steps[index];

@@ -13,8 +13,15 @@ class MoneyCalculator extends Component {
     this.state = {
       restAmount: '',
       restAmountPerDay: '',
-      sliderValue: 400
+      sliderValue: 0
     };
+
+    this.steps = [
+      { index: 1, value: 400, label: '400', tooltip: '400' },
+      { index: 2, value: 500, label: '500', tooltip: '500' },
+      { index: 3, value: 600, label: '600', tooltip: '600' },
+      { index: 4, value: 700, label: '700', tooltip: '700' }
+    ];
 
     this.handleChangeRestAmount = this.handleChangeRestAmount.bind(this);
     this.handleChangeSliderValue = this.handleChangeSliderValue.bind(this);
@@ -55,16 +62,12 @@ class MoneyCalculator extends Component {
           />
           <Button onClick={this.handleCalculateRestAmountPerDay}>Calculate</Button>
           <Slider
-            style={{ width: 500}}
+            style={{ width: 500 }}
             label="Slider Example"
+            simpleValue={false}
             value={this.state.sliderValue}
             onChange={this.handleChangeSliderValue}
-            steps={[
-              { index: 1, value: 400, label: '400', tooltip: '400' },
-              { index: 2, value: 500, label: '500', tooltip: '500' },
-              { index: 3, value: 600, label: '600', tooltip: '600' },
-              { index: 4, value: 700, label: '700', tooltip: '700' }
-            ]}
+            steps={this.steps}
           />
         </FlexColumn>
       </FlexRow>
