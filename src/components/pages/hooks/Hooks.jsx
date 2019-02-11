@@ -3,13 +3,14 @@ import { FlexRow, FlexColumn } from '../../../styles/styles';
 import Button from '../../reusable/button/Button';
 import Input from '../../reusable/input/Input';
 import PropTypes from 'prop-types';
+import Clock from './Clock';
 
 function Hooks(props) {
   const [count, setCount] = useState(0);
   const [delay, setDelay] = useState(1000);
   const [isCounting, setIsCounting] = useState(false);
 
-  useInterval(() => setCount(count + 1), isCounting ? delay : null);
+  useDynamicInterval(() => setCount(count + 1), isCounting ? delay : null);
 
   return (
     <FlexRow>
@@ -24,12 +25,13 @@ function Hooks(props) {
         />
         <Button onClick={() => setIsCounting(!isCounting)}>{isCounting ? 'Pause' : 'Play'}</Button>
         <h2>{count}</h2>
+        <Clock/>
       </FlexColumn>
     </FlexRow>
   );
 }
 
-function useInterval(callback, delay) {
+function useDynamicInterval(callback, delay) {
   const savedCallback = useRef();
 
   useEffect(() => {
