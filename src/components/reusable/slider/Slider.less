@@ -1,21 +1,22 @@
+@import '../../../styles/variables';
+
 @slider-height: 5px;
 @thumb-height: 20px;
 
-.sliderControl {
-  padding: 20px;
-  font-size: 1.4rem;
+.slider {
   user-select: none;
+  width: 100%;
 
   .label {
     margin-bottom: 15px;
     font-weight: 400;
   }
 
-  .slider {
+  .track {
     width: 100%;
     height: @slider-height;
-    background: #d3d3d3;
-    transition: opacity .2s;
+    background: @grey;
+    transition: opacity 0.2s;
     position: relative;
 
     .thumb {
@@ -24,49 +25,54 @@
       width: 7px;
       height: @thumb-height;
       border-radius: 4px;
-      background: #444444;
+      background: @dark-grey;
       position: absolute;
       top: @slider-height / 2;
-      border: 1px solid white;
+      border: 1px solid @white;
       transform: translateY(-50%);
+      outline: none;
 
-      .tooltip {
+      .tooltipContainer {
         visibility: hidden;
         position: absolute;
         top: -150%;
-        background: #000000;
-        color: #ffffff;
-        font-size: 1.2rem;
+        background-color: @black;
+        color: @white;
+        font-size: 12px;
         white-space: nowrap;
+
+        .tooltip {
+          padding: 5px;
+        }
       }
 
       &:hover {
-        opacity: .5;
+        opacity: 0.5;
       }
 
       &:active {
         opacity: 1;
 
-        .tooltip {
+        .tooltipContainer {
           visibility: visible;
         }
       }
     }
 
     .fillLower {
-      background-color: #288dc8;
+      background-color: @blue;
       position: absolute;
       left: 0;
       height: 100%;
     }
   }
 
-  .stepLabels {
+  .tickMarks {
     width: 100%;
     position: relative;
     margin-top: 10px;
 
-    .stepLabel {
+    .tickMark {
       position: absolute;
     }
   }

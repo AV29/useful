@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FlexRow, FlexColumn } from '../../../styles/styles';
 import Input from '../../reusable/input/Input';
 import Button from '../../reusable/button/Button';
-import Slider from '../../reusable/slider/Slider';
+import { StyledSlyder } from './styles';
 
 class MoneyCalculator extends Component {
 
@@ -13,15 +13,15 @@ class MoneyCalculator extends Component {
     this.state = {
       restAmount: '',
       restAmountPerDay: '',
-      sliderValue: 0
+      sliderValue: 2
     };
 
-    this.steps = [
-      { index: 1, value: 400, label: '400', tooltip: '400' },
-      { index: 2, value: 500, label: '500', tooltip: '500' },
-      { index: 3, value: 600, label: '600', tooltip: '600' },
-      { index: 4, value: 700, label: '700', tooltip: '700' }
-    ];
+    this.info = {
+      1: { tickMark: '10:00', tooltip: 'Came at work' },
+      2: { tickMark: '14:00', tooltip: 'Gone for dinner' },
+      3: { tickMark: '14:30', tooltip: 'Took some coffee' },
+      4: { tickMark: '19:00', tooltip: 'Went home' }
+    };
 
     this.handleChangeRestAmount = this.handleChangeRestAmount.bind(this);
     this.handleChangeSliderValue = this.handleChangeSliderValue.bind(this);
@@ -61,13 +61,13 @@ class MoneyCalculator extends Component {
             readOnly
           />
           <Button onClick={this.handleCalculateRestAmountPerDay}>Calculate</Button>
-          <Slider
-            style={{ width: 500 }}
+          <StyledSlyder
             label="Slider Example"
-            simpleValue={false}
+            max={4}
+            stepPerClick
             value={this.state.sliderValue}
             onChange={this.handleChangeSliderValue}
-            steps={this.steps}
+            info={this.info}
           />
         </FlexColumn>
       </FlexRow>
