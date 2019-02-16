@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import TestContainer from './TestContainer';
+import { FlexColumn } from '../../../styles/styles';
 
-export const StyledTestContainer = styled(TestContainer)`
-  padding: 20px;
+export const StyledRenderPropContent = styled(FlexColumn)`
   margin: 20px;
   border: 1px solid ${({ theme: { borderColor } }) => borderColor};
+  padding: ${({ padding }) => padding}px;
 `;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { shape, string } from 'prop-types';
+import { ThemeConsumer } from 'styled-components';
 import { FlexRow, FlexColumn } from '../../../styles/styles';
 import Input from '../../reusable/input/Input';
 import Button from '../../reusable/button/Button';
@@ -43,40 +44,49 @@ class MoneyCalculator extends Component {
 
   render() {
     return (
-      <FlexRow>
-        <FlexColumn>
-          <h1>{this.props.name}</h1>
-          <Input
-            id="restAmount"
-            label="Rest Amount"
-            type="number"
-            value={this.state.restAmount}
-            onChange={this.handleChangeRestAmount}
-          />
-          <Input
-            id="restAmountPerDay"
-            label="Rest Amount Per Day"
-            value={this.state.restAmountPerDay}
-            style={{ textAlign: 'center' }}
-            readOnly
-          />
-          <Button onClick={this.handleCalculateRestAmountPerDay}>Calculate</Button>
-          <StyledSlider
-            label="Slider Example"
-            max={4}
-            stepPerClick
-            value={this.state.sliderValue}
-            onChange={this.handleChangeSliderValue}
-            info={this.info}
-          />
-        </FlexColumn>
-      </FlexRow>
+      <ThemeConsumer>
+        {({ color, shadowColor }) => (
+          <FlexRow>
+            <FlexColumn>
+              <h1>{this.props.name}</h1>
+              <Input
+                id="restAmount"
+                label="Rest Amount"
+                type="number"
+                value={this.state.restAmount}
+                onChange={this.handleChangeRestAmount}
+              />
+              <Input
+                id="restAmountPerDay"
+                label="Rest Amount Per Day"
+                value={this.state.restAmountPerDay}
+                style={{ textAlign: 'center' }}
+                readOnly
+              />
+              <Button onClick={this.handleCalculateRestAmountPerDay}>Calculate</Button>
+              <StyledSlider
+                label="Slider Example"
+                max={4}
+                stepPerClick
+                value={this.state.sliderValue}
+                onChange={this.handleChangeSliderValue}
+                info={this.info}
+                theme={{ fillLowerColor: color, thumbColor: shadowColor }}
+              />
+            </FlexColumn>
+          </FlexRow>
+        )}
+      </ThemeConsumer>
     );
   }
 }
 
 MoneyCalculator.propTypes = {
-  name: PropTypes.string
+  name: string,
+  theme: shape({
+    color: string,
+    shadowColor: string
+  })
 };
 
 export default MoneyCalculator;

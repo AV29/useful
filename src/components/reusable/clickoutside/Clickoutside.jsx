@@ -31,6 +31,8 @@ class Clickoutside extends Component {
     const { left, top, right, bottom } = this.target.getBoundingClientRect();
     if (mouseX > right || mouseX < left || mouseY > bottom || mouseY < top) {
       this.props.onClickedOutside();
+    } else {
+      this.props.onClickedInside();
     }
   }
 
@@ -42,11 +44,13 @@ class Clickoutside extends Component {
 Clickoutside.propTypes = {
   children: func,
   onClickedOutside: func,
+  onClickedInside: func,
   eventTypes: arrayOf(string).isRequired
 };
 
 Clickoutside.defaultProps = {
   onClickedOutside: () => undefined,
+  onClickedInside: () => undefined,
   eventTypes: ['mousedown']
 };
 

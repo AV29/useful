@@ -12,3 +12,11 @@ export const FlexColumn = styled.div`
     justify-content: center;
     align-items: center;
 `;
+
+export const PaddedBlock = styled.div`
+    padding: 20px;
+`;
+
+export const StyledHeading = styled.h1`
+    padding: 10px;
+`;

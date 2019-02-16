@@ -3,7 +3,7 @@ import { shape, number, string, func, bool, objectOf, oneOfType } from 'prop-typ
 import './Slider.less';
 
 class Slider extends PureComponent {
-  constructor (props) {
+  constructor(props) {
     super(props);
 
     this.handleDragThumb = this.handleDragThumb.bind(this);
@@ -15,17 +15,17 @@ class Slider extends PureComponent {
     this.isThumbBeingDragged = false;
   }
 
-  getSectionWidth () {
+  getSectionWidth() {
     const { left: sliderLeft, right: sliderRight } = this.track.getBoundingClientRect();
     return (sliderRight - sliderLeft) / (this.props.max - this.props.min);
   }
 
-  getTrackValue (clickedX) {
+  getTrackValue(clickedX) {
     const { left: sliderLeft } = this.track.getBoundingClientRect();
     return Math.round((clickedX - sliderLeft) / this.getSectionWidth()) + 1;
   }
 
-  getThumbDragDirection (mouseX) {
+  getThumbDragDirection(mouseX) {
     const { left: thumbLeft, right: thumbRight } = this.thumb.getBoundingClientRect();
     const sectionWidth = this.getSectionWidth();
     return {
@@ -34,14 +34,14 @@ class Slider extends PureComponent {
     };
   }
 
-  getReachedBounds () {
+  getReachedBounds() {
     return {
       minReached: this.props.value <= this.props.min,
       maxReached: this.props.value >= this.props.max
     };
   }
 
-  handleClickSlider ({ clientX: mouseX }) {
+  handleClickSlider({ clientX: mouseX }) {
     const { maxReached, minReached } = this.getReachedBounds();
     const { left: thumbLeft, right: thumbRight } = this.thumb.getBoundingClientRect();
     if (this.props.stepPerClick) {
@@ -55,7 +55,7 @@ class Slider extends PureComponent {
     }
   }
 
-  handleDragThumb ({ clientX: mouseX }) {
+  handleDragThumb({ clientX: mouseX }) {
     const { maxReached, minReached } = this.getReachedBounds();
     const { isMovingRight, isMovingLeft } = this.getThumbDragDirection(mouseX);
     if (isMovingRight && !maxReached) {
@@ -65,23 +65,23 @@ class Slider extends PureComponent {
     }
   }
 
-  handleCaptureDrag () {
+  handleCaptureDrag() {
     this.toggleMouseEventsOnDrag(this.track);
     document.addEventListener('mousemove', this.handleDragThumb);
     document.addEventListener('mouseup', this.handleReleaseDrag);
   }
 
-  handleReleaseDrag () {
+  handleReleaseDrag() {
     this.toggleMouseEventsOnDrag(this.track);
     document.removeEventListener('mousemove', this.handleDragThumb);
     document.removeEventListener('mouseup', this.handleReleaseDrag);
   }
 
-  increase () {
+  increase() {
     this.props.onChange(this.props.value + this.props.step);
   }
 
-  decrease () {
+  decrease() {
     this.props.onChange(this.props.value - this.props.step);
   }
 
@@ -90,16 +90,16 @@ class Slider extends PureComponent {
    * Even with stopPropagation being called.
    * Event only stops propagation if release phase was while over the same element.
    * */
-  toggleMouseEventsOnDrag (element) {
+  toggleMouseEventsOnDrag(element) {
     this.isThumbBeingDragged = !this.isThumbBeingDragged;
     element.style.pointerEvents = this.isThumbBeingDragged ? 'none' : 'all';
   }
 
-  getLeftOffset (index) {
+  getLeftOffset(index) {
     return 100 * index / (this.props.max - this.props.min);
   }
 
-  tickMarkRenderer ({ tickMark }, index) {
+  tickMarkRenderer({ tickMark }, index) {
     const offset = this.getLeftOffset(index);
     return tickMark && (
       <span
@@ -115,16 +115,16 @@ class Slider extends PureComponent {
     );
   }
 
-  getCurrentTooltip () {
+  getCurrentTooltip() {
     return this.props.info ? (this.props.info[this.props.value] || {}).tooltip : null;
   }
 
-  getTickMarks () {
+  getTickMarks() {
     const { info = {} } = this.props;
     return Object.values(info).map(this.tickMarkRenderer);
   }
 
-  getValidatedValue () {
+  getValidatedValue() {
     if (this.props.value > this.props.max) {
       return this.props.max - 1;
     } else if (this.props.value < this.props.min) {
@@ -134,8 +134,8 @@ class Slider extends PureComponent {
     }
   }
 
-  render () {
-    const { label, className } = this.props;
+  render() {
+    const { label, className, theme: { thumbColor, fillLowerColor } } = this.props;
     const leftOffset = this.getLeftOffset(this.getValidatedValue());
     const tooltip = this.getCurrentTooltip();
 
@@ -147,11 +147,14 @@ class Slider extends PureComponent {
           onClick={this.handleClickSlider}
           className="track"
         >
-          <div className="fillLower" style={{ width: `${leftOffset}%` }}/>
+          <div
+            className="fillLower"
+            style={{ width: `${leftOffset}%`, backgroundColor: fillLowerColor }}
+          />
           <button
             ref={th => this.thumb = th}
             className="thumb"
-            style={{ left: `${leftOffset}%` }}
+            style={{ left: `${leftOffset}%`, backgroundColor: thumbColor }}
             onMouseDown={this.handleCaptureDrag}
             onDragStart={() => false}
           >
@@ -178,13 +181,18 @@ Slider.propTypes = {
   label: string,
   className: string,
   stepPerClick: bool, /** If set to true - then slider value will be increased/decreased by 1 step on each click */
-  info: (objectOf(shape({
+  info: objectOf(shape({
     tooltip: oneOfType([number, string]),
     tickMark: oneOfType([number, string])
-  })))
+  })),
+  theme: shape({
+    fillLowerColor: string,
+    thumbColor: string
+  })
 };
 
 Slider.defaultProps = {
+  theme: { fillLowerColor: '#288dc8', thumbColor: '#666666' },
   stepPerClick: false,
   step: 1,
   min: 1,
