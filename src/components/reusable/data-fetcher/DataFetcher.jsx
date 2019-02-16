@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class RenderPropAsync extends Component {
+class DataFetcher extends Component {
 
   constructor(props) {
     super(props);
@@ -38,14 +38,14 @@ class RenderPropAsync extends Component {
   }
 }
 
-RenderPropAsync.defaultProps = {
+DataFetcher.defaultProps = {
   latency: 1000
 };
 
-RenderPropAsync.propTypes = {
+DataFetcher.propTypes = {
   children: PropTypes.func,
   latency: PropTypes.number
 };
 
-export default RenderPropAsync;
+export default DataFetcher;
 

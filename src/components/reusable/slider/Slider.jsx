@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import noop from 'lodash/noop';
 import { shape, number, string, func, bool, objectOf, oneOfType } from 'prop-types';
 import './Slider.less';
 
@@ -190,7 +189,7 @@ Slider.defaultProps = {
   step: 1,
   min: 1,
   max: 2,
-  onChange: noop
+  onChange: () => undefined
 }
 ;
 
