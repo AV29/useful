@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FlexColumn } from '../../../styles/styles';
 import Icon from '../../../components/reusable/icon/Icon';
 
-class RenderPropInnerContainer extends PureComponent {
+class TestContainer extends PureComponent {
 
   constructor(props) {
     super(props);
@@ -28,7 +28,7 @@ class RenderPropInnerContainer extends PureComponent {
 
   render() {
     return (
-      <FlexColumn>
+      <FlexColumn ref={this.props.passedRef} className={this.props.className}>
         <input
           onChange={({ target: { value } }) => this.handleInputChange(value)}
           value={this.state.value}
@@ -40,11 +40,13 @@ class RenderPropInnerContainer extends PureComponent {
   }
 }
 
-RenderPropInnerContainer.propTypes = {
+TestContainer.propTypes = {
   onChange: PropTypes.func,
+  passedRef: PropTypes.func,
   loading: PropTypes.bool,
-  data: PropTypes.object
+  data: PropTypes.object,
+  className: PropTypes.string
 };
 
-export default RenderPropInnerContainer;
+export default TestContainer;
 

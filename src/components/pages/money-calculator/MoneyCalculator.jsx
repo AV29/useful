@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FlexRow, FlexColumn } from '../../../styles/styles';
 import Input from '../../reusable/input/Input';
 import Button from '../../reusable/button/Button';
-import { StyledSlyder } from './styles';
+import { StyledSlider } from './styles';
 
 class MoneyCalculator extends Component {
 
@@ -61,7 +61,7 @@ class MoneyCalculator extends Component {
             readOnly
           />
           <Button onClick={this.handleCalculateRestAmountPerDay}>Calculate</Button>
-          <StyledSlyder
+          <StyledSlider
             label="Slider Example"
             max={4}
             stepPerClick
