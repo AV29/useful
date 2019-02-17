@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { FlexRow, StyledHeading } from '../../../styles/styles';
+import { DemoSection, FlexRowWrapped, Heading, SmallHeading } from '../../../styles/styles';
 import WindowSize from '../../reusable/window-size/WindowSize';
 import TestContainer from './TestContainer';
 import { StyledRenderPropContent } from './styles';
@@ -27,17 +27,16 @@ class RenderProps extends Component {
   }
 
   handleClickoutsideContainer() {
-    if(this.state.padding > 100) return;
+    if (this.state.padding > 100) return;
     this.setState(({ padding }) => ({ padding: padding + 15 }));
   }
 
   handleClickInsideContainer() {
-    if(this.state.padding < 15) return;
+    if (this.state.padding < 15) return;
     this.setState(({ padding }) => ({ padding: padding - 15 }));
   }
 
   render() {
-    console.log(this.state.padding);
     return (
       <WindowSize>
         {({ windowWidth, windowHeight }) => (
@@ -46,22 +45,28 @@ class RenderProps extends Component {
             onClickedInside={this.handleClickInsideContainer}
           >
             {({ bindRef }) => (
-              <FlexRow>
-                <StyledRenderPropContent ref={bindRef} padding={this.state.padding}>
-                  <StyledHeading>{this.props.name}</StyledHeading>
-                  <DataFetcher latency={2000}>
-                    {({ data, loading }) => (
-                      <TestContainer
-                        data={data}
-                        sharedData={this.state.sharedData}
-                        loading={loading}
-                        onChange={this.handleChangeRenderPropContainerData}
-                      />
-                    )}
-                  </DataFetcher>
-                  <StyledHeading>Here is window size: {windowWidth} x {windowHeight}</StyledHeading>
-                </StyledRenderPropContent>
-              </FlexRow>
+              <Fragment>
+                <Heading>{this.props.name}</Heading>
+                <FlexRowWrapped>
+                  <DemoSection>
+                    <StyledRenderPropContent ref={bindRef} padding={this.state.padding}>
+                      <DataFetcher latency={2000}>
+                        {({ data, loading }) => (
+                          <TestContainer
+                            data={data}
+                            sharedData={this.state.sharedData}
+                            loading={loading}
+                            onChange={this.handleChangeRenderPropContainerData}
+                          />
+                        )}
+                      </DataFetcher>
+                    </StyledRenderPropContent>
+                  </DemoSection>
+                  <DemoSection>
+                    <SmallHeading>Here is window size: {windowWidth} x {windowHeight}</SmallHeading>
+                  </DemoSection>
+                </FlexRowWrapped>
+              </Fragment>
             )}
           </Clickoutside>
         )}

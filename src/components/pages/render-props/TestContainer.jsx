@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { FlexColumn } from '../../../styles/styles';
+import { FlexColumnCenter } from '../../../styles/styles';
 import Icon from '../../../components/reusable/icon/Icon';
 
 class TestContainer extends PureComponent {
@@ -28,14 +28,14 @@ class TestContainer extends PureComponent {
 
   render() {
     return (
-      <FlexColumn ref={this.props.passedRef} className={this.props.className}>
+      <FlexColumnCenter ref={this.props.passedRef} className={this.props.className}>
         <input
           onChange={({ target: { value } }) => this.handleInputChange(value)}
           value={this.state.value}
           type="text"
         />
         {this.props.loading && <Icon icon="spinner"/>}
-      </FlexColumn>
+      </FlexColumnCenter>
     );
   }
 }

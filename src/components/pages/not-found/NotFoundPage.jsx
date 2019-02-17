@@ -1,9 +1,9 @@
 import React from 'react';
-import { FlexRow } from '../../../styles/styles';
+import { FlexRowCenter } from '../../../styles/styles';
 
 function NotFoundPage(props) {
   return (
-    <FlexRow>NOT FOUND</FlexRow>
+    <FlexRowCenter>NOT FOUND</FlexRowCenter>
   );
 }
 

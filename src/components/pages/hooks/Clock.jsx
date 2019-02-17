@@ -1,10 +1,10 @@
 import React from 'react';
-import useTimer from './useTimer';
+import useTimer from './custom-hooks/useTimer';
+import { StyledInfoSection } from './styles';
 
 function Clock() {
-
   return (
-    <h1>{useTimer()}</h1>
+    <StyledInfoSection>{useTimer()}</StyledInfoSection>
   );
 }
 

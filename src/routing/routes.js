@@ -3,7 +3,7 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import ExtendedRoute from '../components/reusable/extended-route/ExtendedRoute';
 import routesConfig from './routesConfig';
-import MoneyCalculator from '../components/pages/money-calculator/MoneyCalculator';
+import Controls from '../components/pages/contols/Controls';
 import Hooks from '../components/pages/hooks/Hooks';
 import About from '../components/pages/about/About';
 import NotFoundPage from '../components/pages/not-found/NotFoundPage';
@@ -22,7 +22,7 @@ export default (
       exact
       path={calc.path}
       name={calc.name}
-      component={MoneyCalculator}
+      component={Controls}
     />
     <ExtendedRoute
       exact

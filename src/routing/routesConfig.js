@@ -3,18 +3,18 @@ import guid from '../utilities/guid';
 export default {
   root: {
     id: guid(),
-    name: 'Useful Apps',
+    name: 'Useful Things with React',
     path: '/'
   },
   calc: {
     id: guid(),
-    name: 'Money Calculator',
-    path: '/calculator',
-    icon: 'budget'
+    name: 'Controls',
+    path: '/controls',
+    icon: 'controls'
   },
   hooks: {
     id: guid(),
-    name: 'Hooks Example',
+    name: 'Hooks Examples',
     path: '/hooks',
     icon: 'hook'
   },

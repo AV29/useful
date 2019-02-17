@@ -12,6 +12,7 @@ export const StyledInputWrapper = styled.div`
 export const StyledInput = styled.input`
   border-radius: 4px;
   padding: 5px;
+  color: ${({ theme: { color } }) => color};
   background-color: ${({ readOnly, theme: { borderColor } }) => readOnly ? borderColor : 'transparent'};
   cursor: ${({ readOnly }) => readOnly ? 'not-allowed' : 'text'};
 `;
