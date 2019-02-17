@@ -7,18 +7,27 @@ import themes from '../../../utilities/themes';
 import { StyledAppWrapper, StyledInnerWrapper, StyledRoutesWrapper } from './styles';
 
 class App extends Component {
+
+  static getCurrentTheme() {
+    return themes.find(({ id }) => id === localStorage.getItem('themeId')) || themes[0];
+  }
+
   constructor(props) {
     super(props);
 
     this.handleChangeTheme = this.handleChangeTheme.bind(this);
 
     this.state = {
-      theme: { ...themes[0] }
+      theme: { ...App.getCurrentTheme() }
     };
   }
 
   handleChangeTheme(theme) {
-    this.setState({ theme: { ...theme } });
+    this.setState(() => ({ theme: { ...theme } }), this.saveTheme);
+  }
+
+  saveTheme() {
+    localStorage.setItem('themeId', this.state.theme.id);
   }
 
   render() {

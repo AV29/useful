@@ -5,7 +5,7 @@ import Button from '../../reusable/button/Button';
 class LifeCyclePerformer extends Component {
 
   static getDerivedStateFromProps(props, state) {
-    props.onLifeCycleMethodCalled('Get Derived State From Props', { props, state });
+    props.onLifeCycleMethodCall('Get Derived State From Props', { props, state });
     return {};
   }
 
@@ -18,7 +18,7 @@ class LifeCyclePerformer extends Component {
 
     this.handleUpdate = this.handleUpdate.bind(this);
 
-    this.props.onLifeCycleMethodCalled('Constructor', { props: this.props, state: this.state });
+    this.props.onLifeCycleMethodCall('Constructor', { props: this.props, state: this.state });
   }
 
   // UNSAFE_componentWillMount() {
@@ -26,11 +26,11 @@ class LifeCyclePerformer extends Component {
   // }
 
   componentDidMount() {
-    this.props.onLifeCycleMethodCalled('Component Did Mount', { props: this.props, state: this.state });
+    this.props.onLifeCycleMethodCall('Component Did Mount', { props: this.props, state: this.state });
   }
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {
-    this.props.onLifeCycleMethodCalled('Should Component Update', { nextProps, nextState, nextContext });
+    this.props.onLifeCycleMethodCall('Should Component Update', { nextProps, nextState, nextContext });
     return true;
   }
 
@@ -43,18 +43,18 @@ class LifeCyclePerformer extends Component {
   // }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
-    this.props.onLifeCycleMethodCalled('Get Snapshot Before Update', { props: prevProps, state: prevState });
+    this.props.onLifeCycleMethodCall('Get Snapshot Before Update', { props: prevProps, state: prevState });
     return {
       windowHeight: window.innerHeight
     };
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    this.props.onLifeCycleMethodCalled('Component Did Update', { prevProps, prevState, snapshot });
+    this.props.onLifeCycleMethodCall('Component Did Update', { prevProps, prevState, snapshot });
   }
 
   componentWillUnmount() {
-    this.props.onLifeCycleMethodCalled('Component Will Unmount', { props: this.props, state: this.state });
+    this.props.onLifeCycleMethodCall('Component Will Unmount', { props: this.props, state: this.state });
   }
 
   handleUpdate() {
@@ -62,13 +62,13 @@ class LifeCyclePerformer extends Component {
   }
 
   render() {
-    this.props.onLifeCycleMethodCalled('Render');
+    this.props.onLifeCycleMethodCall('Render');
     return <Button onClick={this.handleUpdate}>Update Me...{this.state.counter}</Button>;
   }
 }
 
 LifeCyclePerformer.propTypes = {
-  onLifeCycleMethodCalled: func.isRequired
+  onLifeCycleMethodCall: func.isRequired
 };
 
 export default LifeCyclePerformer;

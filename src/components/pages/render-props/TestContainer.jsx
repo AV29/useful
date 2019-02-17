@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { FlexColumnCenter } from '../../../styles/styles';
+import { FlexRowCenter } from '../../../styles/styles';
 import Icon from '../../../components/reusable/icon/Icon';
+import Input from '../../reusable/input/Input';
 
 class TestContainer extends PureComponent {
 
@@ -28,14 +29,14 @@ class TestContainer extends PureComponent {
 
   render() {
     return (
-      <FlexColumnCenter ref={this.props.passedRef} className={this.props.className}>
-        <input
+      <FlexRowCenter ref={this.props.passedRef} className={this.props.className}>
+        <Input
           onChange={({ target: { value } }) => this.handleInputChange(value)}
           value={this.state.value}
           type="text"
         />
         {this.props.loading && <Icon icon="spinner"/>}
-      </FlexColumnCenter>
+      </FlexRowCenter>
     );
   }
 }

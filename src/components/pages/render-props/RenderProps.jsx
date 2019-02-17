@@ -60,6 +60,7 @@ class RenderProps extends Component {
                           />
                         )}
                       </DataFetcher>
+                      <SmallHeading>Click inside bounds to reduce padding, outside to enlarge padding</SmallHeading>
                     </StyledRenderPropContent>
                   </DemoSection>
                   <DemoSection>

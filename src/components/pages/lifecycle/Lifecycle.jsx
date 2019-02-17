@@ -1,6 +1,6 @@
 /*eslint-disable no-console*/
 import React, { Component } from 'react';
-import { DemoSection } from '../../../styles/styles';
+import { DemoSection, SmallHeading } from '../../../styles/styles';
 import LifeCyclePerformer from './LifeCyclePerformer';
 import Button from '../../reusable/button/Button';
 
@@ -33,13 +33,12 @@ class Lifecycle extends Component {
       <DemoSection>
         {
           this.state.isPerformerMounted &&
-          <LifeCyclePerformer
-            onLifeCycleMethodCalled={this.handleCallLifeCycleMethod}
-          />
+          <LifeCyclePerformer onLifeCycleMethodCall={this.handleCallLifeCycleMethod}/>
         }
         <Button onClick={this.handleTogglePerformerMount}>
           {this.state.isPerformerMounted ? 'Unmount' : 'Mount'}
         </Button>
+        <SmallHeading>* open console to see logs</SmallHeading>
       </DemoSection>
     );
   }

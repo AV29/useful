@@ -52,7 +52,7 @@ class Controls extends Component {
                     3: { tickMark: '14:30', tooltip: 'Took some coffee' },
                     4: { tickMark: '19:00', tooltip: 'Went home' }
                   }}
-                  theme={{ fillLowerColor: color, thumbColor: shadowColor }}
+                  theme={{ trackColor: color, thumbColor: shadowColor }}
                 />
               </DemoSection>
             </FlexRowWrapped>

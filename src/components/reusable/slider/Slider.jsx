@@ -135,7 +135,7 @@ class Slider extends PureComponent {
   }
 
   render() {
-    const { label, className, theme: { thumbColor, fillLowerColor } } = this.props;
+    const { label, className, theme: { thumbColor, trackColor } } = this.props;
     const leftOffset = this.getLeftOffset(this.getValidatedValue());
     const tooltip = this.getCurrentTooltip();
 
@@ -149,7 +149,7 @@ class Slider extends PureComponent {
         >
           <div
             className="fillLower"
-            style={{ width: `${leftOffset}%`, backgroundColor: fillLowerColor }}
+            style={{ width: `${leftOffset}%`, backgroundColor: trackColor }}
           />
           <button
             ref={th => this.thumb = th}
@@ -186,13 +186,13 @@ Slider.propTypes = {
     tickMark: oneOfType([number, string])
   })),
   theme: shape({
-    fillLowerColor: string,
+    trackColor: string,
     thumbColor: string
   })
 };
 
 Slider.defaultProps = {
-  theme: { fillLowerColor: '#288dc8', thumbColor: '#666666' },
+  theme: { trackColor: '#288dc8', thumbColor: '#666666' },
   stepPerClick: false,
   step: 1,
   min: 1,
