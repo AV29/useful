@@ -5,6 +5,7 @@ import ArrowRight from '../../../assets/icons/arrow-right.svg';
 import Hook from '../../../assets/icons/hook.svg';
 import RenderProp from '../../../assets/icons/renderProp.svg';
 import Controls from '../../../assets/icons/controls.svg';
+import Lifecycle from '../../../assets/icons/lifecycle.svg';
 
 const Icons = {
   spinner: Spinner,
@@ -13,7 +14,8 @@ const Icons = {
   arrowRight: ArrowRight,
   hook: Hook,
   renderProp: RenderProp,
-  controls: Controls
+  controls: Controls,
+  lifecycle: Lifecycle
 };
 
 export default Icons;

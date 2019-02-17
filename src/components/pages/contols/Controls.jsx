@@ -15,13 +15,6 @@ class Controls extends Component {
       sliderValue: 2
     };
 
-    this.info = {
-      1: { tickMark: '10:00', tooltip: 'Came at work' },
-      2: { tickMark: '14:00', tooltip: 'Gone for dinner' },
-      3: { tickMark: '14:30', tooltip: 'Took some coffee' },
-      4: { tickMark: '19:00', tooltip: 'Went home' }
-    };
-
     this.handleChangeRestAmount = this.handleChangeRestAmount.bind(this);
     this.handleChangeSliderValue = this.handleChangeSliderValue.bind(this);
     this.handleCalculateRestAmountPerDay = this.handleCalculateRestAmountPerDay.bind(this);
@@ -36,7 +29,6 @@ class Controls extends Component {
   }
 
   handleChangeSliderValue(sliderValue) {
-    console.log(sliderValue);
     this.setState({ sliderValue });
   }
 
@@ -54,7 +46,12 @@ class Controls extends Component {
                   stepPerClick
                   value={this.state.sliderValue}
                   onChange={this.handleChangeSliderValue}
-                  info={this.info}
+                  info={{
+                    1: { tickMark: '10:00', tooltip: 'Came at work' },
+                    2: { tickMark: '14:00', tooltip: 'Gone for dinner' },
+                    3: { tickMark: '14:30', tooltip: 'Took some coffee' },
+                    4: { tickMark: '19:00', tooltip: 'Went home' }
+                  }}
                   theme={{ fillLowerColor: color, thumbColor: shadowColor }}
                 />
               </DemoSection>

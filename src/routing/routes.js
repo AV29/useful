@@ -8,20 +8,21 @@ import Hooks from '../components/pages/hooks/Hooks';
 import About from '../components/pages/about/About';
 import NotFoundPage from '../components/pages/not-found/NotFoundPage';
 import RenderProps from '../components/pages/render-props/RenderProps';
+import Lifecycle from '../components/pages/lifecycle/Lifecycle';
 
-const { root, calc, about, hooks, renderProps } = routesConfig;
+const { root, controls, about, hooks, renderProps, lifecycle } = routesConfig;
 
 export default (
   <Switch>
     <Route
       exact
       path={root.path}
-      render={() => <Redirect to={calc.path}/>}
+      render={() => <Redirect to={controls.path}/>}
     />
     <ExtendedRoute
       exact
-      path={calc.path}
-      name={calc.name}
+      path={controls.path}
+      name={controls.name}
       component={Controls}
     />
     <ExtendedRoute
@@ -35,6 +36,12 @@ export default (
       path={renderProps.path}
       name={renderProps.name}
       component={RenderProps}
+    />
+    <ExtendedRoute
+      exact
+      path={lifecycle.path}
+      name={lifecycle.name}
+      component={Lifecycle}
     />
     <ExtendedRoute
       exact

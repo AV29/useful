@@ -6,7 +6,7 @@ export default {
     name: 'Useful Things with React',
     path: '/'
   },
-  calc: {
+  controls: {
     id: guid(),
     name: 'Controls',
     path: '/controls',
@@ -14,15 +14,21 @@ export default {
   },
   hooks: {
     id: guid(),
-    name: 'Hooks Examples',
+    name: 'Hooks',
     path: '/hooks',
     icon: 'hook'
   },
   renderProps: {
     id: guid(),
-    name: 'Render Props Example',
+    name: 'Render Props',
     path: '/render-props',
     icon: 'renderProp'
+  },
+  lifecycle: {
+    id: guid(),
+    name: 'Lifecycle',
+    path: '/lifecycle',
+    icon: 'lifecycle'
   },
   about: {
     id: guid(),
