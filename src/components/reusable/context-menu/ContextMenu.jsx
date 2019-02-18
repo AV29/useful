@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { bool, func, number, string } from 'prop-types';
+import { ContextMenuContainer } from './styles';
 import ClickOutside from '../clickoutside/ClickOutside';
 import Portal from '../portal/Portal';
 
@@ -42,19 +43,19 @@ class ContextMenu extends Component {
 
   render () {
     const { top, left } = ContextMenu.getRootPosition(this.root);
-    const { mouseOffset, children, renderTarget } = this.props;
+    const { mouseOffset, children, renderCaller } = this.props;
     const { x, y, isShown } = this.state;
     return (
       <Fragment>
         {
-          renderTarget({ handleShowMenu: this.handleShow })
+          renderCaller({ handleShowMenu: this.handleShow })
         }
         {
           isShown ?
             <Portal node={this.root}>
-              <ClickOutside onClickOutside={this.handleHide}>
+              <ClickOutside onClickedOutside={this.handleHide}>
                 {({ bindRef }) => (
-                  <div
+                  <ContextMenuContainer
                     ref={bindRef}
                     style={{
                       top: y - top + mouseOffset,
@@ -62,7 +63,7 @@ class ContextMenu extends Component {
                     }}
                   >
                     {children({ handleHideMenu: this.handleHide })}
-                  </div>
+                  </ContextMenuContainer>
                 )}
               </ClickOutside>
             </Portal>
@@ -79,7 +80,7 @@ ContextMenu.defaultProps = {
 
 ContextMenu.propTypes = {
   children: func.isRequired,
-  renderTarget: func.isRequired,
+  renderCaller: func.isRequired,
   closeOnSelectOption: bool,
   mouseOffset: number,
   rootContainer: string

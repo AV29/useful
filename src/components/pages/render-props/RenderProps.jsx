@@ -1,55 +1,55 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { DemoSection, FlexRowWrapped, Heading, SmallHeading } from '../../../styles/styles';
+import { DemoSection, FlexRowWrapped, Flex, Heading, SmallHeading } from '../../../styles/styles';
+import ContextMenu from '../../reusable/context-menu/ContextMenu';
 import WindowSize from '../../reusable/window-size/WindowSize';
 import TestContainer from './TestContainer';
-import { StyledRenderPropContent } from './styles';
+import { StyledRenderPropContent, StyledList, ContextMenuCaller } from './styles';
+import { getRandomColor } from '../../../utilities/random';
 import DataFetcher from '../../reusable/data-fetcher/DataFetcher';
 import ClickOutside from '../../reusable/clickoutside/ClickOutside';
 
 class RenderProps extends Component {
 
-  constructor(props) {
+  constructor (props) {
     super(props);
 
     this.handleChangeRenderPropContainerData = this.handleChangeRenderPropContainerData.bind(this);
     this.handleClickOutsideContainer = this.handleClickOutsideContainer.bind(this);
-    this.handleClickInsideContainer = this.handleClickInsideContainer.bind(this);
+    this.handleChooseItem = this.handleChooseItem.bind(this);
 
     this.state = {
       sharedData: '',
-      padding: 15
+      borderColor: '#444444',
+      selectedItem: 'React'
     };
+
+    this.items = [{ id: '1', text: 'Angular' }, { id: '2', text: 'React' }, { id: '3', text: 'Vue' }];
   }
 
-  handleChangeRenderPropContainerData(value) {
+  handleChangeRenderPropContainerData (value) {
     this.setState({ sharedData: value });
   }
 
-  handleClickOutsideContainer() {
-    if (this.state.padding > 100) return;
-    this.setState(({ padding }) => ({ padding: padding + 15 }));
+  handleClickOutsideContainer () {
+    this.setState({ borderColor: getRandomColor() });
   }
 
-  handleClickInsideContainer() {
-    if (this.state.padding < 15) return;
-    this.setState(({ padding }) => ({ padding: padding - 15 }));
+  handleChooseItem (selectedItem) {
+    this.setState({ selectedItem });
   }
 
-  render() {
+  render () {
     return (
       <WindowSize>
         {({ windowWidth, windowHeight }) => (
-          <ClickOutside
-            onClickedOutside={this.handleClickOutsideContainer}
-            onClickedInside={this.handleClickInsideContainer}
-          >
+          <ClickOutside onClickedOutside={this.handleClickOutsideContainer}>
             {({ bindRef }) => (
               <Fragment>
                 <Heading>{this.props.name}</Heading>
                 <FlexRowWrapped>
                   <DemoSection>
-                    <StyledRenderPropContent ref={bindRef} padding={this.state.padding}>
+                    <StyledRenderPropContent ref={bindRef} style={{ borderColor: this.state.borderColor }}>
                       <DataFetcher latency={2000}>
                         {({ data, loading }) => (
                           <TestContainer
@@ -60,11 +60,49 @@ class RenderProps extends Component {
                           />
                         )}
                       </DataFetcher>
-                      <SmallHeading>Click inside bounds to reduce padding, outside to enlarge padding</SmallHeading>
+                      <SmallHeading>Click outside bounds to paint them randomly</SmallHeading>
                     </StyledRenderPropContent>
                   </DemoSection>
                   <DemoSection>
                     <SmallHeading>Here is window size: {windowWidth} x {windowHeight}</SmallHeading>
+                  </DemoSection>
+                  <DemoSection>
+                    <SmallHeading>Context Menu example (made with Portal)</SmallHeading>
+                    <ContextMenu
+                      renderCaller={({ handleShowMenu }) => (
+                        <Flex>
+                          <ContextMenuCaller
+                            onContextMenu={(event) => {
+                              event.preventDefault();
+                              handleShowMenu(event);
+                            }}
+                          >
+                            Right Click to choose framework
+                          </ContextMenuCaller>
+                          <SmallHeading>{this.state.selectedItem}</SmallHeading>
+                        </Flex>
+                      )}
+                    >
+                      {({ handleHideMenu }) => (
+                        <StyledList>
+                          {
+                            this.items.map(({ text, id }) => (
+                              <li
+                                key={id}
+                                onClick={
+                                  (event) => {
+                                    text !== this.state.selectedItem && this.handleChooseItem(text);
+                                    handleHideMenu(event);
+                                  }
+                                }
+                              >
+                                {text}
+                              </li>
+                            ))
+                          }
+                        </StyledList>
+                      )}
+                    </ContextMenu>
                   </DemoSection>
                 </FlexRowWrapped>
               </Fragment>
