@@ -15,9 +15,9 @@ export default [
   },
   {
     id: '3',
-    color: '#ff919f',
-    borderColor: '#dfcdcf',
-    shadowColor: '#418488',
-    bgColor: '#9affeb'
+    color: '#8f0c68',
+    borderColor: '#df95b9',
+    shadowColor: '#258832',
+    bgColor: '#31a43d'
   }
 ];

@@ -3,7 +3,7 @@ import { func, string, object, bool } from 'prop-types';
 import Icons from './Icons';
 import { StyledIcon } from './styles.js';
 
-function Icon({ icon = 'logo', className, onClick, disabled, ...props }) {
+export function Icon ({ icon = 'logo', onClick, size = 30, disabled, ...props }) {
 
   const handleClick = (event) => {
     onClick && !disabled && onClick(event);
@@ -13,6 +13,7 @@ function Icon({ icon = 'logo', className, onClick, disabled, ...props }) {
 
   return (
     <StyledIcon
+      size={size}
       onClick={handleClick}
       {...props}
     >
@@ -25,9 +26,21 @@ Icon.propTypes = {
   style: object,
   icon: string,
   title: string,
-  className: string,
   onClick: func,
   disabled: bool
 };
 
-export default Icon;
+export function FontIcon ({ icon = 'logo', type = 'fa', className, onClick, disabled, ...props }) {
+
+  const handleClick = (event) => {
+    onClick && !disabled && onClick(event);
+  };
+
+  return (
+    <i
+      onClick={handleClick}
+      {...props}
+      className={`${type} fa-${icon}`}
+    />
+  );
+}

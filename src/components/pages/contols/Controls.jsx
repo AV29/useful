@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { shape, string } from 'prop-types';
 import { ThemeConsumer } from 'styled-components';
 import { StyledSlider } from './styles';
+import Rating from '../../reusable/rating/Rating';
 import { FlexRowWrapped, DemoSection, Heading } from '../../../styles/styles';
 
 class Controls extends Component {
@@ -10,26 +11,21 @@ class Controls extends Component {
     super(props);
 
     this.state = {
-      restAmount: '',
-      restAmountPerDay: '',
-      sliderValue: 2
+      sliderValue: 2,
+      ratingValue: 3
     };
 
-    this.handleChangeRestAmount = this.handleChangeRestAmount.bind(this);
     this.handleChangeSliderValue = this.handleChangeSliderValue.bind(this);
-    this.handleCalculateRestAmountPerDay = this.handleCalculateRestAmountPerDay.bind(this);
-  }
-
-  handleChangeRestAmount({ target: { value } }) {
-    this.setState({ restAmount: value });
-  }
-
-  handleCalculateRestAmountPerDay() {
-    this.setState({ restAmountPerDay: this.state.restAmount });
+    this.handleChangeRatingValue = this.handleChangeRatingValue.bind(this);
   }
 
   handleChangeSliderValue(sliderValue) {
     this.setState({ sliderValue });
+  }
+
+  handleChangeRatingValue(ratingValue) {
+    console.log(ratingValue);
+    this.setState({ ratingValue });
   }
 
   render() {
@@ -53,6 +49,14 @@ class Controls extends Component {
                     4: { tickMark: '19:00', tooltip: 'Went home' }
                   }}
                   theme={{ trackColor: color, thumbColor: shadowColor }}
+                />
+              </DemoSection>
+              <DemoSection>
+                <Rating
+                  label="Rating Control"
+                  scaleSize={10}
+                  value={this.state.ratingValue}
+                  onChange={this.handleChangeRatingValue}
                 />
               </DemoSection>
             </FlexRowWrapped>

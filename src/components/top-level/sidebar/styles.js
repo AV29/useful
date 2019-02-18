@@ -7,10 +7,6 @@ export const StyledSideBar = styled.div`
   justify-content: space-between;
   overflow: auto;
   box-shadow: 0 5px 10px ${({ theme: { shadowColor } }) => shadowColor};
-  svg {
-    width: 30px;
-    height: 30px;
-  }
 `;
 
 export const StyledName = styled.h2`

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import routesConfig from '../../../routing/routesConfig';
-import Icon from '../../reusable/icon/Icon';
+import { Icon } from '../../reusable/icon/Icon';
 import Toggler from '../../reusable/toggler/Toggler';
 import { FlexRowCenter } from '../../../styles/styles';
 import { StyledSideBar, NavItem, StyledName, StyledNavItemWrapper } from './styles';
@@ -9,7 +9,7 @@ const navigationItems = Object.values(routesConfig).filter(route => route.id !==
 
 class Sidebar extends Component {
 
-  constructor(props) {
+  constructor (props) {
     super(props);
 
     this.handleToggleSidebarView = this.handleToggleSidebarView.bind(this);
@@ -19,11 +19,11 @@ class Sidebar extends Component {
     };
   }
 
-  handleToggleSidebarView() {
+  handleToggleSidebarView () {
     this.setState(({ collapsed }) => ({ collapsed: !collapsed }));
   }
 
-  render() {
+  render () {
     const { collapsed } = this.state;
     return (
       <StyledSideBar>

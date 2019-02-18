@@ -29,7 +29,8 @@ export default {
     new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
       inject: true,
-      template: './src/index.html'
+      template: './src/index.html',
+      favicon: './src/assets/favicon.ico'
     })
   ],
   resolve: {
@@ -72,6 +73,14 @@ export default {
       },
       {
         test: /\.(jpe?g|png|gif)$/i,
+        loader: 'file-loader'
+      },
+      {
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'url-loader?limit=10000&mimetype=application/font-woff'
+      },
+      {
+        test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'file-loader'
       },
       {
