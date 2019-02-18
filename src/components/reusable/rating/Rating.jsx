@@ -1,34 +1,24 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { number, string, func } from 'prop-types';
 import { StyledRatingControl, StyledRatingItem, ItemsWrapper } from './styles';
 
-class Rating extends PureComponent {
-  constructor (props) {
-    super(props);
-
-    this.stars = [...new Array(this.props.scaleSize)].map((_, index) => index + 1);
-  }
-
-  render () {
-    const { label, className, icon, value, onChange, iconSize } = this.props;
-
-    return (
-      <StyledRatingControl className={className}>
-        {label && <div className="label">{label}</div>}
-        <ItemsWrapper>
-          {this.stars.map(val => (
-            <StyledRatingItem
-              key={val}
-              icon={icon}
-              size={iconSize}
-              rated={value >= val}
-              onClick={() => onChange(val)}
-            />
-          ))}
-        </ItemsWrapper>
-      </StyledRatingControl>
-    );
-  }
+function Rating ({ label, scaleSize, className, icon, value, onChange, iconSize }) {
+  return (
+    <StyledRatingControl className={className}>
+      {label && <div className="label">{label}</div>}
+      <ItemsWrapper>
+        {[...new Array(scaleSize)].map((_, val) => (
+          <StyledRatingItem
+            key={val}
+            icon={icon}
+            size={iconSize}
+            rated={value > val}
+            onClick={() => onChange(val + 1)}
+          />
+        ))}
+      </ItemsWrapper>
+    </StyledRatingControl>
+  );
 }
 
 Rating.propTypes = {

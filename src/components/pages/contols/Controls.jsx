@@ -53,8 +53,8 @@ class Controls extends Component {
               </DemoSection>
               <DemoSection>
                 <Rating
-                  label="Rating Control"
                   scaleSize={10}
+                  label="Rating Control"
                   value={this.state.ratingValue}
                   onChange={this.handleChangeRatingValue}
                 />

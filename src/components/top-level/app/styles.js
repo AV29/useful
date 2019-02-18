@@ -4,9 +4,6 @@ export const StyledAppWrapper = styled.div`
   display: flex;
   background-color: ${({ theme: { bgColor } }) => bgColor};
   color: ${({ theme: { color } }) => color};
-  svg {
-      fill: ${({ theme: { color } }) => color}
-  }
   flex-direction: column;
   height: 100vh;
 `;
