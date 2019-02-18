@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { func, arrayOf, string } from 'prop-types';
 
-class Clickoutside extends Component {
+class ClickOutside extends Component {
 
   constructor(props) {
     super(props);
@@ -41,17 +41,17 @@ class Clickoutside extends Component {
   }
 }
 
-Clickoutside.propTypes = {
+ClickOutside.propTypes = {
   children: func,
   onClickedOutside: func,
   onClickedInside: func,
   eventTypes: arrayOf(string).isRequired
 };
 
-Clickoutside.defaultProps = {
+ClickOutside.defaultProps = {
   onClickedOutside: () => undefined,
   onClickedInside: () => undefined,
   eventTypes: ['mousedown']
 };
 
-export default Clickoutside;
+export default ClickOutside;

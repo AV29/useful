@@ -5,7 +5,7 @@ import WindowSize from '../../reusable/window-size/WindowSize';
 import TestContainer from './TestContainer';
 import { StyledRenderPropContent } from './styles';
 import DataFetcher from '../../reusable/data-fetcher/DataFetcher';
-import Clickoutside from '../../reusable/clickoutside/Clickoutside';
+import ClickOutside from '../../reusable/clickoutside/ClickOutside';
 
 class RenderProps extends Component {
 
@@ -13,7 +13,7 @@ class RenderProps extends Component {
     super(props);
 
     this.handleChangeRenderPropContainerData = this.handleChangeRenderPropContainerData.bind(this);
-    this.handleClickoutsideContainer = this.handleClickoutsideContainer.bind(this);
+    this.handleClickOutsideContainer = this.handleClickOutsideContainer.bind(this);
     this.handleClickInsideContainer = this.handleClickInsideContainer.bind(this);
 
     this.state = {
@@ -26,7 +26,7 @@ class RenderProps extends Component {
     this.setState({ sharedData: value });
   }
 
-  handleClickoutsideContainer() {
+  handleClickOutsideContainer() {
     if (this.state.padding > 100) return;
     this.setState(({ padding }) => ({ padding: padding + 15 }));
   }
@@ -40,8 +40,8 @@ class RenderProps extends Component {
     return (
       <WindowSize>
         {({ windowWidth, windowHeight }) => (
-          <Clickoutside
-            onClickedOutside={this.handleClickoutsideContainer}
+          <ClickOutside
+            onClickedOutside={this.handleClickOutsideContainer}
             onClickedInside={this.handleClickInsideContainer}
           >
             {({ bindRef }) => (
@@ -69,7 +69,7 @@ class RenderProps extends Component {
                 </FlexRowWrapped>
               </Fragment>
             )}
-          </Clickoutside>
+          </ClickOutside>
         )}
       </WindowSize>
     );
