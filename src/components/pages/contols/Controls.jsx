@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { shape, string } from 'prop-types';
 import { ThemeConsumer } from 'styled-components';
 import { StyledSlider } from './styles';
-import { FlexRowWrapped, DemoSection } from '../../../styles/styles';
+import { FlexRowWrapped, DemoSection, Heading } from '../../../styles/styles';
 
 class Controls extends Component {
 
@@ -37,7 +37,7 @@ class Controls extends Component {
       <ThemeConsumer>
         {({ color, shadowColor }) => (
           <Fragment>
-            <h1>{this.props.name}</h1>
+            <Heading>{this.props.name}</Heading>
             <FlexRowWrapped>
               <DemoSection>
                 <StyledSlider

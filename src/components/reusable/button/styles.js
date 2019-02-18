@@ -3,7 +3,7 @@ import * as vars from '../../../styles/variables';
 
 export const StyledButton = styled.button`
   margin: 10px; 
-  padding: 5px;
+  padding: 5px 10px;
   border-radius: 4px;
   color: ${({ theme: { color } }) => color};
   background-color: ${({ theme: { bgColor } }) => bgColor};

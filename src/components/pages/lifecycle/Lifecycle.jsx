@@ -1,49 +1,31 @@
-/*eslint-disable no-console*/
-import React, { Component } from 'react';
-import { DemoSection, SmallHeading } from '../../../styles/styles';
-import LifeCyclePerformer from './LifeCyclePerformer';
+import React, { useState, Fragment } from 'react';
+import { string } from 'prop-types';
+import { DemoSection, SmallHeading, FlexRowCenter, Heading, FlexColumnCenter } from '../../../styles/styles';
+import Parent from './Parent';
 import Button from '../../reusable/button/Button';
 
-class Lifecycle extends Component {
-
-  constructor(props, context) {
-    super(props, context);
-
-    this.handleCallLifeCycleMethod = this.handleCallLifeCycleMethod.bind(this);
-    this.handleTogglePerformerMount = this.handleTogglePerformerMount.bind(this);
-
-    this.state = { isPerformerMounted: true };
-  }
-
-  handleCallLifeCycleMethod(message, params = {}) {
-    console.groupCollapsed(message);
-    Object.keys(params).forEach((paramKey) => {
-      console.log(`${paramKey}:`, params[paramKey]);
-
-    });
-    console.groupEnd();
-  }
-
-  handleTogglePerformerMount() {
-    this.setState(({ isPerformerMounted }) => ({ isPerformerMounted: !isPerformerMounted }));
-  }
-
-  render() {
-    return (
+function Lifecycle ({ name }) {
+  const [preventLogs, setPreventLogs] = useState(false);
+  return (
+    <Fragment>
+      <Heading>{name}</Heading>
       <DemoSection>
-        {
-          this.state.isPerformerMounted &&
-          <LifeCyclePerformer onLifeCycleMethodCall={this.handleCallLifeCycleMethod}/>
-        }
-        <Button onClick={this.handleTogglePerformerMount}>
-          {this.state.isPerformerMounted ? 'Unmount' : 'Mount'}
-        </Button>
-        <SmallHeading>* open console to see logs</SmallHeading>
+        <FlexColumnCenter>
+          <Parent preventLogs={preventLogs}/>
+          <FlexRowCenter>
+            <SmallHeading>* open console to see logs</SmallHeading>
+            <Button onClick={() => setPreventLogs(!preventLogs)}>
+              {preventLogs ? 'Turn ON Parent Logs' : 'Turn OFF Parent Logs'}
+            </Button>
+          </FlexRowCenter>
+        </FlexColumnCenter>
       </DemoSection>
-    );
-  }
+    </Fragment>
+  );
 }
 
-Lifecycle.propTypes = {};
+Lifecycle.propTypes = {
+  name: string
+};
 
 export default Lifecycle;

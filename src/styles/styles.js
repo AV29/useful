@@ -7,7 +7,6 @@ export const Flex = styled.div`
 export const FlexRowCenter = styled(Flex)`
     justify-content: center;
     align-items: center;
-    padding: 15px;
 `;
 
 export const FlexColumnCenter = styled(FlexRowCenter)`
@@ -18,13 +17,19 @@ export const FlexRowWrapped = styled(Flex)`
     flex-wrap: wrap;
 `;
 
-export const DemoSection = styled.div`
-    padding: 20px;
-    width: calc(50% - 10px);
-    margin: 5px 10px 5px 0;
+export const Section = styled.div`
     display: inline-block;
     border: 1px solid ${({ theme: { borderColor } }) => borderColor};
     border-radius: 4px;
+    padding: 10px;
+    width: 100%;
+`;
+
+export const DemoSection = styled(Section)`
+    padding: 20px;
+    width: calc(50% - 10px);
+    margin: 5px 10px 5px 0;
+    border-width: 2px;
 `;
 
 export const Heading = styled.h1`
