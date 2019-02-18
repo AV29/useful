@@ -2,7 +2,8 @@ import React, { Component, Fragment } from 'react';
 import { shape, string } from 'prop-types';
 import { ThemeConsumer } from 'styled-components';
 import { StyledSlider } from './styles';
-import Rating from '../../reusable/rating/Rating';
+import Rating from '../../reusable/controls/rating/Rating';
+import ToggleBox from '../../reusable/controls/toggle/Toggle';
 import { FlexRowWrapped, DemoSection, Heading } from '../../../styles/styles';
 
 class Controls extends Component {
@@ -12,11 +13,29 @@ class Controls extends Component {
 
     this.state = {
       sliderValue: 2,
-      ratingValue: 3
+      ratingValue: 3,
+      toggles: {
+        'left-label': { checked: false, label: 'Is React' },
+        'right-label': { checked: true, label: 'Is Angular' },
+        'no-label': { checked: false }
+      }
     };
 
+    this.handleToggleValue = this.handleToggleValue.bind(this);
     this.handleChangeSliderValue = this.handleChangeSliderValue.bind(this);
     this.handleChangeRatingValue = this.handleChangeRatingValue.bind(this);
+  }
+
+  handleToggleValue({ target: { id } }) {
+    this.setState(({ toggles }) => ({
+      toggles: {
+        ...toggles,
+        [id]: {
+          ...toggles[id],
+          checked: !toggles[id].checked
+        }
+      }
+    }));
   }
 
   handleChangeSliderValue(sliderValue) {
@@ -24,7 +43,6 @@ class Controls extends Component {
   }
 
   handleChangeRatingValue(ratingValue) {
-    console.log(ratingValue);
     this.setState({ ratingValue });
   }
 
@@ -58,6 +76,17 @@ class Controls extends Component {
                   value={this.state.ratingValue}
                   onChange={this.handleChangeRatingValue}
                 />
+              </DemoSection>
+              <DemoSection>
+                {Object.keys(this.state.toggles).map(key => (
+                  <ToggleBox
+                    key={key}
+                    id={key}
+                    label={this.state.toggles[key].label}
+                    checked={this.state.toggles[key].checked}
+                    onChange={this.handleToggleValue}
+                  />
+                ))}
               </DemoSection>
             </FlexRowWrapped>
           </Fragment>

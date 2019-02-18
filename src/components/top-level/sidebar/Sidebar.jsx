@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import routesConfig from '../../../routing/routesConfig';
 import { Icon } from '../../reusable/icon/Icon';
-import Toggler from '../../reusable/toggler/Toggler';
+import MenuOpener from '../../reusable/controls/menu-opener/MenuOpener';
 import { FlexRowCenter } from '../../../styles/styles';
 import { StyledSideBar, NavItem, StyledName, StyledNavItemWrapper } from './styles';
 
@@ -40,7 +40,7 @@ class Sidebar extends Component {
           }
         </div>
         <FlexRowCenter style={{ minHeight: 40 }}>
-          <Toggler
+          <MenuOpener
             collapsed={collapsed}
             onClick={this.handleToggleSidebarView}
           />

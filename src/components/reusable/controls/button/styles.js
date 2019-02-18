@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import * as vars from '../../../styles/variables';
+import * as vars from '../../../../styles/variables';
 
 export const StyledButton = styled.button`
   margin: 10px; 

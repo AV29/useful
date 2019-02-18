@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import * as vars from '../../../styles/variables';
+import * as vars from '../../../../styles/variables';
 
 const lineThickness = 2;
 
-export const StyledToggler = styled.div`
+export const StyledMenuOpener = styled.div`
   opacity: 0.7;
   cursor: pointer;
   align-self: center;

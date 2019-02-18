@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ThemePicker from '../../reusable/theme-picker/ThemePicker';
+import ThemePicker from '../../reusable/controls/theme-picker/ThemePicker';
 import { StyledHeader } from './styles';
 
 class Header extends Component {

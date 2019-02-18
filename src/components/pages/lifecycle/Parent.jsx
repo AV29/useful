@@ -3,7 +3,7 @@ import React, { Component, Fragment } from 'react';
 import { bool } from 'prop-types';
 import { Section, SmallHeading } from '../../../styles/styles';
 import Child from './Child';
-import Button from '../../reusable/button/Button';
+import Button from '../../reusable/controls/button/Button';
 
 function log (message, params, color, preventLog = false) {
   if (preventLog) return;

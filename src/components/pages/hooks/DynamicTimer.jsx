@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import useDynamicInterval from './custom-hooks/useDynamicInterval';
-import Button from '../../reusable/button/Button';
-import Input from '../../reusable/input/Input';
+import Button from '../../reusable/controls/button/Button';
+import Input from '../../reusable/controls/input/Input';
 import { FlexColumnCenter } from '../../../styles/styles';
 import PropTypes from 'prop-types';
 

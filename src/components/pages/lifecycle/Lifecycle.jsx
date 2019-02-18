@@ -2,7 +2,7 @@ import React, { useState, Fragment } from 'react';
 import { string } from 'prop-types';
 import { DemoSection, SmallHeading, FlexRowCenter, Heading, FlexColumnCenter } from '../../../styles/styles';
 import Parent from './Parent';
-import Button from '../../reusable/button/Button';
+import Button from '../../reusable/controls/button/Button';
 
 function Lifecycle ({ name }) {
   const [preventLogs, setPreventLogs] = useState(false);

@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { FlexRowCenter } from '../../../styles/styles';
 import { Icon } from '../../../components/reusable/icon/Icon';
-import Input from '../../reusable/input/Input';
+import Input from '../../reusable/controls/input/Input';
 
 class TestContainer extends PureComponent {
 

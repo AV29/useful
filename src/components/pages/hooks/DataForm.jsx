@@ -1,8 +1,8 @@
 import React, { useReducer } from 'react';
 import { StyledEditForm, StyledInfoSection } from './styles';
 import Row from '../../reusable/row/Row';
-import Input from '../../reusable/input/Input';
-import Button from '../../reusable/button/Button';
+import Input from '../../reusable/controls/input/Input';
+import Button from '../../reusable/controls/button/Button';
 import ageReducer from './ageReducer';
 import useFormValue from './custom-hooks/useFormValue';
 

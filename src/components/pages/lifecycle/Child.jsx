@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { func, bool } from 'prop-types';
 import { Section, SmallHeading } from '../../../styles/styles';
-import Button from '../../reusable/button/Button';
+import Button from '../../reusable/controls/button/Button';
 
 class Child extends Component {
 
