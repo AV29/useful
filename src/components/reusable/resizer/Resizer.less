@@ -1,0 +1,47 @@
+@resize-border-width: 4px;
+
+.resize-wrapper {
+  position: relative;
+  user-select: none;
+
+  .resize-border {
+    background-color: transparent;
+    position: absolute;
+
+    &-left, &-right {
+      width: @resize-border-width;
+      height: 100%;
+      top: 0;
+
+      &:hover {
+        cursor: ew-resize;
+      }
+    }
+
+    &-top, &-bottom {
+      width: 100%;
+      left: 0;
+      height: @resize-border-width;
+
+      &:hover {
+        cursor: ns-resize;
+      }
+    }
+
+    &-left {
+      left: 0;
+    }
+
+    &-right {
+      right: 0;
+    }
+
+    &-bottom {
+      bottom: 0;
+    }
+
+    &-top {
+      top: 0;
+    }
+  }
+}

@@ -7,6 +7,7 @@ import renderProp from '../../../assets/icons/renderProp.svg';
 import controls from '../../../assets/icons/controls.svg';
 import lifecycle from '../../../assets/icons/lifecycle.svg';
 import star from '../../../assets/icons/star.svg';
+import hoc from '../../../assets/icons/hoc.svg';
 
 const Icons = {
   spinner,
@@ -17,7 +18,8 @@ const Icons = {
   renderProp,
   controls,
   lifecycle,
-  star
+  star,
+  hoc
 };
 
 export default Icons;

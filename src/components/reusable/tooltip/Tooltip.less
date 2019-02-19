@@ -1,0 +1,62 @@
+@import '../../../styles/variables';
+
+.llamasoft-tooltip {
+  position: absolute;
+  background: @tooltip-bg-color;
+  z-index: @tooltip-z-index;
+  padding: @default-space @default-double-space;
+  line-height: @large-line-height;
+  border-radius: @default-border-radius;
+  font-weight: @light;
+  font-size: @regular-font-size;
+  color: @default-bg-primary-color;
+  pointer-events: none;
+  min-width: @min-tooltip-popover-width;
+  opacity: 0;
+  &.fade-in {
+    transition: @opacity-transition;
+    opacity: 1;
+  }
+  &.left {
+    box-shadow: 5px 0 20px @light-shadow-color;
+  }
+  &.right {
+    box-shadow: -5px 0 20px @light-shadow-color;
+  }
+  &.top {
+    box-shadow: 0 5px 20px @light-shadow-color;
+  }
+  &.bottom {
+    box-shadow: 0 -5px 20px @light-shadow-color;
+  }
+  &:after {
+    content: " ";
+    position: absolute;
+    border-width: @tooltip-popover-triangle-size;
+    border-style: solid;
+  }
+  &.bottom:after {
+    bottom: 100%;
+    left: 50%;
+    margin-left: -@tooltip-popover-triangle-size;
+    border-color: transparent transparent @tooltip-bg-color transparent;
+  }
+  &.left:after {
+    top: 50%;
+    left: 100%;
+    margin-top: -@tooltip-popover-triangle-size;
+    border-color: transparent transparent transparent @tooltip-bg-color;
+  }
+  &.top:after {
+    top: 100%;
+    left: 50%;
+    margin-left: -@tooltip-popover-triangle-size;
+    border-color: @tooltip-bg-color transparent transparent transparent;
+  }
+  &.right:after {
+    top: 50%;
+    right: 100%;
+    margin-top: -@tooltip-popover-triangle-size;
+    border-color: transparent @tooltip-bg-color transparent transparent;
+  }
+}

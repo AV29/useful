@@ -30,6 +30,12 @@ export default {
     path: '/lifecycle',
     icon: 'lifecycle'
   },
+  hoc: {
+    id: guid(),
+    name: 'High Order Components',
+    path: '/hoc',
+    icon: 'hoc'
+  },
   about: {
     id: guid(),
     name: 'About',
