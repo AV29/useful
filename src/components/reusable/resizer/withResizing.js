@@ -38,7 +38,6 @@ function withResizing (Component) {
 
       const { clientX } = event;
       if(clientX > this.left.getBoundingClientRect().right && clientX < this.right.getBoundingClientRect().left) {
-        console.log('adsasdas');
         const width = this.state.initialWidth - (event.screenX - this.state.initialScreenX);
         this.setState({ width, marginLeft: event.screenX - this.state.initialScreenX });
 

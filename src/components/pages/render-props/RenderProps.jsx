@@ -4,14 +4,15 @@ import { DemoSection, FlexRowWrapped, Flex, Heading, SmallHeading } from '../../
 import ContextMenu from '../../reusable/context-menu/ContextMenu';
 import WindowSize from '../../reusable/window-size/WindowSize';
 import TestContainer from './TestContainer';
-import { StyledRenderPropContent, StyledList, ContextMenuCaller } from './styles';
+import { StyledRenderPropContent, StyledList, ContextMenuCaller, TooltipHoverTarget } from './styles';
 import { getRandomColor } from '../../../utilities/random';
 import DataFetcher from '../../reusable/data-fetcher/DataFetcher';
 import ClickOutside from '../../reusable/clickoutside/ClickOutside';
+import Tooltip from '../../reusable/tooltip/Tooltip';
 
 class RenderProps extends Component {
 
-  constructor (props) {
+  constructor(props) {
     super(props);
 
     this.handleChangeRenderPropContainerData = this.handleChangeRenderPropContainerData.bind(this);
@@ -27,19 +28,19 @@ class RenderProps extends Component {
     this.items = [{ id: '1', text: 'Angular' }, { id: '2', text: 'React' }, { id: '3', text: 'Vue' }];
   }
 
-  handleChangeRenderPropContainerData (value) {
+  handleChangeRenderPropContainerData(value) {
     this.setState({ sharedData: value });
   }
 
-  handleClickOutsideContainer () {
+  handleClickOutsideContainer() {
     this.setState({ borderColor: getRandomColor() });
   }
 
-  handleChooseItem (selectedItem) {
+  handleChooseItem(selectedItem) {
     this.setState({ selectedItem });
   }
 
-  render () {
+  render() {
     return (
       <WindowSize>
         {({ windowWidth, windowHeight }) => (
@@ -103,6 +104,19 @@ class RenderProps extends Component {
                         </StyledList>
                       )}
                     </ContextMenu>
+                  </DemoSection>
+                  <DemoSection>
+                    <Tooltip
+                      renderHoverTarget={
+                        ({ bindRef }) => (
+                          <TooltipHoverTarget ref={bindRef}>Hover to see custom tooltip</TooltipHoverTarget>
+                        )}
+                    >
+                      {
+                        ({ bindRef }) => (
+                          <span ref={bindRef}>Here is a tooltip!!!</span>
+                        )}
+                    </Tooltip>
                   </DemoSection>
                 </FlexRowWrapped>
               </Fragment>

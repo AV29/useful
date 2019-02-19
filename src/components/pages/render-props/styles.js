@@ -28,10 +28,19 @@ export const ContextMenuCaller = styled(SmallHeading)`
   border: 1px solid ${({ theme: { borderColor } }) => borderColor};
   border-radius: 4px;
   margin-right: 10px;
-  padding: 10px
+  padding: 10px;
   transition: all .15s ease;
   &:hover {
     cursor: pointer;
     box-shadow: 0 0 10px ${({ theme: { shadowColor } }) => shadowColor};
   }
 `;
+
+export const TooltipHoverTarget = styled(SmallHeading)`
+  border: 1px solid ${({ theme: { borderColor } }) => borderColor};
+  border-radius: 4px;
+  padding: 10px;
+  display: inline-block;
+`;
+
+

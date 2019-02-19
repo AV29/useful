@@ -24,6 +24,10 @@ class ContextMenu extends Component {
     this.root = this.getContextMenuRoot();
   }
 
+  getContextMenuRoot () {
+    return this.props.rootContainer ? document.getElementById(this.props.rootContainer) : null;
+  }
+
   handleHide () {
     this.state.isShown && this.setState({ isShown: false });
   }
@@ -35,10 +39,6 @@ class ContextMenu extends Component {
       y: event.clientY,
       x: event.clientX
     });
-  }
-
-  getContextMenuRoot () {
-    return this.props.rootContainer ? document.getElementById(this.props.rootContainer) : null;
   }
 
   render () {

@@ -1,14 +1,14 @@
 import React, { Fragment, Component } from 'react';
-import { bool, node, string, object } from 'prop-types';
+import { bool, func, string, object } from 'prop-types';
 import Portal from '../portal/Portal';
-import classNames from 'classnames';
+import { StyledTooltip } from './styles';
 
 class Tooltip extends Component {
-  static getPositionInfo (el) {
+  static getPositionInfo(el) {
     return (el && el.getBoundingClientRect && el.getBoundingClientRect()) || { top: 0, left: 0 };
   }
 
-  static getTooltipOrientation (targetPositionInfo, tooltipPositionInfo) {
+  static getTooltipOrientation(targetPositionInfo, tooltipPositionInfo) {
     const { top, left, right, width, height } = targetPositionInfo;
     const topEnd = top - height / 2 - tooltipPositionInfo.height;
     const isOnTheLeft = left < tooltipPositionInfo.width;
@@ -18,101 +18,91 @@ class Tooltip extends Component {
       return {
         left: right,
         top: top + 5,
-        orientation: 'right'
+        position: 'right'
       };
     } else if (isOnTheRight) {
       return {
         top: top - 5,
         left: left - tooltipPositionInfo.width - 5,
-        orientation: 'left'
+        position: 'left'
       };
     } else if (isOnTop) {
       return {
         top: topEnd,
         left: left - tooltipPositionInfo.width / 2 + width / 2,
-        orientation: 'top'
+        position: 'top'
       };
     } else {
       return {
         top: top + height / 2 + tooltipPositionInfo.height,
         left: left - tooltipPositionInfo.width / 2 + width / 2,
-        orientation: 'bottom'
+        position: 'bottom'
       };
     }
   }
 
-  constructor (props) {
+  constructor(props) {
     super(props);
-
-    this.targetElement = null;
-    this.tooltip = null;
 
     this.state = {
       isShown: false,
-      fadeIn: false,
-      orientation: 'top',
+      position: 'top',
       top: 0,
       left: 0
     };
 
     this.handleHideTooltip = this.handleHideTooltip.bind(this);
     this.handleShowTooltip = this.handleShowTooltip.bind(this);
-    this.setTooltipStyles = this.setTooltipStyles.bind(this);
+    this.bindTooltip = this.bindTooltip.bind(this);
+    this.bindHoverTarget = this.bindHoverTarget.bind(this);
+
+    this.root = this.getContextMenuRoot();
   }
 
-  componentDidUpdate (_, prevState) {
-    if (this.state.isShown !== prevState.isShown && this.state.isShown) {
-      this.setTooltipStyles();
-    }
+  bindTooltip(tooltip) {
+    this.tooltip = tooltip;
   }
 
-  setTooltipStyles () {
-    const targetPositionInfo = Tooltip.getPositionInfo(this.targetElement);
+  bindHoverTarget(hoverTarget) {
+    this.hoverTarget = hoverTarget;
+  }
+
+  getContextMenuRoot() {
+    return this.props.rootContainer ? document.getElementById(this.props.rootContainer) : null;
+  }
+
+  handleShowTooltip() {
+    const targetPositionInfo = Tooltip.getPositionInfo(this.hoverTarget);
     const tooltipPositionInfo = Tooltip.getPositionInfo(this.tooltip);
     this.setState({
-      fadeIn: true,
+      isShown: true,
       ...Tooltip.getTooltipOrientation(targetPositionInfo, tooltipPositionInfo)
     });
   }
 
-  handleShowTooltip () {
-    this.setState({ isShown: true });
+  handleHideTooltip() {
+    this.setState({ isShown: false });
   }
 
-  handleHideTooltip () {
-    this.setState({ isShown: false, fadeIn: false });
-  }
-
-  render () {
-    const contextMenuRoot = document.getElementById('llamasoft-maps-application-shell');
-    const { children, className, target, targetClassName, style } = this.props;
-    const { isShown, top, left, fadeIn, orientation } = this.state;
+  render() {
+    const { isShown, top, left, position } = this.state;
     return (
       <Fragment>
         <div
-          ref={target => this.targetElement = target}
-          className={targetClassName}
-          style={style}
           onMouseEnter={this.handleShowTooltip}
           onMouseLeave={this.handleHideTooltip}
         >
-          {target}
+          {this.props.renderHoverTarget({ bindRef: this.bindHoverTarget })}
         </div>
         {
-          isShown &&
-          <Portal node={contextMenuRoot}>
-            <div
-              ref={tooltip => this.tooltip = tooltip}
+          <Portal node={this.root}>
+            <StyledTooltip
               style={{ top, left }}
-              className={classNames(
-                'llamasoft-tooltip',
-                orientation,
-                { [className]: className },
-                { 'fade-in': fadeIn }
-              )}
+              isShown={isShown}
+              position={position}
             >
-              {children}
-            </div>
+              {this.props.children({ bindRef: this.bindTooltip })}
+            </StyledTooltip>
           </Portal>
         }
       </Fragment>
@@ -121,10 +111,11 @@ class Tooltip extends Component {
 }
 
 Tooltip.propTypes = {
-  children: node.isRequired,
-  target: node.isRequired,
+  children: func.isRequired,
+  renderHoverTarget: func.isRequired,
   targetClassName: string,
   className: string,
+  rootContainer: string,
   style: object,
   left: bool,
   right: bool,
