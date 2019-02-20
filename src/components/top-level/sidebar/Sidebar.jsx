@@ -12,7 +12,7 @@ function Sidebar() {
     <StyledSideBar>
       <div>
         {
-          Object.values(routesConfig).map(({ id, path, name, icon }) => (
+          routesConfig.map(({ id, path, name, icon }) => (
             <StyledNavItemWrapper key={id}>
               <NavItem to={path}>
                 {!collapsed && <SmallHeading>{name}</SmallHeading>}
