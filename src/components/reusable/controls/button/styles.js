@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import * as vars from '../../../../styles/variables';
 
 const disabledStyles = `
   opacity: .4;
@@ -15,7 +14,6 @@ export const StyledButton = styled.button`
   background-color: ${({ theme: { bgColor } }) => bgColor};
   border: 1px solid ${({ theme: { borderColor } }) => borderColor};
   cursor: pointer;
-  transition: all 200ms ${vars.transitionStyle};
   box-shadow: 0 0 10px ${({ theme: { shadowColor } }) => shadowColor};
   ${({ disabled }) => disabled ? css`${disabledStyles}` : ''} 
   :active {

@@ -1,11 +1,6 @@
 import guid from '../utilities/guid';
 
 export default {
-  root: {
-    id: guid(),
-    name: 'Useful Things with React',
-    path: '/'
-  },
   controls: {
     id: guid(),
     name: 'Controls',

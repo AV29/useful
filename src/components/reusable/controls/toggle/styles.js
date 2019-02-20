@@ -41,7 +41,7 @@ export const StyledSlider = styled.span`
     width: ${toggleDiameter}px;
     border-radius: 50%;
     background-color: ${({ theme: { bgColor } }) => bgColor};
-    transition: all 0.2s ${transitionStyle};
+    transition: transform 0.2s ${transitionStyle};
     margin: ${toggleMargin}px;
     transform: translateX(0);
   }

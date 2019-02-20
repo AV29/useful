@@ -9,10 +9,6 @@ export const StyledSideBar = styled.div`
   box-shadow: 0 5px 10px ${({ theme: { shadowColor } }) => shadowColor};
 `;
 
-export const StyledName = styled.h2`
-  margin: 15px 0;
-`;
-
 export const NavItem = styled(NavLink)`
   text-decoration: none;
   padding: 15px;

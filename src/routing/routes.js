@@ -12,13 +12,13 @@ import Hoc from '../components/pages/hoc/Hoc';
 import This from '../components/pages/this/This';
 import Lifecycle from '../components/pages/lifecycle/Lifecycle';
 
-const { root, controls, about, hooks, renderProps, lifecycle, hoc, context } = routesConfig;
+const { controls, about, hooks, renderProps, lifecycle, hoc, context } = routesConfig;
 
 export default (
   <Switch>
     <Route
       exact
-      path={root.path}
+      path="/"
       render={() => <Redirect to={controls.path}/>}
     />
     <ExtendedRoute
