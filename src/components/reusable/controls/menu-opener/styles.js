@@ -7,7 +7,7 @@ export const StyledMenuOpener = styled.div`
   opacity: 0.7;
   cursor: pointer;
   align-self: center;
-  margin: 10px;
+  margin: 15px;
   height: ${({ size }) => size}px;
   width: ${({ size }) => size}px;
   position: relative;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { number, func } from 'prop-types';
-import './Resizer.less';
+import { StyledResizerWrapper, StyledResizeHandler } from './styles';
 
 function withResizing (Component) {
 
@@ -17,7 +17,6 @@ function withResizing (Component) {
         initialWidth: this.props.initialWidth,
         isResizing: false,
         initialScreenX: 0,
-        marginLeft: 0,
         currentMouseX: 0
       };
     }
@@ -36,15 +35,8 @@ function withResizing (Component) {
     handleResize (event) {
       event.preventDefault();
 
-      const { clientX } = event;
-      if(clientX > this.left.getBoundingClientRect().right && clientX < this.right.getBoundingClientRect().left) {
-        const width = this.state.initialWidth - (event.screenX - this.state.initialScreenX);
-        this.setState({ width, marginLeft: event.screenX - this.state.initialScreenX });
-
-      }
-      //const width = event.screenX - this.state.initialScreenX + this.state.initialWidth;
-
-      //this.props.onResized(width);
+      const width = this.state.initialWidth + (event.screenX - this.state.initialScreenX);
+      this.setState({ width });
     }
 
     handleRelease (event) {
@@ -61,34 +53,13 @@ function withResizing (Component) {
 
     render () {
       return (
-        <div
-          className="resize-wrapper"
-          style={{ width: this.state.width, marginLeft: this.state.marginLeft }}
-        >
-          <div
+        <StyledResizerWrapper style={{ width: this.state.width }}>
+          <StyledResizeHandler
             onMouseDown={this.handleCapture}
             onDragStart={() => false}
-            ref={left => this.left = left}
-            className="resize-border resize-border-left"
-          />
-          <div
-            onMouseDown={this.handleCapture}
-            onDragStart={() => false}
-            ref={right => this.right = right}
-            className="resize-border resize-border-right"
-          />
-          <div
-            // onMouseDown={this.handleCapture}
-            // onDragStart={() => false}
-            className="resize-border resize-border-top"
-          />
-          <div
-            // onMouseDown={this.handleCapture}
-            // onDragStart={() => false}
-            className="resize-border resize-border-bottom"
           />
           <Component {...this.props}/>
-        </div>
+        </StyledResizerWrapper>
       );
     }
   }
