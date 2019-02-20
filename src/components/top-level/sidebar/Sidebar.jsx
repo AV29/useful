@@ -31,7 +31,7 @@ class Sidebar extends Component {
           {
             navigationItems.map(({ id, path, name, icon }) => (
               <StyledNavItemWrapper key={id}>
-                <NavItem to={path}>
+                <NavItem to={path} title={name}>
                   {!collapsed && <StyledName>{name}</StyledName>}
                   <Icon icon={icon}/>
                 </NavItem>

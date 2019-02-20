@@ -4,11 +4,6 @@ const minTooltipWidth = 150;
 const tooltipTriangleSize = 10;
 const tooltipBgColor = 'rgba(0, 0, 0, 0.8)';
 
-const isShownStyles = `
-   transition: opacity .3s ease;
-   display: block;
-`;
-
 const leftStyles = `
   box-shadow: 5px 0 20px rgba(120, 120, 120, 1);
   &:after {
@@ -59,7 +54,6 @@ export const StyledTooltip = styled.div`
   color: white;
   pointer-events: none;
   min-width: ${minTooltipWidth}px;
-  display: none;
   
   &:after {
     content: " ";
@@ -68,7 +62,6 @@ export const StyledTooltip = styled.div`
     border-style: solid;
   }
   
-  ${({ isShown }) => isShown ? css`${isShownStyles}` : ''} 
   ${({ position }) => position === 'left' ? css`${leftStyles}` : ''} 
   ${({ position }) => position === 'right' ? css`${rightStyles}` : ''} 
   ${({ position }) => position === 'top' ? css`${topStyles}` : ''} 
