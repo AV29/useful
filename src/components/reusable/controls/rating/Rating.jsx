@@ -3,23 +3,8 @@ import { number, string, func } from 'prop-types';
 import { StyledRatingControl, StyledRatingItem, ItemsWrapper } from './styles';
 
 class Rating extends Component {
-  constructor(props) {
-    super(props);
-
-    this.previousValue = this.props.value;
-
-  }
-
-  handleClick(val) {
-    this.previousValue === val ?
-      this.props.onChange(val) :
-      this.props.onChange(val + 1);
-
-    this.previousValue = val;
-  }
-
-  render() {
-    const { label, scaleSize, className, icon, value, iconSize } = this.props;
+  render () {
+    const { label, scaleSize, className, icon, value, iconSize, onChange } = this.props;
     return (
       <StyledRatingControl className={className}>
         {label && <div className="label">{label}</div>}
@@ -30,7 +15,7 @@ class Rating extends Component {
               icon={icon}
               size={iconSize}
               rated={value > val}
-              onClick={() => this.handleClick(val)}
+              onClick={() => onChange(val + 1)}
             />
           ))}
         </ItemsWrapper>

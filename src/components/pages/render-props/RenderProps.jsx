@@ -4,7 +4,7 @@ import { DemoSection, FlexRowWrapped, Flex, Heading, SmallHeading } from '../../
 import ContextMenu from '../../reusable/context-menu/ContextMenu';
 import WindowSize from '../../reusable/window-size/WindowSize';
 import TestContainer from './TestContainer';
-import { StyledRenderPropContent, StyledList, ContextMenuCaller, TooltipHoverTarget, TestSquare } from './styles';
+import { StyledRenderPropContent, StyledList, ContextMenuCaller, TooltipHoverTarget } from './styles';
 import { getRandomColor } from '../../../utilities/random';
 import DataFetcher from '../../reusable/data-fetcher/DataFetcher';
 import ClickOutside from '../../reusable/clickoutside/ClickOutside';

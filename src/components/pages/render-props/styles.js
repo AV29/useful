@@ -42,13 +42,3 @@ export const TooltipHoverTarget = styled(SmallHeading)`
   padding: 10px;
   display: inline-block;
 `;
-
-export const TestSquare = styled.div`
-  background-color: ${({ theme: { color } }) => color};
-  height: 20px;
-  width: 20px;
-  position: fixed;
-  z-index: 1000;
-`;
-
-

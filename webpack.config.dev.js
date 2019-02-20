@@ -29,8 +29,9 @@ export default {
     new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
       inject: true,
+      filename: 'index.html',
+      favicon: './src/assets/favicon.ico',
       template: './src/index.html',
-      favicon: './src/assets/favicon.ico'
     })
   ],
   resolve: {
