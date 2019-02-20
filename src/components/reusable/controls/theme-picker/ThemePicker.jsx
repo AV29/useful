@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { StyledThemePicker, StyledThemeMarker } from './styles';
 
 class ThemePicker extends Component {
-  render() {
+  render () {
     return (
       <StyledThemePicker>
         {

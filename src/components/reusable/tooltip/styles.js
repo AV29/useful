@@ -4,6 +4,14 @@ const minTooltipWidth = 150;
 const tooltipTriangleSize = 10;
 const tooltipBgColor = 'rgba(0, 0, 0, 0.8)';
 
+const fadeInStyles = `
+  transition: opacity .3s ease;
+  opacity: 1;
+`;
+
+const fadeOutStyles = `
+  opacity: 0;
+`;
 const leftStyles = `
   box-shadow: 5px 0 20px rgba(120, 120, 120, 1);
   &:after {
@@ -62,6 +70,7 @@ export const StyledTooltip = styled.div`
     border-style: solid;
   }
   
+  ${({ fading }) => fading ? css`${fadeInStyles}` : css`${fadeOutStyles}`} 
   ${({ position }) => position === 'left' ? css`${leftStyles}` : ''} 
   ${({ position }) => position === 'right' ? css`${rightStyles}` : ''} 
   ${({ position }) => position === 'top' ? css`${topStyles}` : ''} 

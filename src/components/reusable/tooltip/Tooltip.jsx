@@ -1,54 +1,63 @@
 import React, { Fragment, Component } from 'react';
-import { bool, func, string, object } from 'prop-types';
+import { bool, func, string, object, node } from 'prop-types';
 import Portal from '../portal/Portal';
 import { StyledTooltip } from './styles';
 
 class Tooltip extends Component {
-  // static getPositionInfo (el) {
-  //   return (el && el.getBoundingClientRect && el.getBoundingClientRect()) || { top: 0, left: 0 };
-  // }
+  static getPositionInfo (el) {
+    return (el && el.getBoundingClientRect && el.getBoundingClientRect()) || { top: 0, left: 0 };
+  }
 
-  // static getTooltipPosition (targetPositionInfo) {
-  //   const { top, left, right, width, height } = targetPositionInfo;
-  //   const topEnd = top - height / 2 - tooltipPositionInfo.height;
-  //   const isOnTheLeft = left < tooltipPositionInfo.width;
-  //   const isOnTheRight = window.innerWidth - right < tooltipPositionInfo.width / 2;
-  //   const isOnTop = topEnd > tooltipPositionInfo.height;
-  //   if (isOnTheLeft) {
-  //     return {
-  //       left: right,
-  //       top: top + 5,
-  //       position: 'right'
-  //     };
-  //   } else if (isOnTheRight) {
-  //     return {
-  //       top: top - 5,
-  //       left: left - tooltipPositionInfo.width - 5,
-  //       position: 'left'
-  //     };
-  //   } else if (isOnTop) {
-  //     return {
-  //       top: topEnd,
-  //       left: left - tooltipPositionInfo.width / 2 + width / 2,
-  //       position: 'top'
-  //     };
-  //   } else {
-  //     return {
-  //       top: top + height / 2 + tooltipPositionInfo.height,
-  //       left: left - tooltipPositionInfo.width / 2 + width / 2,
-  //       position: 'bottom'
-  //     };
-  //   }
-  // }
+  static getTooltipPosition (hoverTarget, tooltip, offset = 5) {
+    const target = Tooltip.getPositionInfo(hoverTarget);
+    const tooltipInfo = Tooltip.getPositionInfo(tooltip);
+
+    const tooltipFullHeight = tooltipInfo.height + offset;
+    const tooltipFullWidth = tooltipInfo.width + offset;
+
+    const fitsRight = window.innerWidth - target.right > tooltipFullWidth;
+    const fitsLeft = target.left > tooltipFullWidth;
+    const fitsBottom = window.innerHeight - target.bottom > tooltipFullHeight;
+    const fitsTop = target.top > tooltipFullHeight;
+
+    const relativeTop = window.innerHeight >= target.top + tooltipFullHeight ? target.top : window.innerHeight - tooltipFullHeight;
+
+    if (fitsTop && fitsLeft && fitsRight) {
+      return {
+        top: target.top - tooltipFullHeight,
+        left: (target.width / 2 + target.left) - tooltipInfo.width / 2,
+        position: 'top'
+      };
+    }
+
+    if (fitsRight) {
+      return {
+        top: relativeTop,
+        left: target.right + offset,
+        position: 'right'
+      };
+    }
+
+    if (fitsBottom && fitsRight) {
+      return {
+        left: target.left + offset,
+        top: target.bottom + offset,
+        position: 'bottom'
+      };
+    }
+
+    return {
+      top: relativeTop,
+      left: target.left - tooltipFullWidth,
+      position: 'left'
+    };
+  }
 
   constructor (props) {
     super(props);
 
     this.state = {
-      isShown: false,
-      position: 'top',
-      top: 0,
-      left: 0
+      isShown: false
     };
 
     this.handleHideTooltip = this.handleHideTooltip.bind(this);
@@ -81,22 +90,20 @@ class Tooltip extends Component {
     return this.props.rootContainer ? document.getElementById(this.props.rootContainer) : null;
   }
 
-  handleShowTooltip ({ clientX, clientY }) {
-    //const targetPositionInfo = Tooltip.getPositionInfo(this.hoverTarget);
+  handleShowTooltip () {
     this.setState({
-      isShown: true,
-      left: clientX,
-      top: clientY
-      //...Tooltip.getTooltipPosition(clientX, clientY)
+      isShown: true
+    }, () => {
+      this.setState({ fading: true, ...Tooltip.getTooltipPosition(this.hoverTarget, this.tooltip, 10) });
     });
   }
 
   handleHideTooltip () {
-    this.setState({ isShown: false });
+    this.setState({ isShown: false, fading: false });
   }
 
   render () {
-    const { isShown, top, left, position } = this.state;
+    const { isShown, top, left, position, fading } = this.state;
     return (
       <Fragment>
         {this.props.renderHoverTarget({ bindRef: this.bindHoverTarget })}
@@ -104,10 +111,12 @@ class Tooltip extends Component {
           isShown &&
           <Portal node={this.root}>
             <StyledTooltip
+              ref={tooltip => this.tooltip = tooltip}
+              fading={fading}
               style={{ top, left }}
               position={position}
             >
-              {this.props.children({ bindRef: this.bindTooltip })}
+              {this.props.children}
             </StyledTooltip>
           </Portal>
         }
@@ -117,7 +126,7 @@ class Tooltip extends Component {
 }
 
 Tooltip.propTypes = {
-  children: func.isRequired,
+  children: node.isRequired,
   renderHoverTarget: func.isRequired,
   targetClassName: string,
   className: string,

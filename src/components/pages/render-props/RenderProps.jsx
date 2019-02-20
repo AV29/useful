@@ -4,7 +4,7 @@ import { DemoSection, FlexRowWrapped, Flex, Heading, SmallHeading } from '../../
 import ContextMenu from '../../reusable/context-menu/ContextMenu';
 import WindowSize from '../../reusable/window-size/WindowSize';
 import TestContainer from './TestContainer';
-import { StyledRenderPropContent, StyledList, ContextMenuCaller, TooltipHoverTarget } from './styles';
+import { StyledRenderPropContent, StyledList, ContextMenuCaller, TooltipHoverTarget, TestSquare } from './styles';
 import { getRandomColor } from '../../../utilities/random';
 import DataFetcher from '../../reusable/data-fetcher/DataFetcher';
 import ClickOutside from '../../reusable/clickoutside/ClickOutside';
@@ -12,7 +12,7 @@ import Tooltip from '../../reusable/tooltip/Tooltip';
 
 class RenderProps extends Component {
 
-  constructor(props) {
+  constructor (props) {
     super(props);
 
     this.handleChangeRenderPropContainerData = this.handleChangeRenderPropContainerData.bind(this);
@@ -28,19 +28,19 @@ class RenderProps extends Component {
     this.items = [{ id: '1', text: 'Angular' }, { id: '2', text: 'React' }, { id: '3', text: 'Vue' }];
   }
 
-  handleChangeRenderPropContainerData(value) {
+  handleChangeRenderPropContainerData (value) {
     this.setState({ sharedData: value });
   }
 
-  handleClickOutsideContainer() {
+  handleClickOutsideContainer () {
     this.setState({ borderColor: getRandomColor() });
   }
 
-  handleChooseItem(selectedItem) {
+  handleChooseItem (selectedItem) {
     this.setState({ selectedItem });
   }
 
-  render() {
+  render () {
     return (
       <WindowSize>
         {({ windowWidth, windowHeight }) => (
@@ -112,10 +112,72 @@ class RenderProps extends Component {
                           <TooltipHoverTarget ref={bindRef}>Hover to see custom tooltip</TooltipHoverTarget>
                         )}
                     >
-                      {
+                      {<span ref={bindRef}>Here is a tooltip!!!</span>}
+                    </Tooltip>
+                    <Tooltip
+                      renderHoverTarget={
                         ({ bindRef }) => (
-                          <span ref={bindRef}>Here is a tooltip!!!</span>
+                          <TestSquare ref={bindRef} style={{ top: 10, left: 10 }}/>
                         )}
+                    >
+                      {<span ref={bindRef}>TEst Test TEST TEST!!!</span>}
+                    </Tooltip>
+                    <Tooltip
+                      renderHoverTarget={
+                        ({ bindRef }) => (
+                          <TestSquare ref={bindRef} style={{ right: 10, top: 10 }}/>
+                        )}
+                    >
+                      {<span ref={bindRef}>TEst Test TEST TEST!!!</span>}
+                    </Tooltip>
+                    <Tooltip
+                      renderHoverTarget={
+                        ({ bindRef }) => (
+                          <TestSquare ref={bindRef} style={{ bottom: 10, left: 10 }}/>
+                        )}
+                    >
+                      {<span ref={bindRef}>TEst Test TEST TEST!!!</span>}
+                    </Tooltip>
+                    <Tooltip
+                      renderHoverTarget={
+                        ({ bindRef }) => (
+                          <TestSquare ref={bindRef} style={{ bottom: 10, right: 10 }}/>
+                        )}
+                    >
+                      {<span ref={bindRef}>TEst Test TEST TEST!!!</span>}
+                    </Tooltip>
+
+                    <Tooltip
+                      renderHoverTarget={
+                        ({ bindRef }) => (
+                          <TestSquare ref={bindRef} style={{ bottom: '50%', left: 10 }}/>
+                        )}
+                    >
+                      {<span ref={bindRef}>TEst Test TEST TEST!!!</span>}
+                    </Tooltip>
+                    <Tooltip
+                      renderHoverTarget={
+                        ({ bindRef }) => (
+                          <TestSquare ref={bindRef} style={{ bottom: 10, right: '50%' }}/>
+                        )}
+                    >
+                      {<span ref={bindRef}>TEst Test TEST TEST!!!</span>}
+                    </Tooltip>
+                    <Tooltip
+                      renderHoverTarget={
+                        ({ bindRef }) => (
+                          <TestSquare ref={bindRef} style={{ top: '50%', right: 10 }}/>
+                        )}
+                    >
+                      {<span ref={bindRef}>TEst Test TEST TEST!!!</span>}
+                    </Tooltip>
+                    <Tooltip
+                      renderHoverTarget={
+                        ({ bindRef }) => (
+                          <TestSquare ref={bindRef} style={{ top: 10, left: '50%' }}/>
+                        )}
+                    >
+                      {<span ref={bindRef}>TEst Test TEST TEST!!!</span>}
                     </Tooltip>
                   </DemoSection>
                 </FlexRowWrapped>
