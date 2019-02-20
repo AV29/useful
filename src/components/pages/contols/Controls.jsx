@@ -1,17 +1,20 @@
 import React, { Component, Fragment } from 'react';
 import { shape, string } from 'prop-types';
 import { ThemeConsumer } from 'styled-components';
-import { StyledSlider } from './styles';
+import { SliderContainer, IdleIndicatorContainer } from './styles';
 import Rating from '../../reusable/controls/rating/Rating';
 import ToggleBox from '../../reusable/controls/toggle/Toggle';
+import IdleIndicator from '../../reusable/idle-indicator/IdleIndicator';
+import Button from '../../reusable/controls/button/Button';
 import { FlexRowWrapped, DemoSection, Heading } from '../../../styles/styles';
 
 class Controls extends Component {
 
-  constructor(props) {
+  constructor (props) {
     super(props);
 
     this.state = {
+      inIdle: false,
       sliderValue: 2,
       ratingValue: 3,
       toggles: {
@@ -24,9 +27,11 @@ class Controls extends Component {
     this.handleToggleValue = this.handleToggleValue.bind(this);
     this.handleChangeSliderValue = this.handleChangeSliderValue.bind(this);
     this.handleChangeRatingValue = this.handleChangeRatingValue.bind(this);
+    this.handleIdleFinished = this.handleIdleFinished.bind(this);
+    this.handleStartIdle = this.handleStartIdle.bind(this);
   }
 
-  handleToggleValue({ target: { id } }) {
+  handleToggleValue ({ target: { id } }) {
     this.setState(({ toggles }) => ({
       toggles: {
         ...toggles,
@@ -38,15 +43,24 @@ class Controls extends Component {
     }));
   }
 
-  handleChangeSliderValue(sliderValue) {
+  handleChangeSliderValue (sliderValue) {
     this.setState({ sliderValue });
   }
 
-  handleChangeRatingValue(ratingValue) {
+  handleChangeRatingValue (ratingValue) {
     this.setState({ ratingValue });
   }
 
-  render() {
+  handleIdleFinished () {
+    this.setState({ inIdle: false });
+  }
+
+  handleStartIdle () {
+    this.setState({ inIdle: true });
+    this.indicator.trigger();
+  }
+
+  render () {
     return (
       <ThemeConsumer>
         {({ color, shadowColor }) => (
@@ -54,7 +68,7 @@ class Controls extends Component {
             <Heading>{this.props.name}</Heading>
             <FlexRowWrapped>
               <DemoSection>
-                <StyledSlider
+                <SliderContainer
                   label="Slider Example"
                   max={4}
                   stepPerClick
@@ -87,6 +101,16 @@ class Controls extends Component {
                     onChange={this.handleToggleValue}
                   />
                 ))}
+              </DemoSection>
+              <DemoSection>
+                <IdleIndicatorContainer>
+                  <IdleIndicator
+                    ref={indicator => this.indicator = indicator}
+                    idleTime={2000}
+                    onFinished={this.handleIdleFinished}
+                  />
+                </IdleIndicatorContainer>
+                <Button disabled={this.state.inIdle} onClick={this.handleStartIdle}>{this.state.inIdle ? '...waiting' : 'Start Idle Timer'}</Button>
               </DemoSection>
             </FlexRowWrapped>
           </Fragment>

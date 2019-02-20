@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { number, object, bool } from 'prop-types';
+import { number, object, bool, func } from 'prop-types';
+import { StyledIdleIndicator } from './styles';
 
 class IdleIndicator extends Component {
 
@@ -18,6 +19,8 @@ class IdleIndicator extends Component {
     if (this.props.destroyOnEnd) {
       this.idleIndicator.style.width = '0px';
     }
+
+    this.props.onFinished();
   }
 
   drawFrame (progress) {
@@ -49,10 +52,9 @@ class IdleIndicator extends Component {
 
   render () {
     return (
-      <div
+      <StyledIdleIndicator
         style={this.props.style}
         ref={ii => this.idleIndicator = ii}
-        className="llamasoft-idle-indicator"
       />
     );
   }
@@ -60,11 +62,13 @@ class IdleIndicator extends Component {
 
 IdleIndicator.defaultProps = {
   idleTime: 0,
-  destroyOnEnd: true
+  destroyOnEnd: true,
+  onFinished: () => false
 };
 
 IdleIndicator.propTypes = {
   colors: bool,
+  onFinished: func,
   destroyOnEnd: bool,
   idleTime: number,
   style: object
