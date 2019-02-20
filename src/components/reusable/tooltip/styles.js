@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
 
 const minTooltipWidth = 150;
-const tooltipTriangleSize = 10;
 const tooltipBgColor = 'rgba(0, 0, 0, 0.8)';
 
 const fadeInStyles = `
@@ -16,7 +15,7 @@ const leftStyles = `
   &:after {
     top: 50%;
     left: 100%;
-    margin-top: ${-1 * tooltipTriangleSize}px;
+    transform: translateY(-50%);
     border-color: transparent transparent transparent ${tooltipBgColor};
   }
 `;
@@ -26,7 +25,7 @@ const rightStyles = `
   &:after {
     top: 50%;
     right: 100%;
-    margin-top: ${-1 * tooltipTriangleSize}px;
+    transform: translateY(-50%);
     border-color: transparent ${tooltipBgColor} transparent transparent;
   }
 `;
@@ -36,7 +35,7 @@ const topStyles = `
   &:after {
     top: 100%;
     left: 50%;
-    margin-left: ${-1 * tooltipTriangleSize}px;
+    transform: translateX(-50%);
     border-color: ${tooltipBgColor} transparent transparent transparent;
   }
 `;
@@ -46,7 +45,7 @@ const bottomStyles = `
   &:after {
     bottom: 100%;
     left: 50%;
-    margin-left: ${-1 * tooltipTriangleSize}px;
+    transform: translateX(-50%);
     border-color: transparent transparent ${tooltipBgColor} transparent;
   }
 `;
@@ -65,7 +64,6 @@ export const StyledTooltip = styled.div`
   &:after {
     content: " ";
     position: absolute;
-    border-width: ${tooltipTriangleSize};
     border-style: solid;
   }
   
