@@ -8,6 +8,7 @@ import controls from '../../../assets/icons/controls.svg';
 import lifecycle from '../../../assets/icons/lifecycle.svg';
 import star from '../../../assets/icons/star.svg';
 import hoc from '../../../assets/icons/hoc.svg';
+import javascript from '../../../assets/icons/javascript.svg';
 
 const Icons = {
   spinner,
@@ -19,6 +20,7 @@ const Icons = {
   controls,
   lifecycle,
   star,
+  javascript,
   hoc
 };
 

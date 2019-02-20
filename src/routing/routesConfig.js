@@ -36,6 +36,12 @@ export default {
     path: '/hoc',
     icon: 'hoc'
   },
+  context: {
+    id: guid(),
+    name: 'This issues',
+    path: '/this',
+    icon: 'javascript'
+  },
   about: {
     id: guid(),
     name: 'About',

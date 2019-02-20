@@ -9,9 +9,10 @@ import About from '../components/pages/about/About';
 import NotFoundPage from '../components/pages/not-found/NotFoundPage';
 import RenderProps from '../components/pages/render-props/RenderProps';
 import Hoc from '../components/pages/hoc/Hoc';
+import This from '../components/pages/this/This';
 import Lifecycle from '../components/pages/lifecycle/Lifecycle';
 
-const { root, controls, about, hooks, renderProps, lifecycle, hoc } = routesConfig;
+const { root, controls, about, hooks, renderProps, lifecycle, hoc, context } = routesConfig;
 
 export default (
   <Switch>
@@ -49,6 +50,12 @@ export default (
       path={hoc.path}
       name={hoc.name}
       component={Hoc}
+    />
+    <ExtendedRoute
+      exact
+      path={context.path}
+      name={context.name}
+      component={This}
     />
     <ExtendedRoute
       exact
