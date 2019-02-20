@@ -8,31 +8,31 @@ class Tooltip extends Component {
     return (el && el.getBoundingClientRect && el.getBoundingClientRect()) || { top: 0, left: 0 };
   }
 
-  static getTooltipPosition (hoverTarget, tooltip, offset = 5) {
-    const target = Tooltip.getPositionInfo(hoverTarget);
-    const tooltipInfo = Tooltip.getPositionInfo(tooltip);
+  static getTopConsideringWindow (targetTop, tooltipFullHeight) {
+    return window.innerHeight >= targetTop + tooltipFullHeight ? targetTop : window.innerHeight - tooltipFullHeight;
+  }
 
-    const tooltipFullHeight = tooltipInfo.height + offset;
-    const tooltipFullWidth = tooltipInfo.width + offset;
+  static getTooltipPosition (target, tooltip, offset = 10) {
+    const tooltipFullHeight = tooltip.height + offset;
+    const tooltipFullWidth = tooltip.width + offset;
 
     const fitsRight = window.innerWidth - target.right > tooltipFullWidth;
     const fitsLeft = target.left > tooltipFullWidth;
     const fitsBottom = window.innerHeight - target.bottom > tooltipFullHeight;
     const fitsTop = target.top > tooltipFullHeight;
 
-    const relativeTop = window.innerHeight >= target.top + tooltipFullHeight ? target.top : window.innerHeight - tooltipFullHeight;
 
     if (fitsTop && fitsLeft && fitsRight) {
       return {
         top: target.top - tooltipFullHeight,
-        left: (target.width / 2 + target.left) - tooltipInfo.width / 2,
+        left: (target.width / 2 + target.left) - tooltip.width / 2,
         position: 'top'
       };
     }
 
     if (fitsRight) {
       return {
-        top: relativeTop,
+        top: Tooltip.getTopConsideringWindow(target.top, tooltipFullHeight),
         left: target.right + offset,
         position: 'right'
       };
@@ -47,7 +47,7 @@ class Tooltip extends Component {
     }
 
     return {
-      top: relativeTop,
+      top: Tooltip.getTopConsideringWindow(target.top, tooltipFullHeight),
       left: target.left - tooltipFullWidth,
       position: 'left'
     };
@@ -94,7 +94,10 @@ class Tooltip extends Component {
     this.setState({
       isShown: true
     }, () => {
-      this.setState({ fading: true, ...Tooltip.getTooltipPosition(this.hoverTarget, this.tooltip, 10) });
+      this.setState({
+        fading: true,
+        ...Tooltip.getTooltipPosition(Tooltip.getPositionInfo(this.hoverTarget), Tooltip.getPositionInfo(this.tooltip))
+      });
     });
   }
 

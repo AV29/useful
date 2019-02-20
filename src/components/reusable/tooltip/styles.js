@@ -9,9 +9,8 @@ const fadeInStyles = `
   opacity: 1;
 `;
 
-const fadeOutStyles = `
-  opacity: 0;
-`;
+const fadeOutStyles = 'opacity: 0;';
+
 const leftStyles = `
   box-shadow: 5px 0 20px rgba(120, 120, 120, 1);
   &:after {

@@ -107,77 +107,8 @@ class RenderProps extends Component {
                   </DemoSection>
                   <DemoSection>
                     <Tooltip
-                      renderHoverTarget={
-                        ({ bindRef }) => (
-                          <TooltipHoverTarget ref={bindRef}>Hover to see custom tooltip</TooltipHoverTarget>
-                        )}
-                    >
+                      renderHoverTarget={({ bindRef }) => (<TooltipHoverTarget ref={bindRef}>Hover to see custom tooltip</TooltipHoverTarget>)}>
                       {<span ref={bindRef}>Here is a tooltip!!!</span>}
-                    </Tooltip>
-                    <Tooltip
-                      renderHoverTarget={
-                        ({ bindRef }) => (
-                          <TestSquare ref={bindRef} style={{ top: 10, left: 10 }}/>
-                        )}
-                    >
-                      {<span ref={bindRef}>TEst Test TEST TEST!!!</span>}
-                    </Tooltip>
-                    <Tooltip
-                      renderHoverTarget={
-                        ({ bindRef }) => (
-                          <TestSquare ref={bindRef} style={{ right: 10, top: 10 }}/>
-                        )}
-                    >
-                      {<span ref={bindRef}>TEst Test TEST TEST!!!</span>}
-                    </Tooltip>
-                    <Tooltip
-                      renderHoverTarget={
-                        ({ bindRef }) => (
-                          <TestSquare ref={bindRef} style={{ bottom: 10, left: 10 }}/>
-                        )}
-                    >
-                      {<span ref={bindRef}>TEst Test TEST TEST!!!</span>}
-                    </Tooltip>
-                    <Tooltip
-                      renderHoverTarget={
-                        ({ bindRef }) => (
-                          <TestSquare ref={bindRef} style={{ bottom: 10, right: 10 }}/>
-                        )}
-                    >
-                      {<span ref={bindRef}>TEst Test TEST TEST!!!</span>}
-                    </Tooltip>
-
-                    <Tooltip
-                      renderHoverTarget={
-                        ({ bindRef }) => (
-                          <TestSquare ref={bindRef} style={{ bottom: '50%', left: 10 }}/>
-                        )}
-                    >
-                      {<span ref={bindRef}>TEst Test TEST TEST!!!</span>}
-                    </Tooltip>
-                    <Tooltip
-                      renderHoverTarget={
-                        ({ bindRef }) => (
-                          <TestSquare ref={bindRef} style={{ bottom: 10, right: '50%' }}/>
-                        )}
-                    >
-                      {<span ref={bindRef}>TEst Test TEST TEST!!!</span>}
-                    </Tooltip>
-                    <Tooltip
-                      renderHoverTarget={
-                        ({ bindRef }) => (
-                          <TestSquare ref={bindRef} style={{ top: '50%', right: 10 }}/>
-                        )}
-                    >
-                      {<span ref={bindRef}>TEst Test TEST TEST!!!</span>}
-                    </Tooltip>
-                    <Tooltip
-                      renderHoverTarget={
-                        ({ bindRef }) => (
-                          <TestSquare ref={bindRef} style={{ top: 10, left: '50%' }}/>
-                        )}
-                    >
-                      {<span ref={bindRef}>TEst Test TEST TEST!!!</span>}
                     </Tooltip>
                   </DemoSection>
                 </FlexRowWrapped>
