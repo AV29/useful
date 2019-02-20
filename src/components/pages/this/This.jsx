@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import AsyncLoss from './AsyncLoss';
 import { DemoSection, FlexRowWrapped, Heading, SmallHeading } from '../../../styles/styles';
 
 class This extends Component {
@@ -11,6 +12,7 @@ class This extends Component {
         <FlexRowWrapped>
           <DemoSection>
             <SmallHeading>Example 1</SmallHeading>
+            <AsyncLoss/>
           </DemoSection>
         </FlexRowWrapped>
       </Fragment>
