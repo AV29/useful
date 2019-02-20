@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import routesConfig from '../../../routing/routesConfig';
 import { Icon } from '../../reusable/icon/Icon';
 import MenuOpener from '../../reusable/controls/menu-opener/MenuOpener';
+import Tooltip from '../../reusable/tooltip/Tooltip';
 import { FlexRowCenter } from '../../../styles/styles';
 import { StyledSideBar, NavItem, StyledName, StyledNavItemWrapper } from './styles';
 
@@ -9,7 +10,7 @@ const navigationItems = Object.values(routesConfig).filter(route => route.id !==
 
 class Sidebar extends Component {
 
-  constructor (props) {
+  constructor(props) {
     super(props);
 
     this.handleToggleSidebarView = this.handleToggleSidebarView.bind(this);
@@ -19,11 +20,11 @@ class Sidebar extends Component {
     };
   }
 
-  handleToggleSidebarView () {
+  handleToggleSidebarView() {
     this.setState(({ collapsed }) => ({ collapsed: !collapsed }));
   }
 
-  render () {
+  render() {
     const { collapsed } = this.state;
     return (
       <StyledSideBar>
@@ -31,9 +32,16 @@ class Sidebar extends Component {
           {
             navigationItems.map(({ id, path, name, icon }) => (
               <StyledNavItemWrapper key={id}>
-                <NavItem to={path} title={name}>
+                <NavItem to={path}>
                   {!collapsed && <StyledName>{name}</StyledName>}
-                  <Icon icon={icon}/>
+                  <Tooltip
+                    renderHoverTarget={({ bindRef }) => (
+                      <Icon innerRef={bindRef} icon={icon}/>
+
+                    )}
+                  >
+                    {name}
+                  </Tooltip>
                 </NavItem>
               </StyledNavItemWrapper>
             ))

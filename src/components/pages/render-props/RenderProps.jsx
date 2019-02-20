@@ -12,7 +12,7 @@ import Tooltip from '../../reusable/tooltip/Tooltip';
 
 class RenderProps extends Component {
 
-  constructor (props) {
+  constructor(props) {
     super(props);
 
     this.handleChangeRenderPropContainerData = this.handleChangeRenderPropContainerData.bind(this);
@@ -28,19 +28,19 @@ class RenderProps extends Component {
     this.items = [{ id: '1', text: 'Angular' }, { id: '2', text: 'React' }, { id: '3', text: 'Vue' }];
   }
 
-  handleChangeRenderPropContainerData (value) {
+  handleChangeRenderPropContainerData(value) {
     this.setState({ sharedData: value });
   }
 
-  handleClickOutsideContainer () {
+  handleClickOutsideContainer() {
     this.setState({ borderColor: getRandomColor() });
   }
 
-  handleChooseItem (selectedItem) {
+  handleChooseItem(selectedItem) {
     this.setState({ selectedItem });
   }
 
-  render () {
+  render() {
     return (
       <WindowSize>
         {({ windowWidth, windowHeight }) => (
@@ -107,7 +107,9 @@ class RenderProps extends Component {
                   </DemoSection>
                   <DemoSection>
                     <Tooltip
-                      renderHoverTarget={({ bindRef }) => (<TooltipHoverTarget ref={bindRef}>Hover to see custom tooltip</TooltipHoverTarget>)}>
+                      renderHoverTarget={({ bindRef }) => (
+                        <TooltipHoverTarget ref={bindRef}>Hover to see custom tooltip</TooltipHoverTarget>)}
+                    >
                       {<span ref={bindRef}>Here is a tooltip!!!</span>}
                     </Tooltip>
                   </DemoSection>

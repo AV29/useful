@@ -15,11 +15,12 @@ export class Icon extends Component {
   }
 
   render() {
-    const { icon = 'logo', size = 30, ...props } = this.props;
+    const { icon = 'logo', size = 30, innerRef, ...props } = this.props;
     const IconComponent = Icons[icon];
     return (
       <StyledIcon
         size={size}
+        ref={innerRef}
         onClick={this.handleClick}
         {...props}
       >
