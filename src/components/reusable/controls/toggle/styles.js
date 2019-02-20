@@ -24,6 +24,10 @@ export const StyledLabel = styled.label`
   min-height: ${switchHeight}px;
   display: inline-block;
   margin-${({ leftLabel }) => leftLabel ? 'left' : 'right'}: 10px;
+  background-color: ${({ theme: { color } }) => color};
+  box-shadow: inset -1px 1px 4px ${({ theme: { shadowColor } }) => shadowColor};
+  border-radius: ${switchBorderRadius}px;
+  overflow: hidden;
 `;
 
 export const StyledSlider = styled.span`
@@ -31,8 +35,11 @@ export const StyledSlider = styled.span`
   height: 100%;
   width: 100%;
   cursor: pointer;
+  background-color: ${({ theme: { bgColor } }) => bgColor};
+  transform: translateX(0);
   border-radius: ${switchBorderRadius}px;
-  background-color: ${({ theme: { borderColor } }) => borderColor};
+  transition: transform 0.2s ${transitionStyle};
+  box-shadow: inset -1px 1px 4px ${({ theme: { shadowColor } }) => shadowColor};
 
   &:before {
     display: inline-block;
@@ -41,9 +48,7 @@ export const StyledSlider = styled.span`
     width: ${toggleDiameter}px;
     border-radius: 50%;
     background-color: ${({ theme: { bgColor } }) => bgColor};
-    transition: transform 0.2s ${transitionStyle};
-    margin: ${toggleMargin}px;
-    transform: translateX(0);
+    border: ${toggleMargin}px solid ${({ theme: { color } }) => color};
   }
 `;
 
@@ -51,14 +56,6 @@ export const StyledInput = styled.input`
     display: none;
     
     &:checked + ${StyledSlider} {
-      background-color: ${({ theme: { color } }) => color};
-
-      &:before {
-        transform: translateX(${toggleDiameter - (2 * toggleMargin)}px);
-      }
-    }
-
-    &:focus + ${StyledSlider} {
-      box-shadow: 0 0 1px ${({ theme: { color } }) => color};
+      transform: translateX(${toggleDiameter - (2 * toggleMargin)}px);
     }
 `;
