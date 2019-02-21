@@ -21,7 +21,6 @@ class Tooltip extends Component {
     const fitsBottom = window.innerHeight - target.bottom > tooltipFullHeight;
     const fitsTop = target.top > tooltipFullHeight;
 
-
     if (fitsTop && fitsLeft && fitsRight) {
       return {
         top: target.top - tooltipFullHeight,
@@ -91,6 +90,7 @@ class Tooltip extends Component {
   }
 
   handleShowTooltip () {
+    if (this.props.suppress) return;
     this.setState({
       isShown: true
     }, () => {
@@ -130,14 +130,16 @@ class Tooltip extends Component {
 }
 
 Tooltip.defaultProps = {
-  withoutTip: false
+  withoutTip: false,
+  suppress: false
 };
 
 Tooltip.propTypes = {
   children: node.isRequired,
   renderHoverTarget: func.isRequired,
   rootContainer: string,
-  withoutTip: bool
+  withoutTip: bool,
+  suppress: bool
 };
 
 export default Tooltip;

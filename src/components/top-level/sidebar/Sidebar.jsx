@@ -16,7 +16,10 @@ function Sidebar() {
             <StyledNavItemWrapper key={id}>
               <NavItem to={path}>
                 {!collapsed && <SmallHeading>{name}</SmallHeading>}
-                <Tooltip renderHoverTarget={({ bindRef }) => <Icon innerRef={bindRef} icon={icon}/>}>
+                <Tooltip
+                  suppress={!collapsed}
+                  renderHoverTarget={({ bindRef }) => <Icon innerRef={bindRef} icon={icon}/>}
+                >
                   {name}
                 </Tooltip>
               </NavItem>
