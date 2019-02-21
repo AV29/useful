@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { number, oneOf } from 'prop-types';
+import { number } from 'prop-types';
 import { StyledTimer } from './styles';
 
 class Timer extends Component {
