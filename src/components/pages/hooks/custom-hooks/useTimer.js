@@ -12,3 +12,9 @@ function useInterval(callback, delay) {
     return () => clearInterval(id);
   });
 }
+
+export function useTimer(precision = 5) {
+  const [time, setTime] = useState(0);
+  useInterval(() => setTime(time + precision), precision);
+  return time;
+}

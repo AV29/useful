@@ -4,6 +4,7 @@ import { ThemeConsumer } from 'styled-components';
 import { SliderContainer, IdleIndicatorContainer } from './styles';
 import Rating from '../../reusable/controls/rating/Rating';
 import ToggleBox from '../../reusable/controls/toggle/Toggle';
+import Timer from '../../reusable/timer/Timer';
 import IdleIndicator from '../../reusable/idle-indicator/IdleIndicator';
 import Button from '../../reusable/controls/button/Button';
 import { FlexRowWrapped, DemoSection, Heading } from '../../../styles/styles';
@@ -53,11 +54,13 @@ class Controls extends Component {
 
   handleIdleFinished () {
     this.setState({ inIdle: false });
+    this.timer.stop();
   }
 
   handleStartIdle () {
     this.setState({ inIdle: true });
     this.indicator.trigger();
+    this.timer.trigger();
   }
 
   render () {
@@ -110,7 +113,10 @@ class Controls extends Component {
                     onFinished={this.handleIdleFinished}
                   />
                 </IdleIndicatorContainer>
-                <Button disabled={this.state.inIdle} onClick={this.handleStartIdle}>{this.state.inIdle ? '...waiting' : 'Start Idle Timer'}</Button>
+                <Button disabled={this.state.inIdle} onClick={this.handleStartIdle}>
+                  {this.state.inIdle ? '...waiting' : 'Start Idle Timer'}
+                </Button>
+                {<Timer ref={timer => this.timer = timer}/>}
               </DemoSection>
             </FlexRowWrapped>
           </Fragment>
