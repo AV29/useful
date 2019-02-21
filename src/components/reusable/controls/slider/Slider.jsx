@@ -113,7 +113,7 @@ class Slider extends PureComponent {
   }
 
   render () {
-    const { className, label } = this.props;
+    const { className, label, thickness } = this.props;
     const leftOffset = this.getLeftOffset(this.getValidatedValue());
     const tooltip = this.getCurrentTooltip();
 
@@ -122,12 +122,14 @@ class Slider extends PureComponent {
         {label && <Label>{label}</Label>}
         <Track
           ref={track => this.track = track}
+          thickness={thickness}
           onClick={this.handleClickSlider}
         >
           <FillLower fill={leftOffset}/>
           <Thumb
             ref={th => this.thumb = th}
             leftOffset={leftOffset}
+            thickness={thickness}
             onMouseDown={this.handleCaptureDrag}
             onDragStart={() => false}
           >
@@ -150,6 +152,7 @@ class Slider extends PureComponent {
 
 Slider.propTypes = {
   step: number,
+  thickness: number,
   min: number.isRequired,
   max: number.isRequired,
   value: number.isRequired,
@@ -173,6 +176,7 @@ Slider.defaultProps = {
   step: 1,
   min: 1,
   max: 2,
+  thickness: 5,
   onChange: () => undefined
 }
 ;

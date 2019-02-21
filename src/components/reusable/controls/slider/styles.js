@@ -1,8 +1,5 @@
 import styled from 'styled-components';
 
-const trackHeight = 5;
-const thumbHeight = 20;
-
 export const StyledSlider = styled.div`
   user-select: none;
   width: 100%;
@@ -15,7 +12,7 @@ export const Label = styled.div`
 
 export const Track = styled.div`
   width: 100%;
-  height: ${trackHeight}px;
+  height: ${({ thickness }) => thickness}px;
   background-color: #cccccc;
   transition: opacity 0.2s;
   position: relative;
@@ -34,11 +31,11 @@ export const TooltipContainer = styled.div`
 export const Thumb = styled.button`
   cursor: default;
   padding: 0;
-  width: 7px;
-  height:  ${thumbHeight}px;
+  width: ${({ thickness }) => thickness + 2}px;
+  height: ${({ thickness }) => thickness * 4}px;
   border-radius: 4px;
   position: absolute;
-  top: ${trackHeight / 2}px;
+  top: ${({ thickness }) => thickness / 2}px;
   left: ${({ leftOffset }) => leftOffset}%;
   border: 1px solid ${({ theme: { backgroundColor } }) => backgroundColor};
   background-color: ${({ theme: { shadowColor } }) => shadowColor};
