@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import routesConfig from '../../../routing/routesConfig';
 import { Icon } from '../../reusable/icon/Icon';
-import { FlexRowCenter, SmallHeading } from '../../../styles/styles';
+import { FlexRow, SmallHeading } from '../../../styles/styles';
 import { StyledSideBar, NavItem, StyledNavItemWrapper } from './styles';
 import MenuOpener from '../../reusable/controls/menu-opener/MenuOpener';
 import Tooltip from '../../reusable/tooltip/Tooltip';
@@ -24,12 +24,12 @@ function Sidebar() {
           ))
         }
       </div>
-      <FlexRowCenter style={{ minHeight: 45 }}>
+      <FlexRow style={{ minHeight: 45 }}>
         <MenuOpener
           collapsed={collapsed}
           onClick={() => setCollapsed(!collapsed)}
         />
-      </FlexRowCenter>
+      </FlexRow>
     </StyledSideBar>
   );
 }

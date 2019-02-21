@@ -135,6 +135,7 @@
     "template-curly-spacing": [
       1,
       "never"
-    ]
+    ],
+    "unicode-bom": 0
   }
 }

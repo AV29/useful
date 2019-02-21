@@ -29,7 +29,15 @@ function getFadeStyles ({ fading }) {
     css`opacity: 0;`;
 }
 
-function getTooltipStyles ({ position, theme: { shadowColor } }) {
+function getTooltipStyles ({ withoutTip, position, theme: { shadowColor } }) {
+  if (withoutTip) {
+    return css`
+      box-shadow: 5px 0 20px ${shadowColor};
+      &:after {
+        display: none;
+      }
+    `;
+  }
   switch (position) {
     case 'left': {
       return css`

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { FlexColumnCenter, SmallHeading } from '../../../styles/styles';
+import { FlexColumn, SmallHeading } from '../../../styles/styles';
 
-export const StyledRenderPropContent = styled(FlexColumnCenter)`
+export const StyledRenderPropContent = styled(FlexColumn)`
   border: 3px solid ${({ theme: { borderColor } }) => borderColor};
   padding: ${({ padding }) => padding}px;
   user-select: none;

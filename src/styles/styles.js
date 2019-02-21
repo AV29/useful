@@ -4,13 +4,15 @@ export const Flex = styled.div`
    display: flex;
 `;
 
-export const FlexRowCenter = styled(Flex)`
-    justify-content: center;
-    align-items: center;
+export const FlexRow = styled(Flex)`
+    justify-content: ${({ justify }) => justify || 'center'};
+    align-items: ${({ align }) => align || 'center'};
 `;
 
-export const FlexColumnCenter = styled(FlexRowCenter)`
+export const FlexColumn = styled(Flex)`
    flex-direction: column;
+   justify-content: ${({ justify }) => justify || 'center'};
+   align-items: ${({ align }) => align || 'center'};
 `;
 
 export const FlexRowWrapped = styled(Flex)`

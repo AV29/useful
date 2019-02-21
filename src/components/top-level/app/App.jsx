@@ -22,8 +22,8 @@ class App extends Component {
     };
   }
 
-  handleChangeTheme(theme) {
-    this.setState(() => ({ theme: { ...theme } }), this.saveTheme);
+  handleChangeTheme(themeId) {
+    this.setState(() => ({ theme: { ...themes.find(theme => theme.id === themeId) } }), this.saveTheme);
   }
 
   saveTheme() {

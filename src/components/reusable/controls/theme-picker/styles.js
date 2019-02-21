@@ -8,13 +8,22 @@ export const StyledThemePicker = styled.div`
   align-items: center;
 `;
 
-export const StyledThemeMarker = styled.div`
+export const ThemeMarker = styled.div`
   width: ${themeMarkerSize}px;
   height: ${themeMarkerSize}px;
-  box-shadow: -5px 0 10px ${({ id, theme }) => id === theme.id ? theme.borderColor : 'transparent'};
-  border-radius: 2px;
-  background-color: ${({ color }) => color};
   margin: 5px;
   cursor: pointer;
+  border-radius: 2px;
+`;
+
+export const StyledThemeMarker = styled(ThemeMarker)`
+  box-shadow: -5px 0 10px ${({ id, theme }) => id === theme.id ? theme.borderColor : 'transparent'};
+  background-color: ${({ color }) => color};
   border: ${({ id, theme }) => id === theme.id ? `2px solid ${theme.borderColor}` : 'none'};
 `;
+
+export const ThemeProp = styled.span`
+  margin-right: 10px;
+`;
+
+

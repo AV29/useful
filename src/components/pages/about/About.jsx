@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FlexRowCenter } from '../../../styles/styles';
+import { FlexRow } from '../../../styles/styles';
 
 function About(props) {
   return (
-    <FlexRowCenter><h1>{props.name}</h1></FlexRowCenter>
+    <FlexRow><h1>{props.name}</h1></FlexRow>
   );
 }
 

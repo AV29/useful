@@ -1,7 +1,7 @@
 import React from 'react';
 import { node, string } from 'prop-types';
 import { StyledLabel } from './styles';
-import { FlexRowCenter } from '../../../styles/styles';
+import { FlexRow } from '../../../styles/styles';
 
 const Row = ({ label, children }) => {
   return (
@@ -11,7 +11,7 @@ const Row = ({ label, children }) => {
         {label && <label>{label}</label>}
         <hr/>
       </StyledLabel>
-      <FlexRowCenter>{children}</FlexRowCenter>
+      <FlexRow>{children}</FlexRow>
     </div>
   );
 };

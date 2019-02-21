@@ -1,5 +1,5 @@
 import React, { Fragment, Component } from 'react';
-import { bool, func, string, object, node } from 'prop-types';
+import { bool, func, string, node } from 'prop-types';
 import Portal from '../portal/Portal';
 import { StyledTooltip } from './styles';
 
@@ -116,6 +116,7 @@ class Tooltip extends Component {
             <StyledTooltip
               ref={tooltip => this.tooltip = tooltip}
               fading={fading}
+              withoutTip={this.props.withoutTip}
               style={{ top, left }}
               position={position}
             >
@@ -128,17 +129,15 @@ class Tooltip extends Component {
   }
 }
 
+Tooltip.defaultProps = {
+  withoutTip: false
+};
+
 Tooltip.propTypes = {
   children: node.isRequired,
   renderHoverTarget: func.isRequired,
-  targetClassName: string,
-  className: string,
   rootContainer: string,
-  style: object,
-  left: bool,
-  right: bool,
-  bottom: bool,
-  top: bool
+  withoutTip: bool
 };
 
 export default Tooltip;

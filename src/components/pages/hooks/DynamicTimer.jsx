@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import useDynamicInterval from './custom-hooks/useDynamicInterval';
 import Button from '../../reusable/controls/button/Button';
 import Input from '../../reusable/controls/input/Input';
-import { FlexColumnCenter } from '../../../styles/styles';
+import { FlexColumn } from '../../../styles/styles';
 import PropTypes from 'prop-types';
 
 function DynamicTimer() {
@@ -13,7 +13,7 @@ function DynamicTimer() {
   useDynamicInterval(() => setCount(count + 1), isCounting ? delay : null);
 
   return (
-    <FlexColumnCenter>
+    <FlexColumn>
       <Input
         id="delay"
         label="Delay"
@@ -23,7 +23,7 @@ function DynamicTimer() {
       />
       <Button onClick={() => setIsCounting(!isCounting)}>{isCounting ? 'Pause' : 'Play'}</Button>
       <h2>{count}</h2>
-    </FlexColumnCenter>
+    </FlexColumn>
   );
 }
 

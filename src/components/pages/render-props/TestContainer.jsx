@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { FlexRowCenter } from '../../../styles/styles';
+import { FlexRow } from '../../../styles/styles';
 import { Icon } from '../../../components/reusable/icon/Icon';
 import Input from '../../reusable/controls/input/Input';
 
@@ -29,14 +29,14 @@ class TestContainer extends PureComponent {
 
   render () {
     return (
-      <FlexRowCenter ref={this.props.passedRef} className={this.props.className}>
+      <FlexRow ref={this.props.passedRef} className={this.props.className}>
         <Input
           onChange={({ target: { value } }) => this.handleInputChange(value)}
           value={this.state.value}
           type="text"
         />
         {this.props.loading && <Icon icon="spinner"/>}
-      </FlexRowCenter>
+      </FlexRow>
     );
   }
 }
