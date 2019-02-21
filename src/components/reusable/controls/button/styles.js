@@ -10,8 +10,8 @@ export const StyledButton = styled.button`
   margin: 10px; 
   padding: 5px 10px;
   border-radius: 4px;
-  color: ${({ theme: { color } }) => color};
-  background-color: ${({ theme: { bgColor } }) => bgColor};
+  color: ${({ theme: { baseColor } }) => baseColor};
+  background-color: ${({ theme: { backgroundColor } }) => backgroundColor};
   border: 1px solid ${({ theme: { borderColor } }) => borderColor};
   cursor: pointer;
   box-shadow: 0 0 10px ${({ theme: { shadowColor } }) => shadowColor};

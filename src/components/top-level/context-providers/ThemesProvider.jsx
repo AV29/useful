@@ -17,10 +17,10 @@ ThemesProvider.propTypes = {
   children: node,
   theme: shape({
     id: string,
-    color: string,
+    baseColor: string,
     borderColor: string,
     shadowColor: string,
-    bgColor: string
+    backgroundColor: string
   })
 };
 

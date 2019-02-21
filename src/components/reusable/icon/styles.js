@@ -4,7 +4,7 @@ export const StyledIcon = styled.span`
     display: flex;
     justify-content: center;
     svg {
-      fill: ${({ theme: { color } }) => color};
+      fill: ${({ theme: { baseColor } }) => baseColor};
       width: ${({ size }) => size}px;
       height: ${({ size }) => size}px;
       display: block;

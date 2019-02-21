@@ -23,8 +23,8 @@ Header.propTypes = {
   onThemeChange: PropTypes.func,
   themes: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
-    color: PropTypes.string,
-    bgColor: PropTypes.string,
+    baseColor: PropTypes.string,
+    backgroundColor: PropTypes.string,
     shadowColor: PropTypes.string,
     borderColor: PropTypes.string
   }))

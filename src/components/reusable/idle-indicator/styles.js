@@ -6,6 +6,6 @@ export const StyledIdleIndicator = styled.div`
   height: 100%;
   width: 0;
   box-sizing: border-box;
-  background-color: ${({ theme: { color } }) => color};
+  background-color: ${({ theme: { baseColor } }) => baseColor};
   z-index: 10;
 `;

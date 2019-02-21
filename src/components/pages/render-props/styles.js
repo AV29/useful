@@ -13,7 +13,7 @@ export const StyledList = styled.ul`
   user-select: none;
   list-style-type: none;
   min-width: 100px;
-  color: ${({ theme: { color } }) => color};
+  color: ${({ theme: { baseColor } }) => baseColor};
   li {
     padding: 10px 5px;
     font-size: 1.4rem;

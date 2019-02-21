@@ -6,7 +6,7 @@ export const StyledResizerWrapper = styled.div`
 `;
 
 export const StyledResizeHandler = styled.div`
-  background-color: ${({ theme: { bgColor } }) => bgColor};
+  background-color: ${({ theme: { backgroundColor } }) => backgroundColor};
   box-shadow: 1px 0 5px ${({ theme: { shadowColor } }) => shadowColor};
   position: absolute;
   width: 5px;

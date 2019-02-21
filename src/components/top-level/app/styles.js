@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const StyledAppWrapper = styled.div`
   display: flex;
-  background-color: ${({ theme: { bgColor } }) => bgColor};
-  color: ${({ theme: { color } }) => color};
+  background-color: ${({ theme: { backgroundColor } }) => backgroundColor};
+  color: ${({ theme: { baseColor } }) => baseColor};
   flex-direction: column;
   height: 100vh;
 `;

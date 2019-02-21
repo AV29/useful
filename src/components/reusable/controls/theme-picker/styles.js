@@ -1,6 +1,12 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const themeMarkerSize = 15;
+
+function getChosenThemeStyles ({ id, theme }) {
+  return id === theme.id ?
+    css`box-shadow: -5px 0 10px ${theme.borderColor}; border: 2px solid ${theme.borderColor}` :
+    css`box-shadow: transparent; border: none`;
+}
 
 export const StyledThemePicker = styled.div`
   display: flex;
@@ -17,9 +23,8 @@ export const ThemeMarker = styled.div`
 `;
 
 export const StyledThemeMarker = styled(ThemeMarker)`
-  box-shadow: -5px 0 10px ${({ id, theme }) => id === theme.id ? theme.borderColor : 'transparent'};
   background-color: ${({ color }) => color};
-  border: ${({ id, theme }) => id === theme.id ? `2px solid ${theme.borderColor}` : 'none'};
+  ${getChosenThemeStyles}
 `;
 
 export const ThemeProp = styled.span`

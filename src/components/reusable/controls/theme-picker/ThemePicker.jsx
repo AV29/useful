@@ -18,7 +18,7 @@ class ThemePicker extends Component {
                 <StyledThemeMarker
                   id={id}
                   ref={bindRef}
-                  color={theme.bgColor}
+                  color={theme.backgroundColor}
                   onClick={() => this.props.onChange(id)}
                 />
               )}
@@ -43,15 +43,15 @@ ThemePicker.propTypes = {
   onChange: PropTypes.func,
   themes: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
-    color: PropTypes.string,
-    bgColor: PropTypes.string,
+    baseColor: PropTypes.string,
+    backgroundColor: PropTypes.string,
     shadowColor: PropTypes.string,
     borderColor: PropTypes.string
   })),
   theme: PropTypes.shape({
     id: PropTypes.string.isRequired,
-    color: PropTypes.string,
-    bgColor: PropTypes.string,
+    baseColor: PropTypes.string,
+    backgroundColor: PropTypes.string,
     shadowColor: PropTypes.string,
     borderColor: PropTypes.string
   })

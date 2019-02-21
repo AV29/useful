@@ -63,7 +63,7 @@ class Controls extends Component {
   render () {
     return (
       <ThemeConsumer>
-        {({ color, shadowColor }) => (
+        {({ baseColor, shadowColor }) => (
           <Fragment>
             <Heading>{this.props.name}</Heading>
             <FlexRowWrapped>
@@ -80,7 +80,7 @@ class Controls extends Component {
                     3: { tickMark: '14:30', tooltip: 'Took some coffee' },
                     4: { tickMark: '19:00', tooltip: 'Went home' }
                   }}
-                  theme={{ trackColor: color, thumbColor: shadowColor }}
+                  theme={{ trackColor: baseColor, thumbColor: shadowColor }}
                 />
               </DemoSection>
               <DemoSection>
@@ -123,7 +123,7 @@ class Controls extends Component {
 Controls.propTypes = {
   name: string,
   theme: shape({
-    color: string,
+    baseColor: string,
     shadowColor: string
   })
 };

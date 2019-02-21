@@ -24,7 +24,7 @@ export const StyledLabel = styled.label`
   min-height: ${switchHeight}px;
   display: inline-block;
   margin-${({ leftLabel }) => leftLabel ? 'left' : 'right'}: 10px;
-  background-color: ${({ theme: { color } }) => color};
+  background-color: ${({ theme: { baseColor } }) => baseColor};
   box-shadow: inset -1px 1px 4px ${({ theme: { shadowColor } }) => shadowColor};
   border-radius: ${switchBorderRadius}px;
   overflow: hidden;
@@ -35,7 +35,7 @@ export const StyledSlider = styled.span`
   height: 100%;
   width: 100%;
   cursor: pointer;
-  background-color: ${({ theme: { bgColor } }) => bgColor};
+  background-color: ${({ theme: { backgroundColor } }) => backgroundColor};
   transform: translateX(0);
   border-radius: ${switchBorderRadius}px;
   transition: transform 0.2s ${transitionStyle};
@@ -47,8 +47,8 @@ export const StyledSlider = styled.span`
     height: ${toggleDiameter}px;
     width: ${toggleDiameter}px;
     border-radius: 50%;
-    background-color: ${({ theme: { bgColor } }) => bgColor};
-    border: ${toggleMargin}px solid ${({ theme: { color } }) => color};
+    background-color: ${({ theme: { backgroundColor } }) => backgroundColor};
+    border: ${toggleMargin}px solid ${({ theme: { baseColor } }) => baseColor};
   }
 `;
 

@@ -19,7 +19,7 @@ export const StyledMenuOpener = styled.div`
     height: ${lineThickness}px;
     content: '';
     transform-origin: left;
-    background-color: ${({ theme: { color } }) => color};
+    background-color: ${({ theme: { baseColor } }) => baseColor};
   }
   &:before {
     top: 0;

@@ -9,7 +9,7 @@ export const StyledRatingControl = styled.div`
 export const StyledRatingItem = styled(Icon)`
     cursor: pointer;
     svg {
-      fill: ${({ rated, theme: { color, borderColor } }) => rated ? color : borderColor}
+      fill: ${({ rated, theme: { baseColor, borderColor } }) => rated ? baseColor : borderColor}
     }
 `;
 
