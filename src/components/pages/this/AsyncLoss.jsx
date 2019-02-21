@@ -1,20 +1,20 @@
 import React, { useState, Component, Fragment } from 'react';
 import { string, shape } from 'prop-types';
 import Button from '../../reusable/controls/button/Button';
-import { DemoSection, FlexRowWrapped, Heading, SmallHeading } from '../../../styles/styles';
+import { DemoSection, GridWrapper, Heading, SmallHeading } from '../../../styles/styles';
 
 function AsyncLoss ({ name }) {
   const [user, setUser] = useState({ name: 'Anton' });
   return (
     <Fragment>
       <Heading>{name}</Heading>
-      <FlexRowWrapped>
+      <GridWrapper>
         <DemoSection>
           <SmallHeading>Example 1</SmallHeading>
           <Button onClick={() => setUser({ name: 'John' })}>Change User from Above</Button>
           <Consumer user={user}/>
         </DemoSection>
-      </FlexRowWrapped>
+      </GridWrapper>
     </Fragment>
   );
 }

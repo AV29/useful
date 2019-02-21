@@ -15,23 +15,23 @@ export const FlexColumn = styled(Flex)`
    align-items: ${({ align }) => align || 'center'};
 `;
 
-export const FlexRowWrapped = styled(Flex)`
-    flex-wrap: wrap;
+export const GridWrapper = styled.div`
+   display: grid;
+   grid-gap: 15px;
+   margin-top: 10px;
+   grid-template-columns: repeat(${({ columns = 2 }) => columns}, 1fr);;
 `;
 
 export const Section = styled.div`
     display: inline-block;
     border: 1px solid ${({ theme: { borderColor } }) => borderColor};
     border-radius: 4px;
-    padding: 10px;
-    width: 100%;
+    padding: 15px;
 `;
 
 export const DemoSection = styled(Section)`
-    padding: 20px;
-    width: calc(50% - 10px);
-    margin: 5px 10px 5px 0;
     border-width: 2px;
+    box-shadow: 0 0 15px ${({ theme: { shadowColor } }) => shadowColor};
 `;
 
 export const Heading = styled.h1`

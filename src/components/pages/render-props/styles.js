@@ -1,10 +1,8 @@
 import styled from 'styled-components';
-import { FlexColumn, SmallHeading } from '../../../styles/styles';
+import { DemoSection, SmallHeading } from '../../../styles/styles';
 
-export const StyledRenderPropContent = styled(FlexColumn)`
-  border: 3px solid ${({ theme: { borderColor } }) => borderColor};
-  padding: ${({ padding }) => padding}px;
-  user-select: none;
+export const ClickOutsideDemoSection = styled(DemoSection)`
+  box-shadow: 0 0 15px ${({ shadowColor }) => shadowColor};
 `;
 
 export const StyledList = styled.ul`
@@ -29,10 +27,8 @@ export const ContextMenuCaller = styled(SmallHeading)`
   border-radius: 4px;
   margin-right: 10px;
   padding: 10px;
-  transition: all .15s ease;
   &:hover {
     cursor: pointer;
-    box-shadow: 0 0 10px ${({ theme: { shadowColor } }) => shadowColor};
   }
 `;
 

@@ -1,7 +1,8 @@
 /*eslint-disable no-console*/
 import React, { Component, Fragment } from 'react';
 import { bool } from 'prop-types';
-import { Section, SmallHeading } from '../../../styles/styles';
+import { SmallHeading } from '../../../styles/styles';
+import { LifeCycleSection } from './styles';
 import Child from './Child';
 import Button from '../../reusable/controls/button/Button';
 
@@ -104,10 +105,10 @@ class Parent extends Component {
     logParent('Render', { props: this.props, state: this.state }, this.props.preventLogs);
     return (
       <Fragment>
-        <Section>
+        <LifeCycleSection>
           <SmallHeading>Parent</SmallHeading>
           <Button onClick={this.handleUpdate}>
-            I'm Parent! Update ME...{this.state.counter}
+            Update Parent...{this.state.counter}
           </Button>
           <Button onClick={this.handleToggleChildUpdatebility}>
             {this.state.shouldChildUpdate ? 'Prevent child from updating' : 'Make child able to update'}
@@ -122,7 +123,7 @@ class Parent extends Component {
               shouldUpdate={this.state.shouldChildUpdate}
             />
           }
-        </Section>
+        </LifeCycleSection>
       </Fragment>
     );
   }

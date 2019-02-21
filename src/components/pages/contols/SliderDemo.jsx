@@ -1,5 +1,5 @@
 import React from 'react';
-import { number, func, string } from 'prop-types';
+import { number, func } from 'prop-types';
 import { SliderContainer } from './styles';
 import { DemoSection } from '../../../styles/styles';
 
@@ -25,7 +25,5 @@ export default function SliderDemo ({ value, onChange }) {
 
 SliderDemo.propTypes = {
   value: number,
-  onChange: func,
-  baseColor: string,
-  shadowColor: string
+  onChange: func
 };

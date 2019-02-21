@@ -4,7 +4,7 @@ import SliderDemo from './SliderDemo';
 import ToggleDemo from './ToggleDemo';
 import RatingDemo from './RatingDemo';
 import IdleIndicatorDemo from './IdleIndicatorDemo';
-import { FlexRowWrapped, Heading } from '../../../styles/styles';
+import { GridWrapper, Heading } from '../../../styles/styles';
 
 class Controls extends Component {
 
@@ -64,7 +64,7 @@ class Controls extends Component {
     return (
       <Fragment>
         <Heading>{this.props.name}</Heading>
-        <FlexRowWrapped>
+        <GridWrapper>
           <SliderDemo
             value={this.state.sliderValue}
             onChange={this.handleChangeSliderValue}
@@ -84,7 +84,7 @@ class Controls extends Component {
             bindTimer={timer => this.timer = timer}
             bindIndicator={indicator => this.indicator = indicator}
           />
-        </FlexRowWrapped>
+        </GridWrapper>
       </Fragment>
     );
   }

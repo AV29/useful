@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { func, bool } from 'prop-types';
-import { Section, SmallHeading } from '../../../styles/styles';
+import { SmallHeading } from '../../../styles/styles';
+import { LifeCycleSection } from './styles';
 import Button from '../../reusable/controls/button/Button';
 
 class Child extends Component {
@@ -82,12 +83,12 @@ class Child extends Component {
   render () {
     this.props.onLifeCycleMethodCall('Render', { props: this.props, state: this.state });
     return (
-      <Section>
+      <LifeCycleSection>
         <SmallHeading>Child</SmallHeading>
         <Button onClick={this.handleUpdate}>
-          I'm Child! Update ME...{this.state.counter}
+          Update Child...{this.state.counter}
         </Button>
-      </Section>
+      </LifeCycleSection>
     );
   }
 }

@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { DemoSection, Heading, FlexRowWrapped } from '../../../styles/styles';
+import { DemoSection, Heading, GridWrapper } from '../../../styles/styles';
 import PropTypes from 'prop-types';
 import Clock from './Clock';
 import DynamicTimer from './DynamicTimer';
@@ -9,7 +9,7 @@ function Hooks(props) {
   return (
     <Fragment>
       <Heading>{props.name}</Heading>
-      <FlexRowWrapped>
+      <GridWrapper>
         <DemoSection>
           <DynamicTimer/>
         </DemoSection>
@@ -19,7 +19,7 @@ function Hooks(props) {
         <DemoSection>
           <Clock/>
         </DemoSection>
-      </FlexRowWrapped>
+      </GridWrapper>
     </Fragment>
   );
 }

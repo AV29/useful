@@ -16,6 +16,6 @@ export const StyledInnerWrapper = styled.div`
 
 export const StyledRoutesWrapper = styled.div`
   flex: 1;
-  padding: 30px;  
+  padding: 15px 30px;  
   overflow: auto;
 `;
