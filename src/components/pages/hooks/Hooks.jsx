@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 import Clock from './Clock';
 import DynamicTimer from './DynamicTimer';
 import DataForm from './DataForm';
+import ClickOutside from './ClickOutside';
 
-function Hooks(props) {
+function Hooks (props) {
   return (
     <Fragment>
       <Heading>{props.name}</Heading>
@@ -19,6 +20,7 @@ function Hooks(props) {
         <DemoSection>
           <Clock/>
         </DemoSection>
+        <ClickOutside/>
       </GridWrapper>
     </Fragment>
   );

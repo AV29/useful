@@ -1,19 +1,59 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { shape, number, bool, string, object } from 'prop-types';
 import useClickOutside from './custom-hooks/useClickOutside';
 import { SmallHeading, DemoSection } from '../../../styles/styles';
-import PropTypes from 'prop-types';
+import Portal from '../../reusable/portal/Portal';
 
-function DynamicTimer () {
-  const ref = useClickOutside({ onClickOutside: () => undefined, onClickInside: () => undefined });
+function ClickOutside () {
+  const [contextMenuCoordinates, setContextMenuCoordinates] = useState(null);
+
+  const ref = useClickOutside({ onClickOutside: () => setContextMenuCoordinates(null) });
+
   return (
     <DemoSection>
-      <SmallHeading ref={ref}>Right Click Here to call context menu</SmallHeading>
+      <SmallHeading
+        onContextMenu={(event) => {
+          event.preventDefault();
+          setContextMenuCoordinates({ left: event.clientX, top: event.clientY });
+        }}
+      >
+        Right Click Here to call context menu
+      </SmallHeading>
+      <ContextMenu
+        refProp={ref}
+        coords={contextMenuCoordinates}
+      />
     </DemoSection>
   );
 }
 
-DynamicTimer.propTypes = {
-  name: PropTypes.string
+function ContextMenu ({ refProp, isShown, coords }) {
+  if (coords) {
+    const { top, left } = coords;
+    return (
+      <Portal>
+        <div
+          ref={refProp}
+          style={{ top, left, width: 100, height: 100, backgroundColor: 'tomato', position: 'absolute' }}
+        />
+      </Portal>
+    );
+  } else {
+    return null;
+  }
+}
+
+ContextMenu.propTypes = {
+  isShown: bool,
+  passedRef: object,
+  coords: shape({
+    x: number,
+    y: number
+  }),
 };
 
-export default DynamicTimer;
+ClickOutside.propTypes = {
+  name: string
+};
+
+export default ClickOutside;

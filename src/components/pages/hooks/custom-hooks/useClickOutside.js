@@ -4,7 +4,6 @@ import { addEvent, removeEvent, noop } from '../../../../utilities/events';
 const useClickOutside = (options) => {
   const {
     onClickOutside = noop,
-    onClickInside  = noop,
     initialState   = false,
     clickEvents    = ['mousedown', 'touchstart']
   } = options || {};
@@ -13,11 +12,13 @@ const useClickOutside = (options) => {
 
   useEffect(() => {
     const handleClick = ({ clientX, clientY }) => {
+      if ( !ref.current ) return;
 
+      console.log('Clicked');
       const { left, top, right, bottom } = ref.current.getBoundingClientRect();
       const clickWasOutside = clientX > right || clientX < left || clientY > bottom || clientY < top;
 
-      clickWasOutside ? onClickOutside() : onClickInside();
+      clickWasOutside && onClickOutside();
 
       if (lastClickedOutside !== clickWasOutside) {
         return setLastClickedOutside(clickWasOutside);
