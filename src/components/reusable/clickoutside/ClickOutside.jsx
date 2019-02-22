@@ -1,32 +1,29 @@
 import { Component } from 'react';
 import { func, arrayOf, string } from 'prop-types';
+import { addEvent, removeEvent } from '../../../utilities/events';
 
 class ClickOutside extends Component {
 
-  constructor(props) {
+  constructor (props) {
     super(props);
 
     this.handleClick = this.handleClick.bind(this);
     this.bindRef = this.bindRef.bind(this);
   }
 
-  componentDidMount() {
-    this.props.eventTypes.forEach((event) => {
-      window.addEventListener(event, this.handleClick);
-    });
+  componentDidMount () {
+    this.props.eventTypes.forEach(addEvent(this.handleClick));
   }
 
-  componentWillUnmount() {
-    this.props.eventTypes.forEach((event) => {
-      window.removeEventListener(event, this.handleClick);
-    });
+  componentWillUnmount () {
+    this.props.eventTypes.forEach(removeEvent(this.handleClick));
   }
 
-  bindRef(element) {
+  bindRef (element) {
     this.target = element;
   }
 
-  handleClick({ clientX: mouseX, clientY: mouseY }) {
+  handleClick ({ clientX: mouseX, clientY: mouseY }) {
     if (!this.target) return;
     const { left, top, right, bottom } = this.target.getBoundingClientRect();
     if (mouseX > right || mouseX < left || mouseY > bottom || mouseY < top) {
@@ -36,7 +33,7 @@ class ClickOutside extends Component {
     }
   }
 
-  render() {
+  render () {
     return this.props.children({ bindRef: this.bindRef });
   }
 }
