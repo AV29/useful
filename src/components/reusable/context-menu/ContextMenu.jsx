@@ -1,8 +1,9 @@
-import React, { Component, Fragment } from 'react';
-import { bool, func, number, string } from 'prop-types';
+import React, { Component, Fragment, useState } from 'react';
+import { bool, func, node, number, string } from 'prop-types';
 import { ContextMenuContainer } from './styles';
 import ClickOutside from '../clickoutside/ClickOutside';
 import Portal from '../portal/Portal';
+import useClickOutside from '../../pages/hooks/custom-hooks/useClickOutside';
 
 class ContextMenu extends Component {
 
@@ -84,6 +85,39 @@ ContextMenu.propTypes = {
   closeOnSelectOption: bool,
   mouseOffset: number,
   rootContainer: string
+};
+
+export function HookContextMenu ({ children, target }) {
+  const [coordinates, setCoordinates] = useState(null);
+  const ref = useClickOutside({ onClickOutside: () => setCoordinates(null) });
+  return (
+    <Fragment>
+      <div
+        onContextMenu={(event) => {
+          event.preventDefault();
+          setCoordinates({ left: event.clientX, top: event.clientY });
+        }}
+      >
+        {target}
+      </div>
+      {
+        coordinates &&
+        <Portal>
+          <div
+            ref={ref}
+            style={{ ...coordinates, position: 'absolute' }}
+          >
+            {children}
+          </div>
+        </Portal>
+      }
+    </Fragment>
+  );
+}
+
+HookContextMenu.propTypes = {
+  children: node,
+  target: node,
 };
 
 export default ContextMenu;
