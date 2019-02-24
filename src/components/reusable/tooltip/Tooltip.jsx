@@ -1,58 +1,11 @@
-import React, { Fragment, Component, useRef, useEffect, useState } from 'react';
+import React, { Fragment, Component } from 'react';
 import { bool, func, string, node, object } from 'prop-types';
 import Portal from '../portal/Portal';
-import { useComponentMountVisibilityDelay } from '../../pages/hooks/custom-hooks/useHover';
+import { useTooltipPosition } from '../../pages/hooks/custom-hooks/useTooltipPosition';
 import { StyledTooltip } from './styles';
+import getTooltipPosition, { getPositionInfo } from '../../../utilities/getTooltipPosition';
 
-const getPositionInfo = (el) => {
-  return (el && el.getBoundingClientRect && el.getBoundingClientRect()) || { top: 0, left: 0 };
-};
-
-const getTopConsideringWindow = (targetTop, tooltipFullHeight) => {
-  return window.innerHeight >= targetTop + tooltipFullHeight ? targetTop : window.innerHeight - tooltipFullHeight;
-};
-
-const getTooltipPosition = (target, tooltip, offset = 10) => {
-  const tooltipFullHeight = tooltip.height + offset;
-  const tooltipFullWidth = tooltip.width + offset;
-
-  const fitsRight = window.innerWidth - target.right > tooltipFullWidth;
-  const fitsLeft = target.left > tooltipFullWidth;
-  const fitsBottom = window.innerHeight - target.bottom > tooltipFullHeight;
-  const fitsTop = target.top > tooltipFullHeight;
-
-  if (fitsTop && fitsLeft && fitsRight) {
-    return {
-      top: target.top - tooltipFullHeight,
-      left: (target.width / 2 + target.left) - tooltip.width / 2,
-      position: 'top'
-    };
-  }
-
-  if (fitsRight) {
-    return {
-      top: getTopConsideringWindow(target.top, tooltipFullHeight),
-      left: target.right + offset,
-      position: 'right'
-    };
-  }
-
-  if (fitsBottom && fitsRight) {
-    return {
-      left: target.left + offset,
-      top: target.bottom + offset,
-      position: 'bottom'
-    };
-  }
-
-  return {
-    top: getTopConsideringWindow(target.top, tooltipFullHeight),
-    left: target.left - tooltipFullWidth,
-    position: 'left'
-  };
-};
-
-class Tooltip extends Component {
+class ClassTooltip extends Component {
   constructor (props) {
     super(props);
 
@@ -107,7 +60,7 @@ class Tooltip extends Component {
   }
 
   render () {
-    const { isShown, top, left, position, fading } = this.state;
+    const { isShown, top, left, orientation, fading } = this.state;
     return (
       <Fragment>
         {this.props.renderHoverTarget({ bindRef: this.bindHoverTarget })}
@@ -119,7 +72,7 @@ class Tooltip extends Component {
               fading={fading}
               withoutTip={this.props.withoutTip}
               style={{ top, left }}
-              position={position}
+              orientation={orientation}
             >
               {this.props.children}
             </StyledTooltip>
@@ -130,12 +83,12 @@ class Tooltip extends Component {
   }
 }
 
-Tooltip.defaultProps = {
+ClassTooltip.defaultProps = {
   withoutTip: false,
   suppress: false
 };
 
-Tooltip.propTypes = {
+ClassTooltip.propTypes = {
   children: node.isRequired,
   renderHoverTarget: func.isRequired,
   rootContainer: string,
@@ -143,23 +96,18 @@ Tooltip.propTypes = {
   suppress: bool
 };
 
-export function HooksTooltip ({ children, targetRef }) {
-  const [style, setStyle] = useState({});
-  const isVisible = useComponentMountVisibilityDelay(500);
-  const tooltipRef = useRef(null);
-  useEffect(() => {
-    setStyle(getTooltipPosition(getPositionInfo(targetRef.current), getPositionInfo(tooltipRef.current)));
-  }, [targetRef]);
-
+export function Tooltip ({ children, targetRef }) {
+  const [ref, position, isVisible] = useTooltipPosition(targetRef);
+  const { orientation, ...style } = position;
   return (
     <Fragment>
       {
         <Portal>
           <StyledTooltip
-            ref={tooltipRef}
+            ref={ref}
             style={{ ...style }}
             fading={isVisible}
-            position="right"
+            orientation={orientation}
           >
             {children}
           </StyledTooltip>
@@ -169,10 +117,9 @@ export function HooksTooltip ({ children, targetRef }) {
   );
 }
 
-HooksTooltip.propTypes = {
+Tooltip.propTypes = {
   children: node.isRequired,
-  baseCoords: object,
   targetRef: object
 };
 
-export default Tooltip;
+export default ClassTooltip;

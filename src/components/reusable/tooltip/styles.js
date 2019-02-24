@@ -29,7 +29,7 @@ function getFadeStyles ({ fading }) {
     css`opacity: 0;`;
 }
 
-function getTooltipStyles ({ withoutTip, position, theme: { shadowColor } }) {
+function getTooltipStyles ({ withoutTip, orientation, theme: { shadowColor } }) {
   if (withoutTip) {
     return css`
       box-shadow: 5px 0 20px ${shadowColor};
@@ -38,7 +38,7 @@ function getTooltipStyles ({ withoutTip, position, theme: { shadowColor } }) {
       }
     `;
   }
-  switch (position) {
+  switch (orientation) {
     case 'left': {
       return css`
           box-shadow: 5px 0 20px ${shadowColor};

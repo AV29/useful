@@ -5,10 +5,10 @@ import Clock from './Clock';
 import DynamicTimer from './DynamicTimer';
 import DataForm from './DataForm';
 import Button from '../../reusable/controls/button/Button';
-import { HooksTooltip } from '../../reusable/tooltip/Tooltip';
+import { Tooltip } from '../../reusable/tooltip/Tooltip';
 import { HooksContextMenu2, HooksContextMenu } from '../../reusable/context-menu/ContextMenu';
 import useContextMenu from './custom-hooks/useContextMenu';
-import { useMouseHover } from './custom-hooks/useHover';
+import { useMouseHover } from './custom-hooks/useMouseHover';
 import { StyledContextMenuDemoTarget } from './styles';
 
 const items = [{ id: '1', text: 'Hooks' }, { id: '2', text: 'HOCs' }, { id: '3', text: 'FACCs' }];
@@ -81,9 +81,9 @@ function Hooks (props) {
           </Section>
           {
             isHovering &&
-            <HooksTooltip targetRef={hoverRef}>
+            <Tooltip targetRef={hoverRef}>
               Tooltip
-            </HooksTooltip>
+            </Tooltip>
           }
         </DemoSection>
       </GridWrapper>

@@ -6,7 +6,7 @@ import { StyledSideBar, NavItem, StyledNavItemWrapper } from './styles';
 import MenuOpener from '../../reusable/controls/menu-opener/MenuOpener';
 import Tooltip from '../../reusable/tooltip/Tooltip';
 
-function Sidebar() {
+function Sidebar () {
   const [collapsed, setCollapsed] = useState(true);
   return (
     <StyledSideBar>
