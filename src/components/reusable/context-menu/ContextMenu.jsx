@@ -89,6 +89,7 @@ ContextMenu.propTypes = {
 
 export function HookContextMenu ({ children, target }) {
   const [coordinates, setCoordinates] = useState(null);
+  const unsetCoords = () => setCoordinates(null);
   return (
     <Fragment>
       <div
@@ -103,8 +104,8 @@ export function HookContextMenu ({ children, target }) {
         coordinates &&
         <Menu
           coordinates={coordinates}
-          onClickOutside={() => setCoordinates(null)}
-          onClickInside={() => setCoordinates(null)}
+          onClickOutside={unsetCoords}
+          onClickInside={unsetCoords}
         >
           {children}
         </Menu>
@@ -117,12 +118,12 @@ function Menu ({ coordinates, children, onClickOutside, onClickInside }) {
   const ref = useClickOutside({ onClickOutside, onClickInside });
   return (
     <Portal>
-      <div
+      <ContextMenuContainer
         ref={ref}
-        style={{ ...coordinates, position: 'absolute' }}
+        style={{ ...coordinates }}
       >
         {children}
-      </div>
+      </ContextMenuContainer>
     </Portal>
   );
 }

@@ -44,7 +44,6 @@ export const SmallHeading = styled.h2`
 
 export const List = styled.ul`
   border: 2px solid ${({ theme: { borderColor } }) => borderColor};
-  background-color: ${({ theme: { backgroundColor } }) => backgroundColor};
   padding: 10px;
   user-select: none;
   list-style-type: none;

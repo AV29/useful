@@ -5,7 +5,7 @@ const defaultClickEvents = ['mousedown', 'touchstart'];
 
 const useClickOutside = ({ initialState = false, clickEvents = defaultClickEvents, onClickOutside = noop, onClickInside = noop }) => {
   const ref = useRef(null);
-
+  console.log('Create Effect');
   useEffect(() => {
     const handleClick = ({ clientX, clientY }) => {
       if (!ref.current) return;
