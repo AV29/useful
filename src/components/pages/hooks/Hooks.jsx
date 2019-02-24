@@ -1,20 +1,22 @@
 import React, { useState, Fragment } from 'react';
-import { DemoSection, Heading, GridWrapper, SmallHeading, List } from '../../../styles/styles';
+import { DemoSection, Heading, GridWrapper, SmallHeading, List, Section } from '../../../styles/styles';
 import PropTypes from 'prop-types';
 import Clock from './Clock';
 import DynamicTimer from './DynamicTimer';
 import DataForm from './DataForm';
 import Button from '../../reusable/controls/button/Button';
+import { HooksTooltip } from '../../reusable/tooltip/Tooltip';
 import { HooksContextMenu2, HooksContextMenu } from '../../reusable/context-menu/ContextMenu';
 import useContextMenu from './custom-hooks/useContextMenu';
+import { useMouseHover } from './custom-hooks/useHover';
 import { StyledContextMenuDemoTarget } from './styles';
 
-const items = [{ id: '1', text: 'Angular' }, { id: '2', text: 'React' }, { id: '3', text: 'Vue' }];
+const items = [{ id: '1', text: 'Hooks' }, { id: '2', text: 'HOCs' }, { id: '3', text: 'FACCs' }];
 
 function Hooks (props) {
   const [selectedItem, setSelectedItem] = useState('React');
   const [contextMenuCallerRef, coords, handleClose] = useContextMenu();
-
+  const [hoverRef, isHovering] = useMouseHover();
   return (
     <Fragment>
       <Heading>{props.name}</Heading>
@@ -40,7 +42,7 @@ function Hooks (props) {
                 items.map(({ text, id }) => (
                   <li
                     key={id}
-                    onMouseDown={() => setSelectedItem(text)}
+                    onClick={() => setSelectedItem(text)}
                   >
                     {text}
                   </li>
@@ -72,6 +74,17 @@ function Hooks (props) {
               }
             </List>
           </HooksContextMenu2>
+        </DemoSection>
+        <DemoSection>
+          <Section>
+            <SmallHeading ref={hoverRef}>Hover here to call tooltip</SmallHeading>
+          </Section>
+          {
+            isHovering &&
+            <HooksTooltip targetRef={hoverRef}>
+              Tooltip
+            </HooksTooltip>
+          }
         </DemoSection>
       </GridWrapper>
     </Fragment>
