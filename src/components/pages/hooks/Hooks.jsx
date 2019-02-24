@@ -4,13 +4,16 @@ import PropTypes from 'prop-types';
 import Clock from './Clock';
 import DynamicTimer from './DynamicTimer';
 import DataForm from './DataForm';
-import { HookContextMenu } from '../../reusable/context-menu/ContextMenu';
+import Button from '../../reusable/controls/button/Button';
+import { MenuXXX } from '../../reusable/context-menu/ContextMenu';
+import useContextMenu from './custom-hooks/useContextMenu';
 import { StyledContextMenuDemoTarget } from './styles';
 
 const items = [{ id: '1', text: 'Angular' }, { id: '2', text: 'React' }, { id: '3', text: 'Vue' }];
 
 function Hooks (props) {
   const [selectedItem, setSelectedItem] = useState('React');
+
   return (
     <Fragment>
       <Heading>{props.name}</Heading>
@@ -25,25 +28,48 @@ function Hooks (props) {
           <Clock/>
         </DemoSection>
         <DemoSection>
-          <HookContextMenu
-            target={<StyledContextMenuDemoTarget>Right Click Here to call context menu</StyledContextMenuDemoTarget>}
+          {/*<HookContextMenu
+            target={
+              <StyledContextMenuDemoTarget>
+                Right Click Here to call hooks context menu
+              </StyledContextMenuDemoTarget>
+            }
           >
             <List>
               {
                 items.map(({ text, id }) => (
                   <li
                     key={id}
-                    onMouseDown={() => {
-                      text !== selectedItem && setSelectedItem(text);
-                    }}
+                    onMouseDown={() => setSelectedItem(text)}
                   >
                     {text}
                   </li>
                 ))
               }
             </List>
-          </HookContextMenu>
+          </HookContextMenu>*/}
+
           <SmallHeading>{selectedItem}</SmallHeading>
+          <MenuXXX
+            target={
+              <StyledContextMenuDemoTarget>
+                Right Click Here to call another context menu
+              </StyledContextMenuDemoTarget>
+            }
+          >
+            <List>
+              {
+                items.map(({ text, id }) => (
+                  <li
+                    key={id}
+                    onMouseDown={() => setSelectedItem(text)}
+                  >
+                    {text}
+                  </li>
+                ))
+              }
+            </List>
+          </MenuXXX>
         </DemoSection>
       </GridWrapper>
     </Fragment>
