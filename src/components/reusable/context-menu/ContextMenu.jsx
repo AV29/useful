@@ -88,7 +88,7 @@ ContextMenu.propTypes = {
   rootContainer: string
 };
 
-export function MenuXXX ({ target, children, closeOnClickInside }) {
+export function HooksContextMenu2 ({ target, children, closeOnClickInside }) {
   const [callerRef, coords, handleClose] = useContextMenu();
   const onClickInside = closeOnClickInside ? handleClose : undefined;
   const menuRef = useClickOutside({ onClickOutside: handleClose, onClickInside });
@@ -113,10 +113,36 @@ export function MenuXXX ({ target, children, closeOnClickInside }) {
   );
 }
 
-MenuXXX.propTypes = {
+export function HooksContextMenu ({ coords, children, handleClose }) {
+  const menuRef = useClickOutside({ onClickOutside: handleClose });
+
+  return (
+    <Fragment>
+      {
+        coords &&
+        <Portal>
+          <ContextMenuContainer
+            ref={menuRef}
+            style={{ ...coords }}
+          >
+            {children}
+          </ContextMenuContainer>
+        </Portal>
+      }
+    </Fragment>
+  );
+}
+
+HooksContextMenu2.propTypes = {
   target: object,
   children: node,
   closeOnClickInside: bool
+};
+
+HooksContextMenu.propTypes = {
+  children: node,
+  coords: object,
+  handleClose: func
 };
 
 export default ContextMenu;
