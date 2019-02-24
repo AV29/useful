@@ -89,7 +89,7 @@ ContextMenu.propTypes = {
 
 export function HookContextMenu ({ children, target }) {
   const [coordinates, setCoordinates] = useState(null);
-  const ref = useClickOutside({ onClickOutside: () => setCoordinates(null) });
+  console.log();
   return (
     <Fragment>
       <div
@@ -100,18 +100,22 @@ export function HookContextMenu ({ children, target }) {
       >
         {target}
       </div>
-      {
-        coordinates &&
-        <Portal>
-          <div
-            ref={ref}
-            style={{ ...coordinates, position: 'absolute' }}
-          >
-            {children}
-          </div>
-        </Portal>
-      }
+      {coordinates && <Menu coordinates={coordinates}>{children}</Menu>}
     </Fragment>
+  );
+}
+
+function Menu ({ coordinates, children }) {
+  const [ref, lastClickedOutside] = useClickOutside();
+  return (
+    <Portal>
+      <div
+        ref={ref}
+        style={{ ...coordinates, position: 'absolute' }}
+      >
+        {children}
+      </div>
+    </Portal>
   );
 }
 
