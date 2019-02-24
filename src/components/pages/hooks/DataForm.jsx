@@ -4,7 +4,7 @@ import Row from '../../reusable/row/Row';
 import Input from '../../reusable/controls/input/Input';
 import Button from '../../reusable/controls/button/Button';
 import ageReducer from './ageReducer';
-import useFormValue from './custom-hooks/useFormValue';
+import useFormValue from '../../../hooks/useFormValue';
 
 function DataForm() {
 

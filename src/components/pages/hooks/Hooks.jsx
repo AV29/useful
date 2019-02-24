@@ -7,8 +7,8 @@ import DataForm from './DataForm';
 import Button from '../../reusable/controls/button/Button';
 import { Tooltip } from '../../reusable/tooltip/Tooltip';
 import { HooksContextMenu2, HooksContextMenu } from '../../reusable/context-menu/ContextMenu';
-import useContextMenu from './custom-hooks/useContextMenu';
-import { useMouseHover } from './custom-hooks/useMouseHover';
+import useContextMenu from '../../../hooks/useContextMenu';
+import { useMouseHover } from '../../../hooks/useMouseHover';
 import { StyledContextMenuDemoTarget } from './styles';
 
 const items = [{ id: '1', text: 'Hooks' }, { id: '2', text: 'HOCs' }, { id: '3', text: 'FACCs' }];

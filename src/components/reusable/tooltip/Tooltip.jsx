@@ -1,7 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import { bool, func, string, node, object } from 'prop-types';
 import Portal from '../portal/Portal';
-import { useTooltipPosition } from '../../pages/hooks/custom-hooks/useTooltipPosition';
+import { useTooltipPosition } from '../../../hooks/useTooltipPosition';
 import { StyledTooltip } from './styles';
 import getTooltipPosition, { getPositionInfo } from '../../../utilities/getTooltipPosition';
 

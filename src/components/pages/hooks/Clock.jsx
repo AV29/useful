@@ -1,5 +1,5 @@
 import React from 'react';
-import useDateTimer from './custom-hooks/useTimer';
+import useDateTimer from '../../../hooks/useTimer';
 import { StyledInfoSection } from './styles';
 
 function Clock () {

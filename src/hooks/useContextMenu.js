@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { addEvent, removeEvent } from '../../../../utilities/events';
+import { addEvent, removeEvent } from '../utilities/events';
 
 const useContextMenu = (initialCoords = null) => {
   const ref = useRef(null);

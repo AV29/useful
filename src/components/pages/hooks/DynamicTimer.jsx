@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import useDynamicInterval from './custom-hooks/useDynamicInterval';
+import useDynamicInterval from '../../../hooks/useDynamicInterval';
 import Button from '../../reusable/controls/button/Button';
 import Input from '../../reusable/controls/input/Input';
 import { FlexColumn } from '../../../styles/styles';

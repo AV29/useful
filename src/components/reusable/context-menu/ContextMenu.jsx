@@ -3,8 +3,8 @@ import { bool, func, node, number, string, object } from 'prop-types';
 import { ContextMenuContainer } from './styles';
 import ClickOutside from '../clickoutside/ClickOutside';
 import Portal from '../portal/Portal';
-import useClickOutside from '../../pages/hooks/custom-hooks/useClickOutside';
-import useContextMenu from '../../pages/hooks/custom-hooks/useContextMenu';
+import useClickOutside from '../../../hooks/useClickOutside';
+import useContextMenu from '../../../hooks/useContextMenu';
 
 class ContextMenu extends Component {
 

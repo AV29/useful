@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import getTooltipPosition, { getPositionInfo } from '../../../../utilities/getTooltipPosition';
+import getTooltipPosition, { getPositionInfo } from '../utilities/getTooltipPosition';
 import { useComponentMountVisibilityDelay } from './useComponentMountVisibilityDelay';
 
 export const useTooltipPosition = (targetRef, delay = 200) => {

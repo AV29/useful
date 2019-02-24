@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { addEvent, removeEvent } from '../../../../utilities/events';
+import { addEvent, removeEvent } from '../utilities/events';
 
 export const useMouseHover = (defaultHovering = false) => {
   const [isHovering, setIsHovering] = useState(defaultHovering);
