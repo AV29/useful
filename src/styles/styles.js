@@ -41,3 +41,21 @@ export const Heading = styled.h1`
 export const SmallHeading = styled.h2`
     padding: 10px 0;
 `;
+
+export const List = styled.ul`
+  border: 2px solid ${({ theme: { borderColor } }) => borderColor};
+  background-color: ${({ theme: { backgroundColor } }) => backgroundColor};
+  padding: 10px;
+  user-select: none;
+  list-style-type: none;
+  min-width: 100px;
+  color: ${({ theme: { baseColor } }) => baseColor};
+  li {
+    padding: 10px 5px;
+    font-size: 1.4rem;
+    &:hover {
+      font-weight: 900;
+      cursor: pointer;
+    }
+  }
+`;

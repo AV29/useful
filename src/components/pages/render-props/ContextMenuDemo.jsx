@@ -1,7 +1,7 @@
 import React from 'react';
 import { func, string } from 'prop-types';
-import { ContextMenuCaller, StyledList } from './styles';
-import { DemoSection, Flex, SmallHeading } from '../../../styles/styles';
+import { ContextMenuCaller } from './styles';
+import { DemoSection, Flex, SmallHeading, List } from '../../../styles/styles';
 import ContextMenu from '../../reusable/context-menu/ContextMenu';
 
 const items = [{ id: '1', text: 'Angular' }, { id: '2', text: 'React' }, { id: '3', text: 'Vue' }];
@@ -26,7 +26,7 @@ export default function ContextMenuDemo({ selectedItem, onChooseItem }) {
         )}
       >
         {({ handleHideMenu }) => (
-          <StyledList>
+          <List>
             {
               items.map(({ text, id }) => (
                 <li
@@ -42,7 +42,7 @@ export default function ContextMenuDemo({ selectedItem, onChooseItem }) {
                 </li>
               ))
             }
-          </StyledList>
+          </List>
         )}
       </ContextMenu>
     </DemoSection>

@@ -1,5 +1,5 @@
 import React, { Component, Fragment, useState } from 'react';
-import { bool, func, node, number, string } from 'prop-types';
+import { bool, func, node, number, string, object } from 'prop-types';
 import { ContextMenuContainer } from './styles';
 import ClickOutside from '../clickoutside/ClickOutside';
 import Portal from '../portal/Portal';
@@ -89,7 +89,6 @@ ContextMenu.propTypes = {
 
 export function HookContextMenu ({ children, target }) {
   const [coordinates, setCoordinates] = useState(null);
-  console.log();
   return (
     <Fragment>
       <div
@@ -100,13 +99,22 @@ export function HookContextMenu ({ children, target }) {
       >
         {target}
       </div>
-      {coordinates && <Menu coordinates={coordinates}>{children}</Menu>}
+      {
+        coordinates &&
+        <Menu
+          coordinates={coordinates}
+          onClickOutside={() => setCoordinates(null)}
+          onClickInside={() => setCoordinates(null)}
+        >
+          {children}
+        </Menu>
+      }
     </Fragment>
   );
 }
 
-function Menu ({ coordinates, children }) {
-  const [ref, lastClickedOutside] = useClickOutside();
+function Menu ({ coordinates, children, onClickOutside, onClickInside }) {
+  const ref = useClickOutside({ onClickOutside, onClickInside });
   return (
     <Portal>
       <div
@@ -118,6 +126,13 @@ function Menu ({ coordinates, children }) {
     </Portal>
   );
 }
+
+Menu.propTypes = {
+  coordinates: object,
+  children: node,
+  onClickOutside: func,
+  onClickInside: func,
+};
 
 HookContextMenu.propTypes = {
   children: node,

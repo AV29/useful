@@ -1,22 +1,19 @@
-import { useState, useRef, useEffect } from 'react';
-import { addEvent, removeEvent } from '../../../../utilities/events';
+import { useRef, useEffect } from 'react';
+import { addEvent, removeEvent, noop } from '../../../../utilities/events';
 
 const defaultClickEvents = ['mousedown', 'touchstart'];
 
-const useClickOutside = (initialState = false, clickEvents = defaultClickEvents) => {
-  const [lastClickedOutside, setLastClickedOutside] = useState(initialState);
+const useClickOutside = ({ initialState = false, clickEvents = defaultClickEvents, onClickOutside = noop, onClickInside = noop }) => {
   const ref = useRef(null);
 
   useEffect(() => {
     const handleClick = ({ clientX, clientY }) => {
+      if (!ref.current) return;
 
-      console.log('Clicked');
       const { left, top, right, bottom } = ref.current.getBoundingClientRect();
       const clickWasOutside = clientX > right || clientX < left || clientY > bottom || clientY < top;
 
-      if (lastClickedOutside !== clickWasOutside) {
-        return setLastClickedOutside(clickWasOutside);
-      }
+      clickWasOutside ? onClickOutside() : onClickInside();
     };
 
     clickEvents.forEach(addEvent(handleClick));
@@ -26,7 +23,7 @@ const useClickOutside = (initialState = false, clickEvents = defaultClickEvents)
     };
   });
 
-  return [ref, lastClickedOutside];
+  return ref;
 };
 
 export default useClickOutside;

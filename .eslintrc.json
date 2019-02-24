@@ -1,7 +1,8 @@
 {
   "extends": "react-app",
   "plugins": [
-    "react"
+    "react",
+    "react-hooks"
   ],
   "rules": {
     "arrow-parens": [
@@ -103,6 +104,8 @@
         "maximum": 2
       }
     ],
+    "react-hooks/rules-of-hooks": 2,
+    "react-hooks/exhaustive-deps": 1,
     "react/jsx-no-bind": 0,
     "react/jsx-no-literals": 0,
     "react/jsx-sort-prop-types": 0,
