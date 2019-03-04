@@ -4,6 +4,7 @@ import { getShadowColor, getBaseColor, getBGColor } from '../../../../styles/sty
 export const StyledSlider = styled.div`
   user-select: none;
   width: 100%;
+  padding-bottom: 15px;
 `;
 
 export const Label = styled.div`

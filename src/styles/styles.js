@@ -31,6 +31,10 @@ export const GridWrapper = styled.div`
    grid-gap: 15px;
    margin-top: 10px;
    grid-template-columns: repeat(${({ columns = 2 }) => columns}, 1fr);
+   
+   @media only screen and (max-width: 1280px) {
+      grid-template-columns: repeat(1, 1fr)
+   } 
 `;
 
 export const Section = styled.div`
