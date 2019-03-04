@@ -1,12 +1,18 @@
 import React from 'react';
+import { func } from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import { StyledFooter } from './styles';
 
-function Footer() {
+function Footer({ t }) {
   return (
     <StyledFooter>
-      Anton Vlasik, 2019
+      {t('footerInfo')}
     </StyledFooter>
   );
 }
 
-export default Footer;
+Footer.propTypes = {
+  t: func
+};
+
+export default withTranslation('common')(Footer);

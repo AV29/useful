@@ -1,22 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { func, arrayOf, shape, string } from 'prop-types';
 import { StyledHeader } from './styles';
+import { useTranslation } from 'react-i18next';
 import ThemePicker from '../../reusable/controls/theme-picker/ThemePicker';
 
-class Header extends Component {
-  render() {
-    return (
-      <StyledHeader>
-        <h1>
-          Approach examples
-        </h1>
-        <ThemePicker
-          themes={this.props.themes}
-          onChange={this.props.onThemeChange}
-        />
-      </StyledHeader>
-    );
-  }
+function Header({ themes, onThemeChange }) {
+  const { t } = useTranslation('common');
+  return (
+    <StyledHeader>
+      <h1>
+        {t('headerTitle')}
+      </h1>
+      <ThemePicker
+        themes={themes}
+        onChange={onThemeChange}
+      />
+    </StyledHeader>
+  );
 }
 
 Header.propTypes = {
