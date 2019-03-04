@@ -5,6 +5,7 @@ import ToggleDemo from './ToggleDemo';
 import RatingDemo from './RatingDemo';
 import IdleIndicatorDemo from './IdleIndicatorDemo';
 import { GridWrapper, Heading } from '../../../styles/styles';
+import CheckBoxesDemo from './CheckBoxesDemo';
 
 class Controls extends Component {
 
@@ -16,13 +17,19 @@ class Controls extends Component {
       sliderValue: 2,
       ratingValue: 3,
       toggles: {
-        'left-label': { checked: false, label: 'Is React' },
-        'right-label': { checked: true, label: 'Is Angular' },
-        'no-label': { checked: false }
+        'toggle-1': { checked: false, label: 'Is React' },
+        'toggle-2': { checked: true, label: 'Is Angular' },
+        'toggle-3': { checked: false }
+      },
+      checkboxes: {
+        'checkbox-1': { checked: false, label: 'HOC' },
+        'checkbox-2': { checked: true, label: 'FACC' },
+        'checkbox-3': { checked: false, label: 'HOOK' }
       }
     };
 
     this.handleToggleValue = this.handleToggleValue.bind(this);
+    this.handleToggleCheckBoxValue = this.handleToggleCheckBoxValue.bind(this);
     this.handleChangeSliderValue = this.handleChangeSliderValue.bind(this);
     this.handleChangeRatingValue = this.handleChangeRatingValue.bind(this);
     this.handleIdleFinished = this.handleIdleFinished.bind(this);
@@ -36,6 +43,18 @@ class Controls extends Component {
         [id]: {
           ...toggles[id],
           checked: !toggles[id].checked
+        }
+      }
+    }));
+  }
+
+  handleToggleCheckBoxValue ({ target: { id } }) {
+    this.setState(({ checkboxes }) => ({
+      checkboxes: {
+        ...checkboxes,
+        [id]: {
+          ...checkboxes[id],
+          checked: !checkboxes[id].checked
         }
       }
     }));
@@ -83,6 +102,10 @@ class Controls extends Component {
             onStartIdle={this.handleStartIdle}
             bindTimer={timer => this.timer = timer}
             bindIndicator={indicator => this.indicator = indicator}
+          />
+          <CheckBoxesDemo
+            checkboxes={this.state.checkboxes}
+            onChange={this.handleToggleCheckBoxValue}
           />
         </GridWrapper>
       </Fragment>
