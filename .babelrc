@@ -4,6 +4,15 @@
     "env",
     "stage-1"
   ],
+  "plugins": [
+    [
+      "babel-plugin-styled-components",
+      {
+        "displayName": true,
+        "fileName": false
+      }
+    ]
+  ],
   "env": {
     "development": {
       "presets": [

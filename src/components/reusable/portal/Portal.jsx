@@ -1,17 +1,17 @@
 import { Component } from 'react';
 import { createPortal } from 'react-dom';
-import PropTypes from 'prop-types';
+import { node, oneOfType, object } from 'prop-types';
 
 class Portal extends Component {
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     if (this.defaultNode) {
       document.body.removeChild(this.defaultNode);
     }
     this.defaultNode = null;
   }
 
-  render () {
+  render() {
     if (!this.props.node && !this.defaultNode) {
       this.defaultNode = document.createElement('div');
       document.body.appendChild(this.defaultNode);
@@ -21,8 +21,8 @@ class Portal extends Component {
 }
 
 Portal.propTypes = {
-  children: PropTypes.node.isRequired,
-  node: PropTypes.oneOfType([PropTypes.object, PropTypes.node])
+  children: node.isRequired,
+  node: oneOfType([object, node])
 };
 
 export default Portal;

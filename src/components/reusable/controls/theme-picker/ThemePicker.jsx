@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { string, func, shape, arrayOf } from 'prop-types';
 import { StyledThemePicker, StyledThemeMarker, ThemeMarker, ThemeProp } from './styles';
 import { FlexRow, FlexColumn } from '../../../../styles/styles';
 import decapitalize from '../../../../utilities/decapitalize';
 import Tooltip from '../../tooltip/Tooltip';
 
 class ThemePicker extends Component {
-  render () {
+  render() {
     return (
       <StyledThemePicker>
         {
@@ -40,20 +40,20 @@ class ThemePicker extends Component {
 }
 
 ThemePicker.propTypes = {
-  onChange: PropTypes.func,
-  themes: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    baseColor: PropTypes.string,
-    backgroundColor: PropTypes.string,
-    shadowColor: PropTypes.string,
-    borderColor: PropTypes.string
+  onChange: func,
+  themes: arrayOf(shape({
+    id: string.isRequired,
+    baseColor: string,
+    backgroundColor: string,
+    shadowColor: string,
+    borderColor: string
   })),
-  theme: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    baseColor: PropTypes.string,
-    backgroundColor: PropTypes.string,
-    shadowColor: PropTypes.string,
-    borderColor: PropTypes.string
+  theme: shape({
+    id: string.isRequired,
+    baseColor: string,
+    backgroundColor: string,
+    shadowColor: string,
+    borderColor: string
   })
 };
 

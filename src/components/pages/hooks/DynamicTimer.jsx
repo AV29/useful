@@ -3,7 +3,7 @@ import useDynamicInterval from '../../../hooks/useDynamicInterval';
 import Button from '../../reusable/controls/button/Button';
 import Input from '../../reusable/controls/input/Input';
 import { FlexColumn } from '../../../styles/styles';
-import PropTypes from 'prop-types';
+import { string } from 'prop-types';
 
 function DynamicTimer() {
   const [count, setCount] = useState(0);
@@ -28,7 +28,7 @@ function DynamicTimer() {
 }
 
 DynamicTimer.propTypes = {
-  name: PropTypes.string
+  name: string
 };
 
 export default DynamicTimer;

@@ -1,6 +1,6 @@
 import React, { useState, Fragment } from 'react';
 import { DemoSection, Heading, GridWrapper, SmallHeading, List, Section } from '../../../styles/styles';
-import PropTypes from 'prop-types';
+import { string } from 'prop-types';
 import Clock from './Clock';
 import DynamicTimer from './DynamicTimer';
 import DataForm from './DataForm';
@@ -13,7 +13,7 @@ import { StyledContextMenuDemoTarget } from './styles';
 
 const items = [{ id: '1', text: 'Hooks' }, { id: '2', text: 'HOCs' }, { id: '3', text: 'FACCs' }];
 
-function Hooks (props) {
+function Hooks(props) {
   const [selectedItem, setSelectedItem] = useState('React');
   const [contextMenuCallerRef, coords, handleClose] = useContextMenu();
   const [hoverRef, isHovering] = useMouseHover();
@@ -92,7 +92,7 @@ function Hooks (props) {
 }
 
 Hooks.propTypes = {
-  name: PropTypes.string
+  name: string
 };
 
 export default Hooks;

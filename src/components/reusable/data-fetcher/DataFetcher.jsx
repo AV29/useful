@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import PropTypes from 'prop-types';
+import { func, number } from 'prop-types';
 
 class DataFetcher extends Component {
 
@@ -43,8 +43,8 @@ DataFetcher.defaultProps = {
 };
 
 DataFetcher.propTypes = {
-  children: PropTypes.func,
-  latency: PropTypes.number
+  children: func,
+  latency: number
 };
 
 export default DataFetcher;

@@ -48,3 +48,5 @@ const useDraggableEvent = (
 
   return dragRef;
 };
+
+export default useDraggableEvent;

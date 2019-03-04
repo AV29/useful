@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
+import { string } from 'prop-types';
 import { DemoSection, GridWrapper, Heading, SmallHeading } from '../../../styles/styles';
 import { getRandomColor } from '../../../utilities/random';
 import WindowSize from '../../reusable/window-size/WindowSize';
@@ -79,7 +79,7 @@ class RenderProps extends Component {
 }
 
 RenderProps.propTypes = {
-  name: PropTypes.string
+  name: string
 };
 
 export default RenderProps;

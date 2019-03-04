@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import Header from '../header/Header';
+import Footer from '../footer/Footer';
 import Sidebar from '../sidebar/Sidebar';
 import routes from '../../../routing/routes';
 import { ThemeProvider } from 'styled-components';
 import themes from '../../../utilities/themes';
 import { StyledAppWrapper, StyledInnerWrapper, StyledRoutesWrapper } from './styles';
+import { FlexColumn } from '../../../styles/styles';
 
 class App extends Component {
 
@@ -40,9 +42,12 @@ class App extends Component {
           />
           <StyledInnerWrapper>
             <Sidebar/>
-            <StyledRoutesWrapper>
-              {routes}
-            </StyledRoutesWrapper>
+            <FlexColumn align="stretch" flex={1}>
+              <StyledRoutesWrapper>
+                {routes}
+              </StyledRoutesWrapper>
+              <Footer/>
+            </FlexColumn>
           </StyledInnerWrapper>
         </StyledAppWrapper>
       </ThemeProvider>

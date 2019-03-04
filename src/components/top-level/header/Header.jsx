@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import ThemePicker from '../../reusable/controls/theme-picker/ThemePicker';
+import { func, arrayOf, shape, string } from 'prop-types';
 import { StyledHeader } from './styles';
+import ThemePicker from '../../reusable/controls/theme-picker/ThemePicker';
 
 class Header extends Component {
   render() {
@@ -20,13 +20,13 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  onThemeChange: PropTypes.func,
-  themes: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    baseColor: PropTypes.string,
-    backgroundColor: PropTypes.string,
-    shadowColor: PropTypes.string,
-    borderColor: PropTypes.string
+  onThemeChange: func,
+  themes: arrayOf(shape({
+    id: string.isRequired,
+    baseColor: string,
+    backgroundColor: string,
+    shadowColor: string,
+    borderColor: string
   }))
 };
 

@@ -1,8 +1,7 @@
 import React, { Fragment } from 'react';
 import { string, shape, func } from 'prop-types';
 import { FlexRow, FlexColumn, Heading, SmallHeading, PaddedBlock, List } from '../../../styles/styles';
-
-const items = [{ id: 1, text: 'Different Controls', path: '/controls' }];
+import routesConfig from '../../../routing/routesConfig';
 
 function About(props) {
   return (
@@ -20,17 +19,22 @@ function About(props) {
           <SmallHeading>It contains several main sections:</SmallHeading>
           <List>
             {
-              items.map(({ text, path, id }) => (
-                <li
-                  key={id}
-                  onClick={() => props.history.push(path)}
-                >
-                  {text}
-                </li>
-              ))
+              routesConfig
+                .filter(({ description }) => !!description)
+                .map(({ description, path, id }) => (
+                  <li
+                    key={id}
+                    onClick={() => props.history.push(path)}
+                  >
+                    {description}
+                  </li>
+                ))
             }
           </List>
         </PaddedBlock>
+        <SmallHeading>
+          ... and many more specific things like theming, css-in-js approach, i18n, layouts and etc...
+        </SmallHeading>
       </FlexColumn>
     </Fragment>
   );

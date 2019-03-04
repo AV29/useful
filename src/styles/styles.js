@@ -12,6 +12,7 @@ export const withPadding = component => typeof component === 'string' ? styled[c
 
 export const Flex = styled.div`
    display: flex;
+   flex: ${({ flex }) => flex || 'none'};
 `;
 
 export const FlexRow = styled(Flex)`
@@ -29,7 +30,7 @@ export const GridWrapper = styled.div`
    display: grid;
    grid-gap: 15px;
    margin-top: 10px;
-   grid-template-columns: repeat(${({ columns = 2 }) => columns}, 1fr);;
+   grid-template-columns: repeat(${({ columns = 2 }) => columns}, 1fr);
 `;
 
 export const Section = styled.div`
@@ -53,8 +54,6 @@ export const SmallHeading = styled.h2`
 `;
 
 export const List = styled.ul`
-  border: 2px solid ${getBorderColor};
-  padding: 10px;
   user-select: none;
   list-style-type: none;
   min-width: 100px;

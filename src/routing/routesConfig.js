@@ -13,6 +13,7 @@ export default [
     name: 'Controls',
     path: '/controls',
     icon: 'controls',
+    description: 'Examples Of Different Controls',
     component: Controls
   },
   {
@@ -20,6 +21,7 @@ export default [
     name: 'Hooks',
     path: '/hooks',
     icon: 'hook',
+    description: 'React Hooks (new feature)',
     component: Hooks
   },
   {
@@ -27,6 +29,7 @@ export default [
     name: 'Render Props',
     path: '/render-props',
     icon: 'renderProp',
+    description: 'FACC (function as a child component) examples',
     component: RenderProps
   },
   {
@@ -34,6 +37,7 @@ export default [
     name: 'Lifecycle',
     path: '/lifecycle',
     icon: 'lifecycle',
+    description: 'Demonstration of lifecycle methods of React Components',
     component: Lifecycle
   },
   {
@@ -41,6 +45,7 @@ export default [
     name: 'High Order Components',
     path: '/hoc',
     icon: 'hoc',
+    description: 'Examples for High Order Components',
     component: Hoc
   },
   {
@@ -48,6 +53,7 @@ export default [
     name: 'This issues',
     path: '/this',
     icon: 'javascript',
+    description: 'Caveats with "this" and different kinds of loos of information',
     component: This
   },
   {

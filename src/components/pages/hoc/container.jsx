@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
+import { string } from 'prop-types';
 import { DemoSection, GridWrapper, Heading } from '../../../styles/styles';
 import TestResizebleContainer from '../hoc/TestResizebleContainer';
 
 class Hoc extends Component {
 
-  render () {
+  render() {
     return (
       <Fragment>
         <Heading>{this.props.name}</Heading>
@@ -20,7 +20,7 @@ class Hoc extends Component {
 }
 
 Hoc.propTypes = {
-  name: PropTypes.string
+  name: string
 };
 
 export default Hoc;

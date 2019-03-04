@@ -31,3 +31,5 @@ const useOverflowEffect = () => {
 
   return [ref, isOverflowingX, isOverflowingY];
 };
+
+export default useOverflowEffect;
