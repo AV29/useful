@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { getBaseColor } from '../../../../styles/styles';
 import * as vars from '../../../../styles/variables';
 
 const lineThickness = 2;
@@ -19,7 +20,7 @@ export const StyledMenuOpener = styled.div`
     height: ${lineThickness}px;
     content: '';
     transform-origin: left;
-    background-color: ${({ theme: { baseColor } }) => baseColor};
+    background-color: ${getBaseColor};
   }
   &:before {
     top: 0;

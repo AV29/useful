@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { getBGColor } from '../../../styles/styles';
 
 export const ContextMenuContainer = styled.div`
-  background-color ${({ theme: { backgroundColor } }) => backgroundColor};
+  background-color ${getBGColor};
   position: absolute;
 `;

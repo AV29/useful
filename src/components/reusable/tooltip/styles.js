@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { getShadowColor } from '../../../styles/styles';
 
 const tooltipBgColor = 'rgba(0, 0, 0, 0.8)';
 
@@ -65,7 +66,7 @@ function getTooltipStyles ({ withoutTip, orientation, theme: { shadowColor } }) 
 
     case 'top': {
       return css`
-          box-shadow: 0 5px 20px ${({ theme: { shadowColor } }) => shadowColor};
+          box-shadow: 0 5px 20px ${getShadowColor};
           &:after {
             top: 100%;
             left: 50%;
@@ -77,7 +78,7 @@ function getTooltipStyles ({ withoutTip, orientation, theme: { shadowColor } }) 
 
     default: {
       return css`
-          box-shadow: 0 -5px 20px ${({ theme: { shadowColor } }) => shadowColor};
+          box-shadow: 0 -5px 20px ${getShadowColor};
           &:after {
             bottom: 100%;
             left: 50%;

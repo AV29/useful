@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { getBaseColor, getBGColor } from '../../../../styles/styles';
 
 const getSize = ({ size }) => size || 16;
 
@@ -9,7 +10,7 @@ export const StyledInputLabel = styled.span`
     height: 100%;
     width: 100%;
     cursor: pointer;
-    color: ${({ theme: { baseColor } }) => baseColor};
+    color: ${getBaseColor};
     
     strong {
       color: red;
@@ -26,7 +27,7 @@ export const StyledCustomBox = styled.span`
     content: '';
     height: ${getSize}px;
     width: ${getSize}px;
-    border: 1px solid ${({ theme: { baseColor } }) => baseColor};
+    border: 1px solid ${getBaseColor};
     border-radius: 4px;
   }
 `;
@@ -36,7 +37,7 @@ const disabledStylesOnHover = css`
    ${StyledCustomBox}::before {
      content: '✔';
      opacity: .5;
-     border-color: ${({ theme: { baseColor } }) => baseColor};
+     border-color: ${getBaseColor};
    }
 `;
 
@@ -64,19 +65,19 @@ export const StyledLabelWrapper = styled.label`
   
   &:hover {
     ${StyledInputLabel} {
-      color: ${({ theme: { baseColor } }) => baseColor};
+      color: ${getBaseColor};
     }
     
     ${StyledCustomBox} {
       &::before {
-        color: ${({ theme: { baseColor } }) => baseColor};
-        border-color: ${({ theme: { baseColor } }) => baseColor};
+        color: ${getBaseColor};
+        border-color: ${getBaseColor};
       }
     }
     
     input:checked + ${StyledCustomBox}::before {
-      background-color: ${({ theme: { baseColor } }) => baseColor};
-      border-color: ${({ theme: { baseColor } }) => baseColor};
+      background-color: ${getBaseColor};
+      border-color: ${getBaseColor};
     }
     
     ${({ disabled }) => !disabled ? disabledStylesOnHover : ''}
@@ -89,14 +90,14 @@ export const StyledLabelWrapper = styled.label`
   }
   
   input:checked + ${StyledCustomBox}::before {
-    border-color: ${({ theme: { baseColor } }) => baseColor};
-    background-color: ${({ theme: { baseColor } }) => baseColor};
-    color: ${({ theme: { backgroundColor } }) => backgroundColor};
+    border-color: ${getBaseColor};
+    background-color: ${getBaseColor};
+    color: ${getBGColor};
     content: '✔';
 
     &:hover {
-      background-color: ${({ theme: { baseColor } }) => baseColor};
-      border-color: ${({ theme: { baseColor } }) => baseColor};
+      background-color: ${getBaseColor};
+      border-color: ${getBaseColor};
     }
   }
   

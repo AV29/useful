@@ -1,9 +1,10 @@
 import styled from 'styled-components';
+import { getBaseColor, getBGColor } from '../../../styles/styles';
 
 export const StyledAppWrapper = styled.div`
   display: flex;
-  background-color: ${({ theme: { backgroundColor } }) => backgroundColor};
-  color: ${({ theme: { baseColor } }) => baseColor};
+  background-color: ${getBGColor};
+  color: ${getBaseColor};
   flex-direction: column;
   height: 100vh;
 `;

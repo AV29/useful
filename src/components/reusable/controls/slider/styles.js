@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { getShadowColor, getBaseColor, getBGColor } from '../../../../styles/styles';
 
 export const StyledSlider = styled.div`
   user-select: none;
@@ -37,8 +38,8 @@ export const Thumb = styled.button`
   position: absolute;
   top: ${({ thickness }) => thickness / 2}px;
   left: ${({ leftOffset }) => leftOffset}%;
-  border: 1px solid ${({ theme: { backgroundColor } }) => backgroundColor};
-  background-color: ${({ theme: { shadowColor } }) => shadowColor};
+  border: 1px solid ${getBGColor};
+  background-color: ${getShadowColor};
   transform: translateY(-50%);
   outline: none;
   &:hover {
@@ -61,7 +62,7 @@ export const FillLower = styled.div`
   position: absolute;
   left: 0;
   height: 100%;
-  background-color: ${({ theme: { baseColor } }) => baseColor};
+  background-color: ${getBaseColor};
   width: ${({ fill }) => fill}%;
 `;
 

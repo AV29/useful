@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { transitionStyle } from '../../../../styles/variables';
-import { Flex } from '../../../../styles/styles';
+import { Flex, getShadowColor, getBaseColor, getBGColor } from '../../../../styles/styles';
 
 const toggleMargin = 2;
 const toggleDiameter = 20;
@@ -24,8 +24,8 @@ export const StyledLabel = styled.label`
   min-height: ${switchHeight}px;
   display: inline-block;
   margin-${({ leftLabel }) => leftLabel ? 'left' : 'right'}: 10px;
-  background-color: ${({ theme: { baseColor } }) => baseColor};
-  box-shadow: inset -1px 1px 4px ${({ theme: { shadowColor } }) => shadowColor};
+  background-color: ${getBaseColor};
+  box-shadow: inset -1px 1px 4px ${getShadowColor};
   border-radius: ${switchBorderRadius}px;
   overflow: hidden;
 `;
@@ -35,11 +35,11 @@ export const StyledSlider = styled.span`
   height: 100%;
   width: 100%;
   cursor: pointer;
-  background-color: ${({ theme: { backgroundColor } }) => backgroundColor};
+  background-color: ${getBGColor};
   transform: translateX(0);
   border-radius: ${switchBorderRadius}px;
   transition: transform 0.2s ${transitionStyle};
-  box-shadow: inset -1px 1px 4px ${({ theme: { shadowColor } }) => shadowColor};
+  box-shadow: inset -1px 1px 4px ${getShadowColor};
 
   &:before {
     display: inline-block;
@@ -47,8 +47,8 @@ export const StyledSlider = styled.span`
     height: ${toggleDiameter}px;
     width: ${toggleDiameter}px;
     border-radius: 50%;
-    background-color: ${({ theme: { backgroundColor } }) => backgroundColor};
-    border: ${toggleMargin}px solid ${({ theme: { baseColor } }) => baseColor};
+    background-color: ${getBGColor};
+    border: ${toggleMargin}px solid ${getBaseColor};
   }
 `;
 
