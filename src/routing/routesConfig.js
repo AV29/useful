@@ -1,11 +1,11 @@
 import guid from '../utilities/guid';
-import Controls from '../components/pages/contols/Controls';
-import Hooks from '../components/pages/hooks/Hooks';
-import About from '../components/pages/about/About';
-import RenderProps from '../components/pages/render-props/RenderProps';
-import Hoc from '../components/pages/hoc/Hoc';
-import This from '../components/pages/this/This';
-import Lifecycle from '../components/pages/lifecycle/Lifecycle';
+import Controls from '../components/pages/contols/container';
+import Hooks from '../components/pages/hooks/container';
+import About from '../components/pages/about/container';
+import RenderProps from '../components/pages/render-props/container';
+import Hoc from '../components/pages/hoc/container';
+import This from '../components/pages/this/container';
+import Lifecycle from '../components/pages/lifecycle/container';
 
 export default [
   {

@@ -6,6 +6,10 @@ export const getBorderColor = ({ theme: { borderColor } }) => borderColor || def
 export const getShadowColor = ({ theme: { shadowColor } }) => shadowColor || defaults.SHADOW_COLOR;
 export const getBGColor = ({ theme: { backgroundColor } }) => backgroundColor || defaults.BACKGROUND_COLOR;
 
+const getPadding = ({ top = 0, left = 0, bottom = 0, right = 0 }) => `${top}px ${right}px ${bottom}px ${left}px`;
+
+export const withPadding = component => typeof component === 'string' ? styled[component]`padding: ${getPadding}` : styled(component);
+
 export const Flex = styled.div`
    display: flex;
 `;
@@ -64,3 +68,9 @@ export const List = styled.ul`
     }
   }
 `;
+
+export const PaddedBlock = withPadding('div');
+
+export const PaddedHeading = withPadding('h1');
+
+export const PaddedSmallHeading = withPadding('h2');
