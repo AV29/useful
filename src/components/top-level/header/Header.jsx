@@ -1,26 +1,40 @@
 import React from 'react';
 import { func, arrayOf, shape, string } from 'prop-types';
 import { StyledHeader } from './styles';
+import { Heading, FlexRow } from '../../../styles/styles';
 import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from '../../reusable/controls/language-switcher/LanguageSwitcher';
 import ThemePicker from '../../reusable/controls/theme-picker/ThemePicker';
 
-function Header({ themes, onThemeChange }) {
+function Header ({ themes, languages, onThemeChange, onLanguageChange }) {
   const { t } = useTranslation('common');
   return (
     <StyledHeader>
-      <h1>
+      <Heading>
         {t('headerTitle')}
-      </h1>
-      <ThemePicker
-        themes={themes}
-        onChange={onThemeChange}
-      />
+      </Heading>
+      <FlexRow>
+        <LanguageSwitcher
+          languages={languages}
+          onChange={onLanguageChange}
+        />
+        <ThemePicker
+          themes={themes}
+          onChange={onThemeChange}
+        />
+      </FlexRow>
     </StyledHeader>
   );
 }
 
 Header.propTypes = {
   onThemeChange: func,
+  onLanguageChange: func,
+  languages: arrayOf(shape({
+    id: string.isRequired,
+    displayName: string,
+    locale: string.isRequired
+  })),
   themes: arrayOf(shape({
     id: string.isRequired,
     baseColor: string,

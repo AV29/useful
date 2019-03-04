@@ -1,47 +1,43 @@
 import React, { Fragment } from 'react';
+import { useTranslation } from 'react-i18next';
 import { string, shape, func } from 'prop-types';
 import { FlexRow, FlexColumn, Heading, SmallHeading, PaddedBlock, List } from '../../../styles/styles';
 import routesConfig from '../../../routing/routesConfig';
 
-function About(props) {
+function About (props) {
+  const { t } = useTranslation('common');
   return (
     <Fragment>
-      <FlexRow><Heading>{props.name}</Heading></FlexRow>
+      <FlexRow><Heading>{t(props.nameKey)}</Heading></FlexRow>
       <FlexColumn align="center">
-        <SmallHeading> This is an application that serves two main goals: </SmallHeading>
-        <SmallHeading>
-          1) to demonstration various React development patterns and approaches as well as the JavaScript general ones.
-        </SmallHeading>
-        <SmallHeading>
-          2) to preserve and hold various techniques and controls for future reuse.
-        </SmallHeading>
+        <SmallHeading>{t('aboutHeaderCap')}</SmallHeading>
+        <SmallHeading>{t('aboutHeader_1')}</SmallHeading>
+        <SmallHeading>{t('aboutHeader_2')}</SmallHeading>
         <PaddedBlock top={50}>
-          <SmallHeading>It contains several main sections:</SmallHeading>
+          <SmallHeading>{t('twoMainSections')}</SmallHeading>
           <List>
             {
               routesConfig
-                .filter(({ description }) => !!description)
-                .map(({ description, path, id }) => (
+                .filter(({ descriptionKey }) => !!descriptionKey)
+                .map(({ descriptionKey, path, id }) => (
                   <li
                     key={id}
                     onClick={() => props.history.push(path)}
                   >
-                    {description}
+                    {t(descriptionKey)}
                   </li>
                 ))
             }
           </List>
         </PaddedBlock>
-        <SmallHeading>
-          ... and many more specific things like theming, css-in-js approach, i18n, layouts and etc...
-        </SmallHeading>
+        <SmallHeading>{t('specificThingsList')}</SmallHeading>
       </FlexColumn>
     </Fragment>
   );
 }
 
 About.propTypes = {
-  name: string,
+  nameKey: string,
   history: shape({
     push: func
   })

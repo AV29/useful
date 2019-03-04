@@ -1,9 +1,13 @@
 import React from 'react';
-import { FlexRow } from '../../../styles/styles';
+import { useTranslation } from 'react-i18next';
+import { FlexRow, Heading } from '../../../styles/styles';
 
-function NotFoundPage(props) {
+function NotFoundPage () {
+  const { t } = useTranslation('common');
   return (
-    <FlexRow>NOT FOUND</FlexRow>
+    <FlexRow>
+      <Heading>{t('notFound')}</Heading>
+    </FlexRow>
   );
 }
 

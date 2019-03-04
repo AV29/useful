@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import { string } from 'prop-types';
+import { withTranslation } from 'react-i18next';
+import { string, func } from 'prop-types';
 import { DemoSection, GridWrapper, Heading, SmallHeading } from '../../../styles/styles';
 import { getRandomColor } from '../../../utilities/random';
 import WindowSize from '../../reusable/window-size/WindowSize';
@@ -11,7 +12,7 @@ import ClickOutsideDemo from './ClickOutsideDemo';
 
 class RenderProps extends Component {
 
-  constructor(props) {
+  constructor (props) {
     super(props);
 
     this.handleChangeRenderPropContainerData = this.handleChangeRenderPropContainerData.bind(this);
@@ -21,26 +22,27 @@ class RenderProps extends Component {
     this.state = {
       sharedData: '',
       color: '#444444',
-      selectedItem: 'React'
+      selectedItem: this.props.t('isReact'),
+      contextMenuItems: [{ id: '1', text: this.props.t('isReact') }, { id: '2', text: this.props.t('isAngular') }, { id: '3', text: this.props.t('isVue') }]
     };
 
   }
 
-  handleChangeRenderPropContainerData(value) {
+  handleChangeRenderPropContainerData (value) {
     this.setState({ sharedData: value });
   }
 
-  handleChangeColor(color) {
+  handleChangeColor (color) {
     return () => {
       this.setState({ color });
     };
   }
 
-  handleChooseItem(selectedItem) {
+  handleChooseItem (selectedItem) {
     this.setState({ selectedItem });
   }
 
-  render() {
+  render () {
     return (
       <WindowSize>
         {({ windowWidth, windowHeight }) => (
@@ -50,16 +52,17 @@ class RenderProps extends Component {
           >
             {({ bindRef }) => (
               <Fragment>
-                <Heading>{this.props.name}</Heading>
+                <Heading>{this.props.t(this.props.nameKey)}</Heading>
                 <GridWrapper>
                   <AsyncDemo
                     sharedData={this.state.sharedData}
                     onChange={this.handleChangeRenderPropContainerData}
                   />
                   <DemoSection>
-                    <SmallHeading>Here is window size: {windowWidth} x {windowHeight}</SmallHeading>
+                    <SmallHeading>{this.props.t('windowSizeMessage', { windowWidth, windowHeight })}</SmallHeading>
                   </DemoSection>
                   <ContextMenuDemo
+                    items={this.state.contextMenuItems}
                     onChooseItem={this.handleChooseItem}
                     selectedItem={this.state.selectedItem}
                   />
@@ -79,7 +82,8 @@ class RenderProps extends Component {
 }
 
 RenderProps.propTypes = {
-  name: string
+  nameKey: string,
+  t: func
 };
 
-export default RenderProps;
+export default withTranslation('common')(RenderProps);

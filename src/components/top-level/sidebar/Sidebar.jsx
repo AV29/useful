@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import routesConfig from '../../../routing/routesConfig';
 import { Icon } from '../../reusable/icon/Icon';
 import { FlexRow, SmallHeading } from '../../../styles/styles';
@@ -8,19 +9,20 @@ import Tooltip from '../../reusable/tooltip/Tooltip';
 
 function Sidebar () {
   const [collapsed, setCollapsed] = useState(true);
+  const { t } = useTranslation('common');
   return (
     <StyledSideBar>
       <div>
         {
-          routesConfig.map(({ id, path, name, icon }) => (
+          routesConfig.map(({ id, path, nameKey, icon }) => (
             <StyledNavItemWrapper key={id}>
               <NavItem to={path}>
-                {!collapsed && <SmallHeading>{name}</SmallHeading>}
+                {!collapsed && <SmallHeading>{t(nameKey)}</SmallHeading>}
                 <Tooltip
                   suppress={!collapsed}
                   renderHoverTarget={({ bindRef }) => <Icon innerRef={bindRef} icon={icon}/>}
                 >
-                  {name}
+                  {t(nameKey)}
                 </Tooltip>
               </NavItem>
             </StyledNavItemWrapper>

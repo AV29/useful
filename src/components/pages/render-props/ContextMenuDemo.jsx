@@ -1,15 +1,15 @@
 import React from 'react';
-import { func, string } from 'prop-types';
+import { useTranslation } from 'react-i18next';
+import { func, string, arrayOf, shape } from 'prop-types';
 import { ContextMenuCaller } from './styles';
 import { DemoSection, Flex, SmallHeading, List } from '../../../styles/styles';
 import ContextMenu from '../../reusable/context-menu/ContextMenu';
 
-const items = [{ id: '1', text: 'Angular' }, { id: '2', text: 'React' }, { id: '3', text: 'Vue' }];
-
-export default function ContextMenuDemo({ selectedItem, onChooseItem }) {
+export default function ContextMenuDemo ({ selectedItem, onChooseItem, items }) {
+  const { t } = useTranslation('common');
   return (
     <DemoSection>
-      <SmallHeading>Context Menu example (made with Portal)</SmallHeading>
+      <SmallHeading>{t('contextMenuExampleRenderPropTitle')}</SmallHeading>
       <ContextMenu
         renderCaller={({ handleShowMenu }) => (
           <Flex>
@@ -19,7 +19,7 @@ export default function ContextMenuDemo({ selectedItem, onChooseItem }) {
                 handleShowMenu(event);
               }}
             >
-              Right Click to choose framework
+              {t('rightClickToChooseFramework')}
             </ContextMenuCaller>
             <SmallHeading>{selectedItem}</SmallHeading>
           </Flex>
@@ -51,5 +51,6 @@ export default function ContextMenuDemo({ selectedItem, onChooseItem }) {
 
 ContextMenuDemo.propTypes = {
   onChooseItem: func,
-  selectedItem: string
+  selectedItem: string,
+  items: arrayOf(shape({ id: string, text: string }))
 };

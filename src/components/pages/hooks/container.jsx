@@ -1,4 +1,5 @@
 import React, { useState, Fragment } from 'react';
+import { useTranslation } from 'react-i18next';
 import { DemoSection, Heading, GridWrapper, SmallHeading, List, Section } from '../../../styles/styles';
 import { string } from 'prop-types';
 import Clock from './Clock';
@@ -11,15 +12,17 @@ import useContextMenu from '../../../hooks/useContextMenu';
 import { useMouseHover } from '../../../hooks/useMouseHover';
 import { StyledContextMenuDemoTarget } from './styles';
 
-const items = [{ id: '1', text: 'Hooks' }, { id: '2', text: 'HOCs' }, { id: '3', text: 'FACCs' }];
+const items = [{ id: '1', labelKey: 'hook' }, { id: '2', labelKey: 'hoc' }, { id: '3', labelKey: 'facc' }];
 
-function Hooks(props) {
-  const [selectedItem, setSelectedItem] = useState('React');
+function Hooks (props) {
+  const [selectedItem, setSelectedItem] = useState('hoc');
   const [contextMenuCallerRef, coords, handleClose] = useContextMenu();
   const [hoverRef, isHovering] = useMouseHover();
+  const { t } = useTranslation('common');
+
   return (
     <Fragment>
-      <Heading>{props.name}</Heading>
+      <Heading>{t(props.nameKey)}</Heading>
       <GridWrapper>
         <DemoSection>
           <DynamicTimer/>
@@ -32,43 +35,43 @@ function Hooks(props) {
         </DemoSection>
         <DemoSection>
           <StyledContextMenuDemoTarget ref={contextMenuCallerRef}>
-            Right Click Here (Composable)
+            {`${t('rightClickHere')} (${t('composable')})`}
           </StyledContextMenuDemoTarget>
 
           <HooksContextMenu handleClose={handleClose} coords={coords}>
             <List>
-              <Button onClick={handleClose}>Close</Button>
+              <Button onClick={handleClose}>{t('close')}</Button>
               {
-                items.map(({ text, id }) => (
+                items.map(({ labelKey, id }) => (
                   <li
                     key={id}
-                    onClick={() => setSelectedItem(text)}
+                    onClick={() => setSelectedItem(labelKey)}
                   >
-                    {text}
+                    {t(labelKey)}
                   </li>
                 ))
               }
             </List>
           </HooksContextMenu>
 
-          <SmallHeading>{selectedItem}</SmallHeading>
+          <SmallHeading>{t(selectedItem)}</SmallHeading>
 
           <HooksContextMenu2
             closeOnClickInside
             target={
               <StyledContextMenuDemoTarget>
-                Right Click Here (Configurable)
+                {`${t('rightClickHere')} (${t('configurable')})`}
               </StyledContextMenuDemoTarget>
             }
           >
             <List>
               {
-                items.map(({ text, id }) => (
+                items.map(({ labelKey, id }) => (
                   <li
                     key={id}
-                    onMouseDown={() => setSelectedItem(text)}
+                    onMouseDown={() => setSelectedItem(labelKey)}
                   >
-                    {text}
+                    {t(labelKey)}
                   </li>
                 ))
               }
@@ -77,12 +80,12 @@ function Hooks(props) {
         </DemoSection>
         <DemoSection>
           <Section>
-            <SmallHeading ref={hoverRef}>Hover here to call tooltip</SmallHeading>
+            <SmallHeading ref={hoverRef}>{t('hoverToCallTooltip')}</SmallHeading>
           </Section>
           {
             isHovering &&
             <Tooltip targetRef={hoverRef}>
-              Tooltip
+              {t('hoverHereHideTooltip')}
             </Tooltip>
           }
         </DemoSection>
@@ -92,7 +95,7 @@ function Hooks(props) {
 }
 
 Hooks.propTypes = {
-  name: string
+  nameKey: string
 };
 
 export default Hooks;

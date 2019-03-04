@@ -1,18 +1,20 @@
 import React, { useState, Component, Fragment } from 'react';
-import { string, shape } from 'prop-types';
+import { string, shape, func } from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import Button from '../../reusable/controls/button/Button';
 import { DemoSection, GridWrapper, Heading, SmallHeading } from '../../../styles/styles';
 
 function AsyncLoss ({ name }) {
   const [user, setUser] = useState({ name: 'Anton' });
+  const { t } = useTranslation('common');
   return (
     <Fragment>
       <Heading>{name}</Heading>
       <GridWrapper>
         <DemoSection>
-          <SmallHeading>Example 1</SmallHeading>
-          <Button onClick={() => setUser({ name: 'John' })}>Change User from Above</Button>
-          <Consumer user={user}/>
+          <SmallHeading>{`${t('example')} 1`}</SmallHeading>
+          <Button onClick={() => setUser({ name: 'John' })}>{t('changeUserFromAbove')}</Button>
+          <Consumer user={user} t={t}/>
         </DemoSection>
       </GridWrapper>
     </Fragment>
@@ -25,7 +27,6 @@ AsyncLoss.propTypes = {
 
 export default AsyncLoss;
 
-
 class Consumer extends Component {
   constructor (props) {
     super(props);
@@ -36,7 +37,6 @@ class Consumer extends Component {
       inJob: false
     };
   }
-
 
   handleClick () {
     this.setState({ inJob: true });
@@ -53,8 +53,8 @@ class Consumer extends Component {
       <Fragment>
         <SmallHeading>
           {this.state.name}
-          <Button onClick={this.handleClick}>Start Async</Button>
-          {this.state.inJob ? ' waiting...' : ' ok'}
+          <Button onClick={this.handleClick}>{this.props.t('startAsync')}</Button>
+          {this.state.inJob ? this.props.t('waiting') : this.props.t('ok')}
         </SmallHeading>
       </Fragment>
     );
@@ -64,7 +64,8 @@ class Consumer extends Component {
 Consumer.propTypes = {
   user: shape({
     name: string
-  })
+  }),
+  t: func
 };
 
 

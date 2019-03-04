@@ -1,27 +1,27 @@
-import React, { Component, Fragment } from 'react';
-import { string } from 'prop-types';
+import React, { Fragment } from 'react';
+import { useTranslation } from 'react-i18next';
+import { string, func } from 'prop-types';
 import AsyncLoss from './AsyncLoss';
 import { DemoSection, GridWrapper, Heading, SmallHeading } from '../../../styles/styles';
 
-class This extends Component {
-
-  render() {
-    return (
-      <Fragment>
-        <Heading>{this.props.name}</Heading>
-        <GridWrapper>
-          <DemoSection>
-            <SmallHeading>Example 1</SmallHeading>
-            <AsyncLoss/>
-          </DemoSection>
-        </GridWrapper>
-      </Fragment>
-    );
-  }
+function This (props) {
+  const { t } = useTranslation('common');
+  return (
+    <Fragment>
+      <Heading>{t(props.nameKey)}</Heading>
+      <GridWrapper>
+        <DemoSection>
+          <SmallHeading>{`${t('example')} 1`}</SmallHeading>
+          <AsyncLoss/>
+        </DemoSection>
+      </GridWrapper>
+    </Fragment>
+  );
 }
 
 This.propTypes = {
-  name: string
+  nameKey: string,
+  t: func
 };
 
 export default This;

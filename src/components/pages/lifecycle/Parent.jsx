@@ -1,6 +1,7 @@
 /*eslint-disable no-console*/
 import React, { Component, Fragment } from 'react';
-import { bool } from 'prop-types';
+import { withTranslation } from 'react-i18next';
+import { bool, func } from 'prop-types';
 import { SmallHeading } from '../../../styles/styles';
 import { LifeCycleSection } from './styles';
 import Child from './Child';
@@ -106,15 +107,15 @@ class Parent extends Component {
     return (
       <Fragment>
         <LifeCycleSection>
-          <SmallHeading>Parent</SmallHeading>
+          <SmallHeading>{this.props.t('parent')}</SmallHeading>
           <Button onClick={this.handleUpdate}>
-            Update Parent...{this.state.counter}
+            {this.props.t('updateParent')}{this.state.counter}
           </Button>
           <Button onClick={this.handleToggleChildUpdatebility}>
-            {this.state.shouldChildUpdate ? 'Prevent child from updating' : 'Make child able to update'}
+            {this.state.shouldChildUpdate ? this.props.t('preventChildFromUpdate') : this.props.t('makeChildAbleUpdate')}
           </Button>
           <Button onClick={this.handleToggleChildMount}>
-            {this.state.isChildMounted ? 'Unmount Child' : 'Mount Child'}
+            {this.state.isChildMounted ? this.props.t('unmountChild') : this.props.t('mountChild')}
           </Button>
           {
             this.state.isChildMounted &&
@@ -130,7 +131,8 @@ class Parent extends Component {
 }
 
 Parent.propTypes = {
-  preventLogs: bool
+  preventLogs: bool,
+  t: func
 };
 
-export default Parent;
+export default withTranslation('common')(Parent);

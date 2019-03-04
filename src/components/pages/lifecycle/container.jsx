@@ -1,21 +1,23 @@
 import React, { useState, Fragment } from 'react';
+import { useTranslation } from 'react-i18next';
 import { string } from 'prop-types';
 import { DemoSection, SmallHeading, FlexRow, Heading, FlexColumn } from '../../../styles/styles';
 import Parent from './Parent';
 import Button from '../../reusable/controls/button/Button';
 
-function Lifecycle ({ name }) {
+function Lifecycle (props) {
   const [preventLogs, setPreventLogs] = useState(false);
+  const { t } = useTranslation('common');
   return (
     <Fragment>
-      <Heading>{name}</Heading>
+      <Heading>{t(props.nameKey)}</Heading>
       <DemoSection>
         <FlexColumn>
           <Parent preventLogs={preventLogs}/>
           <FlexRow>
-            <SmallHeading>* open console to see logs</SmallHeading>
+            <SmallHeading>{t('openConsole')}</SmallHeading>
             <Button onClick={() => setPreventLogs(!preventLogs)}>
-              {preventLogs ? 'Turn ON Parent Logs' : 'Turn OFF Parent Logs'}
+              {preventLogs ? t('turnOnParentLogs') : t('turnOffParentLogs')}
             </Button>
           </FlexRow>
         </FlexColumn>
@@ -25,7 +27,7 @@ function Lifecycle ({ name }) {
 }
 
 Lifecycle.propTypes = {
-  name: string
+  nameKey: string
 };
 
 export default Lifecycle;

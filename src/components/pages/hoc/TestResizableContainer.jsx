@@ -4,7 +4,7 @@ import { SmallHeading } from '../../../styles/styles';
 import { StyledTestResizerWrapper } from './styles';
 import withResizing from '../../reusable/resizer/withResizing';
 
-function TestResizebleContainer ({ heading }) {
+function TestResizableContainer ({ heading }) {
   return (
     <StyledTestResizerWrapper>
       <SmallHeading>{heading}</SmallHeading>
@@ -12,8 +12,8 @@ function TestResizebleContainer ({ heading }) {
   );
 }
 
-TestResizebleContainer.propTypes = {
+TestResizableContainer.propTypes = {
   heading: string
 };
 
-export default withResizing(TestResizebleContainer);
+export default withResizing(TestResizableContainer);

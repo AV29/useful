@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import { string } from 'prop-types';
+import { withTranslation } from 'react-i18next';
+import { string, func } from 'prop-types';
 import SliderDemo from './SliderDemo';
 import ToggleDemo from './ToggleDemo';
 import RatingDemo from './RatingDemo';
@@ -17,14 +18,14 @@ class Controls extends Component {
       sliderValue: 2,
       ratingValue: 3,
       toggles: {
-        'toggle-1': { checked: false, label: 'Is React' },
-        'toggle-2': { checked: true, label: 'Is Angular' },
+        'toggle-1': { checked: false, label: this.props.t('isReact') },
+        'toggle-2': { checked: true, label: this.props.t('isAngular') },
         'toggle-3': { checked: false }
       },
       checkboxes: {
-        'checkbox-1': { checked: false, label: 'HOC' },
-        'checkbox-2': { checked: true, label: 'FACC' },
-        'checkbox-3': { checked: false, label: 'HOOK' }
+        'checkbox-1': { checked: false, label: this.props.t('hoc') },
+        'checkbox-2': { checked: true, label: this.props.t('facc') },
+        'checkbox-3': { checked: false, label: this.props.t('hook') }
       }
     };
 
@@ -82,7 +83,7 @@ class Controls extends Component {
   render () {
     return (
       <Fragment>
-        <Heading>{this.props.name}</Heading>
+        <Heading>{this.props.t(this.props.nameKey)}</Heading>
         <GridWrapper>
           <SliderDemo
             value={this.state.sliderValue}
@@ -114,7 +115,8 @@ class Controls extends Component {
 }
 
 Controls.propTypes = {
-  name: string
+  nameKey: string,
+  t: func
 };
 
-export default Controls;
+export default withTranslation('common')(Controls);

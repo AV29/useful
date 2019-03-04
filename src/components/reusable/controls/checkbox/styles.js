@@ -6,9 +6,6 @@ const getSize = ({ size }) => size || 16;
 export const StyledInputLabel = styled.span`
     user-select: none;
     margin: 0 5px;
-    display: inline-block;
-    height: 100%;
-    width: 100%;
     cursor: pointer;
     color: ${getBaseColor};
     
@@ -18,6 +15,9 @@ export const StyledInputLabel = styled.span`
 `;
 
 export const StyledCustomBox = styled.span`
+  display: inline-block;
+  vertical-align: middle;
+  
   &::before {
     cursor: pointer;
     display: flex;
@@ -35,7 +35,7 @@ export const StyledCustomBox = styled.span`
 const disabledStylesOnHover = css`
    opacity: .5;
    ${StyledCustomBox}::before {
-     content: '✔';
+     content: '✓';
      opacity: .5;
      border-color: ${getBaseColor};
    }
@@ -56,8 +56,7 @@ const disabledStyles = css`
 `;
 
 export const StyledLabelWrapper = styled.label`
-  position: relative;
-  display: flex;
+  display: inline-block;
   margin: 10px;
   input {
     display: none;
@@ -93,7 +92,7 @@ export const StyledLabelWrapper = styled.label`
     border-color: ${getBaseColor};
     background-color: ${getBaseColor};
     color: ${getBGColor};
-    content: '✔';
+    content: '✓';
 
     &:hover {
       background-color: ${getBaseColor};

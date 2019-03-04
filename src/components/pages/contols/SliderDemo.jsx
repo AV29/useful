@@ -2,21 +2,23 @@ import React from 'react';
 import { number, func } from 'prop-types';
 import { SliderContainer } from './styles';
 import { DemoSection } from '../../../styles/styles';
+import { useTranslation } from 'react-i18next';
 
 export default function SliderDemo ({ value, onChange }) {
+  const { t } = useTranslation('common');
   return (
     <DemoSection>
       <SliderContainer
-        label="Slider Example"
+        label={t('sliderExample')}
         max={4}
         stepPerClick
         value={value}
         onChange={onChange}
         info={{
-          1: { tickMark: '10:00', tooltip: 'Came at work' },
-          2: { tickMark: '14:00', tooltip: 'Gone for dinner' },
-          3: { tickMark: '14:30', tooltip: 'Took some coffee' },
-          4: { tickMark: '19:00', tooltip: 'Went home' }
+          1: { tickMark: '10:00', tooltip: t('cameAtWork') },
+          2: { tickMark: '14:00', tooltip: t('goneForDinner') },
+          3: { tickMark: '14:30', tooltip: t('tookSomeCoffee') },
+          4: { tickMark: '20:00', tooltip: t('wentHome') }
         }}
       />
     </DemoSection>

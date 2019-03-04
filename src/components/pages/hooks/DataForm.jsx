@@ -1,27 +1,30 @@
 import React, { useReducer } from 'react';
+import { useTranslation } from 'react-i18next';
 import { StyledEditForm, StyledInfoSection } from './styles';
 import Row from '../../reusable/row/Row';
 import Input from '../../reusable/controls/input/Input';
 import Button from '../../reusable/controls/button/Button';
-import ageReducer from './ageReducer';
+import ageReducer from '../../../hooks/ageReducer';
 import useFormValue from '../../../hooks/useFormValue';
 
-function DataForm() {
+function DataForm () {
 
   const name = useFormValue('Anton');
   const surname = useFormValue('Vlasik');
 
   const [state, dispatch] = useReducer(ageReducer.reducer, ageReducer.initialState);
 
-  function handleMakeOlder() {
+  const { t } = useTranslation('common');
+
+  function handleMakeOlder () {
     dispatch({ type: 'MAKE_OLDER' });
   }
 
-  function handleMakeYounger() {
+  function handleMakeYounger () {
     dispatch({ type: 'MAKE_YOUNGER' });
   }
 
-  function handleSetAge({ target: { value } }) {
+  function handleSetAge ({ target: { value } }) {
     const age = parseInt(value);
     dispatch({ type: 'SET_AGE', payload: { age } });
   }
@@ -31,13 +34,13 @@ function DataForm() {
       <StyledInfoSection>Name: {name.value}</StyledInfoSection>
       <StyledInfoSection>Surname: {surname.value}</StyledInfoSection>
       <StyledInfoSection>Age: {state.age}</StyledInfoSection>
-      <Row label="Name">
+      <Row label={t('name')}>
         <Input {...name}/>
       </Row>
-      <Row label="Surname">
+      <Row label={t('surname')}>
         <Input {...surname}/>
       </Row>
-      <Row label="Age">
+      <Row label={t('age')}>
         <Button onClick={handleMakeYounger}>-</Button>
         <Input onChange={handleSetAge} value={state.age}/>
         <Button onClick={handleMakeOlder}>+</Button>

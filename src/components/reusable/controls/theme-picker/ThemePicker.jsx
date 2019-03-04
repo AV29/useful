@@ -1,42 +1,41 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { string, func, shape, arrayOf } from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import { StyledThemePicker, StyledThemeMarker, ThemeMarker, ThemeProp } from './styles';
 import { FlexRow, FlexColumn } from '../../../../styles/styles';
-import decapitalize from '../../../../utilities/decapitalize';
 import Tooltip from '../../tooltip/Tooltip';
 
-class ThemePicker extends Component {
-  render() {
-    return (
-      <StyledThemePicker>
-        {
-          this.props.themes.map(({ id, ...theme }) => (
-            <Tooltip
-              key={id}
-              withoutTip
-              renderHoverTarget={({ bindRef }) => (
-                <StyledThemeMarker
-                  id={id}
-                  ref={bindRef}
-                  color={theme.backgroundColor}
-                  onClick={() => this.props.onChange(id)}
-                />
-              )}
-            >
-              <FlexColumn align="stretch">
-                {Object.keys(theme).map((themeProp, index) => (
-                  <FlexRow key={index} justify="space-between">
-                    <ThemeProp>{decapitalize(themeProp)}</ThemeProp>
-                    <ThemeMarker style={{ backgroundColor: theme[themeProp] }}/>
-                  </FlexRow>
-                ))}
-              </FlexColumn>
-            </Tooltip>
-          ))
-        }
-      </StyledThemePicker>
-    );
-  }
+function ThemePicker (props) {
+  const { t } = useTranslation('common');
+  return (
+    <StyledThemePicker>
+      {
+        props.themes.map(({ id, ...theme }) => (
+          <Tooltip
+            key={id}
+            withoutTip
+            renderHoverTarget={({ bindRef }) => (
+              <StyledThemeMarker
+                id={id}
+                ref={bindRef}
+                color={theme.backgroundColor}
+                onClick={() => props.onChange(id)}
+              />
+            )}
+          >
+            <FlexColumn align="stretch">
+              {Object.keys(theme).map((themeProp, index) => (
+                <FlexRow key={index} justify="space-between">
+                  <ThemeProp>{t(themeProp)}</ThemeProp>
+                  <ThemeMarker style={{ backgroundColor: theme[themeProp] }}/>
+                </FlexRow>
+              ))}
+            </FlexColumn>
+          </Tooltip>
+        ))
+      }
+    </StyledThemePicker>
+  );
 }
 
 ThemePicker.propTypes = {

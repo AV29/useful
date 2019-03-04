@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withTranslation } from 'react-i18next';
 import { func, bool } from 'prop-types';
 import { SmallHeading } from '../../../styles/styles';
 import { LifeCycleSection } from './styles';
@@ -84,9 +85,9 @@ class Child extends Component {
     this.props.onLifeCycleMethodCall('Render', { props: this.props, state: this.state });
     return (
       <LifeCycleSection>
-        <SmallHeading>Child</SmallHeading>
+        <SmallHeading>{this.props.t('child')}</SmallHeading>
         <Button onClick={this.handleUpdate}>
-          Update Child...{this.state.counter}
+          {this.props.t('updateChild')}{this.state.counter}
         </Button>
       </LifeCycleSection>
     );
@@ -95,7 +96,8 @@ class Child extends Component {
 
 Child.propTypes = {
   onLifeCycleMethodCall: func.isRequired,
-  shouldUpdate: bool
+  shouldUpdate: bool,
+  t: func
 };
 
-export default Child;
+export default withTranslation('common')(Child);
