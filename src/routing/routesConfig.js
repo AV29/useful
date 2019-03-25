@@ -1,5 +1,5 @@
 import guid from '../utilities/guid';
-import Controls from '../components/pages/contols/container';
+import Controls from '../components/pages/controls/container';
 import Hooks from '../components/pages/hooks/container';
 import About from '../components/pages/about/container';
 import RenderProps from '../components/pages/render-props/container';

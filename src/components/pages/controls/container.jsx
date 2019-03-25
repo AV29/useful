@@ -5,8 +5,9 @@ import SliderDemo from './SliderDemo';
 import ToggleDemo from './ToggleDemo';
 import RatingDemo from './RatingDemo';
 import IdleIndicatorDemo from './IdleIndicatorDemo';
-import { GridWrapper, Heading } from '../../../styles/styles';
+import { GridWrapper, Heading, DemoSection } from '../../../styles/styles';
 import CheckBoxesDemo from './CheckBoxesDemo';
+import AdjacentCalc from './AdjacentCalc';
 
 class Controls extends Component {
 
@@ -108,6 +109,9 @@ class Controls extends Component {
             checkboxes={this.state.checkboxes}
             onChange={this.handleToggleCheckBoxValue}
           />
+          <DemoSection>
+            <AdjacentCalc/>
+          </DemoSection>
         </GridWrapper>
       </Fragment>
     );
