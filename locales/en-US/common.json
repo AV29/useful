@@ -69,5 +69,11 @@
   "hocName": "High Order Components",
   "hocDescription": "Examples for High Order Components",
   "thisName": "This issues",
-  "thisDescription": "Caveats with \"this\" and different kinds of information loss"
+  "thisDescription": "Caveats with \"this\" and different kinds of information loss",
+  "size": "Size",
+  "limit": "Limit",
+  "result": "Result",
+  "regenerateData": "Regenerate Data",
+  "sizeValidation": "should be in range of {{limit}} - {{defaultSize}}",
+  "limitValidation": "can't be more than {{size}}"
 }

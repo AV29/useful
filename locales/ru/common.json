@@ -69,5 +69,11 @@
   "hocName": "HOC компоненты",
   "hocDescription": "Примеры HOC компонентов",
   "thisName": "Контекст (this)",
-  "thisDescription": "This и проблемы, которые могут возникнуть"
+  "thisDescription": "This и проблемы, которые могут возникнуть",
+  "size": "Размер Матрицы",
+  "limit": "Кол-во сопряженных элементов",
+  "result": "Результат",
+  "regenerateData": "Сгенерировать данные",
+  "sizeValidation": "должно быть в пределах {{limit}} - {{defaultSize}}",
+  "limitValidation": "не может быть более {{size}}"
 }

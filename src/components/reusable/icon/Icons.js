@@ -9,6 +9,7 @@ import lifecycle from '../../../assets/icons/lifecycle.svg';
 import star from '../../../assets/icons/star.svg';
 import hoc from '../../../assets/icons/hoc.svg';
 import javascript from '../../../assets/icons/javascript.svg';
+import refresh from '../../../assets/icons/refresh.svg';
 
 const Icons = {
   spinner,
@@ -21,7 +22,8 @@ const Icons = {
   lifecycle,
   star,
   javascript,
-  hoc
+  hoc,
+  refresh
 };
 
 export default Icons;

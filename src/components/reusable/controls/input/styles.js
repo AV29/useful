@@ -4,6 +4,7 @@ import { getBaseColor } from '../../../../styles/styles';
 export const StyledInputWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   margin: 10px;
   position: relative;
   label {
