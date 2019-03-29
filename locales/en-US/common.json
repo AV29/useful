@@ -75,5 +75,10 @@
   "result": "Result",
   "regenerateData": "Regenerate Data",
   "sizeValidation": "should be in range of {{limit}} - {{defaultSize}}",
-  "limitValidation": "can't be more than {{size}}"
+  "limitValidation": "can't be more than {{size}}",
+  "dataLoss": "Loss of data",
+  "setStateNature": "setState() nature",
+  "batched": "Batched",
+  "sequenced": "Sequenced",
+  "sporadic": "Sporadic"
 }

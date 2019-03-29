@@ -75,5 +75,10 @@
   "result": "Результат",
   "regenerateData": "Сгенерировать данные",
   "sizeValidation": "должно быть в пределах {{limit}} - {{defaultSize}}",
-  "limitValidation": "не может быть более {{size}}"
+  "limitValidation": "не может быть более {{size}}",
+  "dataLoss": "Потеря данных",
+  "setStateNature": "Природа setState()",
+  "batched": "Сгруппированные",
+  "sequenced": "Последовательные",
+  "sporadic": "Разделенные"
 }
