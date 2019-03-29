@@ -13,7 +13,7 @@ import {
 } from './adjacentCalcStyles';
 
 class AdjacentCalc extends Component {
-  static populateData(size) {
+  static populateData (size) {
     const data = [];
     if (!size) return [[]];
     for (let i = 0; i < size; i += 1) {
@@ -25,7 +25,7 @@ class AdjacentCalc extends Component {
     return data;
   }
 
-  static getInitialState(limit, size) {
+  static getInitialState (limit, size) {
     const data = AdjacentCalc.populateData(size);
     return {
       validation: {
@@ -39,27 +39,26 @@ class AdjacentCalc extends Component {
     };
   }
 
-  constructor(props) {
+  constructor (props) {
     super(props);
 
     this.handleChangeLimit = this.handleChangeLimit.bind(this);
     this.handleChangeSize = this.handleChangeSize.bind(this);
     this.handleValidate = this.handleValidate.bind(this);
-    this.recalculate = this.recalculate.bind(this);
     this.regenerate = this.regenerate.bind(this);
 
     this.state = AdjacentCalc.getInitialState(this.props.defaultLimit, this.props.defaultSize);
   }
 
-  handleChangeLimit({ target: { value } }) {
-    this.handleValidate(this.state.size, +value, this.recalculate);
+  handleChangeLimit ({ target: { value } }) {
+    this.handleValidate(this.state.size, +value);
   }
 
-  handleChangeSize({ target: { value } }) {
-    this.handleValidate(+value, this.state.limit, this.regenerate);
+  handleChangeSize ({ target: { value } }) {
+    this.handleValidate(+value, this.state.limit);
   }
 
-  handleValidate(size, limit, callback) {
+  handleValidate (size, limit) {
     let isSizeInvalid = false;
     let isLimitInvalid = false;
     if (size > this.props.defaultSize) {
@@ -73,16 +72,10 @@ class AdjacentCalc extends Component {
       validation: { size: isSizeInvalid, limit: isLimitInvalid },
       size,
       limit
-    }), isSizeInvalid || isLimitInvalid ? null : callback);
+    }), isSizeInvalid || isLimitInvalid ? null : this.regenerate);
   }
 
-  recalculate() {
-    this.setState(({ limit, data }) => ({
-      result: findMaxAdjacent(data, +limit)
-    }));
-  }
-
-  regenerate() {
+  regenerate () {
     const { limit, size } = this.state;
     const data = AdjacentCalc.populateData(+size);
     this.setState({
@@ -91,11 +84,11 @@ class AdjacentCalc extends Component {
     });
   }
 
-  isTargetCell(rowIndex, cellIndex) {
+  isTargetCell (rowIndex, cellIndex) {
     return this.state.result.indexes.find(({ x, y }) => rowIndex === x && cellIndex === y);
   }
 
-  render() {
+  render () {
     const { data, validation, size, limit, result: { res } } = this.state;
     return (
       <StyledAdjacentCalcContainer>
@@ -106,7 +99,10 @@ class AdjacentCalc extends Component {
             type="number"
             onChange={this.handleChangeSize}
             value={size}
-            validate={() => validation.size && this.props.t('sizeValidation', { limit, defaultSize: this.props.defaultSize })}
+            validate={() => validation.size && this.props.t('sizeValidation', {
+              limit,
+              defaultSize: this.props.defaultSize
+            })}
           />
           <Input
             id="limit"

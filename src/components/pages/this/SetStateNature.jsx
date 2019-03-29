@@ -1,7 +1,8 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { func } from 'prop-types';
 import Button from '../../reusable/controls/button/Button';
 import { withTranslation } from 'react-i18next';
+import { DemoSection, SmallHeading } from '../../../styles/styles';
 
 class SetStateNature extends Component {
   constructor (props) {
@@ -56,11 +57,12 @@ class SetStateNature extends Component {
 
   render () {
     return (
-      <Fragment>
+      <DemoSection>
+        <SmallHeading>{this.props.t('setStateNature')}</SmallHeading>
         <Button onClick={this.handleBatchedClick}>{this.props.t('batched')} = {this.state.counterBatched}</Button>
         <Button onClick={this.handleSequencedClick}>{this.props.t('sequenced')} = {this.state.counterSequenced}</Button>
         <Button onClick={this.handleSporadicClick}>{this.props.t('sporadic')} = {this.state.counterSporadic}</Button>
-      </Fragment>
+      </DemoSection>
     );
   }
 }

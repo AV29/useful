@@ -8,7 +8,8 @@ function AsyncLoss ({ name }) {
   const [user, setUser] = useState({ name: 'Anton' });
   const { t } = useTranslation('common');
   return (
-    <Fragment>
+    <DemoSection>
+      <SmallHeading>{t('dataLoss')}</SmallHeading>
       <Heading>{name}</Heading>
       <GridWrapper>
         <DemoSection>
@@ -17,7 +18,7 @@ function AsyncLoss ({ name }) {
           <Consumer user={user} t={t}/>
         </DemoSection>
       </GridWrapper>
-    </Fragment>
+    </DemoSection>
   );
 }
 
