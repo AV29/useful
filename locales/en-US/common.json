@@ -74,7 +74,7 @@
   "limit": "Limit",
   "result": "Result",
   "regenerateData": "Regenerate Data",
-  "sizeValidation": "should be in range of {{limit}} - {{defaultSize}}",
+  "sizeValidation": "should be more or equal than {{limit}}",
   "limitValidation": "can't be more than {{size}}",
   "dataLoss": "Loss of data",
   "setStateNature": "setState() nature",

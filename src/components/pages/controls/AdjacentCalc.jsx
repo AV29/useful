@@ -28,10 +28,7 @@ class AdjacentCalc extends Component {
   static getInitialState(limit, size) {
     const data = AdjacentCalc.populateData(size);
     return {
-      validation: {
-        size: false,
-        limit: false
-      },
+      valid: true,
       size,
       limit,
       data,
@@ -59,20 +56,11 @@ class AdjacentCalc extends Component {
   }
 
   handleValidate(size, limit) {
-    let isSizeInvalid = false;
-    let isLimitInvalid = false;
-    if (size > this.props.defaultSize) {
-      isSizeInvalid = true;
-    }
-    if (limit > size) {
-      isSizeInvalid = true;
-      isLimitInvalid = true;
-    }
     this.setState(() => ({
-      validation: { size: isSizeInvalid, limit: isLimitInvalid },
+      valid: limit <= size,
       size,
       limit
-    }), isSizeInvalid || isLimitInvalid ? null : this.regenerate);
+    }), limit <= size ? this.regenerate : null);
   }
 
   regenerate() {
@@ -88,12 +76,8 @@ class AdjacentCalc extends Component {
     return this.state.result.indexes.find(({ x, y }) => rowIndex === x && cellIndex === y);
   }
 
-  isInvalid() {
-    return this.state.validation.limit || this.state.validation.size;
-  }
-
   render() {
-    const { data, validation, size, limit, result: { res } } = this.state;
+    const { data, valid, size, limit, result: { res } } = this.state;
     return (
       <StyledAdjacentCalcContainer>
         <StyledControlsBlock>
@@ -103,10 +87,7 @@ class AdjacentCalc extends Component {
             type="number"
             onChange={this.handleChangeSize}
             value={size}
-            validate={() => validation.size && this.props.t('sizeValidation', {
-              limit,
-              defaultSize: this.props.defaultSize
-            })}
+            validate={() => !valid && this.props.t('sizeValidation', { limit })}
           />
           <Input
             id="limit"
@@ -114,16 +95,16 @@ class AdjacentCalc extends Component {
             type="number"
             onChange={this.handleChangeLimit}
             value={limit}
-            validate={() => validation.limit && this.props.t('limitValidation', { size })}
+            validate={() => !valid && this.props.t('limitValidation', { size })}
           />
           {`${this.props.t('result')}: ${res}`}
           <StyledRefresher
             onClick={this.regenerate}
             icon="refresh"
-            disabled={this.isInvalid()}
+            disabled={!valid}
           />
         </StyledControlsBlock>
-        <StyledNumbersWrapper isBlocked={this.isInvalid()}>
+        <StyledNumbersWrapper isBlocked={!valid}>
           {
             data.map((row, rowIndex) => (
               <div key={rowIndex}>

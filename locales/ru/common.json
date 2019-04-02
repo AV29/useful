@@ -74,7 +74,7 @@
   "limit": "Кол-во сопряженных элементов",
   "result": "Результат",
   "regenerateData": "Сгенерировать данные",
-  "sizeValidation": "должно быть в пределах {{limit}} - {{defaultSize}}",
+  "sizeValidation": "должно быть в больше либо равно {{limit}}",
   "limitValidation": "не может быть более {{size}}",
   "dataLoss": "Потеря данных",
   "setStateNature": "Природа setState()",
