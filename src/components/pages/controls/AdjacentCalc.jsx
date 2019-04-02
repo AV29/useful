@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { func, number } from 'prop-types';
 import { withTranslation } from 'react-i18next';
-import { findMaxAdjacent, getRandomValue } from './utilities';
+import { findMaxAdjacent, populateData } from './utilities';
 import Input from '../../reusable/controls/input/Input';
 import {
   StyledAdjacentCalcContainer,
@@ -13,22 +13,10 @@ import {
 } from './adjacentCalcStyles';
 
 class AdjacentCalc extends Component {
-  static populateData(size) {
-    const data = [];
-    if (!size) return [[]];
-    for (let i = 0; i < size; i += 1) {
-      data.push([]);
-      for (let j = 0; j < size; j += 1) {
-        data[i][j] = getRandomValue(1, 100);
-      }
-    }
-    return data;
-  }
 
   static getInitialState(limit, size) {
-    const data = AdjacentCalc.populateData(size);
+    const data = populateData(size);
     return {
-      valid: true,
       size,
       limit,
       data,
@@ -36,48 +24,36 @@ class AdjacentCalc extends Component {
     };
   }
 
-  constructor(props) {
-    super(props);
+  state = AdjacentCalc.getInitialState(this.props.defaultLimit, this.props.defaultSize);
 
-    this.handleChangeLimit = this.handleChangeLimit.bind(this);
-    this.handleChangeSize = this.handleChangeSize.bind(this);
-    this.handleValidate = this.handleValidate.bind(this);
-    this.regenerate = this.regenerate.bind(this);
-
-    this.state = AdjacentCalc.getInitialState(this.props.defaultLimit, this.props.defaultSize);
-  }
-
-  handleChangeLimit({ target: { value } }) {
+  handleChangeLimit = ({ target: { value } }) => {
     this.handleValidate(this.state.size, +value);
-  }
+  };
 
-  handleChangeSize({ target: { value } }) {
+  handleChangeSize = ({ target: { value } }) => {
     this.handleValidate(+value, this.state.limit);
-  }
+  };
 
-  handleValidate(size, limit) {
-    this.setState(() => ({
-      valid: limit <= size,
-      size,
-      limit
-    }), limit <= size ? this.regenerate : null);
-  }
+  handleValidate = (size, limit) => {
+    this.setState(() => ({ size, limit }), limit <= size ? this.regenerate : null);
+  };
 
-  regenerate() {
+  regenerate = () => {
     const { limit, size } = this.state;
-    const data = AdjacentCalc.populateData(+size);
+    const data = populateData(+size);
     this.setState({
       data,
       result: findMaxAdjacent(data, +limit)
     });
-  }
+  };
 
-  isTargetCell(rowIndex, cellIndex) {
+  checkIsTargetCell = (rowIndex, cellIndex) => {
     return this.state.result.indexes.find(({ x, y }) => rowIndex === x && cellIndex === y);
-  }
+  };
 
   render() {
-    const { data, valid, size, limit, result: { res } } = this.state;
+    const { data, size, limit, result: { res } } = this.state;
+    const isValid = limit <= size;
     return (
       <StyledAdjacentCalcContainer>
         <StyledControlsBlock>
@@ -87,7 +63,7 @@ class AdjacentCalc extends Component {
             type="number"
             onChange={this.handleChangeSize}
             value={size}
-            validate={() => !valid && this.props.t('sizeValidation', { limit })}
+            validate={() => !isValid && this.props.t('sizeValidation', { limit })}
           />
           <Input
             id="limit"
@@ -95,16 +71,16 @@ class AdjacentCalc extends Component {
             type="number"
             onChange={this.handleChangeLimit}
             value={limit}
-            validate={() => !valid && this.props.t('limitValidation', { size })}
+            validate={() => !isValid && this.props.t('limitValidation', { size })}
           />
           {`${this.props.t('result')}: ${res}`}
           <StyledRefresher
             onClick={this.regenerate}
             icon="refresh"
-            disabled={!valid}
+            disabled={!isValid}
           />
         </StyledControlsBlock>
-        <StyledNumbersWrapper isBlocked={!valid}>
+        <StyledNumbersWrapper isBlocked={!isValid}>
           {
             data.map((row, rowIndex) => (
               <div key={rowIndex}>
@@ -112,7 +88,7 @@ class AdjacentCalc extends Component {
                   row.map((cell, cellIndex) => (
                     <StyledNumberCell
                       key={cellIndex}
-                      isTarget={this.isTargetCell(rowIndex, cellIndex)}
+                      isTarget={this.checkIsTargetCell(rowIndex, cellIndex)}
                     >
                       {cell}
                     </StyledNumberCell>

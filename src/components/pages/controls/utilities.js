@@ -29,3 +29,15 @@ export function findMaxAdjacent (data, lim) {
 }
 
 export const getRandomValue = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+export const populateData = (size) => {
+  const data = [];
+  if (!size) return [[]];
+  for (let i = 0; i < size; i += 1) {
+    data.push([]);
+    for (let j = 0; j < size; j += 1) {
+      data[i][j] = getRandomValue(1, 100);
+    }
+  }
+  return data;
+};
