@@ -27,24 +27,24 @@ class AdjacentCalc extends Component {
   state = AdjacentCalc.getInitialState(this.props.defaultLimit, this.props.defaultSize);
 
   handleChangeLimit = ({ target: { value } }) => {
-    this.handleValidate(this.state.size, +value);
+    this.handleValidate(this.state.size, +value, this.recalculate);
   };
 
   handleChangeSize = ({ target: { value } }) => {
-    this.handleValidate(+value, this.state.limit);
+    this.handleValidate(+value, this.state.limit, this.regenerate);
   };
 
-  handleValidate = (size, limit) => {
-    this.setState(() => ({ size, limit }), limit <= size ? this.regenerate : null);
+  handleValidate = (size, limit, nextStep) => {
+    this.setState(() => ({ size, limit }), limit <= size ? nextStep : null);
+  };
+
+  recalculate = () => {
+    this.setState({ result: findMaxAdjacent(this.state.data, this.state.limit) });
   };
 
   regenerate = () => {
-    const { limit, size } = this.state;
-    const data = populateData(+size);
-    this.setState({
-      data,
-      result: findMaxAdjacent(data, +limit)
-    });
+    const data = populateData(this.state.size);
+    this.setState({ data, result: findMaxAdjacent(data, this.state.limit) });
   };
 
   checkIsTargetCell = (rowIndex, cellIndex) => {
