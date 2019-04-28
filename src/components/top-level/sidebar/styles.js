@@ -7,6 +7,7 @@ export const StyledSideBar = styled.div`
   display: flex;
   justify-content: space-between;
   overflow: auto;
+  height: 100%;
   box-shadow: 0 5px 10px ${getShadowColor};
 `;
 

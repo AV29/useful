@@ -4,8 +4,9 @@ import { PRODUCTION } from './tools/constants';
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const GLOBALS = {
-  'process.env.NODE_ENV': JSON.stringify('production')
+  'process.env.NODE_ENV': JSON.stringify(PRODUCTION)
 };
 
 module.exports = {
@@ -37,7 +38,17 @@ module.exports = {
       filename: 'index.html',
       favicon: './src/assets/favicon.ico',
       template: './tools/prod.html'
-    })
+    }),
+    new CopyWebpackPlugin([
+      {
+        from: './locales',
+        to: __dirname + '/dist/locales'
+      },
+      {
+        from: './netlify',
+        to: __dirname + '/dist/'
+      }
+    ])
   ],
   resolve: {
     extensions: ['.js', '.jsx', '.css', '.less']
