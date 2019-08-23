@@ -16,6 +16,9 @@ i18n
     wait: true,
     backend: {
       loadPath: `${window.location.origin}/locales/{{lng}}/{{ns}}.json`
+    },
+    interpolation: {
+      escape: str => str
     }
   });
 

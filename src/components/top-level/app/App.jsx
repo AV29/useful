@@ -49,12 +49,12 @@ class App extends Component {
             languages={languages}
           />
           <StyledInnerWrapper>
-            <Sidebar/>
+            <Sidebar />
             <FlexColumn align="stretch" flex={1}>
               <StyledRoutesWrapper>
                 {routes}
               </StyledRoutesWrapper>
-              <Footer/>
+              <Footer />
             </FlexColumn>
           </StyledInnerWrapper>
         </StyledAppWrapper>

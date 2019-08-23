@@ -71,9 +71,10 @@
     "webpack-dev-server": "~3.1.10"
   },
   "dependencies": {
-    "axios": "~0.18.0",
+    "axios": "^0.18.1",
     "i18next": "^15.0.5",
     "i18next-xhr-backend": "^2.0.1",
+    "lodash": "^4.17.14",
     "prop-types": "~15.6.2",
     "react": "^16.8.3",
     "react-app-polyfill": "^0.1.3",
