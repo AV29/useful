@@ -11,6 +11,7 @@ import { HooksContextMenu2, HooksContextMenu } from '../../reusable/context-menu
 import useContextMenu from '../../../hooks/useContextMenu';
 import { useMouseHover } from '../../../hooks/useMouseHover';
 import { StyledContextMenuDemoTarget } from './styles';
+import UseDataAPI from './UseDataAPI';
 
 const items = [{ id: '1', labelKey: 'hook' }, { id: '2', labelKey: 'hoc' }, { id: '3', labelKey: 'facc' }];
 
@@ -88,6 +89,9 @@ function Hooks (props) {
               {t('hoverHereHideTooltip')}
             </Tooltip>
           }
+        </DemoSection>
+        <DemoSection>
+          <UseDataAPI/>
         </DemoSection>
       </GridWrapper>
     </Fragment>
