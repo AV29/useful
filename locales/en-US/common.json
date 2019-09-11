@@ -80,5 +80,8 @@
   "setStateNature": "setState() nature",
   "batched": "Batched",
   "sequenced": "Sequenced",
-  "sporadic": "Sporadic"
+  "sporadic": "Sporadic",
+  "search": "Search",
+  "loading": "Loading...",
+  "noData": "No Data"
 }

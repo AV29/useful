@@ -16,3 +16,8 @@ export const StyledContextMenuDemoTarget = styled(SmallHeading)`
   user-select: none;
   cursor: context-menu;
 `;
+
+export const StyledLinkList = styled.ul`
+  height: 210px;
+  overflow: auto;
+`;

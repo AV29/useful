@@ -80,5 +80,8 @@
   "setStateNature": "Природа setState()",
   "batched": "Сгруппированные",
   "sequenced": "Последовательные",
-  "sporadic": "Разделенные"
+  "sporadic": "Разделенные",
+  "search": "Искать",
+  "loading": "Загрузка...",
+  "noData": "Нет Данных"
 }
