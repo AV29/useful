@@ -1,27 +1,57 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useReducer } from 'react';
 import axios from 'axios';
 
+const initialState = {
+  isLoading: false,
+  error: '',
+  data: []
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'REQUEST_DATA': {
+      return { ...state, isLoading: true, error: '' };
+    }
+
+    case 'REQUEST_SUCCESS': {
+      return { ...state, isLoading: false, data: action.data };
+    }
+
+    case 'REQUEST_FAILURE': {
+      return { ...state, isLoading: false, error: action.error };
+    }
+
+    default: {
+      return state;
+    }
+  }
+};
+
 const useDataFetch = (initialUrl) => {
-  const [data, setData] = useState([]);
+  const [state, dispatch] = useReducer(reducer, initialState);
   const [url, setUrl] = useState(initialUrl);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
 
   useEffect(() => {
-    setIsLoading(true);
-    setError('');
+    let isCancelled = false;
+    dispatch({ type: 'REQUEST_DATA' });
     axios(url)
       .then(({ data: { hits } }) => {
-        setData(hits);
-        setIsLoading(false);
+        if (!isCancelled) {
+          dispatch({ type: 'REQUEST_SUCCESS', data: hits });
+        }
       })
       .catch((err) => {
-        setError(err.message);
-        setIsLoading(false);
+        if (!isCancelled) {
+          dispatch({ type: 'REQUEST_FAILURE', error: err.message });
+        }
       });
+
+    return () => {
+      isCancelled = true;
+    };
   }, [url]);
 
-  return { data, isLoading, goGetIT: setUrl, error };
+  return [state, setUrl];
 };
 
 export default useDataFetch;

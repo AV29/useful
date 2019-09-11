@@ -30,7 +30,7 @@ const url = 'http://hn.algolia.com/api/v1/search?query=';
 const initialQuery = 'UX';
 
 function UseDataAPI () {
-  const { data, isLoading, goGetIT, error } = useDataFetch(`${url}${initialQuery}`);
+  const [{ data, isLoading, error }, goGetIT] = useDataFetch(`${url}${initialQuery}`);
   const [query, setQuery] = useState(initialQuery);
   const { t } = useTranslation('common');
 
