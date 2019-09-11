@@ -21,7 +21,7 @@ const useClickOutside = ({ initialState = false, clickEvents = defaultClickEvent
     return () => {
       clickEvents.forEach(removeEvent(handleClick));
     };
-  });
+  }, [onClickInside, onClickOutside, clickEvents]);
 
   return ref;
 };

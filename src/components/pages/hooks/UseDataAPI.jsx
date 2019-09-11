@@ -1,38 +1,54 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import Input from '../../reusable/controls/input/Input';
+import Button from '../../reusable/controls/button/Button';
 import { FlexColumn } from '../../../styles/styles';
-import { useTranslation } from 'react-i18next';
+import useDataFetch from '../../../hooks/useDataFetch';
 
 function UseDataAPI () {
-  const { t } = useTranslation('common');
-  const [data, setData] = useState({ hits: [] });
-  const [query, setQuery] = useState('redux');
-
-  useEffect(() => {
-    axios(`http://hn.algolia.com/api/v1/search?query=${query}`).then(({ data }) => {
-      setData(data);
-    });
-  }, [query]);
+  const url = 'http://hn.algolia.com/api/v1/search?query=';
+  const initialQuery = 'UX';
+  const { data, isLoading, goGetIT, error } = useDataFetch(`${url}${initialQuery}`);
+  const [query, setQuery] = useState(initialQuery);
 
   return (
     <FlexColumn>
-      <Input
-        id="query"
-        label={t('query')}
-        value={query}
-        onChange={event => setQuery(event.target.value)}
-        style={{ textAlign: 'center' }}
-      />
-      <ul>
-        {data.hits.map(item => (
-          <li key={item.objectID}>
-            <a href={item.url}>{item.title}</a>
-          </li>
-        ))}
-      </ul>
+      <form onSubmit={(event) => {
+        event.preventDefault();
+        goGetIT(`${url}${query}`);
+      }}
+      >
+        <Button type="submit"> Search </Button>
+        <Input
+          value={query}
+          onChange={({ target: { value } }) => {
+            setQuery(value);
+          }}
+        />
+      </form>
+      {isLoading ?
+        'Loading...' :
+        <ul>
+          {
+            data.map(({ url, title, objectID }) => {
+              return (
+                <li key={objectID}>
+                  <a
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {title}
+                  </a>
+                </li>
+              );
+            })
+          }
+        </ul>
+      }
+      {error}
     </FlexColumn>
   );
 }
 
 export default UseDataAPI;
+//http://hn.algolia.com/api/v1/search?query={props.id}

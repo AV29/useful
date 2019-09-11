@@ -26,7 +26,7 @@ function Hooks (props) {
       <Heading>{t(props.nameKey)}</Heading>
       <GridWrapper>
         <DemoSection>
-          <DynamicTimer/>
+          <UseDataAPI/>
         </DemoSection>
         <DemoSection>
           <DataForm/>
@@ -91,7 +91,7 @@ function Hooks (props) {
           }
         </DemoSection>
         <DemoSection>
-          <UseDataAPI/>
+          <DynamicTimer/>
         </DemoSection>
       </GridWrapper>
     </Fragment>
