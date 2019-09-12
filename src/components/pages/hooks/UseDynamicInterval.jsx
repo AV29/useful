@@ -6,7 +6,7 @@ import { FlexColumn } from '../../../styles/styles';
 import { string } from 'prop-types';
 import { useTranslation } from 'react-i18next';
 
-function DynamicTimer () {
+function UseDynamicInterval () {
   const [count, setCount] = useState(0);
   const [delay, setDelay] = useState(1000);
   const [isCounting, setIsCounting] = useState(false);
@@ -28,8 +28,8 @@ function DynamicTimer () {
   );
 }
 
-DynamicTimer.propTypes = {
+UseDynamicInterval.propTypes = {
   name: string
 };
 
-export default DynamicTimer;
+export default UseDynamicInterval;

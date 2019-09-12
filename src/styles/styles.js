@@ -1,4 +1,6 @@
+import React from 'react';
 import styled from 'styled-components';
+import { string, node } from 'prop-types';
 import * as defaults from '../constants/defaults';
 
 export const getBaseColor = ({ theme: { baseColor } }) => baseColor || defaults.BASE_COLOR;
@@ -77,3 +79,15 @@ export const PaddedBlock = withPadding('div');
 export const PaddedHeading = withPadding('h1');
 
 export const PaddedSmallHeading = withPadding('h2');
+
+export const DemoSectionTitled = props => (
+  <DemoSection>
+    <PaddedSmallHeading bottom={10}>{props.title}</PaddedSmallHeading>
+    {props.children}
+  </DemoSection>
+);
+
+DemoSectionTitled.propTypes = {
+  title: string,
+  children: node
+};
