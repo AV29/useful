@@ -24,7 +24,7 @@ const getList = (data, t) => data.length > 0 ?
   </StyledLinkList> :
   <div>{t('noData')}</div>;
 
-const url = 'http://hn.algolia.com/api/v1/search?query=';
+const url = 'https://hn.algolia.com/api/v1/search?query=';
 const initialQuery = 'UX';
 
 function UseDataFetch () {
