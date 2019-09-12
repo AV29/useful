@@ -6,25 +6,23 @@ import { FlexColumn } from '../../../styles/styles';
 import { StyledLinkList } from './styles';
 import useDataFetch from '../../../hooks/useDataFetch';
 
-const getList = (data, t) => {
-  return data.length > 0 ?
-    <StyledLinkList>
-      {
-        data.map(({ url, title, objectID }) => (
-          <li key={objectID}>
-            <a
-              href={url}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {title}
-            </a>
-          </li>
-        ))
-      }
-    </StyledLinkList> :
-    <div>{t('noData')}</div>;
-};
+const getList = (data, t) => data.length > 0 ?
+  <StyledLinkList>
+    {
+      data.map(({ url, title, objectID }) => (
+        <li key={objectID}>
+          <a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {title}
+          </a>
+        </li>
+      ))
+    }
+  </StyledLinkList> :
+  <div>{t('noData')}</div>;
 
 const url = 'http://hn.algolia.com/api/v1/search?query=';
 const initialQuery = 'UX';

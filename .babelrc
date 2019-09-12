@@ -11,6 +11,9 @@
         "displayName": true,
         "fileName": false
       }
+    ],
+    [
+      "babel-plugin-transform-custom-element-classes"
     ]
   ],
   "env": {
