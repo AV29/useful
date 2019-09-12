@@ -9,7 +9,6 @@ import UseMouseHover from './UseMouseHover';
 import UseDynamicInterval from './UseDynamicInterval';
 import UseContextMenu from './UseContextMenu';
 
-
 function Hooks (props) {
   const { t } = useTranslation('common');
   return (

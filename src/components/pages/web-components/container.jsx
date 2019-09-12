@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { string, func } from 'prop-types';
 import Dropdown from './Dropdown';
 import { isChrome, isFirefox } from '../../../utilities/browserDefine';
-import { GridWrapper, Heading, DemoSection } from '../../../styles/styles';
+import { GridWrapper, Heading, DemoSectionTitled } from '../../../styles/styles';
 
 const options = {
   option1: { label: 'Option 1' },
@@ -19,13 +19,13 @@ function WebComponents (props) {
       <GridWrapper>
         {
           isChrome || isFirefox ?
-            <DemoSection>
+            <DemoSectionTitled title={t('customDropdown')}>
               <Dropdown
                 label={dropDownLabel}
                 onChange={setDropDownLabel}
                 options={options}
               />
-            </DemoSection> :
+            </DemoSectionTitled> :
             <Heading>{t('webComponentsNotSupported')}</Heading>
         }
       </GridWrapper>

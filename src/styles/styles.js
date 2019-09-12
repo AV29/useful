@@ -52,6 +52,7 @@ export const DemoSection = styled(Section)`
 `;
 
 export const Heading = styled.h1`
+    text-align: center;
     padding: 10px 0;
 `;
 

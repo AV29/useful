@@ -73,6 +73,7 @@
   "webComponentsName": "Web Components, также известные как Custom elements",
   "webComponentsDescription": "Новые втсроенные и поддерживаемые в Chrome и Firefox кастомные элементы.",
   "webComponentsNotSupported": "Web Components не поддерживаются в этом браузере",
+  "customDropdown": "Кастомный выподающий список",
   "size": "Размер Матрицы",
   "limit": "Кол-во сопряженных элементов",
   "result": "Результат",

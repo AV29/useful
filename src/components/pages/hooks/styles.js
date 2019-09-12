@@ -18,6 +18,7 @@ export const StyledContextMenuDemoTarget = styled(SmallHeading)`
 `;
 
 export const StyledLinkList = styled.ul`
-  height: 210px;
+  height: 290px;
+  width: 100%;
   overflow: auto;
 `;

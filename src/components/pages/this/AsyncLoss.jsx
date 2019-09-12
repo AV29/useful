@@ -2,23 +2,20 @@ import React, { useState, Component, Fragment } from 'react';
 import { string, shape, func } from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import Button from '../../reusable/controls/button/Button';
-import { DemoSection, GridWrapper, Heading, SmallHeading } from '../../../styles/styles';
+import { DemoSectionTitled, GridWrapper, SmallHeading } from '../../../styles/styles';
 
 function AsyncLoss ({ name }) {
   const [user, setUser] = useState({ name: 'Anton' });
   const { t } = useTranslation('common');
   return (
-    <DemoSection>
-      <SmallHeading>{t('dataLoss')}</SmallHeading>
-      <Heading>{name}</Heading>
+    <DemoSectionTitled title={t('dataLoss')}>
       <GridWrapper>
-        <DemoSection>
-          <SmallHeading>{`${t('example')} 1`}</SmallHeading>
+        <DemoSectionTitled title={`${t('example')} 1`}>
           <Button onClick={() => setUser({ name: 'John' })}>{t('changeUserFromAbove')}</Button>
           <Consumer user={user} t={t}/>
-        </DemoSection>
+        </DemoSectionTitled>
       </GridWrapper>
-    </DemoSection>
+    </DemoSectionTitled>
   );
 }
 

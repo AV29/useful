@@ -1,7 +1,7 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import { StyledContextMenuDemoTarget } from './styles';
 import { HooksContextMenu, HooksContextMenu2 } from '../../reusable/context-menu/ContextMenu';
-import { List, SmallHeading } from '../../../styles/styles';
+import { List, FlexRow, PaddedHeading } from '../../../styles/styles';
 import Button from '../../reusable/controls/button/Button';
 import { useTranslation } from 'react-i18next';
 import useContextMenu from '../../../hooks/useContextMenu';
@@ -13,11 +13,10 @@ function UseContextMenu () {
   const { t } = useTranslation('common');
   const [contextMenuCallerRef, coords, handleClose] = useContextMenu();
   return (
-    <Fragment>
+    <FlexRow>
       <StyledContextMenuDemoTarget ref={contextMenuCallerRef}>
         {`${t('rightClickHere')} (${t('composable')})`}
       </StyledContextMenuDemoTarget>
-
       <HooksContextMenu handleClose={handleClose} coords={coords}>
         <List>
           <Button onClick={handleClose}>{t('close')}</Button>
@@ -34,7 +33,7 @@ function UseContextMenu () {
         </List>
       </HooksContextMenu>
 
-      <SmallHeading>{t(selectedItem)}</SmallHeading>
+      <PaddedHeading right={20} left={20}>{t(selectedItem)}</PaddedHeading>
 
       <HooksContextMenu2
         closeOnClickInside
@@ -57,7 +56,7 @@ function UseContextMenu () {
           }
         </List>
       </HooksContextMenu2>
-    </Fragment>
+    </FlexRow>
   );
 }
 
