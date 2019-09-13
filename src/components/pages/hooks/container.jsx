@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react';
 import { string } from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import { DemoSectionTitled, Heading, GridWrapper } from '../../../styles/styles';
+import { Heading, GridWrapper } from '../../../styles/styles';
+import DemoSection from '../../reusable/demo-section/DemoSection';
 import UseDateTimer from './UseDateTimer';
 import UseFormValue from './UseFormValue';
 import UseDataFetch from './UseDataFetch';
@@ -15,24 +16,24 @@ function Hooks (props) {
     <Fragment>
       <Heading>{t(props.nameKey)}</Heading>
       <GridWrapper>
-        <DemoSectionTitled title="useDataFetch">
+        <DemoSection title="useDataFetch">
           <UseDataFetch />
-        </DemoSectionTitled>
-        <DemoSectionTitled title="useFormValue">
+        </DemoSection>
+        <DemoSection title="useFormValue">
           <UseFormValue />
-        </DemoSectionTitled>
-        <DemoSectionTitled title="useDateTimer">
+        </DemoSection>
+        <DemoSection title="useDateTimer">
           <UseDateTimer />
-        </DemoSectionTitled>
-        <DemoSectionTitled title="useContextMenu">
+        </DemoSection>
+        <DemoSection title="useContextMenu">
           <UseContextMenu />
-        </DemoSectionTitled>
-        <DemoSectionTitled title="useMouseHover">
+        </DemoSection>
+        <DemoSection title="useMouseHover">
           <UseMouseHover />
-        </DemoSectionTitled>
-        <DemoSectionTitled title="useDynamicInterval">
+        </DemoSection>
+        <DemoSection title="useDynamicInterval">
           <UseDynamicInterval />
-        </DemoSectionTitled>
+        </DemoSection>
       </GridWrapper>
     </Fragment>
   );

@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
 import { string } from 'prop-types';
-import { DemoSection, GridWrapper, Heading } from '../../../styles/styles';
+import { GridWrapper, Heading } from '../../../styles/styles';
+import DemoSection from '../../reusable/demo-section/DemoSection';
 import TestResizableContainer from '../hoc/TestResizableContainer';
 
 function Hoc (props) {
@@ -10,7 +11,7 @@ function Hoc (props) {
     <Fragment>
       <Heading>{t(props.nameKey)}</Heading>
       <GridWrapper>
-        <DemoSection>
+        <DemoSection title="withResizing">
           <TestResizableContainer heading={t('tryResizing')} initialWidth={240}/>
         </DemoSection>
       </GridWrapper>

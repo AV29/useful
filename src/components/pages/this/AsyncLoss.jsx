@@ -2,26 +2,23 @@ import React, { useState, Component, Fragment } from 'react';
 import { string, shape, func } from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import Button from '../../reusable/controls/button/Button';
-import { DemoSectionTitled, GridWrapper, SmallHeading } from '../../../styles/styles';
+import { GridWrapper, SmallHeading } from '../../../styles/styles';
+import DemoSection from '../../reusable/demo-section/DemoSection';
 
-function AsyncLoss ({ name }) {
+function AsyncLoss () {
   const [user, setUser] = useState({ name: 'Anton' });
   const { t } = useTranslation('common');
   return (
-    <DemoSectionTitled title={t('dataLoss')}>
+    <DemoSection title={t('dataLoss')}>
       <GridWrapper>
-        <DemoSectionTitled title={`${t('example')} 1`}>
+        <DemoSection title={`${t('example')} 1`}>
           <Button onClick={() => setUser({ name: 'John' })}>{t('changeUserFromAbove')}</Button>
           <Consumer user={user} t={t}/>
-        </DemoSectionTitled>
+        </DemoSection>
       </GridWrapper>
-    </DemoSectionTitled>
+    </DemoSection>
   );
 }
-
-AsyncLoss.propTypes = {
-  name: string
-};
 
 export default AsyncLoss;
 

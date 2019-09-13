@@ -1,7 +1,8 @@
 import React, { useState, Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
 import { string } from 'prop-types';
-import { DemoSection, SmallHeading, FlexRow, Heading, FlexColumn } from '../../../styles/styles';
+import { SmallHeading, FlexRow, Heading, FlexColumn } from '../../../styles/styles';
+import DemoSection from '../../reusable/demo-section/DemoSection';
 import Parent from './Parent';
 import Button from '../../reusable/controls/button/Button';
 
@@ -13,7 +14,7 @@ function Lifecycle (props) {
       <Heading>{t(props.nameKey)}</Heading>
       <DemoSection>
         <FlexColumn>
-          <Parent preventLogs={preventLogs}/>
+          <Parent preventLogs={preventLogs} />
           <FlexRow>
             <SmallHeading>{t('openConsole')}</SmallHeading>
             <Button onClick={() => setPreventLogs(!preventLogs)}>

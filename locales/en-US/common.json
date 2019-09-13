@@ -22,7 +22,11 @@
   "waiting": "...waiting",
   "ok": "Ok",
   "startIdleTimer": "Start Idle Timer",
-  "ratingControl": "Rating Control",
+  "ratingControl": "Rating Control Example",
+  "toggleExample": "Toggle Example",
+  "tvShowRating": "TV Show Rating",
+  "checkboxExample": "Checkbox Examples",
+  "idleIndicatorExample": "Idle Indicator Example",
   "isReact": "React",
   "isAngular": "Angular",
   "isVue": "Vue",
@@ -55,6 +59,7 @@
   "makeChildAbleUpdate": "Make child able to update",
   "unmountChild": "Unmount Child",
   "mountChild": "Mount Child",
+  "windowSize": "window size getter",
   "windowSizeMessage": "Window size is: {{windowWidth}} x {{windowHeight}}",
   "example": "Example",
   "notFound": "This page is not found!",
@@ -87,5 +92,11 @@
   "sporadic": "Sporadic",
   "search": "Search",
   "loading": "Loading...",
-  "noData": "No Data"
+  "noData": "No Data",
+  "dailyPlan": "Daily Plan",
+  "asyncLoadingExample": "Async execution",
+  "tooltipExample": "Tooltip example",
+  "clickoutsideExample": "Click 'outside' detection example",
+  "clickOutsideExampleBlock": "Start clicking",
+  "resetMessages": "Clear"
 }

@@ -2,8 +2,9 @@ import React, { Fragment, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { string, func } from 'prop-types';
 import Dropdown from './Dropdown';
+import DemoSection from '../../reusable/demo-section/DemoSection';
 import { isChrome, isFirefox } from '../../../utilities/browserDefine';
-import { GridWrapper, Heading, DemoSectionTitled } from '../../../styles/styles';
+import { GridWrapper, Heading } from '../../../styles/styles';
 
 const options = {
   option1: { label: 'Option 1' },
@@ -19,13 +20,13 @@ function WebComponents (props) {
       <GridWrapper>
         {
           isChrome || isFirefox ?
-            <DemoSectionTitled title={t('customDropdown')}>
+            <DemoSection title={t('customDropdown')}>
               <Dropdown
                 label={dropDownLabel}
                 onChange={setDropDownLabel}
                 options={options}
               />
-            </DemoSectionTitled> :
+            </DemoSection> :
             <Heading>{t('webComponentsNotSupported')}</Heading>
         }
       </GridWrapper>

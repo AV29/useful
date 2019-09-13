@@ -5,7 +5,8 @@ import SliderDemo from './SliderDemo';
 import ToggleDemo from './ToggleDemo';
 import RatingDemo from './RatingDemo';
 import IdleIndicatorDemo from './IdleIndicatorDemo';
-import { GridWrapper, Heading, DemoSection } from '../../../styles/styles';
+import { GridWrapper, Heading } from '../../../styles/styles';
+import DemoSection from '../../reusable/demo-section/DemoSection';
 import CheckBoxesDemo from './CheckBoxesDemo';
 import AdjacentCalc from './AdjacentCalc';
 
@@ -17,7 +18,7 @@ class Controls extends Component {
     this.state = {
       inIdle: false,
       sliderValue: 2,
-      ratingValue: 3,
+      ratingValue: 9,
       toggles: {
         'toggle-1': { checked: false, label: this.props.t('isReact') },
         'toggle-2': { checked: true, label: this.props.t('isAngular') },
@@ -86,31 +87,41 @@ class Controls extends Component {
       <Fragment>
         <Heading>{this.props.t(this.props.nameKey)}</Heading>
         <GridWrapper>
-          <SliderDemo
-            value={this.state.sliderValue}
-            onChange={this.handleChangeSliderValue}
-          />
-          <RatingDemo
-            value={this.state.ratingValue}
-            onChange={this.handleChangeRatingValue}
-          />
-          <ToggleDemo
-            toggles={this.state.toggles}
-            onChange={this.handleToggleValue}
-          />
-          <IdleIndicatorDemo
-            idle={this.state.inIdle}
-            onFinished={this.handleIdleFinished}
-            onStartIdle={this.handleStartIdle}
-            bindTimer={timer => this.timer = timer}
-            bindIndicator={indicator => this.indicator = indicator}
-          />
-          <CheckBoxesDemo
-            checkboxes={this.state.checkboxes}
-            onChange={this.handleToggleCheckBoxValue}
-          />
+          <DemoSection title={this.props.t('sliderExample')}>
+            <SliderDemo
+              value={this.state.sliderValue}
+              onChange={this.handleChangeSliderValue}
+            />
+          </DemoSection>
+          <DemoSection title={this.props.t('ratingControl')}>
+            <RatingDemo
+              value={this.state.ratingValue}
+              onChange={this.handleChangeRatingValue}
+            />
+          </DemoSection>
+          <DemoSection title={this.props.t('toggleExample')}>
+            <ToggleDemo
+              toggles={this.state.toggles}
+              onChange={this.handleToggleValue}
+            />
+          </DemoSection>
+          <DemoSection title={this.props.t('idleIndicatorExample')}>
+            <IdleIndicatorDemo
+              idle={this.state.inIdle}
+              onFinished={this.handleIdleFinished}
+              onStartIdle={this.handleStartIdle}
+              bindTimer={timer => this.timer = timer}
+              bindIndicator={indicator => this.indicator = indicator}
+            />
+          </DemoSection>
+          <DemoSection title={this.props.t('checkboxExample')}>
+            <CheckBoxesDemo
+              checkboxes={this.state.checkboxes}
+              onChange={this.handleToggleCheckBoxValue}
+            />
+          </DemoSection>
           <DemoSection>
-            <AdjacentCalc/>
+            <AdjacentCalc />
           </DemoSection>
         </GridWrapper>
       </Fragment>

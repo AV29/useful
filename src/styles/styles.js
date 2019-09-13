@@ -46,9 +46,10 @@ export const Section = styled.div`
     padding: 15px;
 `;
 
-export const DemoSection = styled(Section)`
+export const StyledDemoSection = styled(Section)`
     border-width: 2px;
     box-shadow: 0 0 15px ${getShadowColor};
+    width: 100%;
 `;
 
 export const Heading = styled.h1`
@@ -80,15 +81,3 @@ export const PaddedBlock = withPadding('div');
 export const PaddedHeading = withPadding('h1');
 
 export const PaddedSmallHeading = withPadding('h2');
-
-export const DemoSectionTitled = props => (
-  <DemoSection>
-    <PaddedSmallHeading bottom={10}>{props.title}</PaddedSmallHeading>
-    {props.children}
-  </DemoSection>
-);
-
-DemoSectionTitled.propTypes = {
-  title: string,
-  children: node
-};
