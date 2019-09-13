@@ -1,20 +1,15 @@
 import React from 'react';
-import { func, object } from 'prop-types';
 import CheckBox from '../../reusable/controls/checkbox/CheckBox';
+import useToggle from '../../../hooks/useToggle';
 
-export default function CheckBoxesDemo ({ checkboxes, onChange }) {
-  return Object.keys(checkboxes).map(key => (
+export default function CheckBoxesDemo () {
+  const [checkboxes, onChange] = useToggle();
+  return checkboxes.map(({ id, leftLabel, ...checkbox }, index) => (
     <CheckBox
-      key={key}
-      id={key}
-      label={checkboxes[key].label}
-      checked={checkboxes[key].checked}
-      onChange={onChange}
+      id={`checkbox-${id}`}
+      key={index}
+      onChange={() => onChange(index)}
+      {...checkbox}
     />
   ));
 }
-
-CheckBoxesDemo.propTypes = {
-  checkboxes: object,
-  onChange: func
-};

@@ -23,4 +23,5 @@ export const MessagesContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  user-select: none;
 `;

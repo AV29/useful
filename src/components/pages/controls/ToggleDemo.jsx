@@ -1,20 +1,15 @@
 import React from 'react';
-import { func, object } from 'prop-types';
 import ToggleBox from '../../reusable/controls/toggle/Toggle';
+import useToggle from '../../../hooks/useToggle';
 
-export default function ToggleDemo ({ toggles, onChange }) {
-  return Object.keys(toggles).map(key => (
+export default function ToggleDemo () {
+  const [toggles, onChange] = useToggle();
+  return toggles.map(({ id, ...toggle }, index) => (
     <ToggleBox
-      key={key}
-      id={key}
-      label={toggles[key].label}
-      checked={toggles[key].checked}
-      onChange={onChange}
+      key={index}
+      id={`toggle-${id}`}
+      onChange={() => onChange(index)}
+      {...toggle}
     />
   ));
 }
-
-ToggleDemo.propTypes = {
-  toggles: object,
-  onChange: func
-};

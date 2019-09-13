@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
-import { func, bool } from 'prop-types';
+import { func, bool, object } from 'prop-types';
 import { IdleIndicatorContainer } from './styles';
 import IdleIndicator from '../../reusable/idle-indicator/IdleIndicator';
 import Button from '../../reusable/controls/button/Button';
@@ -29,6 +29,6 @@ IdleIndicatorDemo.propTypes = {
   idle: bool,
   onFinished: func,
   onStartIdle: func,
-  bindIndicator: func,
-  bindTimer: func
+  bindIndicator: object,
+  bindTimer: object
 };
