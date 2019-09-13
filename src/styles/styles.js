@@ -1,6 +1,4 @@
-import React from 'react';
 import styled from 'styled-components';
-import { string, node } from 'prop-types';
 import * as defaults from '../constants/defaults';
 
 export const getBaseColor = ({ theme: { baseColor } }) => baseColor || defaults.BASE_COLOR;
