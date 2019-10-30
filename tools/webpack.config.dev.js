@@ -1,16 +1,14 @@
 /* eslint-disable prefer-template*/
 const webpack =  require('webpack');
-const constants = require('./tools/constants');
-const commonPaths = require('./tools/paths');
+const constants = require('./constants');
+const paths = require('./paths');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
-process.noDeprecation = true;
 
 module.exports = {
   devtool: 'source-map',
   output: {
     filename: '[name].js',
-    path: commonPaths.outputPath,
+    path: paths.outputPath,
     chunkFilename: '[name].js'
   },
   devServer: {
@@ -28,8 +26,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       inject: true,
       filename: 'index.html',
-      favicon: './src/assets/favicon.ico',
-      template: './src/index.html',
+      favicon: paths.faviconPath,
+      template: paths.templatePath
     })
   ],
   module: {

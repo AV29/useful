@@ -1,4 +1,4 @@
-const commonPaths = require('./tools/paths');
+const commonPaths = require('./paths');
 
 module.exports = {
   entry: commonPaths.entryPath,

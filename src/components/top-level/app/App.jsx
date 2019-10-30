@@ -15,11 +15,14 @@ class App extends Component {
     return themes.find(({ id }) => id === localStorage.getItem('themeId')) || themes[0];
   }
 
+  static saveLanguage (languageId) {
+    localStorage.setItem('languageId', languageId);
+  }
+
   constructor (props) {
     super(props);
 
     this.handleChangeTheme = this.handleChangeTheme.bind(this);
-    this.saveLanguage = this.saveLanguage.bind(this);
 
     this.state = {
       theme: { ...App.getCurrentTheme() }
@@ -34,27 +37,23 @@ class App extends Component {
     localStorage.setItem('themeId', this.state.theme.id);
   }
 
-  saveLanguage (languageId) {
-    localStorage.setItem('languageId', languageId);
-  }
-
   render () {
     return (
       <ThemeProvider theme={this.state.theme}>
         <StyledAppWrapper>
           <Header
             onThemeChange={this.handleChangeTheme}
-            onLanguageChange={this.saveLanguage}
+            onLanguageChange={App.saveLanguage}
             themes={themes}
             languages={languages}
           />
           <StyledInnerWrapper>
-            <Sidebar />
+            <Sidebar/>
             <FlexColumn align="stretch" flex={1}>
               <StyledRoutesWrapper>
                 {routes}
               </StyledRoutesWrapper>
-              <Footer />
+              <Footer/>
             </FlexColumn>
           </StyledInnerWrapper>
         </StyledAppWrapper>

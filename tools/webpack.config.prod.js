@@ -1,12 +1,12 @@
 /* eslint-disable prefer-template*/
-const constants  = require('./tools/constants');
+const constants  = require('./constants');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const commonPaths = require('./tools/paths');
+const paths = require('./paths');
 const GLOBALS = {
   'process.env.NODE_ENV': JSON.stringify(constants.PRODUCTION)
 };
@@ -15,9 +15,9 @@ module.exports = {
   devtool: 'source-map',
   mode: constants.PRODUCTION,
   output: {
-    filename: `${commonPaths.jsFolder}/[name].[hash].js`,
-    path: commonPaths.outputPath,
-    chunkFilename: `${commonPaths.jsFolder}/[name].[chunkhash].js`,
+    filename: `${paths.jsFolder}/[name].[hash].js`,
+    path: paths.outputPath,
+    chunkFilename: `${paths.jsFolder}/[name].[chunkhash].js`,
   },
   optimization: {
     minimizer: [
@@ -65,16 +65,16 @@ module.exports = {
     new HtmlWebpackPlugin({
       inject: true,
       filename: 'index.html',
-      favicon: './src/assets/favicon.ico',
-      template: './tools/prod.html'
+      favicon: paths.faviconPath,
+      template: paths.templatePath
     }),
     new CopyWebpackPlugin([
       {
-        from: './locales',
+        from: paths.localesPath,
         to: __dirname + '/dist/locales'
       },
       {
-        from: './netlify',
+        from: paths.netlifyPath,
         to: __dirname + '/dist/'
       }
     ])

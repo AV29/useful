@@ -21,7 +21,7 @@ export default [
     backgroundColor: '#31a43d'
   },
   {
-    id: '3',
+    id: '4',
     baseColor: '#8f0406',
     borderColor: '#df8084',
     shadowColor: '#005758',

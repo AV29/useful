@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "A set of useful apps",
   "scripts": {
-    "open:src": "cross-env NODE_ENV=development webpack-dev-server --port 3000 --open",
+    "open:src": "cross-env NODE_ENV=development webpack-dev-server --progress --port 3000 --open",
     "lint": "esw --ext .js --ext .jsx webpack.config.* src tools",
     "lint:watch": "npm run lint -- --watch",
     "start": "npm-run-all --parallel open:src lint:watch",
