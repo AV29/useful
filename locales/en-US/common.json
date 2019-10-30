@@ -83,5 +83,7 @@
   "sporadic": "Sporadic",
   "search": "Search",
   "loading": "Loading...",
-  "noData": "No Data"
+  "noData": "No Data",
+  "playground": "Playground",
+  "playgroundDescription": "(randomly changed playground page to try something out)"
 }

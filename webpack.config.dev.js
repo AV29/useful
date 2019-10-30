@@ -55,7 +55,11 @@ export default {
             loader: 'css-loader',
             options: {
               importLoaders: 1,
-              sourceMap: true
+              sourceMap: true,
+              localsConvention: 'camelCase',
+              modules: {
+                localIdentName: '[local]___[hash:base64:5]'
+              }
             }
           },
           {

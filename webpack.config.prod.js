@@ -80,7 +80,11 @@ module.exports = {
                 options: {
                   importLoaders: 1,
                   minimize: true,
-                  sourceMap: true
+                  sourceMap: true,
+                  localsConvention: 'camelCase',
+                  modules: {
+                    localIdentName: '[local]___[hash:base64:5]'
+                  }
                 }
               },
               {

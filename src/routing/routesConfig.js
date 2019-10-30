@@ -6,6 +6,7 @@ import RenderProps from '../components/pages/render-props/container';
 import Hoc from '../components/pages/hoc/container';
 import This from '../components/pages/this/container';
 import Lifecycle from '../components/pages/lifecycle/container';
+import Playground from '../components/pages/playground/Playground';
 
 export default [
   {
@@ -62,5 +63,12 @@ export default [
     path: '/about',
     icon: 'about',
     component: About
+  },
+  {
+    id: guid(),
+    nameKey: 'Playground',
+    path: '/playground',
+    icon: 'playground',
+    component: Playground
   }
 ];

@@ -10,6 +10,7 @@ import star from '../../../assets/icons/star.svg';
 import hoc from '../../../assets/icons/hoc.svg';
 import javascript from '../../../assets/icons/javascript.svg';
 import refresh from '../../../assets/icons/refresh.svg';
+import playground from '../../../assets/icons/playground.svg';
 
 const Icons = {
   spinner,
@@ -23,7 +24,8 @@ const Icons = {
   star,
   javascript,
   hoc,
-  refresh
+  refresh,
+  playground
 };
 
 export default Icons;

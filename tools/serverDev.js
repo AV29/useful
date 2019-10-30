@@ -16,6 +16,7 @@ const server = new WebpackDevServer(compiler, {
   stats: {
     colors: true
   },
+  open: true,
   watchOptions: { aggregateTimeout: 300, poll: 1000 }
 });
 
