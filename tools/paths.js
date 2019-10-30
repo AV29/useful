@@ -11,7 +11,7 @@ module.exports = {
   localesSourcePath: path.resolve(__dirname, '../', 'locales'),
   localesDestPath: path.resolve(__dirname, '../', `${dist}/locales`),
   netlifySourcePath: path.resolve(__dirname, '../', 'netlify'),
-  netlifyDestPath: path.resolve(__dirname, '../', `${dist}/netlify`),
+  netlifyDestPath: path.resolve(__dirname, '../', `${dist}/`),
   distFolder: dist,
   prodFallbackEntryPoint: `../${dist}/index.html`
 };
