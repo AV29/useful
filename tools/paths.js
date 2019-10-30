@@ -8,8 +8,10 @@ module.exports = {
   jsFolder: 'js',
   templatePath: path.resolve(__dirname, '../', 'src/index.html'),
   faviconPath: path.resolve(__dirname, '../', 'src/assets/favicon.ico'),
-  localesPath: path.resolve(__dirname, '../', 'locales'),
-  netlifyPath: path.resolve(__dirname, '../', 'netlify'),
+  localesSourcePath: path.resolve(__dirname, '../', 'locales'),
+  localesDestPath: path.resolve(__dirname, '../', `${dist}/locales`),
+  netlifySourcePath: path.resolve(__dirname, '../', 'netlify'),
+  netlifyDestPath: path.resolve(__dirname, '../', `${dist}/netlify`),
   distFolder: dist,
   prodFallbackEntryPoint: `../${dist}/index.html`
 };

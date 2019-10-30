@@ -70,12 +70,12 @@ module.exports = {
     }),
     new CopyWebpackPlugin([
       {
-        from: paths.localesPath,
-        to: __dirname + '/dist/locales'
+        from: paths.localesSourcePath,
+        to: paths.localesDestPath
       },
       {
-        from: paths.netlifyPath,
-        to: __dirname + '/dist/'
+        from: paths.netlifySourcePath,
+        to: paths.netlifyDestPath
       }
     ])
   ],
