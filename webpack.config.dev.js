@@ -1,24 +1,22 @@
 /* eslint-disable prefer-template*/
-import webpack from 'webpack';
-import { DEV_PORT, DEVELOPMENT } from './tools/constants';
-
+const webpack =  require('webpack');
+const constants = require('./tools/constants');
+const commonPaths = require('./tools/paths');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 process.noDeprecation = true;
 
-export default {
-  devtool: 'cheap-module-eval-source-map',
-  entry: [
-    `webpack-dev-server/client?http://localhost:${DEV_PORT}`,
-    'webpack/hot/only-dev-server',
-    './src/index'
-  ],
+module.exports = {
+  devtool: 'source-map',
   output: {
-    filename: 'dev-bundle.js',
-    publicPath: '/'
+    filename: '[name].js',
+    path: commonPaths.outputPath,
+    chunkFilename: '[name].js'
   },
-  mode: DEVELOPMENT,
-  target: 'web',
+  devServer: {
+    historyApiFallback: true,
+  },
+  mode: constants.DEVELOPMENT,
   plugins: [
     new webpack.LoaderOptionsPlugin({
       noInfo: true,
@@ -34,9 +32,6 @@ export default {
       template: './src/index.html',
     })
   ],
-  resolve: {
-    extensions: ['.js', '.jsx', '.css', '.less']
-  },
   module: {
     rules: [
       {

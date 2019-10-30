@@ -68,16 +68,16 @@ export default [
   },
   {
     id: guid(),
-    nameKey: 'About',
-    path: '/about',
-    icon: 'about',
-    component: About
-  },
-  {
-    id: guid(),
     nameKey: 'Playground',
     path: '/playground',
     icon: 'playground',
     component: Playground
+  },
+  {
+    id: guid(),
+    nameKey: 'About',
+    path: '/about',
+    icon: 'about',
+    component: About
   }
 ];

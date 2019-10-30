@@ -1,28 +1,57 @@
 /* eslint-disable prefer-template*/
-import { PRODUCTION } from './tools/constants';
-
+const constants  = require('./tools/constants');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const commonPaths = require('./tools/paths');
 const GLOBALS = {
-  'process.env.NODE_ENV': JSON.stringify(PRODUCTION)
+  'process.env.NODE_ENV': JSON.stringify(constants.PRODUCTION)
 };
 
 module.exports = {
   devtool: 'source-map',
-  entry: './src/index',
+  mode: constants.PRODUCTION,
   output: {
-    path: __dirname + '/dist',
-    publicPath: '/',
-    filename: 'bundle.js',
-    libraryTarget: 'umd',
-    umdNamedDefine: true
+    filename: `${commonPaths.jsFolder}/[name].[hash].js`,
+    path: commonPaths.outputPath,
+    chunkFilename: `${commonPaths.jsFolder}/[name].[chunkhash].js`,
   },
-  target: 'web',
-  mode: PRODUCTION,
-  devServer: {
-    contentBase: './dist'
+  optimization: {
+    minimizer: [
+      new TerserPlugin({
+        // Use multi-process parallel running to improve the build speed
+        // Default number of concurrent runs: os.cpus().length - 1
+        parallel: true,
+        // Enable file caching
+        cache: true,
+        sourceMap: true,
+      }),
+      new OptimizeCSSAssetsPlugin(),
+    ],
+    // Automatically split vendor and commons
+    // https://twitter.com/wSokra/status/969633336732905474
+    // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
+    splitChunks: {
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'initial',
+        },
+        async: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'async',
+          chunks: 'async',
+          minChunks: 4,
+        },
+      },
+    },
+    // Keep the runtime chunk seperated to enable long term caching
+    // https://twitter.com/wSokra/status/969679223278505985
+    runtimeChunk: true,
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
@@ -50,9 +79,6 @@ module.exports = {
       }
     ])
   ],
-  resolve: {
-    extensions: ['.js', '.jsx', '.css', '.less']
-  },
   module: {
     rules: [
       {
