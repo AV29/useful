@@ -7,7 +7,7 @@ import Button from '../../reusable/controls/button/Button';
 import ageReducer from '../../../hooks/ageReducer';
 import useFormValue from '../../../hooks/useFormValue';
 
-function DataForm () {
+function UseFormValue () {
 
   const name = useFormValue('Anton');
   const surname = useFormValue('Vlasik');
@@ -49,4 +49,4 @@ function DataForm () {
   );
 }
 
-export default DataForm;
+export default UseFormValue;

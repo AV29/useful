@@ -19,5 +19,12 @@ export default [
     borderColor: '#df95b9',
     shadowColor: '#065811',
     backgroundColor: '#31a43d'
+  },
+  {
+    id: '3',
+    baseColor: '#8f0406',
+    borderColor: '#df8084',
+    shadowColor: '#005758',
+    backgroundColor: '#0094a4'
   }
 ];

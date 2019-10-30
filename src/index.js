@@ -1,4 +1,4 @@
-import 'react-app-polyfill/ie11';
+import '@babel/polyfill';
 import ReactDOM from 'react-dom';
 import { I18nextProvider } from 'react-i18next';
 import React, { Suspense } from 'react';

@@ -44,12 +44,14 @@ export const Section = styled.div`
     padding: 15px;
 `;
 
-export const DemoSection = styled(Section)`
+export const StyledDemoSection = styled(Section)`
     border-width: 2px;
     box-shadow: 0 0 15px ${getShadowColor};
+    width: 100%;
 `;
 
 export const Heading = styled.h1`
+    text-align: center;
     padding: 10px 0;
 `;
 

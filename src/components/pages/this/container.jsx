@@ -11,8 +11,8 @@ function This (props) {
     <Fragment>
       <Heading>{t(props.nameKey)}</Heading>
       <GridWrapper>
-        <AsyncLoss/>
-        <SetStateNature/>
+        <AsyncLoss />
+        <SetStateNature />
       </GridWrapper>
     </Fragment>
   );

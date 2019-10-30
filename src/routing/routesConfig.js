@@ -5,6 +5,7 @@ import About from '../components/pages/about/container';
 import RenderProps from '../components/pages/render-props/container';
 import Hoc from '../components/pages/hoc/container';
 import This from '../components/pages/this/container';
+import WebComponents from '../components/pages/web-components/container';
 import Lifecycle from '../components/pages/lifecycle/container';
 import Playground from '../components/pages/playground/Playground';
 
@@ -56,6 +57,14 @@ export default [
     nameKey: 'thisName',
     descriptionKey: 'thisDescription',
     component: This
+  },
+  {
+    id: guid(),
+    path: '/web-components',
+    icon: 'webComponents',
+    nameKey: 'webComponentsName',
+    descriptionKey: 'webComponentsDescription',
+    component: WebComponents
   },
   {
     id: guid(),

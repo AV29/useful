@@ -1,24 +1,22 @@
 import React, { PureComponent } from 'react';
 import { func, string, object, bool } from 'prop-types';
-import { DemoSection, FlexRow } from '../../../styles/styles';
+import { FlexRow } from '../../../styles/styles';
 import DataFetcher from '../../reusable/data-fetcher/DataFetcher';
 import Input from '../../reusable/controls/input/Input';
 import { Icon } from '../../reusable/icon/Icon';
 
-export default function ContextMenuDemo({ sharedData, onChange }) {
+export default function ContextMenuDemo ({ sharedData, onChange }) {
   return (
-    <DemoSection>
-      <DataFetcher latency={2000}>
-        {({ data, loading }) => (
-          <TestContainer
-            data={data}
-            sharedData={sharedData}
-            loading={loading}
-            onChange={onChange}
-          />
-        )}
-      </DataFetcher>
-    </DemoSection>
+    <DataFetcher latency={2000}>
+      {({ data, loading }) => (
+        <TestContainer
+          data={data}
+          sharedData={sharedData}
+          loading={loading}
+          onChange={onChange}
+        />
+      )}
+    </DataFetcher>
   );
 }
 
@@ -29,7 +27,7 @@ ContextMenuDemo.propTypes = {
 
 class TestContainer extends PureComponent {
 
-  constructor(props) {
+  constructor (props) {
     super(props);
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -38,19 +36,19 @@ class TestContainer extends PureComponent {
     };
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate (prevProps) {
     const { loading, data } = this.props;
     if (prevProps.loading !== loading && !loading && data) {
       this.handleInputChange(data.name);
     }
   }
 
-  handleInputChange(value) {
+  handleInputChange (value) {
     this.setState({ value });
     this.props.onChange(value);
   }
 
-  render() {
+  render () {
     return (
       <FlexRow ref={this.props.passedRef} className={this.props.className}>
         <Input
@@ -58,7 +56,7 @@ class TestContainer extends PureComponent {
           value={this.state.value}
           type="text"
         />
-        {this.props.loading && <Icon icon="spinner"/>}
+        {this.props.loading && <Icon icon="spinner" />}
       </FlexRow>
     );
   }

@@ -1,9 +1,5 @@
 import styled from 'styled-components';
-import { DemoSection, SmallHeading, getBorderColor } from '../../../styles/styles';
-
-export const ClickOutsideDemoSection = styled(DemoSection)`
-  box-shadow: 0 0 15px ${({ shadowColor }) => shadowColor};
-`;
+import { SmallHeading, getBorderColor } from '../../../styles/styles';
 
 export const ContextMenuCaller = styled(SmallHeading)`
   border: 1px solid ${getBorderColor};
@@ -20,4 +16,12 @@ export const TooltipHoverTarget = styled(SmallHeading)`
   border-radius: 4px;
   padding: 10px;
   display: inline-block;
+`;
+
+export const MessagesContainer = styled.div`
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  user-select: none;
 `;

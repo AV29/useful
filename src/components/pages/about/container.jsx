@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
-import { string, shape, func } from 'prop-types';
+import { Link } from 'react-router-dom';
+import { string } from 'prop-types';
 import { FlexRow, FlexColumn, Heading, SmallHeading, PaddedBlock, List } from '../../../styles/styles';
 import routesConfig from '../../../routing/routesConfig';
 
@@ -20,11 +21,8 @@ function About (props) {
               routesConfig
                 .filter(({ descriptionKey }) => !!descriptionKey)
                 .map(({ descriptionKey, path, id }) => (
-                  <li
-                    key={id}
-                    onClick={() => props.history.push(path)}
-                  >
-                    {t(descriptionKey)}
+                  <li key={id}>
+                    <Link to={path}>{t(descriptionKey)}</Link>
                   </li>
                 ))
             }
@@ -37,10 +35,7 @@ function About (props) {
 }
 
 About.propTypes = {
-  nameKey: string,
-  history: shape({
-    push: func
-  })
+  nameKey: string
 };
 
 export default About;
