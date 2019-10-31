@@ -1,4 +1,5 @@
 import React from 'react';
+import { func, string } from 'prop-types';
 import { StyledInput, StyledInputWrapper, StyledError } from './styles';
 
 function Input ({ id, label, validate, ...props }) {
@@ -19,5 +20,11 @@ function Input ({ id, label, validate, ...props }) {
     </StyledInputWrapper>
   );
 }
+
+Input.propTypes = {
+  id: string,
+  validate: func,
+  label: string,
+};
 
 export default Input;

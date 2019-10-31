@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { useRef, useEffect }  from 'react';
 
 const addEvent = (fn, ref = document) => e => ref.addEventListener(e, fn);

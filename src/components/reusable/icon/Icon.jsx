@@ -1,5 +1,5 @@
 ﻿import React, { Component } from 'react';
-import { func, string, object, bool } from 'prop-types';
+import { func, string, object, bool, number } from 'prop-types';
 import Icons from './Icons';
 import { StyledIcon } from './styles.js';
 
@@ -35,24 +35,11 @@ Icon.propTypes = {
   icon: string,
   title: string,
   onClick: func,
-  disabled: bool
+  disabled: bool,
+  size: number,
+  innerRef: func
 };
 
 Icon.defaultProps = {
   onClick: () => undefined
 };
-
-export function FontIcon({ icon = 'logo', type = 'fa', className, onClick, disabled, ...props }) {
-
-  const handleClick = (event) => {
-    onClick && !disabled && onClick(event);
-  };
-
-  return (
-    <i
-      onClick={handleClick}
-      {...props}
-      className={`${type} fa-${icon}`}
-    />
-  );
-}

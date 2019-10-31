@@ -6,15 +6,16 @@ const useContextMenu = (initialCoords = null) => {
   const [coordinates, setCoordinates] = useState(initialCoords);
 
   useEffect(() => {
+    const target = ref.current;
     const handleOpenContextMenu = (event) => {
       event.preventDefault();
       setCoordinates({ left: event.clientX, top: event.clientY });
     };
 
-    addEvent(handleOpenContextMenu, ref.current)('contextmenu');
+    addEvent(handleOpenContextMenu, target)('contextmenu');
 
     return () => {
-      removeEvent(handleOpenContextMenu, ref.current)('contextmenu');
+      removeEvent(handleOpenContextMenu, target)('contextmenu');
     };
   });
 

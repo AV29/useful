@@ -6,15 +6,16 @@ export const useMouseHover = (defaultHovering = false) => {
   const ref = useRef();
 
   useEffect(() => {
+    const target = ref.current;
     const setNotHovering = () => setIsHovering(false);
     const setHovering = () => setIsHovering(true);
 
-    addEvent(setHovering, ref.current)('mouseenter');
-    addEvent(setNotHovering, ref.current)('mouseleave');
+    addEvent(setHovering, target)('mouseenter');
+    addEvent(setNotHovering, target)('mouseleave');
 
     return () => {
-      removeEvent(setHovering, ref.current)('mouseenter');
-      removeEvent(setNotHovering, ref.current)('mouseleave');
+      removeEvent(setHovering, target)('mouseenter');
+      removeEvent(setNotHovering, target)('mouseleave');
     };
   });
 

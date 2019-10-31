@@ -21,6 +21,7 @@ const CheckBox = ({ label = '', required, className, id = guid(), disabled, ...p
 );
 
 CheckBox.propTypes = {
+  id: string,
   onChange: func.isRequired,
   onFocus: func,
   onBlur: func,

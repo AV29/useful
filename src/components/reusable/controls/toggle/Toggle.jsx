@@ -1,9 +1,9 @@
 import React from 'react';
-import { string } from 'prop-types';
+import { string, bool } from 'prop-types';
 import guid from '../../../../utilities/guid';
 import { StyledLabel, StyledSlider, StyledInput, StyledToggle } from './styles';
 
-function Toggle({ label, id = guid(), leftLabel = false, ...props }) {
+function Toggle ({ label, id = guid(), leftLabel = false, ...props }) {
   return (
     <StyledToggle leftLabel={leftLabel}>
       <StyledLabel htmlFor={id} leftLabel={leftLabel}>
@@ -20,6 +20,8 @@ function Toggle({ label, id = guid(), leftLabel = false, ...props }) {
 }
 
 Toggle.propTypes = {
+  id: string,
+  leftLabel: bool,
   name: string,
   label: string,
   labelOrientation: string

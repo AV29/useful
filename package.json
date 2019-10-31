@@ -6,6 +6,7 @@
     "start": "cross-env NODE_ENV=development webpack-dev-server --progress --open",
     "lint": "esw --ext .jsx,.js webpack.config.* src tools --color",
     "lint:watch": "npm run lint -- --watch",
+    "test": "npm run lint",
     "clean-dist": "rimraf ./dist && mkdir dist",
     "prebuild": "npm run clean-dist",
     "build": "cross-env NODE_ENV=production webpack",
@@ -19,7 +20,7 @@
   ],
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint"
+      "pre-push": "npm test"
     }
   },
   "resolutions": {
@@ -79,6 +80,7 @@
     "express": "~4.16.3",
     "file-loader": "~2.0.0",
     "html-webpack-plugin": "~3.2.0",
+    "husky": "^3.0.9",
     "less": "~3.9.0",
     "less-loader": "~4.1.0",
     "mini-css-extract-plugin": "^0.8.0",
