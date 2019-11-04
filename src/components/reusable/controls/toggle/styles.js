@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { transitionStyle } from '../../../../styles/variables';
 import { Flex, getShadowColor, getBaseColor, getBGColor } from '../../../../styles/styles';
 
@@ -15,9 +15,12 @@ export const StyledToggle = styled(Flex)`
   justify-content: ${({ leftLabel }) => leftLabel ? 'flex-end' : 'flex-start'};
   font-size: 1.4rem;
   margin: 10px;
+  ${({ disabled }) => disabled ? disabledStyles : ''}
 `;
 
-export const StyledLabel = styled.label`
+export const StyledLabel = styled.span``;
+
+export const StyledInputWrapper = styled.label`
   width: ${switchWidth}px;
   height: ${switchHeight}px;
   min-width: ${switchWidth}px;
@@ -49,6 +52,21 @@ export const StyledSlider = styled.span`
     border-radius: 50%;
     background-color: ${getBGColor};
     border: ${toggleMargin}px solid ${getBaseColor};
+  }
+`;
+
+const disabledStyles = css`
+  pointer-events: none;
+
+  ${StyledInputWrapper},
+  ${StyledLabel},
+  ${StyledSlider}::before {
+    opacity: .5;
+  }
+
+  input:checked + ${StyledSlider}::before {
+    
+    opacity: .5;
   }
 `;
 

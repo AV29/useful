@@ -7,8 +7,7 @@ import { LifeCycleSection } from './styles';
 import Child from './Child';
 import Button from '../../reusable/controls/button/Button';
 
-function log (message, params, color, preventLog = false) {
-  if (preventLog) return;
+function log (message, params, color) {
   console.groupCollapsed(`${message}`, `color: ${color}`);
   Object.keys(params).forEach((paramKey) => {
     console.log(`${paramKey}:`, params[paramKey]);
@@ -17,13 +16,14 @@ function log (message, params, color, preventLog = false) {
   console.groupEnd();
 }
 
-
-function logChild (message, params, preventLogs) {
-  log(`${message} %c( Child )`, params, '#ca9f36', preventLogs);
+function logChild (message, params, preventLogs = false) {
+  if (preventLogs) return;
+  log(`${message} %c( Child )`, params, '#ca9f36');
 }
 
-function logParent (message, params, preventLogs) {
-  log(`${message} %c( Parent )`, params, '#288dc8', preventLogs);
+function logParent (message, params, preventLogs = false) {
+  if (preventLogs) return;
+  log(`${message} %c( Parent )`, params, '#288dc8');
 }
 
 class Parent extends Component {

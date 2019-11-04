@@ -63,7 +63,7 @@ class RenderProps extends Component {
               <DemoSection title={this.props.t('tooltipExample')}>
                 <TooltipDemo />
               </DemoSection>
-              <DemoSection title={this.props.t('clickoutsideExample')}>
+              <DemoSection title={this.props.t('clickOutsideExample')}>
                 <ClickOutsideDemo />
               </DemoSection>
             </GridWrapper>

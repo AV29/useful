@@ -4,7 +4,7 @@ import Footer from '../footer/Footer';
 import Sidebar from '../sidebar/Sidebar';
 import routes from '../../../routing/routes';
 import { ThemeProvider } from 'styled-components';
-import themes from '../../../utilities/themes';
+import themes from '../../../constants/themes';
 import languages from '../../../utilities/languages';
 import { StyledAppWrapper, StyledInnerWrapper, StyledRoutesWrapper } from './styles';
 import { FlexColumn } from '../../../styles/styles';

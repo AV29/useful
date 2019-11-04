@@ -1,20 +1,23 @@
 import React from 'react';
 import { string, bool } from 'prop-types';
 import guid from '../../../../utilities/guid';
-import { StyledLabel, StyledSlider, StyledInput, StyledToggle } from './styles';
+import { StyledLabel, StyledInputWrapper, StyledSlider, StyledInput, StyledToggle } from './styles';
 
-function Toggle ({ label, id = guid(), leftLabel = false, ...props }) {
+function Toggle ({ label, id = guid(), disabled, leftLabel = false, ...props }) {
   return (
-    <StyledToggle leftLabel={leftLabel}>
-      <StyledLabel htmlFor={id} leftLabel={leftLabel}>
+    <StyledToggle
+      leftLabel={leftLabel}
+      disabled={disabled}
+    >
+      <StyledInputWrapper htmlFor={id} leftLabel={leftLabel}>
         <StyledInput
           id={id}
           type="checkbox"
           {...props}
         />
         <StyledSlider/>
-      </StyledLabel>
-      {label && <span>{label}</span>}
+      </StyledInputWrapper>
+      {label && <StyledLabel>{label}</StyledLabel>}
     </StyledToggle>
   );
 }
