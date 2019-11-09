@@ -15,7 +15,7 @@ export const StyledLanguageSwitcher = styled.div`
 
 export const StyledLocale = styled.span`
   margin-right: 5px;
-  padding: 2px 3px;
+  padding: 5px;
   cursor: pointer;
   user-select: none;
   border-radius: 4px;

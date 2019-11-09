@@ -9,7 +9,6 @@ export const StyledEditForm = styled.div`
 
 export const StyledInfoSection = styled.h2`
   text-align: center;
-  padding: 5px 0;
 `;
 
 export const StyledContextMenuDemoTarget = styled(SmallHeading)`
@@ -18,7 +17,14 @@ export const StyledContextMenuDemoTarget = styled(SmallHeading)`
 `;
 
 export const StyledLinkList = styled.ul`
-  height: 290px;
+  height: 200px;
   width: 100%;
   overflow: auto;
+`;
+
+export const StyledDynamicCounter = styled.h2`
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
 `;

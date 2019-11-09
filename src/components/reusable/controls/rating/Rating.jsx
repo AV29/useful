@@ -1,28 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { number, string, func } from 'prop-types';
 import { StyledRatingControl, StyledRatingItem, ItemsWrapper } from './styles';
 
-class Rating extends Component {
-  render () {
-    const { label, scaleSize, className, icon, value, iconSize, onChange } = this.props;
-    return (
-      <StyledRatingControl className={className}>
-        {label && <div className="label">{label}</div>}
-        <ItemsWrapper>
-          {[...new Array(scaleSize)].map((_, val) => (
-            <StyledRatingItem
-              key={val}
-              icon={icon}
-              size={iconSize}
-              rated={value > val}
-              onClick={() => onChange(val + 1)}
-            />
-          ))}
-        </ItemsWrapper>
-      </StyledRatingControl>
-    );
-  }
-}
+const Rating = ({ label, scaleSize, className, icon, value, iconSize, onChange }) => (
+  <StyledRatingControl className={className}>
+    {label && <div className="label">{label}</div>}
+    <ItemsWrapper>
+      {[...new Array(scaleSize)].map((_, val) => (
+        <StyledRatingItem
+          key={val}
+          icon={icon}
+          size={iconSize}
+          rated={value > val}
+          onClick={() => onChange(val + 1)}
+        />
+      ))}
+    </ItemsWrapper>
+  </StyledRatingControl>
+);
 
 Rating.propTypes = {
   icon: string,

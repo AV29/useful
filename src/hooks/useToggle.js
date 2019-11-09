@@ -3,20 +3,20 @@ import { useReducer } from 'react';
 const defaultInitialState = [
   {
     id: '1',
-    label: 'Enabled',
+    labelKey: 'enabled',
     disabled: false,
     checked: true,
     leftLabel: true
   },
   {
     id: '2',
-    label: 'Disabled Checked',
+    labelKey: 'disabledChecked',
     disabled: true,
     checked: true
   },
   {
     id: '3',
-    label: 'Disabled Unchecked',
+    labelKey: 'disabledUnchecked',
     disabled: true,
     checked: false
   },

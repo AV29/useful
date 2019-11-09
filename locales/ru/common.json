@@ -1,6 +1,6 @@
 {
   "headerTitle": "Примеры Подходов",
-  "footerInfo": "Антон Власик, 2019",
+  "footerInfo": "Антон Власик, {{date}}",
   "baseColor": "Цвет шрифта",
   "borderColor": "Цвет границ",
   "shadowColor": "Цвет теней",
@@ -21,6 +21,10 @@
   "wentHome": "Ушёл домой",
   "waiting": "...ждёмс",
   "ok": "Ok",
+  "enabled": "Работает",
+  "disabled": "Не работает",
+  "disabledChecked": "Не работает, но включён",
+  "disabledUnchecked": "Выключен, не работает",
   "startIdleTimer": "Нажми на кнопку - получишь результат",
   "ratingControl": "Пример выставлялки рейтинга",
   "toggleExample": "Пример переключателей",
@@ -75,7 +79,7 @@
   "hocDescription": "Примеры HOC компонентов",
   "thisName": "Контекст (this)",
   "thisDescription": "This и проблемы, которые могут возникнуть",
-  "webComponentsName": "Web Components, также известные как Custom elements",
+  "webComponentsName": "Web Components",
   "webComponentsDescription": "Новые втсроенные и поддерживаемые в Chrome и Firefox кастомные элементы.",
   "webComponentsNotSupported": "Web Components не поддерживаются в этом браузере",
   "customDropdown": "Кастомный выподающий список",
@@ -100,5 +104,11 @@
   "resetMessages": "Вжух!",
   "noData": "Нет Данных",
   "playground": "Песочница",
-  "playgroundDescription": "(беспорядочно изменяемая страничка для проб и ошибок)"
+  "playgroundDescription": "(беспорядочно изменяемая страничка для проб и ошибок)",
+  "width": "Ширина",
+  "depth": "Глубина",
+  "depthValidation": "Не гоже глубине быть больше {{depth}}",
+  "widthValidation": "Не гоже ширине быть больше {{width}}",
+  "generateTree": "Сгенерить Дрэва",
+  "traverseTree": "Пройтись по Дрэву"
 }

@@ -8,6 +8,7 @@ import IdleIndicatorDemo from './IdleIndicatorDemo';
 import { GridWrapper, Heading } from '../../../styles/styles';
 import DemoSection from '../../reusable/demo-section/DemoSection';
 import CheckBoxesDemo from './CheckBoxesDemo';
+import TreeViewDemo from './TreeViewDemo';
 import AdjacentCalc from './AdjacentCalc';
 
 function Controls (props) {
@@ -58,6 +59,9 @@ function Controls (props) {
         </DemoSection>
         <DemoSection>
           <AdjacentCalc />
+        </DemoSection>
+        <DemoSection>
+          <TreeViewDemo />
         </DemoSection>
       </GridWrapper>
     </Fragment>

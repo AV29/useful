@@ -2,8 +2,8 @@ import React, { Fragment, Component } from 'react';
 import { bool, func, string, node, object } from 'prop-types';
 import Portal from '../portal/Portal';
 import { useTooltipPosition } from '../../../hooks/useTooltipPosition';
+import getTooltipPosition from '../../../utilities/getTooltipPosition';
 import { StyledTooltip } from './styles';
-import getTooltipPosition, { getPositionInfo } from '../../../utilities/getTooltipPosition';
 
 class ClassTooltip extends Component {
   constructor (props) {
@@ -45,14 +45,11 @@ class ClassTooltip extends Component {
 
   handleShowTooltip () {
     if (this.props.suppress) return;
-    this.setState({
-      isShown: true
-    }, () => {
-      this.setState({
-        fading: true,
-        ...getTooltipPosition(getPositionInfo(this.hoverTarget), getPositionInfo(this.tooltip))
-      });
-    });
+    this.setState({ isShown: true },
+      () => {
+        this.setState({ fading: true, ...getTooltipPosition(this.hoverTarget, this.tooltip) });
+      }
+    );
   }
 
   handleHideTooltip () {

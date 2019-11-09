@@ -43,3 +43,5 @@ Icon.propTypes = {
 Icon.defaultProps = {
   onClick: () => undefined
 };
+
+export default Icon;

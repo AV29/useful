@@ -12,3 +12,18 @@ export const IdleIndicatorContainer = styled.div`
   margin: 10px;
   border: 1px solid ${getBorderColor}
 `;
+
+export const StyledTreeViewContainer = styled.div`
+  display: flex;
+  margin-top: 20px;
+  padding: 20px;
+  height: 300px;
+  overflow: auto;
+  border: 1px solid ${getBorderColor}
+`;
+
+export const StyledTraverseResult = styled.div`
+  margin: 0 50px;
+  display: flex;
+  flex-direction: column;
+`;

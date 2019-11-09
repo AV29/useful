@@ -1,6 +1,6 @@
 {
   "headerTitle": "Approach Examples {{name}}",
-  "footerInfo": "Anton Vlasik, 2019",
+  "footerInfo": "Anton Vlasik, {{date}}",
   "baseColor": "Font Color",
   "borderColor": "Border color",
   "shadowColor": "Shadow color",
@@ -21,6 +21,10 @@
   "wentHome": "Went home",
   "waiting": "...waiting",
   "ok": "Ok",
+  "enabled": "Enabled",
+  "disabled": "Disabled",
+  "disabledChecked": "Disabled Checked",
+  "disabledUnchecked": "Disabled Unchecked",
   "startIdleTimer": "Start Idle Timer",
   "ratingControl": "Rating Control Example",
   "toggleExample": "Toggle Example",
@@ -75,7 +79,7 @@
   "hocDescription": "Examples for High Order Components",
   "thisName": "This issues",
   "thisDescription": "Caveats with \"this\" and different kinds of information loss",
-  "webComponentsName": "Web Components a.k.a. Custom elements",
+  "webComponentsName": "Custom elements",
   "webComponentsDescription": "New built-in Web Components",
   "webComponentsNotSupported": "Web Components are not supported in this browser",
   "customDropdown": "Custom Dropdown",
@@ -100,5 +104,11 @@
   "clickOutsideExampleBlock": "Start clicking",
   "resetMessages": "Clear",
   "playground": "Playground",
-  "playgroundDescription": "(randomly changed playground page to try something out)"
+  "playgroundDescription": "(randomly changed playground page to try something out)",
+  "width": "Width",
+  "depth": "Depth",
+  "depthValidation": "Make depth less than {{depth}}",
+  "widthValidation": "Make width less than {{width}}",
+  "generateTree": "Generate Tree",
+  "traverseTree": "Traverse Tree"
 }

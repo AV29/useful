@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react';
-import { addEvent, removeEvent, noop } from '../utilities/events';
+import { addEvent, removeEvent } from '../utilities/events';
+import noop from '../utilities/noop';
 
 const defaultClickEvents = ['mousedown', 'touchstart'];
 

@@ -1,12 +1,16 @@
-export const getPositionInfo = (el) => {
-  return (el && el.getBoundingClientRect && el.getBoundingClientRect()) || { top: 0, left: 0 };
-};
+export const getPositionInfo = el =>
+  (el && el.getBoundingClientRect && el.getBoundingClientRect()) ||
+  { top: 0, left: 0 };
 
-const getTopConsideringWindow = (targetTop, tooltipFullHeight) => {
-  return window.innerHeight >= targetTop + tooltipFullHeight ? targetTop : window.innerHeight - tooltipFullHeight;
-};
+const getTopWithWindow = (targetTop, tooltipFullHeight) =>
+  window.innerHeight >= targetTop + tooltipFullHeight ?
+    targetTop :
+    window.innerHeight - tooltipFullHeight;
 
-const getTooltipPosition = (target, tooltip, offset = 10) => {
+const getTooltipPosition = (targetRef, tooltipRef, offset = 10) => {
+  const target = getPositionInfo(targetRef);
+  const tooltip = getPositionInfo(tooltipRef);
+
   const tooltipFullHeight = tooltip.height + offset;
   const tooltipFullWidth = tooltip.width + offset;
 
@@ -25,7 +29,7 @@ const getTooltipPosition = (target, tooltip, offset = 10) => {
 
   if (fitsRight) {
     return {
-      top: getTopConsideringWindow(target.top, tooltipFullHeight),
+      top: getTopWithWindow(target.top, tooltipFullHeight),
       left: target.right + offset,
       orientation: 'right'
     };
@@ -40,7 +44,7 @@ const getTooltipPosition = (target, tooltip, offset = 10) => {
   }
 
   return {
-    top: getTopConsideringWindow(target.top, tooltipFullHeight),
+    top: getTopWithWindow(target.top, tooltipFullHeight),
     left: target.left - tooltipFullWidth,
     orientation: 'left'
   };

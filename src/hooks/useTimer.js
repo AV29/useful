@@ -6,14 +6,14 @@ export default function (start = Date.now()) {
   return Date(milliseconds);
 }
 
-function useInterval(callback, delay) {
+function useInterval (callback, delay) {
   useEffect(() => {
     const id = setInterval(callback, delay);
     return () => clearInterval(id);
   });
 }
 
-export function useTimer(precision = 5) {
+export function useTimer (precision = 5) {
   const [time, setTime] = useState(0);
   useInterval(() => setTime(time + precision), precision);
   return time;

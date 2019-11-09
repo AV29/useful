@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import routesConfig from '../../../routing/routesConfig';
-import { Icon } from '../../reusable/icon/Icon';
+import Icon from '../../reusable/icon/Icon';
 import { FlexRow, SmallHeading } from '../../../styles/styles';
 import { StyledSideBar, NavItem, StyledNavItemWrapper } from './styles';
 import MenuOpener from '../../reusable/controls/menu-opener/MenuOpener';

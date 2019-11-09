@@ -1,4 +1,5 @@
 import React from 'react';
+import noop from '../../../../utilities/noop'
 import { func, string } from 'prop-types';
 import { StyledInput, StyledInputWrapper, StyledError } from './styles';
 
@@ -11,12 +12,9 @@ function Input ({ id, label, validate, ...props }) {
         withValidation={validate}
         {...props}
       />
-      {
-        validate &&
-        <StyledError>
-          {validate()}
-        </StyledError>
-      }
+      <StyledError>
+        {validate()}
+      </StyledError>
     </StyledInputWrapper>
   );
 }
@@ -25,6 +23,10 @@ Input.propTypes = {
   id: string,
   validate: func,
   label: string,
+};
+
+Input.defaultProps = {
+  validate: noop
 };
 
 export default Input;

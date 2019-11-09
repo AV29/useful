@@ -1,18 +1,15 @@
 import React from 'react';
 import { func } from 'prop-types';
-import { withTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { StyledFooter } from './styles';
 
-function Footer ({ t }) {
+const Footer = () => {
+  const { t } = useTranslation('common');
   return (
     <StyledFooter>
-      {t('footerInfo')}
+      {t('footerInfo', { date: (new Date()).getFullYear() })}
     </StyledFooter>
   );
-}
-
-Footer.propTypes = {
-  t: func
 };
 
-export default withTranslation('common')(Footer);
+export default Footer;

@@ -104,8 +104,8 @@ class AdjacentCalc extends Component {
 }
 
 AdjacentCalc.defaultProps = {
-  defaultSize: 5,
-  defaultLimit: 3
+  defaultSize: 2,
+  defaultLimit: 2
 };
 
 AdjacentCalc.propTypes = {

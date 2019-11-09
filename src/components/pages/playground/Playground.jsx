@@ -1,28 +1,25 @@
 import React from 'react';
-import Input from './Input';
+import { getWeekDays } from '../../../utilities/date';
 
 class Playground extends React.Component {
   constructor (props) {
     super(props);
 
     this.state = {
-      value: 'Initial value'
+      count: 1
     };
 
-    this.input = null;
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick () {
+    this.setState(state => ({ count: state.count + 1 }));
+    console.log(getWeekDays(new Date()));
   }
 
   render () {
     return (
-      <div>
-        <Input
-          inputRef={el => this.input = el}
-          type={'number'}
-          value={this.state.value}
-          onChange={event => this.setState({ value: event.target.value })}
-        />
-        <button onClick={() => this.input.focus()}>Press me</button>
-      </div>
+      <button onClick={this.handleClick}>{this.state.count}</button>
     );
   }
 }
