@@ -1,10 +1,12 @@
-export function getWeek_ForLoop (currentDate) {
+/* Gets week days given that currentDate is of Moment js type */
+export function getMomentWeek (currentDate) {
   const dates = [];
-  for (let i = 1; i <= 7; i++) dates.push(currentDate.clone().day(i))
+  for (let i = 1; i <= 7; i++) dates.push(currentDate.clone().day(i));
   return dates;
 }
 
-function getWeek_Moment (currentDate, rangeType) {
+/* Gets different range days given that currentDate is of Moment js type */
+export function getDateRange (currentDate, rangeType) {
   const start = currentDate.clone().startOf(rangeType);
   const end = currentDate.clone().endOf(rangeType);
   const day = start;
@@ -17,6 +19,7 @@ function getWeek_Moment (currentDate, rangeType) {
   return days;
 }
 
+/* Gets week days */
 export function getWeekDays (currentDate) {
   const clone = new Date(currentDate);
   const start = new Date(clone.setDate(clone.getDate() - clone.getDay() + 1));
@@ -31,6 +34,7 @@ export function getWeekDays (currentDate) {
   return days;
 }
 
+/* Gets current year value */
 export function getCurrentYear () {
   return (new Date()).getFullYear();
 }

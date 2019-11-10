@@ -1,4 +1,4 @@
-function decapitalize (string) {
+function deCapitalize (string) {
   return string
     .split('')
     .map((char, index) => {
@@ -14,4 +14,4 @@ function decapitalize (string) {
     .join('');
 }
 
-export default decapitalize;
+export default deCapitalize;

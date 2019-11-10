@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import * as defaults from '../constants/defaults';
+import {defaultTheme} from '../constants/themes';
 
-export const getBaseColor = ({ theme: { baseColor } }) => baseColor || defaults.BASE_COLOR;
-export const getBorderColor = ({ theme: { borderColor } }) => borderColor || defaults.BORDER_COLOR;
-export const getShadowColor = ({ theme: { shadowColor } }) => shadowColor || defaults.SHADOW_COLOR;
-export const getBGColor = ({ theme: { backgroundColor } }) => backgroundColor || defaults.BACKGROUND_COLOR;
+export const getBaseColor = ({ theme: { baseColor } }) => baseColor || defaultTheme.BASE_COLOR;
+export const getBorderColor = ({ theme: { borderColor } }) => borderColor || defaultTheme.BORDER_COLOR;
+export const getShadowColor = ({ theme: { shadowColor } }) => shadowColor || defaultTheme.SHADOW_COLOR;
+export const getBGColor = ({ theme: { backgroundColor } }) => backgroundColor || defaultTheme.BACKGROUND_COLOR;
 
 const getPadding = ({ top = 0, left = 0, bottom = 0, right = 0 }) => `${top}px ${right}px ${bottom}px ${left}px`;
 
