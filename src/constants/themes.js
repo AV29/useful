@@ -28,3 +28,10 @@ export default [
     backgroundColor: '#0094a4'
   }
 ];
+
+export const defaultTheme = {
+  BASE_COLOR: '#000000',
+  BACKGROUND_COLOR: '#ffffff',
+  SHADOW_COLOR: '#000000',
+  BORDER_COLOR: '#000000'
+};

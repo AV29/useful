@@ -5,7 +5,7 @@ import TreeView from '../../reusable/tree-view/TreeView';
 import Input from '../../reusable/controls/input/Input';
 import Button from '../../reusable/controls/button/Button';
 import { StyledTreeViewContainer, StyledTraverseResult } from './styles';
-import generateTree, { traverseTree } from '../../../utilities/recursiveTree';
+import { generateTree, flattenTree, mapTree } from '../../../utilities/recursiveTree';
 import useFormValue from '../../../hooks/useFormValue';
 
 const maxDepth = 8;
@@ -13,21 +13,30 @@ const maxWidth = 10;
 
 function TreeViewDemo () {
 
-  const [data, setData] = useState({});
-  const [traverseResult, setTraverseResult] = useState([]);
   const { t } = useTranslation('common');
+  const [tree, setTree] = useState({});
+  const [flattened, setFlattened] = useState([]);
   const width = useFormValue(3);
   const depth = useFormValue(3);
 
   const isDepthValid = depth.value <= maxDepth;
   const isWidthValid = width.value <= maxWidth;
 
-  const handleGenerate = () => {
-    isDepthValid && setData(generateTree({ depth: depth.value, width: width.value }));
+  const handleGenerateTree = () => {
+    if (!isDepthValid) return;
+    setTree(generateTree({ width: width.value, depth: depth.value }));
   };
 
-  const handleTraverse = () => {
-    Object.keys(data).length && setTraverseResult(traverseTree(data));
+  const handleMapTree = () => {
+    if (!isDepthValid) return;
+    setTree(mapTree(tree, (_, { width, depth, index }) => ({
+      id: `Width:${width} Depth:${depth} Index: ${index}`,
+      isCollapsed: false
+    })));
+  };
+
+  const handleFlattenTree = () => {
+    setFlattened(flattenTree(tree));
   };
 
   return (
@@ -47,13 +56,18 @@ function TreeViewDemo () {
           validate={() => !isDepthValid && t('depthValidation', { depth: maxDepth })}
           {...depth}
         />
-        <Button style={{ marginBottom: 0 }} onClick={handleGenerate}>{t('generateTree')}</Button>
-        <Button style={{ marginBottom: 0 }} onClick={handleTraverse}>{t('traverseTree')}</Button>
+        <Button style={{ marginBottom: 0 }} onClick={handleGenerateTree}>{t('generateTree')}</Button>
+        <Button style={{ marginBottom: 0 }} onClick={handleFlattenTree}>{t('flattenTree')}</Button>
+        <Button style={{ marginBottom: 0 }} onClick={handleMapTree}>{t('mapTree')}</Button>
       </FlexRow>
       <StyledTreeViewContainer>
-        <TreeView data={data} style={{ flex: 1 }} />
+        <TreeView
+          data={tree}
+          style={{ flex: 1 }}
+          isCollapsed={tree.isCollapsed}
+        />
         <StyledTraverseResult>
-          {traverseResult.map((node, index) => <span key={index}>{node}</span>)}
+          {flattened.map((node, index) => <span key={index}>{node}</span>)}
         </StyledTraverseResult>
       </StyledTreeViewContainer>
     </>

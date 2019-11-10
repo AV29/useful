@@ -110,5 +110,6 @@
   "depthValidation": "Не гоже глубине быть больше {{depth}}",
   "widthValidation": "Не гоже ширине быть больше {{width}}",
   "generateTree": "Сгенерить Дрэва",
-  "traverseTree": "Пройтись по Дрэву"
+  "flattenTree": "Сплюшчыць Дрэва",
+  "mapTree": "Смапиць Дрэва"
 }

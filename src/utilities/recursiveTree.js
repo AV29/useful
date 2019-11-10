@@ -1,38 +1,56 @@
-function generateTree (options = {}) {
-  const { depth = 1, width = 1 } = options;
-
-  function getGeneration (currDepth = 0, currWidth = 1) {
-    let widthCounter = 1;
-    let res = {
-      id: !currDepth ? 'Root' : `Level ${currDepth} - ${currWidth}`,
-      isCollapsed: true,
-      items: []
-    };
-    while (widthCounter <= width) {
-      if (currDepth >= depth) break;
-      res.items.push(getGeneration(currDepth + 1, widthCounter));
-      widthCounter += 1;
-    }
-    return res;
+class Node {
+  constructor (params) {
+    this.items = [];
+    Object.keys(params).forEach(key => {
+      this[key] = params[key];
+    });
   }
 
-  return getGeneration();
+  addItem (item) {
+    this.items.push(item);
+  }
 }
 
-export function traverseTree (tree) {
-  const accumulator = [];
+export function generateTree (options = {}) {
+  const { depth = 1, width = 1, isCollapsed = true } = options;
 
-  function readGeneration (data) {
-    if (data.items.length) {
-      for (let i = 0; i < data.items.length; i++) {
-        accumulator.push(data.items[i].id.replace('Level ', ''));
-        readGeneration(data.items[i]);
-      }
+  function getNode (currDepth = 0, currWidth = 1) {
+    let widthCounter = 1;
+    let node = new Node({ id: !currDepth ? 'Root' : `Level ${currDepth}, Node ${currWidth}`, isCollapsed });
+    while (widthCounter <= width) {
+      if (currDepth >= depth) break;
+      node.addItem(getNode(currDepth + 1, widthCounter));
+      widthCounter += 1;
     }
+    return node;
   }
 
-  readGeneration(tree);
+  return getNode();
+}
+
+export function flattenTree (tree) {
+  const accumulator = [];
+
+  function readNode (data) {
+    accumulator.push(data.id);
+    data.items && data.items.length && data.items.forEach(readNode)
+  }
+
+  readNode(tree);
   return accumulator;
 }
 
-export default generateTree;
+export function mapTree (tree, transformer) {
+  let index = 0;
+
+  function mapNode (data, width = 1, depth = 1) {
+    index += 1;
+    const node = transformer(data, { width, depth, index });
+    if (data.items && data.items.length) {
+      node.items = data.items.map((data, width) => mapNode(data, width + 1, depth + 1));
+    }
+    return node;
+  }
+
+  return mapNode(tree);
+}

@@ -1,7 +1,7 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import XHR from 'i18next-xhr-backend';
-import { getInitialLocale } from '../utilities/languages';
+import { getInitialLocale } from '../utilities/language';
 
 i18n
   .use(XHR)
