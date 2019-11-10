@@ -24,12 +24,14 @@ function TreeViewDemo () {
 
   const handleGenerateTree = () => {
     if (!isDepthValid) return;
-    setTree(generateTree({ width: 4, depth: 4 }));
+    setTree(generateTree({ width: width.value, depth: depth.value }));
   };
 
   const handleMapTree = () => {
     if (!isDepthValid) return;
-    setTree(mapTree(tree, node => ({ id: `${node.id} mapped` })));
+    setTree(mapTree(tree, (_, { width, depth, index }) => ({
+      id: `Width:${width} Depth:${depth} Index: ${index}`
+    })));
   };
 
   const handleFlattenTree = () => {

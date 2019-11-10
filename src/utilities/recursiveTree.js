@@ -1,44 +1,56 @@
-export function generateTree (options = {}) {
-  const { depth = 1, width = 1 } = options;
-
-  function getGeneration (currDepth = 0, currWidth = 1) {
-    let widthCounter = 1;
-    let res = {
-      id: !currDepth ? 'Root' : `Level ${currDepth}, Node ${currWidth}`,
-      isCollapsed: true,
-      items: []
-    };
-    while (widthCounter <= width) {
-      if (currDepth >= depth) break;
-      res.items.push(getGeneration(currDepth + 1, widthCounter));
-      widthCounter += 1;
-    }
-    return res;
+class Node {
+  constructor (params) {
+    this.items = [];
+    Object.keys(params).forEach(key => {
+      this[key] = params[key];
+    });
   }
 
-  return getGeneration();
+  addItem (item) {
+    this.items.push(item);
+  }
+}
+
+export function generateTree (options = {}) {
+  const { depth = 1, width = 1, isCollapsed = true } = options;
+
+  function getNode (currDepth = 0, currWidth = 1) {
+    let widthCounter = 1;
+    let node = new Node({ id: !currDepth ? 'Root' : `Level ${currDepth}, Node ${currWidth}`, isCollapsed });
+    while (widthCounter <= width) {
+      if (currDepth >= depth) break;
+      node.addItem(getNode(currDepth + 1, widthCounter));
+      widthCounter += 1;
+    }
+    return node;
+  }
+
+  return getNode();
 }
 
 export function flattenTree (tree) {
   const accumulator = [];
 
-  function readGeneration (data) {
+  function readNode (data) {
     accumulator.push(data.id);
-    data.items && data.items.length && data.items.forEach(readGeneration)
+    data.items && data.items.length && data.items.forEach(readNode)
   }
 
-  readGeneration(tree);
+  readNode(tree);
   return accumulator;
 }
 
 export function mapTree (tree, transformer) {
-  function mapLevel (data) {
-    const level = transformer(data);
+  let index = 0;
+
+  function mapNode (data, width = 1, depth = 1) {
+    index += 1;
+    const node = transformer(data, { width, depth, index });
     if (data.items && data.items.length) {
-      level.items = data.items.map(mapLevel);
+      node.items = data.items.map((data, width) => mapNode(data, width + 1, depth + 1));
     }
-    return level;
+    return node;
   }
 
-  return mapLevel(tree);
+  return mapNode(tree);
 }

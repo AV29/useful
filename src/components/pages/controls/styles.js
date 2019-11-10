@@ -23,7 +23,7 @@ export const StyledTreeViewContainer = styled.div`
 `;
 
 export const StyledTraverseResult = styled.div`
-  margin: 0 50px;
+  margin: 0 15px;
   display: flex;
   flex-direction: column;
 `;
