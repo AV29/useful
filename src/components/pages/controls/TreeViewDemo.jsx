@@ -30,7 +30,8 @@ function TreeViewDemo () {
   const handleMapTree = () => {
     if (!isDepthValid) return;
     setTree(mapTree(tree, (_, { width, depth, index }) => ({
-      id: `Width:${width} Depth:${depth} Index: ${index}`
+      id: `Width:${width} Depth:${depth} Index: ${index}`,
+      isCollapsed: false
     })));
   };
 
@@ -60,7 +61,11 @@ function TreeViewDemo () {
         <Button style={{ marginBottom: 0 }} onClick={handleMapTree}>{t('mapTree')}</Button>
       </FlexRow>
       <StyledTreeViewContainer>
-        <TreeView data={tree} style={{ flex: 1 }} />
+        <TreeView
+          data={tree}
+          style={{ flex: 1 }}
+          isCollapsed={tree.isCollapsed}
+        />
         <StyledTraverseResult>
           {flattened.map((node, index) => <span key={index}>{node}</span>)}
         </StyledTraverseResult>
