@@ -1,10 +1,10 @@
-function generateTree (options = {}) {
+export function generateTree (options = {}) {
   const { depth = 1, width = 1 } = options;
 
   function getGeneration (currDepth = 0, currWidth = 1) {
     let widthCounter = 1;
     let res = {
-      id: !currDepth ? 'Root' : `Level ${currDepth} - ${currWidth}`,
+      id: !currDepth ? 'Root' : `Level ${currDepth}, Node ${currWidth}`,
       isCollapsed: true,
       items: []
     };
@@ -19,20 +19,26 @@ function generateTree (options = {}) {
   return getGeneration();
 }
 
-export function traverseTree (tree) {
+export function flattenTree (tree) {
   const accumulator = [];
 
   function readGeneration (data) {
-    if (data.items.length) {
-      for (let i = 0; i < data.items.length; i++) {
-        accumulator.push(data.items[i].id.replace('Level ', ''));
-        readGeneration(data.items[i]);
-      }
-    }
+    accumulator.push(data.id);
+    data.items && data.items.length && data.items.forEach(readGeneration)
   }
 
   readGeneration(tree);
   return accumulator;
 }
 
-export default generateTree;
+export function mapTree (tree, transformer) {
+  function mapLevel (data) {
+    const level = transformer(data);
+    if (data.items && data.items.length) {
+      level.items = data.items.map(mapLevel);
+    }
+    return level;
+  }
+
+  return mapLevel(tree);
+}

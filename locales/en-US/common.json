@@ -110,5 +110,6 @@
   "depthValidation": "Make depth less than {{depth}}",
   "widthValidation": "Make width less than {{width}}",
   "generateTree": "Generate Tree",
-  "traverseTree": "Traverse Tree"
+  "flattenTree": "Flatten Tree",
+  "mapTree": "Map Tree"
 }
