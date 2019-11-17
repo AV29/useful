@@ -1,34 +1,38 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { func, bool, object } from 'prop-types';
 import { IdleIndicatorContainer } from './styles';
 import IdleIndicator from '../../reusable/idle-indicator/IdleIndicator';
 import Button from '../../reusable/controls/button/Button';
 import Timer from '../../reusable/timer/Timer';
 
-export default function IdleIndicatorDemo ({ onFinished, idle, onStartIdle, bindIndicator, bindTimer }) {
+export default function IdleIndicatorDemo () {
   const { t } = useTranslation('common');
+  const [isInIdle, toggleInIdle] = useState(false);
+  const idleIndicator = useRef(null);
+  const timer = useRef(null);
   return (
     <Fragment>
       <IdleIndicatorContainer>
         <IdleIndicator
-          ref={bindIndicator}
+          ref={idleIndicator}
           idleTime={2000}
-          onFinished={onFinished}
+          onFinished={() => {
+            toggleInIdle(false);
+            timer.current.stop();
+          }}
         />
       </IdleIndicatorContainer>
-      <Button disabled={idle} onClick={onStartIdle}>
-        {idle ? t('waiting') : t('startIdleTimer')}
+      <Button
+        disabled={isInIdle}
+        onClick={() => {
+          toggleInIdle(true);
+          idleIndicator.current.trigger();
+          timer.current.trigger();
+        }}
+      >
+        {isInIdle ? t('waiting') : t('startIdleTimer')}
       </Button>
-      <Timer ref={bindTimer}/>
+      <Timer ref={timer} />
     </Fragment>
   );
 }
-
-IdleIndicatorDemo.propTypes = {
-  idle: bool,
-  onFinished: func,
-  onStartIdle: func,
-  bindIndicator: object,
-  bindTimer: object
-};

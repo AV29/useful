@@ -1,4 +1,4 @@
-import React, { useState, useRef, Fragment } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { string } from 'prop-types';
 import SliderDemo from './SliderDemo';
@@ -14,61 +14,36 @@ import Spiral from './Spiral';
 
 function Controls (props) {
   const { t } = useTranslation('common');
-  const [sliderValue, setSliderValue] = useState(2);
-  const [ratingValue, setRatingValue] = useState(8);
-  const [isInIdle, toggleInIdle] = useState(false);
-  const idleIndicator = useRef(null);
-  const timer = useRef(null);
-
   return (
-    <Fragment>
+    <>
       <Heading>{t(props.nameKey)}</Heading>
       <GridWrapper>
+        <DemoSection title={t('generatingTree')}>
+          <TreeViewDemo />
+        </DemoSection>
+        <DemoSection title={t('spiralRender')}>
+          <Spiral speed="fast" />
+        </DemoSection>
         <DemoSection title={t('sliderExample')}>
-          <SliderDemo
-            value={sliderValue}
-            onChange={setSliderValue}
-          />
+          <SliderDemo />
         </DemoSection>
         <DemoSection title={t('ratingControl')}>
-          <RatingDemo
-            value={ratingValue}
-            onChange={setRatingValue}
-          />
+          <RatingDemo />
         </DemoSection>
         <DemoSection title={t('toggleExample')}>
           <ToggleDemo />
         </DemoSection>
         <DemoSection title={t('idleIndicatorExample')}>
-          <IdleIndicatorDemo
-            idle={isInIdle}
-            onFinished={() => {
-              toggleInIdle(false);
-              timer.current.stop();
-            }}
-            onStartIdle={() => {
-              toggleInIdle(true);
-              idleIndicator.current.trigger();
-              timer.current.trigger();
-            }}
-            bindTimer={timer}
-            bindIndicator={idleIndicator}
-          />
+          <IdleIndicatorDemo />
         </DemoSection>
         <DemoSection title={t('checkboxExample')}>
           <CheckBoxesDemo />
         </DemoSection>
-        <DemoSection>
+        <DemoSection title={t('adjacentCalc')}>
           <AdjacentCalc />
         </DemoSection>
-        <DemoSection>
-          <TreeViewDemo />
-        </DemoSection>
-        <DemoSection>
-          <Spiral speed="fast" />
-        </DemoSection>
       </GridWrapper>
-    </Fragment>
+    </>
   );
 }
 

@@ -116,5 +116,8 @@
   "rows": "Rows",
   "columns": "Columns",
   "drawing": "...drawing",
-  "draw": "Draw"
+  "draw": "Draw",
+  "generatingTree": "Generating Tree",
+  "spiralRender": "Spiral Render",
+  "adjacentCalc": "Maximum product"
 }

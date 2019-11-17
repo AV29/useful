@@ -1,10 +1,10 @@
-import React from 'react';
-import { number, func } from 'prop-types';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SliderContainer } from './styles';
 
-export default function SliderDemo ({ value, onChange }) {
+export default function SliderDemo () {
   const { t } = useTranslation('common');
+  const [value, onChange] = useState(2);
   return (
     <SliderContainer
       label={t('dailyPlan')}
@@ -21,8 +21,3 @@ export default function SliderDemo ({ value, onChange }) {
     />
   );
 }
-
-SliderDemo.propTypes = {
-  value: number,
-  onChange: func
-};
