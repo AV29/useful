@@ -29,7 +29,6 @@ function About (props) {
           </List>
         </PaddedBlock>
         <SmallHeading>{t('specificThingsList')}</SmallHeading>
-        <SmallHeading>{t('aboutHeader_1')}</SmallHeading>
       </FlexColumn>
     </Fragment>
   );

@@ -104,6 +104,7 @@
   "resetMessages": "Вжух!",
   "noData": "Нет Данных",
   "playground": "Песочница",
+  "about": "Шо за нах?",
   "playgroundDescription": "(беспорядочно изменяемая страничка для проб и ошибок)",
   "width": "Ширина",
   "depth": "Глубина",
@@ -111,5 +112,9 @@
   "widthValidation": "Не гоже ширине быть больше {{width}}",
   "generateTree": "Сгенерить Дрэва",
   "flattenTree": "Сплюшчыць Дрэва",
-  "mapTree": "Смапиць Дрэва"
+  "mapTree": "Смапиць Дрэва",
+  "rows": "Ряды",
+  "columns": "Колонки",
+  "drawing": "...рисуемс",
+  "draw": "Рисовать"
 }

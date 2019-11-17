@@ -1,5 +1,5 @@
 import guid from '../utilities/guid';
-import Controls from '../components/pages/controls/container';
+import Controls from '../components/pages/controls/_container';
 import Hooks from '../components/pages/hooks/container';
 import About from '../components/pages/about/container';
 import RenderProps from '../components/pages/render-props/container';
@@ -68,14 +68,14 @@ export default [
   },
   {
     id: guid(),
-    nameKey: 'Playground',
+    nameKey: 'playground',
     path: '/playground',
     icon: 'playground',
     component: Playground
   },
   {
     id: guid(),
-    nameKey: 'About',
+    nameKey: 'about',
     path: '/about',
     icon: 'about',
     component: About

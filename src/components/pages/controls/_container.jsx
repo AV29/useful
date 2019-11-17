@@ -10,6 +10,7 @@ import DemoSection from '../../reusable/demo-section/DemoSection';
 import CheckBoxesDemo from './CheckBoxesDemo';
 import TreeViewDemo from './TreeViewDemo';
 import AdjacentCalc from './AdjacentCalc';
+import Spiral from './Spiral';
 
 function Controls (props) {
   const { t } = useTranslation('common');
@@ -62,6 +63,9 @@ function Controls (props) {
         </DemoSection>
         <DemoSection>
           <TreeViewDemo />
+        </DemoSection>
+        <DemoSection>
+          <Spiral speed="fast" />
         </DemoSection>
       </GridWrapper>
     </Fragment>

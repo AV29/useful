@@ -12,7 +12,6 @@ export const StyledTooltip = styled.div`
   font-size: 1.4rem;
   color: white;
   pointer-events: none;
-  min-width: 150px;
   
   &:after {
     content: " ";

@@ -6,6 +6,7 @@ function Input (props) {
 
   return (
     <input
+      name={props.name}
       ref={props.inputRef}
       disabled={props.isDisabled}
       className={props.isDisabled ? styles.isDisabled : ''}

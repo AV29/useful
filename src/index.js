@@ -9,9 +9,9 @@ import './styles/styles.less';
 
 ReactDOM.render(
   <I18nextProvider i18n={i18n}>
-    <Suspense fallback={<div/>}>
+    <Suspense fallback={<div />}>
       <BrowserRouter>
-        <App/>
+        <App />
       </BrowserRouter>
     </Suspense>
   </I18nextProvider>,

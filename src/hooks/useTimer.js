@@ -6,7 +6,7 @@ export default function (start = Date.now()) {
   return Date(milliseconds);
 }
 
-function useInterval (callback, delay) {
+export function useInterval (callback, delay) {
   useEffect(() => {
     const id = setInterval(callback, delay);
     return () => clearInterval(id);

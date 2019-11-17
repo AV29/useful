@@ -27,3 +27,12 @@ export const StyledTraverseResult = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+export const StyledMatrix = styled.div`
+  margin-top: 10px;
+  position: relative;
+  
+  & > span {
+    position: absolute;
+  }
+`;

@@ -104,6 +104,7 @@
   "clickOutsideExampleBlock": "Start clicking",
   "resetMessages": "Clear",
   "playground": "Playground",
+  "about": "About",
   "playgroundDescription": "(randomly changed playground page to try something out)",
   "width": "Width",
   "depth": "Depth",
@@ -111,5 +112,9 @@
   "widthValidation": "Make width less than {{width}}",
   "generateTree": "Generate Tree",
   "flattenTree": "Flatten Tree",
-  "mapTree": "Map Tree"
+  "mapTree": "Map Tree",
+  "rows": "Rows",
+  "columns": "Columns",
+  "drawing": "...drawing",
+  "draw": "Draw"
 }
