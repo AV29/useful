@@ -11,7 +11,7 @@ import { StyledMatrix, SpiralSpeedSlider } from './styles.js';
 
 const config = Object.freeze({
   speeds: [200, 250, 100, 50],
-  initialSpeed: 2,
+  initialSpeed: 3,
   lowerBound: 0,
   upperBound: 1,
   fontSize: 14,
@@ -19,7 +19,7 @@ const config = Object.freeze({
   rows: 10,
   columns: 10,
   maxRows: 10,
-  maxColumns: 20
+  maxColumns: 25
 });
 
 const getWidth = colCount => colCount * config.upperBound.toString().length * (config.fontSize + config.offset) - config.offset;
@@ -78,6 +78,13 @@ function Spiral () {
           validate={() => isColumnsInputInvalid && t('spiralInputInValid', { max: config.maxColumns })}
           {...columns}
         />
+        <Button
+          style={{ marginBottom: 0, width: 100 }}
+          disabled={isDrawing || isRowsInputInvalid || isColumnsInputInvalid}
+          onClick={handleGenerate}
+        >
+          {isDrawing ? t('drawing') : t('draw')}
+        </Button>
       </FlexRow>
       <SpiralSpeedSlider
         label={t('speed')}
@@ -85,12 +92,6 @@ function Spiral () {
         value={speed}
         onChange={setSpeed}
       />
-      <Button
-        disabled={isDrawing || isRowsInputInvalid || isColumnsInputInvalid}
-        onClick={handleGenerate}
-      >
-        {isDrawing ? t('drawing') : t('draw')}
-      </Button>
       <StyledMatrix style={matrixStyles}>
         {renderData.map(({ x, y, element }, index) => (
           <span
