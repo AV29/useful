@@ -1,7 +1,7 @@
 /* Gets week days given that currentDate is of Moment js type */
 export function getMomentWeek (currentDate) {
   const dates = [];
-  for (let i = 1; i <= 7; i++) dates.push(currentDate.clone().day(i));
+  for (let i = 1; i <= 7; i += 1) dates.push(currentDate.clone().day(i));
   return dates;
 }
 

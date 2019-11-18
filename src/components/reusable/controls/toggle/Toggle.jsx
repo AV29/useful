@@ -26,6 +26,7 @@ function Toggle ({ label, className, id = guid(), disabled, leftLabel = false, .
 Toggle.propTypes = {
   id: string,
   leftLabel: bool,
+  disabled: bool,
   name: string,
   className: string,
   label: string,

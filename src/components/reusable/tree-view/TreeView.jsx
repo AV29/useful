@@ -1,9 +1,9 @@
 import React, { useState, useCallback } from 'react';
-import { string, shape, arrayOf, bool, array } from 'prop-types';
+import { string, shape, arrayOf, bool, array, object } from 'prop-types';
 import Icon from '../icon/Icon.jsx';
 import styles from './TreeView.less';
 
-const TreeView = props => {
+const TreeView = (props) => {
   const [isCollapsed, toggleCollapsed] = useState(props.isCollapsed);
 
   const handleToggleCollapse = () => {
@@ -36,7 +36,7 @@ const TreeView = props => {
         {
           items &&
           <Icon
-            icon='arrowRight'
+            icon="arrowRight"
             size={10}
             onClick={handleToggleCollapse}
             className={[styles.toggleIcon, !isCollapsed ? styles.iconExpanded : ''].join(' ')}
@@ -51,6 +51,7 @@ const TreeView = props => {
 
 TreeView.propTypes = {
   isRoot: bool,
+  style: object,
   isCollapsed: bool,
   data: shape({
     id: string,

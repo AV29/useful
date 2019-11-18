@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import { bool, oneOf } from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { generateMatrix, getSpiralLoop } from '../../../utilities/spiralWalkThrough';
 import Button from '../../reusable/controls/button/Button';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { func, string } from 'prop-types';
-import noop from '../../../../utilities/noop'
+import noop from '../../../../utilities/noop';
 import { StyledInput, StyledInputWrapper, StyledError } from './styles';
 
 function Input ({ id, label, validate, ...props }) {

@@ -17,9 +17,19 @@ function UseFormValue () {
     <StyledEditForm>
       <StyledInfoSection>{name.value} {surname.value}, {age.value}</StyledInfoSection>
       <FlexRow>
-        <Input label={t('name')} {...name} />
-        <Input label={t('surname')} {...surname} />
-        <Input label={t('age')} type="number" {...age} />
+        <Input
+          label={t('name')}
+          {...name}
+        />
+        <Input
+          label={t('surname')}
+          {...surname}
+        />
+        <Input
+          label={t('age')}
+          type="number"
+          {...age}
+        />
       </FlexRow>
     </StyledEditForm>
   );

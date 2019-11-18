@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {defaultTheme} from '../constants/themes';
+import { defaultTheme } from '../constants/themes';
 
 export const getBaseColor = ({ theme: { baseColor } }) => baseColor || defaultTheme.BASE_COLOR;
 export const getBorderColor = ({ theme: { borderColor } }) => borderColor || defaultTheme.BORDER_COLOR;

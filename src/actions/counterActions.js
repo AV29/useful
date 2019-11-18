@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { counterManager } from '../reducers/counter';
 
 export const INCREMENT_COUNTER = 'INCREMENT_COUNTER';
@@ -9,5 +10,5 @@ export const incrementCounter = { type: INCREMENT_COUNTER };
 export const decrementCounter = { type: DECREMENT_COUNTER };
 
 const userLoadingSuccess = user => {
-  return {type: 'USER_LOADED', user};
+  return { type: 'USER_LOADED', user };
 };

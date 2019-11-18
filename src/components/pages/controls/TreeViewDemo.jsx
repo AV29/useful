@@ -46,7 +46,7 @@ function TreeViewDemo () {
       <FlexRow>
         <Input
           label={t('width')}
-          type='number'
+          type="number"
           style={{ width: 150 }}
           validate={() => !isWidthValid && t('widthValidation', { width: maxWidth })}
           {...width}
@@ -58,9 +58,27 @@ function TreeViewDemo () {
           validate={() => !isDepthValid && t('depthValidation', { depth: maxDepth })}
           {...depth}
         />
-        <Button disabled={!canAct} style={{ marginBottom: 0 }} onClick={handleGenerateTree}>{t('generateTree')}</Button>
-        <Button disabled={!canAct} style={{ marginBottom: 0 }} onClick={handleFlattenTree}>{t('flattenTree')}</Button>
-        <Button disabled={!canAct} style={{ marginBottom: 0 }} onClick={handleMapTree}>{t('mapTree')}</Button>
+        <Button
+          disabled={!canAct}
+          style={{ marginBottom: 0 }}
+          onClick={handleGenerateTree}
+        >
+          {t('generateTree')}
+        </Button>
+        <Button
+          disabled={!canAct}
+          style={{ marginBottom: 0 }}
+          onClick={handleFlattenTree}
+        >
+          {t('flattenTree')}
+        </Button>
+        <Button
+          disabled={!canAct}
+          style={{ marginBottom: 0 }}
+          onClick={handleMapTree}
+        >
+          {t('mapTree')}
+        </Button>
       </FlexRow>
       <StyledTreeViewContainer>
         <TreeView

@@ -1,7 +1,7 @@
 class Node {
   constructor (params) {
     this.items = [];
-    Object.keys(params).forEach(key => {
+    Object.keys(params).forEach((key) => {
       this[key] = params[key];
     });
   }
@@ -16,7 +16,7 @@ export function generateTree (options = {}) {
 
   function getNode (currDepth = 0, currWidth = 1) {
     let widthCounter = 1;
-    let node = new Node({ id: !currDepth ? 'Root' : `Level ${currDepth}, Node ${currWidth}`, isCollapsed });
+    const node = new Node({ id: !currDepth ? 'Root' : `Level ${currDepth}, Node ${currWidth}`, isCollapsed });
     while (widthCounter <= width) {
       if (currDepth >= depth) break;
       node.addItem(getNode(currDepth + 1, widthCounter));
@@ -33,7 +33,7 @@ export function flattenTree (tree) {
 
   function readNode (data) {
     accumulator.push(data.id);
-    data.items && data.items.length && data.items.forEach(readNode)
+    data.items && data.items.length && data.items.forEach(readNode);
   }
 
   readNode(tree);

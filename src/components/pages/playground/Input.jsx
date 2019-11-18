@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { func, bool, string } from 'prop-types';
 import styles from './Playground.less';
 
 function Input (props) {
@@ -17,10 +17,11 @@ function Input (props) {
 }
 
 Input.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  isDisabled: PropTypes.bool,
-  inputRef: PropTypes.func,
-  value: PropTypes.string.isRequired
+  onChange: func.isRequired,
+  isDisabled: bool,
+  name: string,
+  inputRef: func,
+  value: string.isRequired
 };
 
 Input.defaultProps = {
