@@ -1,42 +1,46 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { bool, oneOf } from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { generateMatrix, getSpiralLoop } from '../../../utilities/spiralWalkThrough';
 import Button from '../../reusable/controls/button/Button';
 import Input from '../../reusable/controls/input/Input';
 import useFormValue from '../../../hooks/useFormValue';
+import useDynamicInterval from '../../../hooks/useDynamicInterval';
 import { FlexRow, FlexColumn } from '../../../styles/styles';
-import { StyledMatrix } from './styles.js';
+import { StyledMatrix, SpiralSpeedSlider } from './styles.js';
 
 const config = Object.freeze({
-  speed: {
-    blazing: 10,
-    fast: 50,
-    regular: 150,
-    slow: 300
-  },
+  speeds: [200, 250, 100, 50],
+  initialSpeed: 2,
   lowerBound: 0,
   upperBound: 1,
   fontSize: 14,
   offset: 10,
-  rows: 5,
-  columns: 5
+  rows: 10,
+  columns: 10,
+  maxRows: 10,
+  maxColumns: 20
 });
 
 const getWidth = colCount => colCount * config.upperBound.toString().length * (config.fontSize + config.offset) - config.offset;
 const getHeight = rowCount => rowCount * (config.fontSize + config.offset) - config.offset;
 
-function Spiral (props) {
+function Spiral () {
   const { t } = useTranslation('common');
   const spiralData = useRef([]);
+  const counter = useRef(0);
   const [renderData, setRenderData] = useState([]);
   const [isDrawing, draw] = useState(false);
+  const [speed, setSpeed] = useState(config.initialSpeed);
   const columns = useFormValue(config.columns);
   const rows = useFormValue(config.rows);
   const [matrixStyles, setMatrixStyles] = useState({
     height: getHeight(rows.value),
     width: getWidth(columns.value)
   });
+
+  const isRowsInputInvalid = rows.value > config.maxRows;
+  const isColumnsInputInvalid = columns.value > config.maxColumns;
 
   const handleGenerate = () => {
     spiralData.current = getSpiralLoop(
@@ -47,31 +51,46 @@ function Spiral (props) {
       )
     );
     setRenderData([]);
+    counter.current = 0;
     setMatrixStyles({ height: getHeight(rows.value), width: getWidth(columns.value) });
     draw(true);
   };
 
-  useEffect(() => {
-    let id;
-    if (isDrawing) {
-      let counter = 0;
-      id = setInterval(() => {
-        setRenderData(data => data.concat(spiralData.current[counter]));
-        counter === spiralData.current.length - 1 ?
-          draw(false) :
-          counter += 1;
-      }, config.speed[props.speed] || config.speed.regular);
-    }
-    return () => clearInterval(id);
-  }, [isDrawing]);
+  useDynamicInterval(() => {
+    setRenderData(data => data.concat(spiralData.current[counter.current]));
+    counter.current === spiralData.current.length - 1 ?
+      draw(false) :
+      counter.current += 1;
+  }, isDrawing ? config.speeds[speed] : null);
 
   return (
     <FlexColumn>
       <FlexRow>
-        <Input type="number" label={t('rows')} {...rows} />
-        <Input type="number" label={t('columns')} {...columns} />
+        <Input
+          type="number"
+          label={t('rows')}
+          validate={() => isRowsInputInvalid && t('spiralInputInValid', { max: config.maxRows })}
+          {...rows}
+        />
+        <Input
+          type="number"
+          label={t('columns')}
+          validate={() => isColumnsInputInvalid && t('spiralInputInValid', { max: config.maxColumns })}
+          {...columns}
+        />
       </FlexRow>
-      <Button disabled={isDrawing} onClick={handleGenerate}>{isDrawing ? t('drawing') : t('draw')}</Button>
+      <SpiralSpeedSlider
+        label={t('speed')}
+        max={4}
+        value={speed}
+        onChange={setSpeed}
+      />
+      <Button
+        disabled={isDrawing || isRowsInputInvalid || isColumnsInputInvalid}
+        onClick={handleGenerate}
+      >
+        {isDrawing ? t('drawing') : t('draw')}
+      </Button>
       <StyledMatrix style={matrixStyles}>
         {renderData.map(({ x, y, element }, index) => (
           <span
@@ -90,15 +109,5 @@ function Spiral (props) {
     </FlexColumn>
   );
 }
-
-Spiral.propsTypes = {
-  clockwise: bool,
-  speed: oneOf(["fast", "slow", "regular", "blazing"])
-};
-
-Spiral.defaultProps = {
-  clockwise: true,
-  speed: "regular"
-};
 
 export default Spiral;

@@ -119,5 +119,7 @@
   "draw": "Draw",
   "generatingTree": "Generating Tree",
   "spiralRender": "Spiral Render",
-  "adjacentCalc": "Maximum product"
+  "adjacentCalc": "Maximum product",
+  "spiralInputInValid": "Slow down, cowboy! {{max}} max!",
+  "speed": "Speed"
 }

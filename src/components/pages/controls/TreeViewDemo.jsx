@@ -22,6 +22,8 @@ function TreeViewDemo () {
   const isDepthValid = depth.value <= maxDepth;
   const isWidthValid = width.value <= maxWidth;
 
+  const canAct = isDepthValid && isWidthValid;
+
   const handleGenerateTree = () => {
     if (!isDepthValid) return;
     setTree(generateTree({ width: width.value, depth: depth.value }));
@@ -56,9 +58,9 @@ function TreeViewDemo () {
           validate={() => !isDepthValid && t('depthValidation', { depth: maxDepth })}
           {...depth}
         />
-        <Button style={{ marginBottom: 0 }} onClick={handleGenerateTree}>{t('generateTree')}</Button>
-        <Button style={{ marginBottom: 0 }} onClick={handleFlattenTree}>{t('flattenTree')}</Button>
-        <Button style={{ marginBottom: 0 }} onClick={handleMapTree}>{t('mapTree')}</Button>
+        <Button disabled={!canAct} style={{ marginBottom: 0 }} onClick={handleGenerateTree}>{t('generateTree')}</Button>
+        <Button disabled={!canAct} style={{ marginBottom: 0 }} onClick={handleFlattenTree}>{t('flattenTree')}</Button>
+        <Button disabled={!canAct} style={{ marginBottom: 0 }} onClick={handleMapTree}>{t('mapTree')}</Button>
       </FlexRow>
       <StyledTreeViewContainer>
         <TreeView

@@ -6,6 +6,10 @@ export const SliderContainer = styled(Slider)`
   font-size: 14px;
 `;
 
+export const SpiralSpeedSlider = styled(Slider)`
+  width: 60%;
+`;
+
 export const IdleIndicatorContainer = styled.div`
   position: relative;
   height: 20px;

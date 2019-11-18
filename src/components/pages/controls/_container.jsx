@@ -22,7 +22,7 @@ function Controls (props) {
           <TreeViewDemo />
         </DemoSection>
         <DemoSection title={t('spiralRender')}>
-          <Spiral speed="fast" />
+          <Spiral />
         </DemoSection>
         <DemoSection title={t('sliderExample')}>
           <SliderDemo />

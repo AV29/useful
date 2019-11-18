@@ -119,5 +119,7 @@
   "draw": "Рисовать",
   "generatingTree": "Генерирование Дерева",
   "spiralRender": "Спиральный рендер",
-  "adjacentCalc": "Максимальное произведение"
+  "adjacentCalc": "Максимальное произведение",
+  "spiralInputInValid": "Воу, Воу!!! {{max}} и хватит!",
+  "speed": "Скорость"
 }

@@ -9,6 +9,8 @@ export default function (callback, delay) {
 
   useEffect(() => {
     function tick() {
+      console.log('tick');
+
       savedCallback.current();
     }
 

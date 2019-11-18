@@ -3,11 +3,12 @@ import { string, bool } from 'prop-types';
 import guid from '../../../../utilities/guid';
 import { StyledLabel, StyledInputWrapper, StyledSlider, StyledInput, StyledToggle } from './styles';
 
-function Toggle ({ label, id = guid(), disabled, leftLabel = false, ...props }) {
+function Toggle ({ label, className, id = guid(), disabled, leftLabel = false, ...props }) {
   return (
     <StyledToggle
       leftLabel={leftLabel}
       disabled={disabled}
+      className={className}
     >
       <StyledInputWrapper htmlFor={id} leftLabel={leftLabel}>
         <StyledInput
@@ -26,6 +27,7 @@ Toggle.propTypes = {
   id: string,
   leftLabel: bool,
   name: string,
+  className: string,
   label: string,
   labelOrientation: string
 };
