@@ -102,6 +102,7 @@
   "clickOutsideExample": "Пример детекта нажатия 'вне'",
   "clickOutsideExampleBlock": "А ну-ка покликай-ка",
   "resetMessages": "Вжух!",
+  "observables": "RxJS",
   "noData": "Нет Данных",
   "playground": "Песочница",
   "about": "Шо за нах?",

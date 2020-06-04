@@ -1,5 +1,5 @@
 import React from 'react';
-import { func } from 'prop-types';
+import { oneOfType, object, func, element } from 'prop-types';
 import { Route } from 'react-router-dom';
 
 const ExtendedRoute = ({ component, ...rest }) => (
@@ -10,7 +10,7 @@ const ExtendedRoute = ({ component, ...rest }) => (
 );
 
 ExtendedRoute.propTypes = {
-  component: func
+  component: oneOfType([func, object, element]).isRequired
 };
 
 export default ExtendedRoute;

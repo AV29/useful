@@ -103,6 +103,7 @@
   "clickOutsideExample": "Click 'outside' detection example",
   "clickOutsideExampleBlock": "Start clicking",
   "resetMessages": "Clear",
+  "observables": "Observables",
   "playground": "Playground",
   "about": "About",
   "playgroundDescription": "(randomly changed playground page to try something out)",

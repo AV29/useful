@@ -10,7 +10,7 @@ export default (
     <Route
       exact
       path="/"
-      render={() => <Redirect to={routesConfig[0].path}/>}
+      render={() => <Redirect to={routesConfig[7].path}/>}
     />
     {routesConfig.map(({ id, ...route }) => <ExtendedRoute key={id} {...route} />)}
     <Route

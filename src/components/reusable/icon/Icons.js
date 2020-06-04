@@ -13,6 +13,7 @@ import refresh from '../../../assets/icons/refresh.svg';
 import webComponents from '../../../assets/icons/web-components.svg';
 import playground from '../../../assets/icons/playground.svg';
 import arrow from '../../../assets/icons/arrow.svg';
+import observables from '../../../assets/icons/observables.svg';
 
 const Icons = {
   spinner,
@@ -29,7 +30,8 @@ const Icons = {
   refresh,
   webComponents,
   playground,
-  arrow
+  arrow,
+  observables
 };
 
 export default Icons;
