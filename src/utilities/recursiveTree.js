@@ -16,7 +16,13 @@ export function generateTree (options = {}) {
 
   function getNode (currDepth = 0, currWidth = 1) {
     let widthCounter = 1;
-    const node = new Node({ id: !currDepth ? 'Root' : `Level ${currDepth}, Node ${currWidth}`, isCollapsed });
+    const nodeContent = !currDepth ? 'Root' : `Level ${currDepth}, Node ${currWidth}`;
+    const node = new Node({
+      id: nodeContent,
+      nodeContent,
+      depth: currDepth,
+      isCollapsed
+    });
     while (widthCounter <= width) {
       if (currDepth >= depth) break;
       node.addItem(getNode(currDepth + 1, widthCounter));

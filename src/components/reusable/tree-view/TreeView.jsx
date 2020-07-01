@@ -1,50 +1,51 @@
-import React, { useState, useCallback } from 'react';
-import { string, shape, arrayOf, bool, array, object } from 'prop-types';
+import React, { useState, useMemo } from 'react';
+import { string, shape, arrayOf, bool, array, object, oneOf, any } from 'prop-types';
 import Icon from '../icon/Icon.jsx';
 import styles from './TreeView.less';
 
-const TreeView = (props) => {
-  const [isCollapsed, toggleCollapsed] = useState(props.isCollapsed);
+export const TreeView = props => {
+  const shouldHideRoot = !props.shouldDisplayRoot && props.isRoot;
+  const [isCollapsed, toggleCollapsed] = useState(shouldHideRoot ? false : props.isCollapsed);
 
-  const handleToggleCollapse = () => {
-    toggleCollapsed(isCollapsed => !isCollapsed);
-  };
-
-  const getItems = useCallback(() => {
-    return props.data.items && props.data.items.length > 0 ?
-      props.data.items.map(data => (
+  const items = useMemo(
+    () =>
+      (props.data.items || []).map(data => (
         <TreeView
-          key={data.id}
+          key={props.getId(data)}
           isRoot={false}
           isCollapsed={data.isCollapsed}
           data={data}
+          getId={props.getId}
+          subTreeOffset={props.subTreeOffset}
         />
-      )) :
-      null;
-  }, [props.data]);
+      )),
+    [props.data]
+  );
 
-  const items = getItems();
+  const getNodeContent = ({ nodeContent }) => (typeof nodeContent === 'function' ? nodeContent() : nodeContent);
+
+  const isLeaf = items.length === 0;
+
   return (
     <div
-      style={props.isRoot ? props.style : {}}
-      className={[
-        styles.tree,
-        props.isRoot ? styles.root : ''
-      ].join(' ')}
+      style={{ ...(props.isRoot ? props.style : { marginLeft: props.subTreeOffset }) }}
+      className={props.isRoot ? [styles.root, props.className].join(' ') : ''}
     >
-      <div className={styles.nodeHeader}>
-        {
-          items &&
-          <Icon
-            icon="arrowRight"
-            size={10}
-            onClick={handleToggleCollapse}
-            className={[styles.toggleIcon, !isCollapsed ? styles.iconExpanded : ''].join(' ')}
-          />
-        }
-        <span className={[styles.nodeText, !items ? styles.isLeaf : ''].join(' ')}>{props.data.id}</span>
+      <div
+        onClick={() => toggleCollapsed(isCollapsed => !isCollapsed)}
+        className={[styles.nodeHeader, shouldHideRoot ? styles.isHidden : ''].join(' ')}
+      >
+        {!isLeaf &&
+        <Icon
+          icon="arrowRight"
+          size={10}
+          className={[styles.toggleIcon, !isCollapsed ? styles.iconExpanded : ''].join(' ')}
+        />}
+        <span style={isLeaf ? { marginLeft: props.subTreeOffset } : {}} className={styles.nodeText}>
+          {getNodeContent(props.data)}
+        </span>
       </div>
-      {!isCollapsed && items}
+      {!isCollapsed && !isLeaf && items}
     </div>
   );
 };
@@ -53,18 +54,28 @@ TreeView.propTypes = {
   isRoot: bool,
   style: object,
   isCollapsed: bool,
+  className: string,
+  shouldDisplayRoot: bool,
   data: shape({
     id: string,
-    items: arrayOf(shape({
-      id: string,
-      items: array
-    }))
-  })
+    isCollapsed: bool,
+    nodeContent: any,
+    items: arrayOf(
+      shape({
+        id: string,
+        items: array
+      })
+    )
+  }).isRequired
 };
 
 TreeView.defaultProps = {
+  getId: data => (data || {}).id || '',
+  className: '',
   isRoot: true,
-  isCollapsed: true
+  isCollapsed: true,
+  shouldDisplayRoot: true,
+  subTreeOffset: 15
 };
 
 export default TreeView;

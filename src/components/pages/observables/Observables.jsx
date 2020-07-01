@@ -1,36 +1,46 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import { BehaviorSubject, from } from 'rxjs';
-import { filter, debounceTime, distinctUntilChanged, mergeMap } from 'rxjs/operators';
+import { BehaviorSubject, from, of } from 'rxjs';
+import { filter, debounceTime, distinctUntilChanged, mergeMap, delay, tap, repeat, map } from 'rxjs/operators';
+import useObservable from '../../../hooks/useObservable';
 import Input from '../../reusable/controls/input/Input';
 
 const getPokemonByName = name => {
-  return axios.get('https://pokeapi.co/api/v2/pokemon?limit=1000')
+  return axios.get('https://pokeapi.co/api/v2/pokemon?limit=100')
     .then(result => result.data.results.filter(pokemon => pokemon.name.includes(name)));
 };
 
+const delayRequest = () => of(new Date()).pipe(delay(1000));
+
+const pollObservable = of({}).pipe(
+  mergeMap(delayRequest),
+  tap(console.log),
+  map(res => res.toString()),
+  delay(2000),
+  repeat()
+);
+
+const numbersObservable = from([1, 2, 3]).pipe(
+  mergeMap(val => from([val]).pipe(delay(1000 * val)))
+);
+
 let searchSubject = new BehaviorSubject('');
-let searchResultsObservable = searchSubject.pipe(
+
+const searchResultsObservable = searchSubject.pipe(
   filter(val => val.length > 1),
   debounceTime(500),
   distinctUntilChanged(),
   mergeMap(val => from(getPokemonByName(val)))
 );
 
-const useObservable = (observable, setter) => {
-  useEffect(() => {
-    const subscription = observable.subscribe(result => {
-      setter(result);
-    });
-
-    return () => subscription.unsubscribe();
-  }, [observable, setter]);
-};
-
 function Playground () {
   const [search, setSearch] = useState('');
+  // const [numbers, setNumbers] = useState([]);
   const [results, setResults] = useState([]);
+  const [polledData, setPolledData] = useState('');
 
+  // useObservable(numbersObservable, setNumbers);
+  useObservable(pollObservable, setPolledData);
   useObservable(searchResultsObservable, setResults);
 
   const handleSearchChange = event => {
@@ -42,6 +52,7 @@ function Playground () {
   return (
     <>
       <Input value={search} onChange={handleSearchChange}/>
+      {polledData}
       {results.map(pockemon => <div key={pockemon.name}>{pockemon.name}</div>)}
     </>
   );

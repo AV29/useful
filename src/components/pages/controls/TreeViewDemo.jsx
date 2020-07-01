@@ -33,6 +33,7 @@ function TreeViewDemo () {
     if (!isDepthValid) return;
     setTree(mapTree(tree, (_, { width, depth, index }) => ({
       id: `Width:${width} Depth:${depth} Index: ${index}`,
+      nodeContent: `Width:${width} Depth:${depth} Index: ${index}`,
       isCollapsed: false
     })));
   };
@@ -84,7 +85,8 @@ function TreeViewDemo () {
         <TreeView
           data={tree}
           style={{ flex: 1 }}
-          isCollapsed={tree.isCollapsed}
+          shouldDisplayRoot={false}
+          expandEventType='onHover'
         />
         <StyledTraverseResult>
           {flattened.map((node, index) => <span key={index}>{node}</span>)}
