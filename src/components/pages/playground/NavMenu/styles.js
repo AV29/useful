@@ -14,6 +14,9 @@ export const StyledOpenIndicator = styled.div`
 export const StyledMenuList = styled.div`
   color: ${getBaseColor};
   background-color: ${getBGColor};
+  box-shadow: 1px 2px 5px ${getShadowColor};
+  border-radius: 4px;
+  margin-${props => props.isPlacedBottom ? 'top' : 'left'}: 8px;
 `;
 
 export const StyledMenuItem = styled(MenuItem)`
@@ -22,12 +25,4 @@ export const StyledMenuItem = styled(MenuItem)`
     font-size: 14px;
     justify-content: space-between;    
   }
-`;
-
-export const StyledPaper = styled.div`
-  min-width: 100px;
-  max-width: 200px;
-  box-shadow: 1px 2px 5px ${getShadowColor};
-  border-radius: 4px;
-  margin-${props => props.isPlacedBottom ? 'top' : 'left'}: 8px;
 `;

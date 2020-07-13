@@ -94,5 +94,18 @@ export default [
             ]
           }]
       }]
+  },
+  {
+    id: '4',
+    title: 'Test 4',
+    path: '/observables',
+    icon: <Icon size={10} icon='refresh' />,
+    disabled: true
+  },
+  {
+    id: '5',
+    title: 'Test 5',
+    icon: <Icon size={10} icon='refresh' />,
+    path: '/observables'
   }
 ];

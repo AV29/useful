@@ -2,12 +2,30 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { arrayOf, bool, shape, string } from 'prop-types';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import Grow from '@material-ui/core/Grow';
 import Popper from '@material-ui/core/Popper';
-import { StyledMenuItem, StyledMenuList, StyledOpenIndicator, StyledPaper } from './styles';
+import { StyledMenuItem, StyledMenuList, StyledOpenIndicator } from './styles';
 import styles from './NavMenu.less';
 
-export const getTitle = item => typeof item.title === 'function' ? item.title() : item.title;
+export const getTitle = item => (
+  <span className={styles.title}>
+    {typeof item.title === 'function' ? item.title() : item.title}
+  </span>
+);
+
+const getItemContent = props => {
+  if(props.isMinimized) {
+    return !props.isRoot ? getTitle(props.item) : '';
+  } else {
+    return getTitle(props.item);
+  }
+};
+
+const getNodeContent = props => (
+  <div className={styles.flexCentered}>
+    {props.item.icon && <span className={styles.icon}>{props.item.icon}</span>}
+    {getItemContent(props)}
+  </div>
+);
 
 export const ItemType = shape({
   id: string.isRequired,
@@ -22,52 +40,40 @@ const SubMenu = props => {
 
   const handleToggle = event => setAnchorEl(anchorEl ? null : event.currentTarget);
 
-  const nodeContent = getTitle(props.item);
-
-  console.log(props.isVertical, props.isRoot);
-
   return (
-    <div key={props.item.id} className={styles.menuWrapper}>
+    <>
       <StyledMenuItem onClick={handleToggle} disabled={props.item.disabled}>
-        <div className={styles.flexCentered}>
-          {props.item.icon && <span className={styles.icon}>{props.item.icon}</span>}
-          {nodeContent && <span className={styles.title}>{nodeContent}</span>}
-        </div>
+        {getNodeContent(props)}
         <StyledOpenIndicator isCollapsed={!anchorEl} />
       </StyledMenuItem>
-
       <Popper
-        elevation={10}
-        keepMounted={false}
-        open={Boolean(anchorEl)}
-        anchorEl={anchorEl}
-        role={undefined}
         transition
         disablePortal
+        role={undefined}
+        keepMounted={false}
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
         placement={props.isRoot && !props.isVertical ? 'bottom-start' : 'right-start'}
       >
-        {({ TransitionProps, placement }) => (
-          <Grow
-            {...TransitionProps}
-            style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-          >
-            <StyledPaper isPlacedBottom={props.isRoot && !props.isVertical}>
-              <ClickAwayListener onClickAway={handleClose}>
-                <StyledMenuList>
-                  <NavMenu items={props.item.items} isRoot={false} isVertical={props.isVertical} />
-                </StyledMenuList>
-              </ClickAwayListener>
-            </StyledPaper>
-          </Grow>
-        )}
+        <ClickAwayListener onClickAway={handleClose}>
+          <StyledMenuList isPlacedBottom={props.isRoot && !props.isVertical}>
+            <NavMenu
+              isRoot={false}
+              isMinimized={false}
+              items={props.item.items}
+              isVertical={props.isVertical}
+            />
+          </StyledMenuList>
+        </ClickAwayListener>
       </Popper>
-    </div>
+    </>
   )
 };
 
 SubMenu.propTypes = {
   item: ItemType,
   isVertical: bool,
+  isMinimized: bool,
   isRoot: bool
 };
 
@@ -78,29 +84,47 @@ const MenuItem = props => (
     to={props.item.path || '/'}
     disabled={props.item.disabled}
   >
-    <span className={styles.title}>{getTitle(props.item)}</span>
+    {getNodeContent(props)}
   </StyledMenuItem>
 );
 
 MenuItem.propTypes = {
-  item: ItemType
+  item: ItemType,
+  isMinimized: bool,
+  isRoot: bool
 };
 
 const NavMenu = props => (
   <div className={[
-        props.isRoot && !props.isVertical ? styles.isHorizontal : '',
-        props.isRoot ? styles.navMenuWrapper : ''
-      ].join(' ')}>
-    {props.items.map(item => item.items && item.items.length > 0 ?
-       <SubMenu key={item.id} item={item} isVertical={props.isVertical} isRoot={props.isRoot} /> :
-       <MenuItem key={item.id} item={item} />
-    )}
+    props.isRoot ? styles.navMenuWrapper : '',
+    props.isRoot && !props.isVertical ? styles.isHorizontal : '',
+    props.isRoot && props.isMinimized ? styles.isMinimized : ''
+  ].join(' ')}
+  >
+    {props.items.map(item => item.items && item.items.length > 0 ? (
+       <SubMenu
+         key={item.id}
+         item={item}
+         isVertical={props.isVertical}
+         isRoot={props.isRoot}
+         isMinimized={props.isMinimized}
+       />
+      ) : (
+       <MenuItem
+         key={item.id}
+         item={item}
+         isMinimized={props.isMinimized}
+         isRoot={props.isRoot}
+       />
+      ))
+    }
   </div>
 );
 
 NavMenu.propTypes = {
   items: arrayOf(ItemType),
   isRoot: bool,
+  isMinimized: bool,
   isVertical: bool
 };
 
