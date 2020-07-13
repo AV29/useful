@@ -1,37 +1,33 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { arrayOf, bool, shape, string } from 'prop-types';
+import { arrayOf, bool } from 'prop-types';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Popper from '@material-ui/core/Popper';
 import { StyledMenuItem, StyledMenuList, StyledOpenIndicator } from './styles';
+import { getNodeContent } from './utils';
+import { ItemType } from './types';
 import styles from './NavMenu.less';
 
-export const getTitle = item => (
-  <span className={styles.title}>
-    {typeof item.title === 'function' ? item.title() : item.title}
-  </span>
+// ------------------------------------------------------ MenuItem ------------------------------------------------------
+
+const MenuItem = props => (
+  <StyledMenuItem
+    key={props.item.id}
+    component={Link}
+    to={props.item.path || '/'}
+    disabled={props.item.disabled}
+  >
+    {getNodeContent(props)}
+  </StyledMenuItem>
 );
 
-const getItemContent = props => {
-  if(props.isMinimized) {
-    return !props.isRoot ? getTitle(props.item) : '';
-  } else {
-    return getTitle(props.item);
-  }
+MenuItem.propTypes = {
+  item: ItemType,
+  isMinimized: bool,
+  isRoot: bool
 };
 
-const getNodeContent = props => (
-  <div className={styles.flexCentered}>
-    {props.item.icon && <span className={styles.icon}>{props.item.icon}</span>}
-    {getItemContent(props)}
-  </div>
-);
-
-export const ItemType = shape({
-  id: string.isRequired,
-  path: string,
-  disabled: bool
-});
+// ------------------------------------------------------ SubMenu ------------------------------------------------------
 
 const SubMenu = props => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -77,22 +73,7 @@ SubMenu.propTypes = {
   isRoot: bool
 };
 
-const MenuItem = props => (
-  <StyledMenuItem
-    key={props.item.id}
-    component={Link}
-    to={props.item.path || '/'}
-    disabled={props.item.disabled}
-  >
-    {getNodeContent(props)}
-  </StyledMenuItem>
-);
-
-MenuItem.propTypes = {
-  item: ItemType,
-  isMinimized: bool,
-  isRoot: bool
-};
+// ------------------------------------------------------ NavMenu ------------------------------------------------------
 
 const NavMenu = props => (
   <div className={[
