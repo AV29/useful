@@ -32,15 +32,16 @@ MenuItem.propTypes = {
 const SubMenu = props => {
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const handleClose = () => setAnchorEl(null);
-
-  const handleToggle = event => setAnchorEl(anchorEl ? null : event.currentTarget);
+  const isOpened = Boolean(anchorEl);
 
   return (
     <>
-      <StyledMenuItem onClick={handleToggle} disabled={props.item.disabled}>
+      <StyledMenuItem
+        onClick={event => setAnchorEl(anchorEl ? null : event.currentTarget)}
+        disabled={props.item.disabled}
+      >
         {getNodeContent(props)}
-        <StyledOpenIndicator isCollapsed={!anchorEl} />
+        <StyledOpenIndicator isOpened={isOpened} />
       </StyledMenuItem>
       <Popper
         transition
@@ -48,11 +49,11 @@ const SubMenu = props => {
         role={undefined}
         keepMounted={false}
         anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
+        open={isOpened}
         placement={props.isRoot && !props.isVertical ? 'bottom-start' : 'right-start'}
       >
-        <ClickAwayListener onClickAway={handleClose}>
-          <StyledMenuList isPlacedBottom={props.isRoot && !props.isVertical}>
+        <ClickAwayListener onClickAway={() => setAnchorEl(null)}>
+          <StyledMenuList isBottom={props.isRoot && !props.isVertical}>
             <NavMenu
               isRoot={false}
               isMinimized={false}

@@ -8,7 +8,7 @@ export const StyledOpenIndicator = styled.div`
   width: 7px;
   height: 7px;
   border: 1px solid ${getBaseColor};
-  background-color: ${props => props.isCollapsed ? getBaseColor(props) : getBGColor(props)}
+  background-color: ${props => props.isOpened ? getBGColor(props) : getBaseColor(props)}
 `;
 
 export const StyledMenuList = styled.div`
@@ -16,7 +16,7 @@ export const StyledMenuList = styled.div`
   background-color: ${getBGColor};
   box-shadow: 1px 2px 5px ${getShadowColor};
   border-radius: 4px;
-  margin-${props => props.isPlacedBottom ? 'top' : 'left'}: 8px;
+  margin-${props => props.isBottom ? 'top' : 'left'}: 8px;
 `;
 
 export const StyledMenuItem = styled(MenuItem)`
