@@ -4,7 +4,7 @@ import Icon from '../../reusable/icon/Icon';
 export default [
   {
     id: '1',
-    icon: <Icon size={10} icon='refresh' />,
+    icon: <Icon size={10} icon='hook' />,
     title: () => 'Test 1',
     items: [
       {
@@ -21,7 +21,7 @@ export default [
   },
   {
     id: '2',
-    icon: <Icon size={10} icon='refresh' />,
+    icon: <Icon size={10} icon='renderProp' />,
     title: () => 'Test 2',
     items: [
       {
@@ -55,7 +55,7 @@ export default [
   },
   {
     id: '3',
-    icon: <Icon size={10} icon='refresh' />,
+    icon: <Icon size={10} icon='controls' />,
     title: () => 'Test 3',
     items: [
       {
@@ -99,13 +99,13 @@ export default [
     id: '4',
     title: 'Test 4',
     path: '/observables',
-    icon: <Icon size={10} icon='refresh' />,
+    icon: <Icon size={10} icon='lifecycle' />,
     disabled: true
   },
   {
     id: '5',
     title: 'Test 5',
-    icon: <Icon size={10} icon='refresh' />,
+    icon: <Icon size={10} icon='javascript' />,
     path: '/observables'
   }
 ];
