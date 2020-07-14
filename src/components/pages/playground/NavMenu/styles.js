@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import MenuItem from '@material-ui/core/MenuItem/MenuItem';
+import MenuItem from '@material-ui/core/MenuItem';
 import { getBaseColor, getBGColor, getShadowColor } from '../../../../styles/styles';
 
 export const StyledOpenIndicator = styled.div`
@@ -25,4 +25,16 @@ export const StyledMenuItem = styled(MenuItem)`
     font-size: 14px;
     justify-content: space-between;    
   }
+`;
+
+export const StyledIcon = styled.span`
+  display: inline-block;
+  width: ${props => props.size}px;
+  height: ${props => props.size}px;
+  
+  svg {
+    width: ${props => props.size}px;
+    height: ${props => props.size}px;
+  }
+  margin-right: 15px;
 `;

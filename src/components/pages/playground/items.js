@@ -4,108 +4,192 @@ import Icon from '../../reusable/icon/Icon';
 export default [
   {
     id: '1',
-    icon: <Icon size={10} icon='hook' />,
-    title: () => 'Test 1',
+    icon: <Icon icon='hook' />,
+    title: () => 'Europe',
     items: [
       {
         id: '1_1',
-        title: () => 'Test 1 1',
-        path: '/observables'
+        title: () => 'Eastern',
+        path: '/observables',
+        items: [
+          {
+            id: '1_1_1',
+            title: () => 'Russia',
+            path: '/observables'
+          },
+          {
+            id: '1_1_2',
+            title: () => 'Belarus',
+            path: '/observables'
+          },
+          {
+            id: '1_1_3',
+            title: () => 'Bulgaria',
+            path: '/observables'
+          },
+          {
+            id: '1_1_4',
+            title: () => 'Hungary',
+            path: '/observables'
+          }
+        ]
       },
       {
         id: '1_2',
-        title: () => 'Test 1 2',
-        path: '/observables'
+        title: () => 'Western',
+        path: '/observables',
+        items: [
+          {
+            id: '1_1_1',
+            title: () => 'Austria',
+            path: '/observables'
+          },
+          {
+            id: '1_1_2',
+            title: () => 'Switzerland',
+            path: '/observables'
+          },
+          {
+            id: '1_1_3',
+            title: () => 'Netherlands',
+            path: '/observables'
+          },
+          {
+            id: '1_1_4',
+            title: () => 'Germany',
+            path: '/observables'
+          },
+          {
+            id: '1_1_5',
+            title: () => 'UK',
+            path: '/observables'
+          }
+        ]
       }
     ]
   },
   {
     id: '2',
-    icon: <Icon size={10} icon='renderProp' />,
-    title: () => 'Test 2',
+    icon: <Icon icon='renderProp' />,
+    title: () => 'Asia',
     items: [
       {
         id: '2_1',
-        title: () => 'Test 2 1',
-        path: '/observables',
-        disabled: true
+        title: () => 'Russia',
+        path: '/observables'
       },
       {
         id: '2_2',
-        title: () => 'Test 2 2',
+        title: () => 'Turkey',
         path: '/observables'
       },
       {
         id: '2_3',
-        title: () => 'Test 2 3',
+        title: () => 'Japan',
         path: '/observables'
       },
       {
         id: '2_4',
-        title: () => 'Test 2 4',
-        path: '/observables',
-        disabled: true
+        title: () => 'China',
+        path: '/observables'
       },
       {
         id: '2_5',
-        title: () => 'Test 2 5',
+        title: () => 'India',
         path: '/observables'
       }
     ]
   },
   {
     id: '3',
-    icon: <Icon size={10} icon='controls' />,
-    title: () => 'Test 3',
+    icon: <Icon icon='controls' />,
+    title: () => 'America',
     items: [
       {
         id: '3_1',
-        title: () => 'Test 3 1',
-        items: [{
-          id: '3_1_1',
-          title: () => 'Test 3 1 1',
-          path: '/observables'
-        }]
+        title: () => 'Northern',
+        icon: <Icon icon='renderProp' />,
+        items: [
+          {
+            id: '3_1_1',
+            title: () => 'USA',
+            path: '/observables'
+          },
+          {
+            id: '3_1_2',
+            title: () => 'Canada',
+            path: '/observables'
+          },
+
+        ]
       },
       {
         id: '3_2',
-        title: () => 'Test 3 2',
+        title: () => 'Central',
+        icon: <Icon icon='controls' />,
         items: [
           {
             id: '3_2_1',
-            title: () => 'Test 3 2 1',
+            title: () => 'Mexico',
             path: '/observables'
           },
           {
             id: '3_2_2',
-            title: () => 'Test 3 2 2',
-            path: '/observables',
-            items: [
-              {
-                id: '3_2_2_1',
-                title: () => 'Test 3 2 2 1',
-                path: '/observables'
-              },
-              {
-                id: '3_2_2_2',
-                title: () => 'Test 3 2 2 2',
-                path: '/observables'
-              }
-            ]
-          }]
-      }]
+            title: () => 'Guatemala',
+            path: '/observables'
+          },
+          {
+            id: '3_2_3',
+            title: () => 'Cuba',
+            path: '/observables'
+          },
+          {
+            id: '3_2_4',
+            title: () => 'Panama',
+            path: '/observables'
+          }
+        ]
+      },
+      {
+        id: '3_3',
+        title: () => 'Southern',
+        icon: <Icon icon='controls' />,
+        items: [
+          {
+            id: '3_3_1',
+            title: () => 'Brazil',
+            path: '/observables'
+          },
+          {
+            id: '3_3_2',
+            title: () => 'Argentina',
+            path: '/observables'
+          },
+          {
+            id: '3_3_3',
+            title: () => 'Equador',
+            path: '/observables'
+          },
+          {
+            id: '3_3_4',
+            title: () => 'Peru',
+            path: '/observables'
+          }
+        ]
+      }
+    ]
   },
   {
     id: '4',
-    title: 'Test 4',
+    title: 'Antarctica',
     path: '/observables',
-    icon: <Icon size={10} icon='lifecycle' />,
+    icon: <Icon icon='lifecycle' />,
     disabled: true
   },
   {
     id: '5',
-    title: 'Test 5',
-    icon: <Icon size={10} icon='javascript' />,
+    title: 'Australia',
+    icon: <Icon icon='javascript' />,
     path: '/observables'
   }
 ];
