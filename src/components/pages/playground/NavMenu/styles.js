@@ -1,14 +1,14 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import MenuItem from '@material-ui/core/MenuItem';
+import { getRGBA } from './utils';
 
 const getFontColor = ({ theme: { nav: { fontColor } } }) => fontColor;
 const getBorderColor = ({ theme: { nav: { borderColor } } }) => borderColor;
-const getShadowColor = ({ theme: { nav: { shadowColor } } }) => shadowColor;
-const getBGColor = ({ theme: { nav: { backgroundColor } } }) => backgroundColor;
+const getBGColor = ({ theme: { nav: { backgroundColor } } }) => backgroundColor || '#263a4c';
 const getFontStyle= ({ theme: { nav: { fontStyle } } }) => fontStyle;
 const getFontSize= ({ theme: { nav: { fontSize } } }) => fontSize;
-const getIconSize= ({ theme: { nav: { iconSize } } }) => iconSize || 10;
+const getBGSelectedColor = ({ theme: { nav: { selectedBgColor = '#ffffff', selectedOpacity = 5 } } }) => getRGBA(selectedBgColor, selectedOpacity / 100);
 
 export const StyledOpenIndicator = styled.div`
   border-radius: 50%;
@@ -35,18 +35,23 @@ export const StyledMenuWrapper = styled.div`
   color: ${getFontColor};
   background-color: ${getBGColor};
   font-style: ${getFontStyle};
+  ${props => props.isAccordion ? 'max-width: unset;' : ''};
   ${props => props.isRoot && !props.isVertical ? isHorizontal : ''};
   ${props => props.isRoot && props.isMinimized ? 'min-width: unset;' : ''};
-  ${props => props.isRoot && props.isAccordion ? css`min-width: 250px;` : ''};
-  ${props => !props.isRoot && !props.isAccordion ? css`box-shadow: 1px 2px 3px lightgrey` : ''};
+  ${props => props.isRoot && props.isAccordion ? 'min-width: 250px;' : ''};
+  ${props => !props.isRoot && !props.isAccordion ? 'box-shadow: 1px 2px 3px lightgrey' : ''};
 `;
 
-export const StyledMenuItem = styled(({ isOpened, ...props }) => <MenuItem {...props} />)`
+export const StyledMenuItem = styled(({ isOpened, isBottom, ...props }) => <MenuItem {...props} />)`
   && { 
-    background-color: ${props => props.isOpened ? 'rgba(0, 0, 0, 0.05)' : 'transparent'};
-    border-left: 3px solid ${props => props.isOpened ? getBorderColor(props) : 'transparent'};
+    background-color: ${props => props.isOpened ? getBGSelectedColor(props) : 'transparent'};
+    border-${props => props.isBottom ? 'bottom' : 'left'}: 3px solid ${props => props.isOpened ? getBorderColor(props) : 'transparent'};
     padding: 10px 15px;
     justify-content: space-between;    
+    
+    &:hover {
+      background-color: ${getBGSelectedColor};
+    }
   }
 `;
 
@@ -56,14 +61,5 @@ export const StyledTitle = styled.span`
 `;
 
 export const StyledIcon = styled.span`
-  display: inline-block;
-  width: ${getIconSize}px;
-  height: ${getIconSize}px;
-  
-  svg {
-    fill: ${getFontColor};
-    width: ${getIconSize}px;
-    height: ${getIconSize}px;
-  }
   margin-right: 15px;
 `;

@@ -9,14 +9,14 @@ function Playground () {
   const [isVertical, setIsVertical] = React.useState(true);
   const [isMinimized, setIsMinimized] = React.useState(false);
   const [isAccordion, setIsAccordion] = React.useState(false);
-  const [withRippleEffect, setWithRippleEffect] = React.useState(true);
 
-  const [fontColor, setFontColor] = React.useState('#288dc8');
-  const [borderColor, setBorderColor] = React.useState('#dddddd');
-  const [backgroundColor, setBackgroundColor] = React.useState('#ffffff');
+  const [fontColor, setFontColor] = React.useState('#ffffff');
+  const [borderColor, setBorderColor] = React.useState('#00ab4e');
+  const [backgroundColor, setBackgroundColor] = React.useState('#263a4c');
   const [fontSize, setFontSize] = React.useState(12);
   const [isItalic, setIsItalic] = React.useState(false);
-  const [iconSize, setIconSize] = React.useState(10);
+  const [selectedBgColor, setSelectedBGColor] = React.useState('#ffffff');
+  const [selectedOpacity, setSelectedOpacity] = React.useState(5);
 
   return (
     <div className={styles.playgroundWrapper}>
@@ -42,31 +42,25 @@ function Playground () {
           disabled={!isVertical}
           checked={isAccordion}
         />
-        <CheckBox
-          id='checkbox-set-with-ripple'
-          label='Ripple Effect'
-          onChange={() => setWithRippleEffect(state => !state)}
-          checked={withRippleEffect}
-        />
       </div>
 
       <div className={styles.label}>Background</div>
       <div className={styles.flexCentered}>
-        {['#ffffff', 'tomato', 'skyblue', 'yellowgreen'].map((color, index) => (
+        {['#263a4c', '#ffffff', '#288dc8'].map((color, index) => (
           <div key={index} className={[styles.colorMarker, color === backgroundColor ? styles.isActive : ''].join(' ')} style={{ backgroundColor: color }} onClick={() => setBackgroundColor(color)} />
         ))}
       </div>
 
       <div className={styles.label}>Border</div>
       <div className={styles.flexCentered}>
-        {['#dddddd', 'purple', 'yellow', 'burlywood'].map((color, index) => (
+        {['#00ab4e', '#dddddd', 'purple', 'yellow', 'burlywood'].map((color, index) => (
           <div key={index} className={[styles.colorMarker, color === borderColor ? styles.isActive : ''].join(' ')} style={{ backgroundColor: color }} onClick={() => setBorderColor(color)} />
         ))}
       </div>
 
       <div className={styles.label}>Font Color</div>
       <div className={styles.flexCentered}>
-        {['#288dc8', 'white', 'black', 'yellow'].map((color, index) => (
+        {['#288dc8', '#ffffff', '#000000'].map((color, index) => (
           <div key={index} className={[styles.colorMarker, color === fontColor ? styles.isActive : ''].join(' ')} style={{ backgroundColor: color }} onClick={() => setFontColor(color)}/>
         ))}
       </div>
@@ -79,6 +73,21 @@ function Playground () {
         className={styles.input}
       />
 
+      <div className={styles.label}>Selected Background Color</div>
+      <div className={styles.flexCentered}>
+        {['#ffffff', '#000000'].map((color, index) => (
+          <div key={index} className={[styles.colorMarker, color === selectedBgColor ? styles.isActive : ''].join(' ')} style={{ backgroundColor: color }} onClick={() => setSelectedBGColor(color)}/>
+        ))}
+      </div>
+
+      <Input
+        label='Selected Opacity'
+        onChange={({ target: { value } }) => setSelectedOpacity(Number(value))}
+        value={selectedOpacity}
+        type="number"
+        className={styles.input}
+      />
+
       <CheckBox
         id='checkbox-set-italic'
         label='Italic Font'
@@ -87,28 +96,20 @@ function Playground () {
         checked={isItalic}
       />
 
-      <div className={styles.label}>Icon Size</div>
-      <div className={styles.flexCentered}>
-        {[{ label: 'small', value: 10 }, { label: 'medium', value: 15 }, { label: 'large', value: 20 }].map(({label, value}, index) => (
-          <div key={index} className={[styles.iconSizeLabel, value === iconSize ? styles.isActive : ''].join(' ')} onClick={() => setIconSize(value)}>{label}</div>
-        ))}
-      </div>
-
       <div className={styles.menuWrapper}>
         <NavMenu
           items={items}
           theme={{
             nav: {
-              iconSize,
+              selectedOpacity,
+              selectedBgColor,
               fontStyle: isItalic ? 'italic' : 'normal',
               fontSize,
               fontColor,
               borderColor,
-              shadowColor: '#aaaaaa',
               backgroundColor
             }
           }}
-          disableRipple={!withRippleEffect}
           isVertical={isVertical}
           isMinimized={isMinimized}
           isAccordion={isAccordion}

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { arrayOf, bool } from 'prop-types';
-import { ThemeProvider as MUIThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from 'styled-components';
 import { ClickAwayListener, Popper, Collapse } from '@material-ui/core';
 import { StyledMenuItem, StyledMenuList, StyledOpenIndicator, StyledMenuWrapper } from './styles';
@@ -36,10 +35,13 @@ const SubMenu = props => {
 
   const isOpened = Boolean(anchorEl);
 
+  const isBottom = props.isRoot && !props.isVertical;
+
   return (
     <>
       <StyledMenuItem
         isOpened={isOpened}
+        isBottom={isBottom}
         onClick={event => setAnchorEl(anchorEl ? null : event.currentTarget)}
         disabled={props.item.disabled}
       >
@@ -64,10 +66,10 @@ const SubMenu = props => {
           keepMounted={false}
           anchorEl={anchorEl}
           open={isOpened}
-          placement={props.isRoot && !props.isVertical ? 'bottom-start' : 'right-start'}
+          placement={isBottom ? 'bottom-start' : 'right-start'}
         >
           <ClickAwayListener onClickAway={() => setAnchorEl(null)}>
-            <StyledMenuList isBottom={props.isRoot && !props.isVertical}>
+            <StyledMenuList isBottom={isBottom}>
               <NavMenu
                 isRoot={false}
                 isMinimized={false}
@@ -131,18 +133,8 @@ NavMenu.defaultProps = {
   isVertical: true
 };
 
-export default ({ disableRipple, theme, ...props}) => (
+export default ({ theme, ...props}) => (
   <ThemeProvider theme={theme}>
-    <MUIThemeProvider
-      theme={createMuiTheme({
-        props: {
-          MuiButtonBase: {
-            disableRipple
-          }
-        }
-      })}
-    >
-      <NavMenu {...props} />
-    </MUIThemeProvider>
+    <NavMenu {...props} />
   </ThemeProvider>
 );

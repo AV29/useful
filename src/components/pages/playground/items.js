@@ -4,7 +4,6 @@ import Icon from '../../reusable/icon/Icon';
 export default [
   {
     id: '1',
-    icon: <Icon icon='hook' />,
     title: () => 'Europe',
     items: [
       {
@@ -70,7 +69,6 @@ export default [
   },
   {
     id: '2',
-    icon: <Icon icon='renderProp' />,
     title: () => 'Asia',
     items: [
       {
@@ -102,13 +100,11 @@ export default [
   },
   {
     id: '3',
-    icon: <Icon icon='controls' />,
     title: () => 'America',
     items: [
       {
         id: '3_1',
         title: () => 'Northern',
-        icon: <Icon icon='renderProp' />,
         items: [
           {
             id: '3_1_1',
@@ -126,7 +122,6 @@ export default [
       {
         id: '3_2',
         title: () => 'Central',
-        icon: <Icon icon='controls' />,
         items: [
           {
             id: '3_2_1',
@@ -153,7 +148,6 @@ export default [
       {
         id: '3_3',
         title: () => 'Southern',
-        icon: <Icon icon='controls' />,
         items: [
           {
             id: '3_3_1',
@@ -183,13 +177,11 @@ export default [
     id: '4',
     title: 'Antarctica',
     path: '/observables',
-    icon: <Icon icon='lifecycle' />,
     disabled: true
   },
   {
     id: '5',
     title: 'Australia',
-    icon: <Icon icon='javascript' />,
     path: '/observables'
   }
 ];
