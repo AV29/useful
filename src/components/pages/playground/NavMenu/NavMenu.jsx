@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { arrayOf, bool, number } from 'prop-types';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import Popper from '@material-ui/core/Popper';
-import Collapse from '@material-ui/core/Collapse';
-import { StyledMenuItem, StyledMenuList, StyledOpenIndicator } from './styles';
+import { arrayOf, bool } from 'prop-types';
+import { ThemeProvider as MUIThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from 'styled-components';
+import { ClickAwayListener, Popper, Collapse } from '@material-ui/core';
+import { StyledMenuItem, StyledMenuList, StyledOpenIndicator, StyledMenuWrapper } from './styles';
 import { getNodeContent } from './utils';
 import { ItemType } from './types';
 import styles from './NavMenu.less';
@@ -26,8 +26,7 @@ MenuItem.propTypes = {
   item: ItemType,
   isMinimized: bool,
   isAccordion: bool,
-  isRoot: bool,
-  iconSize: number
+  isRoot: bool
 };
 
 // ------------------------------------------------------ SubMenu ------------------------------------------------------
@@ -40,6 +39,7 @@ const SubMenu = props => {
   return (
     <>
       <StyledMenuItem
+        isOpened={isOpened}
         onClick={event => setAnchorEl(anchorEl ? null : event.currentTarget)}
         disabled={props.item.disabled}
       >
@@ -87,20 +87,13 @@ SubMenu.propTypes = {
   isVertical: bool,
   isMinimized: bool,
   isRoot: bool,
-  isAccordion: bool,
-  iconSize: number
+  isAccordion: bool
 };
 
 // ------------------------------------------------------ NavMenu ------------------------------------------------------
 
 const NavMenu = props => (
-  <div className={[
-    props.isRoot ? styles.navMenuWrapper : '',
-    props.isRoot && !props.isVertical ? styles.isHorizontal : '',
-    props.isRoot && props.isMinimized ? styles.isMinimized : '',
-    props.isRoot && props.isAccordion ? styles.isAccordion : ''
-  ].join(' ')}
-  >
+  <StyledMenuWrapper {...props}>
     {props.items.map(item => item.items && item.items.length > 0 ? (
        <SubMenu
          key={item.id}
@@ -122,7 +115,7 @@ const NavMenu = props => (
        />
       ))
     }
-  </div>
+  </StyledMenuWrapper>
 );
 
 NavMenu.propTypes = {
@@ -130,14 +123,26 @@ NavMenu.propTypes = {
   isRoot: bool,
   isMinimized: bool,
   isAccordion: bool,
-  isVertical: bool,
-  iconSize: number
+  isVertical: bool
 };
 
 NavMenu.defaultProps = {
   isRoot: true,
-  isVertical: true,
-  iconSize: 10
+  isVertical: true
 };
 
-export default NavMenu;
+export default ({ disableRipple, theme, ...props}) => (
+  <ThemeProvider theme={theme}>
+    <MUIThemeProvider
+      theme={createMuiTheme({
+        props: {
+          MuiButtonBase: {
+            disableRipple
+          }
+        }
+      })}
+    >
+      <NavMenu {...props} />
+    </MUIThemeProvider>
+  </ThemeProvider>
+);

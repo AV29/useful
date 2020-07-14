@@ -3,9 +3,9 @@ import { func, string } from 'prop-types';
 import noop from '../../../../utilities/noop';
 import { StyledInput, StyledInputWrapper, StyledError } from './styles';
 
-function Input ({ id, label, validate, ...props }) {
+function Input ({ id, label, validate, className, ...props }) {
   return (
-    <StyledInputWrapper>
+    <StyledInputWrapper className={className}>
       {label && <label htmlFor={id}>{label}</label>}
       <StyledInput
         id={id}

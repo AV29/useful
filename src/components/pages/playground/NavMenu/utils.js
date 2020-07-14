@@ -1,11 +1,11 @@
 import React from 'react';
-import { StyledIcon } from './styles';
+import { StyledIcon, StyledTitle } from './styles';
 import styles from './NavMenu.less';
 
 const getTitle = item => (
-  <span className={styles.title}>
+  <StyledTitle>
     {typeof item.title === 'function' ? item.title() : item.title}
-  </span>
+  </StyledTitle>
 );
 
 const getItemContent = props => {
