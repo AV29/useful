@@ -1,14 +1,19 @@
 import React from 'react';
+import get from 'lodash.get';
 import styled, { css } from 'styled-components';
 import MenuItem from '@material-ui/core/MenuItem';
 import { getRGBA } from './utils';
 
-const getFontColor = ({ theme: { nav: { fontColor } } }) => fontColor;
-const getBorderColor = ({ theme: { nav: { borderColor } } }) => borderColor;
-const getBGColor = ({ theme: { nav: { backgroundColor } } }) => backgroundColor || '#263a4c';
-const getFontStyle= ({ theme: { nav: { fontStyle } } }) => fontStyle;
-const getFontSize= ({ theme: { nav: { fontSize } } }) => fontSize;
-const getBGSelectedColor = ({ theme: { nav: { selectedBgColor = '#ffffff', selectedOpacity = 5 } } }) => getRGBA(selectedBgColor, selectedOpacity / 100);
+const navPath = ['theme', 'nav'];
+
+const getFontColor = props => get(props, [...navPath, 'fontColor'], '#ffffff');
+const getBorderColor = props => get(props, [...navPath, 'borderColor'], '#00ab4e');
+const getBorderWeight = props => get(props, [...navPath, 'borderWeight'], 3);
+const getBGColor = props => get(props, [...navPath, 'backgroundColor'], '#263a4c');
+const getFontStyle= props => get(props, [...navPath, 'fontStyle'], 'normal');
+const getFontSize= props => get(props, [...navPath, 'fontSize'], 12);
+const getFontWeight = props => get(props, [...navPath, 'fontWeight'], 'lighter');
+const getBGSelectedColor = props => getRGBA(get(props, [...navPath, 'selectedBgColor'], '#ffffff'), get(props, [...navPath, 'selectedOpacity'], 5) / 100);
 
 export const StyledOpenIndicator = styled.div`
   border-radius: 50%;
@@ -27,26 +32,29 @@ const isHorizontal = css`
   display: flex;
   align-items: center;
   max-width: unset;
+  justify-content: center;
 `;
 
 export const StyledMenuWrapper = styled.div`
   max-width: 200px;
   min-width: 150px;
   color: ${getFontColor};
-  background-color: ${getBGColor};
   font-style: ${getFontStyle};
-  ${props => props.isAccordion ? 'max-width: unset;' : ''};
+  background-color: ${getBGColor};
+  ${props => props.isVertical ? 'height: 100%;' : ''}; 
   ${props => props.isRoot && !props.isVertical ? isHorizontal : ''};
   ${props => props.isRoot && props.isMinimized ? 'min-width: unset;' : ''};
   ${props => props.isRoot && props.isAccordion ? 'min-width: 250px;' : ''};
+  ${props => !props.isRoot && props.isAccordion ? 'max-width: unset;' : ''};
   ${props => !props.isRoot && !props.isAccordion ? 'box-shadow: 1px 2px 3px lightgrey' : ''};
 `;
 
 export const StyledMenuItem = styled(({ isOpened, isBottom, ...props }) => <MenuItem {...props} />)`
   && { 
     background-color: ${props => props.isOpened ? getBGSelectedColor(props) : 'transparent'};
-    border-${props => props.isBottom ? 'bottom' : 'left'}: 3px solid ${props => props.isOpened ? getBorderColor(props) : 'transparent'};
+    border-${props => props.isBottom ? 'bottom' : 'left'}: ${getBorderWeight}px solid ${props => props.isOpened ? getBorderColor(props) : 'transparent'};
     padding: 10px 15px;
+    font-weight: ${getFontWeight};
     justify-content: space-between;    
     
     &:hover {
