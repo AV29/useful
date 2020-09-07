@@ -1,11 +1,11 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 
-const useWhyDidYouUpdate = props => {
+const useWhyDidYouUpdate = (props) => {
   const savedProps = useRef(props);
 
   const culprits = {};
 
-  Object.keys(props).forEach(key => {
+  Object.keys(props).forEach((key) => {
     if(props[key] !== savedProps.current[key]) {
       culprits[key] = props[key];
     }

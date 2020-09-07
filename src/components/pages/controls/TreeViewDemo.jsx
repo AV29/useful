@@ -86,7 +86,7 @@ function TreeViewDemo () {
           data={tree}
           style={{ flex: 1 }}
           shouldDisplayRoot={false}
-          expandEventType='onHover'
+          expandEventType="onHover"
         />
         <StyledTraverseResult>
           {flattened.map((node, index) => <span key={index}>{node}</span>)}

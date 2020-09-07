@@ -5,7 +5,7 @@ import { filter, debounceTime, distinctUntilChanged, mergeMap, delay, tap, repea
 import useObservable from '../../../hooks/useObservable';
 import Input from '../../reusable/controls/input/Input';
 
-const getPokemonByName = name => {
+const getPokemonByName = (name) => {
   return axios.get('https://pokeapi.co/api/v2/pokemon?limit=100')
     .then(result => result.data.results.filter(pokemon => pokemon.name.includes(name)));
 };
@@ -14,17 +14,18 @@ const delayRequest = () => of(new Date()).pipe(delay(1000));
 
 const pollObservable = of({}).pipe(
   mergeMap(delayRequest),
-  tap(console.log),
+  tap(console.log), // eslint-disable-line
   map(res => res.toString()),
   delay(2000),
   repeat()
 );
 
+// eslint-disable-next-line
 const numbersObservable = from([1, 2, 3]).pipe(
   mergeMap(val => from([val]).pipe(delay(1000 * val)))
 );
 
-let searchSubject = new BehaviorSubject('');
+const searchSubject = new BehaviorSubject('');
 
 const searchResultsObservable = searchSubject.pipe(
   filter(val => val.length > 1),
@@ -43,7 +44,7 @@ function Playground () {
   useObservable(pollObservable, setPolledData);
   useObservable(searchResultsObservable, setResults);
 
-  const handleSearchChange = event => {
+  const handleSearchChange = (event) => {
     const newName = event.target.value;
     setSearch(newName);
     searchSubject.next(newName);

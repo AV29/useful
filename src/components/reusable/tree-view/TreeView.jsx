@@ -1,9 +1,9 @@
 import React, { useState, useMemo } from 'react';
-import { string, shape, arrayOf, bool, array, object, oneOf, any } from 'prop-types';
+import { string, shape, arrayOf, bool, array, object, any, func, number } from 'prop-types';
 import Icon from '../icon/Icon.jsx';
 import styles from './TreeView.less';
 
-export const TreeView = props => {
+export const TreeView = (props) => {
   const shouldHideRoot = !props.shouldDisplayRoot && props.isRoot;
   const [isCollapsed, toggleCollapsed] = useState(shouldHideRoot ? false : props.isCollapsed);
 
@@ -19,7 +19,7 @@ export const TreeView = props => {
           subTreeOffset={props.subTreeOffset}
         />
       )),
-    [props.data]
+    [props.data, props.getId, props.subTreeOffset] //eslint-disable-line
   );
 
   const getNodeContent = ({ nodeContent }) => (typeof nodeContent === 'function' ? nodeContent() : nodeContent);
@@ -51,6 +51,8 @@ export const TreeView = props => {
 };
 
 TreeView.propTypes = {
+  subTreeOffset: number,
+  getId: func,
   isRoot: bool,
   style: object,
   isCollapsed: bool,

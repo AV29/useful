@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 const useObservable = (observable, setter) => {
   useEffect(() => {
-    const subscription = observable.subscribe(result => {
+    const subscription = observable.subscribe((result) => {
       setter(result);
     });
 
