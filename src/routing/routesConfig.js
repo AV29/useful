@@ -1,14 +1,16 @@
+import React from 'react';
 import guid from '../utilities/guid';
-import Controls from '../components/pages/controls/_container';
-import Hooks from '../components/pages/hooks/container';
-import About from '../components/pages/about/container';
-import RenderProps from '../components/pages/render-props/container';
-import Hoc from '../components/pages/hoc/container';
-import This from '../components/pages/this/container';
-import WebComponents from '../components/pages/web-components/container';
-import Lifecycle from '../components/pages/lifecycle/container';
-import Observables from '../components/pages/observables/Observables';
-import Playground from '../components/pages/playground/Playground';
+
+const Controls = React.lazy(() => import('../components/pages/controls/_container'));
+const Hooks = React.lazy(() => import('../components/pages/hooks/_container'));
+const About = React.lazy(() => import('../components/pages/about/_container'));
+const RenderProps = React.lazy(() => import('../components/pages/render-props/_container'));
+const Hoc = React.lazy(() => import('../components/pages/hoc/_container'));
+const This = React.lazy(() => import('../components/pages/this/_container'));
+const WebComponents = React.lazy(() => import('../components/pages/web-components/_container'));
+const Lifecycle = React.lazy(() => import('../components/pages/lifecycle/_container'));
+const Observables = React.lazy(() => import('../components/pages/observables/Observables'));
+const Playground = React.lazy(() => import('../components/pages/playground/Playground'));
 
 export default [
   {
