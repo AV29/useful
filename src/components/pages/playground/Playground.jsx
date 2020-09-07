@@ -4,7 +4,7 @@ function Playground () {
 
   return (
     <>
-      Hi! This is a Playground.
+      Hi! This is a Playground!
     </>
   );
 }
